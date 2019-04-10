@@ -2,8 +2,8 @@
 library(gridExtra)
 library(knitr)
 
-root <- file.path("C:/Users/laramitchell/Main/Collaboration/IEP_status_and_trends",
-									"Status-and-Trends")
+## Update root:
+root <- file.path("...","Status-and-Trends")
 
 ## Makes life easier to have the report directory as the working directory:
 setwd(file.path(root,"report"))
