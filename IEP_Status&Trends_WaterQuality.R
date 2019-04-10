@@ -280,21 +280,21 @@ summer$qyear<-as.integer(summer$qyear)
 #create custom plot formatting function
 theme_iep <- function(){
   theme_bw()+
-    theme(axis.text.x = element_text(size = 12),
-          axis.text.y = element_text(size = 12),
-          axis.title.x = element_text(size = 14, face = "plain"),             
-          axis.title.y = element_text(size = 14, face = "plain"
+    theme(axis.text.x = element_text(size = 9),
+          axis.text.y = element_text(size = 9),
+          axis.title.x = element_text(size = 10, face = "plain"),
+          axis.title.y = element_text(size = 10, face = "plain"
                                       ,margin=margin(t = 0, r = 10, b = 0, l = 0)
           ),             
-          panel.grid.major.x = element_blank(),                                          
+          panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank(),
           panel.grid.minor.y = element_blank(),
           panel.grid.major.y = element_blank(),  
           #plot.margin = unit(c(0.1, 0.3, 0.1, 0.9), units = , "cm"), #top, right, bottom, left
-          plot.margin = unit(c(0.2, 0.5, 0.1, 0.9), units = , "cm"), #adjusted the "top" and "right" values so nothing is cut off
+          plot.margin = unit(c(0.25, 0.4, 0.1, 0.4), units = , "cm"), #adjusted the "top" and "right" values so nothing is cut off
           plot.title = element_text(size = 20, vjust = 1, hjust = 0.5),
-          legend.text = element_text(size = 12, face = "plain"),
-          legend.title=element_text(size=14))
+          legend.text = element_text(size = 9, face = "plain"),
+          legend.title=element_text(size=10))
 }
 
 #set up facet labels
@@ -445,7 +445,7 @@ ylab <- expression("Temperature " ( degree*C)) #allows for degree symbol for tem
 
 #delta
 (p_sec_d <- ggplot(fdt, aes(x=qyear, y=secchi))+
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
+    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
     theme_iep() +
     theme(legend.position="none")+ 
     scale_x_continuous("", limits=c(1966,2018)) +
@@ -453,16 +453,15 @@ ylab <- expression("Temperature " ( degree*C)) #allows for degree symbol for tem
 
 #then suisun
 (p_sec_ss <- ggplot(fss, aes(x=qyear, y=secchi))+
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
+    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
     theme_iep() +
     theme(legend.position="none")+ 
     scale_x_continuous("", limits=c(1966,2018))+ 
     scale_y_continuous("Secchi Depth (cm)", limits=c(min(fall$secchi),max(fall$secchi))))
 
-
 #then san pablo
 (p_sec_sp <- ggplot(fspl, aes(x=qyear, y=secchi))+
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
+    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
     theme_iep() +
     #theme(axis.title.x=element_blank())+ #removes label from x axis
     theme(legend.position="none")+ 
@@ -475,10 +474,10 @@ ylab <- expression("Temperature " ( degree*C)) #allows for degree symbol for tem
 #plot nitrate/nitrite and ammonia on same plot
 #start with just the delta region
 (p_nut_d <- ggplot(fdt, aes(x=qyear))+
-    geom_line(y=fdt$nit,color="#095E49", size=1.3)+
-    geom_point(y=fdt$nit,color="#095E49",size=3) +
-    geom_line(y=fdt$ammonia,color="black", size=1.3)+
-    geom_point(y=fdt$ammonia,color="black",size=3) +
+    geom_line(y=fdt$nit,color="#095E49", size=0.9)+
+    geom_point(y=fdt$nit,color="#095E49",size=1.6) +
+    geom_line(y=fdt$ammonia,color="black", size=0.9)+
+    geom_point(y=fdt$ammonia,color="black",size=1.6) +
     theme_iep() +
     theme(legend.position="none")+ 
     scale_x_continuous("Year (September - November)", limits=c(1966,2018))+
@@ -487,10 +486,10 @@ ylab <- expression("Temperature " ( degree*C)) #allows for degree symbol for tem
 
 #then suisun
 (p_nut_ss <- ggplot(fss, aes(x=qyear))+
-    geom_line(y=fss$nit,color="#095E49", size=1.3)+
-    geom_point(y=fss$nit,color="#095E49",size=3) +
-    geom_line(y=fss$ammonia,color="black", size=1.3)+
-    geom_point(y=fss$ammonia,color="black",size=3) +
+    geom_line(y=fss$nit,color="#095E49", size=0.9)+
+    geom_point(y=fss$nit,color="#095E49",size=1.6) +
+    geom_line(y=fss$ammonia,color="black", size=0.9)+
+    geom_point(y=fss$ammonia,color="black",size=1.6) +
     theme_iep() +
     theme(legend.position="none")+ 
     scale_x_continuous("Year (September - November)", limits=c(1966,2018)) +
@@ -502,12 +501,12 @@ ylab <- expression("Temperature " ( degree*C)) #allows for degree symbol for tem
 cols <- c("Ammonium"="black","Nitrate/Nitrite"="#095E49")
 
 (p_nut_sp <- ggplot(fspl, aes(x=qyear))+
-    geom_line(aes(y=fspl$nit,color="Nitrate/Nitrite"), size=1.3)+
-    geom_point(aes(y=fspl$nit,color="Nitrate/Nitrite"),size=3)+ 
-    geom_line(aes(y=fspl$ammonia,color="Ammonium"), size=1.3)+
-    geom_point(aes(y=fspl$ammonia,color="Ammonium"),size=3) +
+    geom_line(aes(y=fspl$nit,color="Nitrate/Nitrite"), size=0.9)+
+    geom_point(aes(y=fspl$nit,color="Nitrate/Nitrite"),size=1.6)+ 
+    geom_line(aes(y=fspl$ammonia,color="Ammonium"), size=0.9)+
+    geom_point(aes(y=fspl$ammonia,color="Ammonium"),size=1.6) +
     theme_iep()+
-    theme(legend.position=c(0.2,0.8))+ 
+    theme(legend.position=c(0.3,0.75))+ 
     scale_x_continuous("Year (September - November)", limits=c(1966,2018)) +
     scale_y_continuous("Dissolved Nitrogen (mg / L)",limits=c(min(fall$ammonia),max(fall$nit)))+
     scale_colour_manual(name="Nitrogen Form",values =cols,labels=c("Ammonium","Nitrate / Nitrite"))
@@ -567,4 +566,13 @@ ptn
 #ggsave(pch, file="chla_fall_panel.png", path=plot_folder,scale=1.8, dpi=300, units="cm",width=25.5,height=5.4)
 
 
+## Final figure:
+water_quality_main_layout <- rbind(c(1,2,3),
+																	 c(4,5,6))
+water_quality_main_fig <- grid.arrange(
+						 p_sec_sp, p_sec_ss, p_sec_d, 
+						 p_nut_sp, p_nut_ss, p_nut_d, 
+						 layout_matrix = water_quality_main_layout,
+						 heights=unit(c(68,68), c("mm")),
+						 widths=unit(c(102,102,102), c("mm")))
 

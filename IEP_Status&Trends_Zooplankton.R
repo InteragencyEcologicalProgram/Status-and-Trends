@@ -371,21 +371,21 @@ mys<-subset(zmeans,taxon=="mys")
 #create custom plot formatting function
 theme_iep <- function(){
   theme_bw()+
-    theme(axis.text.x = element_text(size = 12),
-          axis.text.y = element_text(size = 12),
-          axis.title.x = element_text(size = 14, face = "plain"),             
-          axis.title.y = element_text(size = 14, face = "plain"
+    theme(axis.text.x = element_text(size = 9),
+          axis.text.y = element_text(size = 9),
+          axis.title.x = element_text(size = 10, face = "plain"),
+          axis.title.y = element_text(size = 10, face = "plain"
                                       ,margin=margin(t = 0, r = 10, b = 0, l = 0)
           ),             
-          panel.grid.major.x = element_blank(),                                          
+          panel.grid.major.x = element_blank(), 
           panel.grid.minor.x = element_blank(),
           panel.grid.minor.y = element_blank(),
           panel.grid.major.y = element_blank(),  
           #plot.margin = unit(c(0.1, 0.3, 0.1, 0.9), units = , "cm"), #top, right, bottom, left
-          plot.margin = unit(c(0.2, 0.5, 0.1, 0.9), units = , "cm"), #adjusted the "top" and "right" values so nothing is cut off
+          plot.margin = unit(c(0.25, 0.4, 0.1, 0.4), units = , "cm"), #adjusted the "top" and "right" values so nothing is cut off
           plot.title = element_text(size = 20, vjust = 1, hjust = 0.5),
-          legend.text = element_text(size = 12, face = "plain"),
-          legend.title=element_text(size=14))
+          legend.text = element_text(size = 9, face = "plain"),
+          legend.title=element_text(size=10))
 }
 
 #set up facet labels
@@ -636,13 +636,12 @@ bfspl<-subset(bf,region=="spl")
 #then San Pablo plot
 (p_bz_sp <- ggplot(bfspl, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
     geom_area(position = 'stack')+
-    theme_iep()+theme(legend.position=c(0.2,0.7)) +
+    theme_iep()+theme(legend.position=c(0.2,0.67)) +
     scale_x_continuous("Year (September - November)", limits=c(1966,2018)) +
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
                       ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
     scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
                        , limits=c(0,38) #set the max by hand based on all three regional plots for the season
-                       
     ))
 
 
@@ -750,9 +749,9 @@ fspl<-subset(fall,region=="spl")
 
 #delta plot
 (p_chla_d <- ggplot(fdt, aes(x=qyear, y=chla))+
-    geom_vline(xintercept = 1986, size=1,linetype = "longdash",color="dark gray")+ #clam invasion
-    annotate("text", label = "clam invasion", x = 1994, y = 20.12, color = "black", size=5)+
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
+    geom_vline(xintercept = 1986, size=0.7,linetype = "longdash",color="dark gray")+ #clam invasion
+    annotate("text", label = "clam invasion", x = 1995, y = 20.12, color = "black", size=4)+
+    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
     theme_iep() +
     theme(legend.position="none") + 
     scale_y_continuous(expression(paste("Chlorophyll-a (",mu,"g / L)")),limits=c(0, max(fall$chla))) +
@@ -763,9 +762,9 @@ fspl<-subset(fall,region=="spl")
 
 #then Suisun plot
 (p_chla_ss <- ggplot(fss, aes(x=qyear, y=chla))+
-    geom_vline(xintercept = 1986, size=1,linetype = "longdash",color="dark gray")+ #clam invasion
-    annotate("text", label = "clam invasion", x = 1994, y = 20.12, color = "black", size=5)+
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
+    geom_vline(xintercept = 1986, size=0.7,linetype = "longdash",color="dark gray")+ #clam invasion
+    annotate("text", label = "clam invasion", x = 1995, y = 20.12, color = "black", size=4)+
+    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
     theme_iep() +
     theme(legend.position="none") + 
     scale_y_continuous(expression(paste("Chlorophyll-a (",mu,"g / L)")),limits=c(0, max(fall$chla))) +
@@ -773,9 +772,9 @@ fspl<-subset(fall,region=="spl")
 
 #then San Pablo plot
 (p_chla_sp <- ggplot(fspl, aes(x=qyear, y=chla))+
-    geom_vline(xintercept = 1986, size=1,linetype = "longdash",color="dark gray")+ #clam invasion
-    annotate("text", label = "clam invasion", x = 1994, y = 20.12, color = "black", size=5)+
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
+    geom_vline(xintercept = 1986, size=0.7,linetype = "longdash",color="dark gray")+ #clam invasion
+    annotate("text", label = "clam invasion", x = 1995, y = 20.12, color = "black", size=4)+
+    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
     theme_iep() +
     theme(legend.position="none") + 
     scale_y_continuous(expression(paste("Chlorophyll-a (",mu,"g / L)")),limits=c(0, max(fall$chla))) +
@@ -791,12 +790,13 @@ pchz #eventualy the plot will render but it's slow
 
 
 
-
-
-
-
-
-
-
-
+## Final figure:
+plankton_main_layout <- rbind(c(1,2,3),
+															c(4,5,6))
+plankton_main_fig <- grid.arrange(
+						 p_chla_sp, p_chla_ss, p_chla_d, 
+						 p_bz_sp, p_bz_ss, p_bz_d, 
+						 layout_matrix = plankton_main_layout,
+						 heights=unit(c(68,68), c("mm")),
+						 widths=unit(c(102,102,102), c("mm")))
 
