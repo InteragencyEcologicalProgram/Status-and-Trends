@@ -74,21 +74,21 @@ str(dmean)
 #create custom plot formatting function
 theme_iep <- function(){
   theme_bw()+
-    theme(axis.text.x = element_text(size = 12),
-          axis.text.y = element_text(size = 12),
-          axis.title.x = element_text(size = 14, face = "plain"),             
+    theme(axis.text.x = element_text(size = 14),
+          axis.text.y = element_text(size = 14),
+          axis.title.x = element_text(size = 14, face = "plain"),
           axis.title.y = element_text(size = 14, face = "plain"
                                       ,margin=margin(t = 0, r = 10, b = 0, l = 0)
           ),             
-          panel.grid.major.x = element_blank(),                                          
+          panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank(),
           panel.grid.minor.y = element_blank(),
           panel.grid.major.y = element_blank(),  
           #plot.margin = unit(c(0.1, 0.3, 0.1, 0.9), units = , "cm"), #top, right, bottom, left
-          plot.margin = unit(c(0.2, 0.5, 0.1, 0.9), units = , "cm"), #adjusted the "top" and "right" values so nothing is cut off
+          plot.margin = unit(c(0.25, 0.4, 0.1, 0.4), units = , "cm"), #adjusted the "top" and "right" values so nothing is cut off
           plot.title = element_text(size = 20, vjust = 1, hjust = 0.5),
-          legend.text = element_text(size = 12, face = "plain"),
-          legend.title=element_text(size=14))
+          legend.text = element_text(size = 9, face = "plain"),
+          legend.title=element_text(size=10))
 }
 
 
@@ -115,20 +115,29 @@ str(fall)
 
 #Plot of 1967 - 2017
 (pfflow<-ggplot(fall, aes(x=qyear, y=out/1000)) +
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
+    geom_line(colour="black", size=1.5)+geom_point(colour="black",size=2.8) +
     theme(legend.position="none")+ theme_iep()+
     scale_x_continuous("Year (September - November)",limits = c(1966,2017))+
-    scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s, × 1,000)")), limits=c(0,max(fall$out)/1000)))
+    scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s x 1,000)")), limits=c(0,max(fall$out)/1000))) 
 #ggsave(pfflow, file="flow_fall.png", path=plot_folder,scale=1.8, dpi=300, units="cm",width=8.5,height=5.4)
 #NOTE: need to set path for plot_folder before saving
 
 
 #create plot with just 2002-2017
 (pfflow2<-ggplot(fall, aes(x=qyear, y=out/1000)) +
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
+    geom_line(colour="black", size=1.5)+geom_point(colour="black",size=2.8) +
     theme(legend.position="none")+ theme_iep()+
     scale_x_continuous("Year (September - November)",limits = c(2002,2017))+
     scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s, × 1,000)")), limits=c(0,13000/1000)))
 #ggsave(pfflow2, file="flow_recent.png", path=plot_folder,scale=1.8, dpi=300, units="cm",width=8.5,height=5.4)
 #NOTE: need to set path for plot_folder before saving
 
+
+## Final figures:
+flow_fig <- gridExtra::grid.arrange(pfflow, layout_matrix=rbind(1), 
+												 heights=unit(102, c("mm")),
+												 widths=unit(160, c("mm")))
+
+flow2_fig <- gridExtra::grid.arrange(pfflow2, layout_matrix=rbind(1), 
+												 heights=unit(102, c("mm")),
+												 widths=unit(160, c("mm")))
