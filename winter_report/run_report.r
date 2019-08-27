@@ -12,6 +12,7 @@ library(knitr)
 ## root <- file.path("...","Status-and-Trends","winter_report")
 
 fig_root <- file.path(root,"latex","figures")
+secchi_fig_root <- file.path(fig_root,"secchi")
 smelt_fig_root <- file.path(fig_root,"smelt")
 salmon_fig_root <- file.path(fig_root,"salmon")
 otherfish_fig_root <- file.path(fig_root,"otherfish")
