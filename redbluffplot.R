@@ -76,7 +76,7 @@ theme_iep <- function(){
           legend.title=element_text(size=10))
 }
 
-#Fall Chinook dominate the graph so much it is hard to see the other things, so I won't worry abou tit.
-Red = ggplot(meanwinter, aes(x = Year2, y = meandaily))
+#We just wanted winter run for the winter report
+Red = ggplot(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate"), aes(x = Year2, y = meandaily))
 Red + geom_bar(stat = "identity") + ylab("Estimated dialy passage") + xlab("Year (December-January)") +
   theme_iep()
