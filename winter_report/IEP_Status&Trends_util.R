@@ -3,10 +3,10 @@
 theme_iep <- function(){
   theme_bw()+
     theme(
-      axis.text.x = element_text(size = 14),
-      axis.text.y = element_text(size = 14),
-      axis.title.x = element_text(size = 15, face = "plain"),
-      axis.title.y = element_text(size = 15, face = "plain",
+      axis.text.x = element_text(size = 9),
+      axis.text.y = element_text(size = 9),
+      axis.title.x = element_text(size = 10, face = "plain"),
+      axis.title.y = element_text(size = 10, face = "plain",
                                   margin=margin(t = 0, r = 10, b = 0, l = 0)), 
       panel.grid.major.x = element_blank(),
       panel.grid.minor.x = element_blank(),
