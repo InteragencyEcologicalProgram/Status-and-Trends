@@ -28,6 +28,6 @@ source(file.path(root,"IEP_Status&Trends_Fishes_SKT.R"))
 ## knitr pdf version of the report.
 ## knitr likes having the working directory set to where the Rnw and tex files will be:
 setwd(file.path(root,"latex"))
-base <- "status_and_trends_report_winter"
+base <- "status_and_trends_report_winter_landscape"
 knitr::knit(input=paste0(base,".Rnw"))
 tools::texi2dvi(paste0(base,".tex"), pdf=TRUE, clean=TRUE)
