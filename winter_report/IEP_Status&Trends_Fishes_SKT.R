@@ -100,6 +100,6 @@ skt_dsm_fig <- ggplot(skt_index_df, aes(x=Year, y=Index))+
   theme(legend.position="none") + 
   scale_y_continuous(expression(paste("Delta Smelt Index (fish/m"^"3"*" x 10,000)")))
 
-ggsave(skt_dsm_fig, file="skt_dsm_fig.png", path=smelt_fig_root, scale=2,
-       dpi=300, units="cm", width=8.5, height=5.5)
+ggsave(skt_dsm_fig, file="skt_dsm_fig.png", path=smelt_fig_root, 
+       dpi=300, units="cm", width=9.3, height=6.8)
 
