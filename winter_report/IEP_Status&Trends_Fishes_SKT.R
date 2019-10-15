@@ -55,7 +55,8 @@ catch_mat <- skt_catch %>%
   group_by(Year, Month, SurveyNumber, SampleDate, StationCode,
            SampleTimeStart, SampleTimeEnd, Volume_cubicm) %>%
   summarize(DeltaSmelt=sum(Catch[CommonName == "delta smelt"])) %>%
-  ungroup()
+  ungroup() %>%
+  filter(Year <= 2017)
 
 ## Recreate SKT index (see "MEMO2015 SKT Delta Smelt Index.pdf" for instructions 
 ## on how to define the regions and calculate the index):
