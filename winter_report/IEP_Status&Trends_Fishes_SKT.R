@@ -98,7 +98,8 @@ skt_dsm_fig <- ggplot(skt_index_df, aes(x=Year, y=Index))+
   geom_bar(stat="identity",fill="#095E49") +
   theme_iep() +
   theme(legend.position="none") + 
-  scale_y_continuous(expression(paste("Delta Smelt Index (fish/m"^"3"*" x 10,000)")))
+  scale_y_continuous(expression(paste("Delta Smelt Index")))
+  #scale_y_continuous(expression(paste("Delta Smelt Index (fish/m"^"3"*" x 10,000)")))
 
 ggsave(skt_dsm_fig, file="skt_dsm_fig.png", path=smelt_fig_root, 
        dpi=300, units="cm", width=9.3, height=6.8)
