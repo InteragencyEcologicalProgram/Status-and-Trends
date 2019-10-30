@@ -16,6 +16,22 @@ CHNW_Trawl_DecJanFeb_Means <- CHNW_Trawl_CPUE %>%
 	mutate(FieldYear=as.numeric(as.character(FieldYear)),
 				 ReportYear=(FieldYear - 1))
 
+## Don't distinguish between Origin:
+CHNW_Trawl_DecJanFeb_Mean_AllFish <- CHNW_Trawl_CPUE %>%
+	dplyr::filter(MONTH %in% c("Dec","Jan","Feb") & description == "Chipps Island") %>%
+  group_by(FieldYear, MONTH, DAY,description,StationCode) %>% ##mean daily CPUE by Station
+  summarise(CPUE_day_station=mean(CPUE, na.rm = TRUE)) %>%
+  group_by(FieldYear, MONTH, DAY,description) %>% ##mean daily CPUE by site
+  summarise(CPUE_day_site=mean(CPUE_day_station, na.rm = TRUE)) %>%
+  group_by(FieldYear, MONTH, description)%>%  ##mean monthly CPUE by site
+  summarise(CPUE_month_site=mean(CPUE_day_site, na.rm = TRUE))%>%
+	group_by(FieldYear, description) %>% ## mean CPUE by "season" (Dec - Feb)
+	summarise(CPUE_season=mean(CPUE_month_site, na.rm = TRUE)) %>%
+	ungroup() %>%
+  filter(!is.nan(CPUE_season)) %>%
+	mutate(FieldYear=as.numeric(as.character(FieldYear)),
+				 ReportYear=(FieldYear - 1))
+
 CHNW_WinterSeason_Chipps<-ggplot(subset(CHNW_Trawl_DecJanFeb_Means, description=="Chipps Island"),aes(x=ReportYear,y=CPUE_season*10000, fill=Origin))+
   geom_bar(stat="identity", colour="black", size=0.5) + # Thin Black Outlines
   scale_fill_manual(values=CHNWcolors, labels=c("Marked Hatchery", "Unmarked Hatchery", "Wild"))+ #bar colors
@@ -38,8 +54,16 @@ CHNW_WinterSeason_Chipps<-ggplot(subset(CHNW_Trawl_DecJanFeb_Means, description=
 				legend.text = element_text(size=7), 
         legend.key.size = unit(1, 'lines'))
 
+CHNW_WinterSeason_Chipps_meanline <- CHNW_WinterSeason_Chipps + 
+  geom_hline(yintercept=mean(CHNW_Trawl_DecJanFeb_Mean_AllFish$CPUE_season)*10000, 
+						 col="red", linetype="dashed", size=0.9)
+
+
 ggsave(CHNW_WinterSeason_Chipps, file="djfmp_chnw_chipps_winter.png",
        dpi=300, units="cm", width=9.3, height=10)  # 6.8
+
+ggsave(CHNW_WinterSeason_Chipps_meanline, file="djfmp_chnw_chipps_winter_meanline.png", 
+			 dpi=300, units="cm", width=9.3, height=10)
 
 
 
