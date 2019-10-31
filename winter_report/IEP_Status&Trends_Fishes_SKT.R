@@ -105,8 +105,7 @@ skt_dsm_fig <- ggplot(skt_index_df, aes(x=Year, y=Index))+
 
 skt_dsm_fig_meanline <- skt_dsm_fig + 
   geom_hline(yintercept=mean(skt_index_df$Index, na.rm=TRUE), col="red", 
-             linetype="dashed", size=0.9) + 
-  scale_x_continuous(breaks=c(2005,2010,2015))
+             linetype="dashed", size=0.9)
 
 ggsave(skt_dsm_fig, file="skt_dsm_fig.png", path=smelt_fig_root, 
        dpi=300, units="cm", width=9.3, height=6.8)
