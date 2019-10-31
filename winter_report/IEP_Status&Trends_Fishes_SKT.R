@@ -99,12 +99,14 @@ skt_dsm_fig <- ggplot(skt_index_df, aes(x=Year, y=Index))+
   geom_bar(stat="identity") +
   theme_iep() +
   theme(legend.position="none") + 
-  scale_y_continuous(expression(paste("Delta Smelt Index")))
+  scale_y_continuous(expression(paste("Delta Smelt Index"))) + 
+  scale_x_continuous(breaks=c(2005,2010,2015))
   #scale_y_continuous(expression(paste("Delta Smelt Index (fish/m"^"3"*" x 10,000)")))
 
 skt_dsm_fig_meanline <- skt_dsm_fig + 
   geom_hline(yintercept=mean(skt_index_df$Index, na.rm=TRUE), col="red", 
-             linetype="dashed", size=0.9)
+             linetype="dashed", size=0.9) + 
+  scale_x_continuous(breaks=c(2005,2010,2015))
 
 ggsave(skt_dsm_fig, file="skt_dsm_fig.png", path=smelt_fig_root, 
        dpi=300, units="cm", width=9.3, height=6.8)
