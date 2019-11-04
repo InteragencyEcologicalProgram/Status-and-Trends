@@ -55,7 +55,8 @@ catch_mat <- skt_catch %>%
   group_by(Year, Month, SurveyNumber, SampleDate, StationCode,
            SampleTimeStart, SampleTimeEnd, Volume_cubicm) %>%
   summarize(DeltaSmelt=sum(Catch[CommonName == "delta smelt"])) %>%
-  ungroup()
+  ungroup() %>%
+  filter(Year <= 2017)
 
 ## Recreate SKT index (see "MEMO2015 SKT Delta Smelt Index.pdf" for instructions 
 ## on how to define the regions and calculate the index):
@@ -95,11 +96,19 @@ skt_index_df
 
 
 skt_dsm_fig <- ggplot(skt_index_df, aes(x=Year, y=Index))+
-  geom_bar(stat="identity",fill="#095E49") +
+  geom_bar(stat="identity") +
   theme_iep() +
   theme(legend.position="none") + 
-  scale_y_continuous(expression(paste("Delta Smelt Index (fish/m"^"3"*" x 10,000)")))
+  scale_y_continuous(expression(paste("Delta Smelt Index"))) + 
+  scale_x_continuous(breaks=c(2005,2010,2015))
+  #scale_y_continuous(expression(paste("Delta Smelt Index (fish/m"^"3"*" x 10,000)")))
+
+skt_dsm_fig_meanline <- skt_dsm_fig + 
+  geom_hline(yintercept=mean(skt_index_df$Index, na.rm=TRUE), col="red", 
+             linetype="dashed", size=0.9)
 
 ggsave(skt_dsm_fig, file="skt_dsm_fig.png", path=smelt_fig_root, 
        dpi=300, units="cm", width=9.3, height=6.8)
 
+ggsave(skt_dsm_fig_meanline, file="skt_dsm_fig_meanline.png", path=smelt_fig_root, 
+       dpi=300, units="cm", width=9.3, height=6.8)
