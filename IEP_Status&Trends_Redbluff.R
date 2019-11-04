@@ -102,5 +102,6 @@ redtest2 = Red + geom_bar(stat = "identity", fill = "tan4") +
 
 redtest2
 
+#save it in the right place
 ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = "winter_report/latex/figures")
 
