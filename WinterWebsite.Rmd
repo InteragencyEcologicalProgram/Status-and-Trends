@@ -27,3 +27,5 @@ Winter flow is driven primarily by rainfall and upstream dam releases.
 - Fish
 - Recent fish trends
 - Metadata
+
+[Back to menu](index.html)
