@@ -30,4 +30,5 @@ include_graphics("winter_report/latex/figures/secchi/secchi_suisun_bay_tmp.png")
 ```
 In 2017, San Pablo bay was clearer than the long-term average.
 
+i don't know what i'm doing
 
