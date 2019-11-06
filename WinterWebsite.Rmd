@@ -1,0 +1,29 @@
+---
+title: "Winter Report"
+author: "Rosemary Hartman"
+date: "11/6/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Winter Report 
+## (December-February, through 2018)
+
+### Delta Outflow
+```{r, echo = F}
+include_graphics("winter_report/latex/figures/outflow_tmp.png")
+```
+Freshwater flow influences water quality, plankton, and fish populations.
+Winter flow is driven primarily by rainfall and upstream dam releases.
+
+## Contents
+- [Secchi Depth](SecchiWeb.html)
+- [Temperature](TempWeb.html)
+- Zooplankton
+- Phytoplankton
+- Fish
+- Recent fish trends
+- Metadata
