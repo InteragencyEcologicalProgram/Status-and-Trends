@@ -23,6 +23,7 @@ setwd(root)
 source(file.path(root,"IEP_Status&Trends_util.R"))
 source(file.path(root,"IEP_Status&Trends_Fishes_DJFMP.R"))
 source(file.path(root,"IEP_Status&Trends_Fishes_SKT.R"))
+source(file.path(root, "IEP_Status&Trends_Redbluff.R"))
 
 
 ## knitr pdf version of the report.
