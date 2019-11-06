@@ -1,0 +1,114 @@
+---
+title: "Redblulff"
+author: "Rosemary Hartman"
+date: "11/4/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(lubridate)
+library(knitr)
+library(DT)
+```
+
+# Introduction
+
+This is my graph of the Red Bluff rotory screw trap data. The data is collected by USFWS's fish traps just below Shasta Dam. The passage of juvenile fish moving down the Sacramento River gives you an estimate of production for the upper part of the river. I made a graph of the Winter-Run Juvenile chinook passage estimate over the past 15 years to see how passage has changed over time. 
+
+```{r, echo = F}
+#here i am setting up my theme
+theme_iep <- function(){
+  theme_bw()+
+    theme(axis.text.x = element_text(size = 9),
+          axis.text.y = element_text(size = 9),
+          axis.title.x = element_text(size = 10, face = "plain"),
+          axis.title.y = element_text(size = 10, face = "plain"
+                                      ,margin=margin(t = 0, r = 10, b = 0, l = 0)
+          ),             
+          panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank(),
+          panel.grid.minor.y = element_blank(),
+          panel.grid.major.y = element_blank(),  
+          #plot.margin = unit(c(0.1, 0.3, 0.1, 0.9), units = , "cm"), #top, right, bottom, left
+          #plot.margin = unit(c(0.25, 0.4, 0.1, 0.4), units = , "cm"), #adjusted the "top" and "right" values so nothing is cut off
+          plot.title = element_text(size = 20, vjust = 1, hjust = 0.5),
+          legend.text = element_text(size = 9, face = "plain"),
+          legend.title=element_text(size=10))
+}
+
+redbluff = read.csv("redbluff_all.csv")[,2:5]
+redbluff$Date = as.Date(redbluff$Date, format = "%Y-%m-%d")
+
+
+
+```
+
+
+# Analysis
+
+I downloaded the data from the USFWS [website](http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2019&biweekly=other&wtemp=default), but it came in multiple bi-weekly files, so the first step was stitching it together into one file.
+
+This is what the dataset looks like
+
+```{r}
+
+head(redbluff)
+
+```
+
+Now I need to calculate the mean passage for the winter-run Chinook during the months of December, January, and FEbruary. So first I subset the data so that it just included winter-run chinook for the winter months (December, January, February). I lumped data from December of one year with January and February for the next year before taking the daily mean.
+
+```{r}
+
+#subset just the winter months
+redbluff$Month = month(redbluff$Date)
+RedWinter = filter(redbluff, Month == 12 | Month == 1 | Month == 2)
+
+#lump december with jan and feb
+RedWinter$Year2 = year(RedWinter$Date)
+RedWinter$Year2[which(RedWinter$Month== 1 | RedWinter$Month == 2)] = year(RedWinter$Date[which(RedWinter$Month== 1 | RedWinter$Month == 2)])-1
+
+#Filter out 2018 and 2019
+RedWinter = filter(RedWinter, Year2 < 2018)
+
+#calculate mean passage
+meanwinter = group_by(RedWinter, Year2, runname) %>% summarize(meandaily = mean(Dailypassage, na.rm = T))
+
+
+```
+
+
+# REsults
+
+Now we can make a graph of the results. I also included a red dotted line with the grand mean across all years of the data.
+
+```{r, echo = F}
+
+#Calculate average
+MeanAll = mean(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate")$meandaily)
+
+
+#recent trends
+Red = ggplot(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate"), aes(x = Year2, y = meandaily))
+redtest2 = Red + geom_bar(stat = "identity", fill = "tan4") + 
+  ylab("Estimated daily passage") + 
+  xlab("Year (December-January)") +
+  coord_cartesian(xlim = c(2003, 2018), ylim = c(0, 4300))+
+  scale_x_continuous(breaks = c(2005, 2010, 2015))+
+  geom_hline(aes(yintercept = MeanAll), linetype  = "dashed", col = "red", size = 0.9) +
+  theme_iep()
+
+#then save teh resulting graphs
+write.csv(meanwinter, "Meanwinter.csv")
+
+
+redtest2
+
+#also do a talble?
+datatable(meanwinter, caption = "Average Daily Passage in winter")
+
+```
+

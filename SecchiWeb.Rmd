@@ -1,0 +1,33 @@
+---
+title: "Secchi Depth"
+author: "Rosemary Hartman"
+date: "11/6/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
+
+## Background
+- Organisms in this ecosystem are adapted to high turbidity conditions, and reductions in turbidity can have many negative ecological effects. 
+- Higher values for Secchi depth indicate lower turbidity.
+- Secchi depth is measured monthly by DWR’s Environmental Monitoring Program by dropping a black-and-white disk in the water until it disappears.
+- Suisun Bay tends to have the lowest Secchi depth due to its extensive shallow areas and high winds.
+
+### San Pablo Bay
+```{r, out.width= 500, echo = F, fig.align='center'}
+include_graphics("winter_report/latex/figures/secchi/secchi_san_pablo_bay_tmp.png")
+
+```
+In 2017, San Pablo bay was clearer than the long-term average.
+
+### Suisun Bay
+```{r, out.width= 500, echo = F, fig.align='center'}
+include_graphics("winter_report/latex/figures/secchi/secchi_suisun_bay_tmp.png")
+
+```
+In 2017, San Pablo bay was clearer than the long-term average.
+
+
