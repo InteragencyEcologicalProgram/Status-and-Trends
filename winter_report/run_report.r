@@ -7,9 +7,10 @@
 
 library(gridExtra)
 library(knitr)
+library(tidyverse)
 
 ## The variable 'root' must be defined.
-## root <- file.path("...","Status-and-Trends","winter_report")
+root <- file.path("winter_report")
 
 fig_root <- file.path(root,"latex","figures")
 secchi_fig_root <- file.path(fig_root,"secchi")
@@ -20,10 +21,10 @@ otherfish_fig_root <- file.path(fig_root,"otherfish")
 
 ## Makes life easier to have the report directory as the working directory:
 setwd(root)
-source(file.path(root,"IEP_Status&Trends_util.R"))
-source(file.path(root,"IEP_Status&Trends_Fishes_DJFMP.R"))
-source(file.path(root,"IEP_Status&Trends_Fishes_SKT.R"))
-source(file.path(root, "IEP_Status&Trends_Redbluff.R"))
+source("IEP_Status&Trends_util.R")
+#source("IEP_Status&Trends_Fishes_DJFMP.R")
+#source("IEP_Status&Trends_Fishes_SKT.R")
+source("IEP_Status&Trends_Redbluff.R")
 
 
 ## knitr pdf version of the report.
