@@ -107,6 +107,19 @@ ezq<-ggplot(dmean, aes(x=qyear, y=out)) +geom_line()+
   ggtitle("Net Delta Outflow Index")+theme_bw()+theme(plot.margin=margin(0.01,0.01,0.01,0.01,"in"));ezq
 #ggsave("Flow_FacetedBySeason.png",type ="cairo-png",width=6.5, height=4.6,units="in",dpi=300)
 
+wintermean = mean(filter(dmean, season == "Q1")$out)/1000
+winter = ggplot(filter(dmean, season == "Q1"), aes(x=qyear, y=out/1000)) +
+                  geom_line()+
+  geom_point(colour="black") +
+  geom_hline(aes(yintercept = wintermean), size = 0.9, color = "red", linetype = "dashed")+
+  scale_x_continuous("Year (December - February)",limits = c(1966,2017))+
+  scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s x 1,000)"))) +
+theme_bw()+theme(plot.margin=margin(0.01,0.01,0.01,0.01,"in"))
+winter
+
+ggsave(winter, file="winter_outflow_update.png", dpi=300, units="cm", width=9.3, height=6.8, path = "~/latex/figures")
+
+
 #plot data from all years with just fall season 
 
 #create subset with just fall
@@ -128,7 +141,7 @@ str(fall)
     geom_line(colour="black", size=1.5)+geom_point(colour="black",size=2.8) +
     theme(legend.position="none")+ theme_iep()+
     scale_x_continuous("Year (September - November)",limits = c(2002,2017))+
-    scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s, × 1,000)")), limits=c(0,13000/1000)))
+    scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s, ? 1,000)")), limits=c(0,13000/1000)))
 #ggsave(pfflow2, file="flow_recent.png", path=plot_folder,scale=1.8, dpi=300, units="cm",width=8.5,height=5.4)
 #NOTE: need to set path for plot_folder before saving
 
@@ -141,3 +154,6 @@ flow_fig <- gridExtra::grid.arrange(pfflow, layout_matrix=rbind(1),
 flow2_fig <- gridExtra::grid.arrange(pfflow2, layout_matrix=rbind(1), 
 												 heights=unit(102, c("mm")),
 												 widths=unit(160, c("mm")))
+
+flow_fig
+flow2_fig

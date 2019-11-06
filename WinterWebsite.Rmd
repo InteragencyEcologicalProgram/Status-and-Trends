@@ -22,8 +22,8 @@ Winter flow is driven primarily by rainfall and upstream dam releases.
 ## Contents
 - [Secchi Depth](SecchiWeb.html)
 - [Temperature](TempWeb.html)
-- Zooplankton
-- Phytoplankton
+- [Zooplankton](ZooplanktonWeb.html)
+- [Chlorophyll](ChloroWeb.html)
 - Fish
 - Recent fish trends
 - Metadata
