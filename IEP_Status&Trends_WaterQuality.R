@@ -315,9 +315,9 @@ dwid$region = factor(dwid$region, levels=c('spl','ss','dt'))
 #change year from chr to int
 dwid$qyear<-as.integer(dwid$qyear)
 str(dwid)
-
+ 
 #Create facet of plots for each parameter showing all combinations of region and season
-
+wqsum3 = spread(wqsum2, parameter, value)
 
 #chlf
 (p_chf <- ggplot(dwid, aes(x=qyear, y=chlf))+
@@ -332,17 +332,32 @@ str(dwid)
 #       dpi=300, units="cm",width=25.5,height=20)
 #values were an order of magnitude higher in late 90s and early 2000s when data collection started
 
+
+#Temperature
+(p_temp <- ggplot(dwid, aes(x=qyear, y=temp))+
+    geom_line(colour="black")+geom_point(colour="black") +
+    geom_hline(data = wqsum3, aes(yintercept = temp), size = 0.9, color = "red", linetype = "dashed")+
+    theme_iep() + facet_grid(quarter~region
+                             ,labeller = as_labeller(
+                               c(region_names,season_names))) +
+    theme(legend.position="none") + 
+    scale_y_continuous("Temperature in Celcius",limits=c(0, max(dwid$chlf)))+
+    scale_x_continuous("Year", limits=c(1966,2018)) )
+ggsave(p_temp, file="temp_season-region_panel.png", scale=1, dpi=300, units="cm",width=25.5,height=20)
+
+
 #chla
 (p_cha <- ggplot(dwid, aes(x=qyear, y=chla))+
     geom_line(colour="black")+geom_point(colour="black") +
+    geom_hline(data = wqsum3, aes(yintercept = chla), size = 0.9, color = "red", linetype = "dashed")+
     theme_iep() + facet_grid(quarter~region                              
                     ,labeller = as_labeller(
                       c(region_names,season_names))) +
     theme(legend.position="none") + 
     scale_y_continuous("Chlorophyll-a (ug/L)",limits=c(0, max(dwid$chla)))+
     scale_x_continuous("Year", limits=c(1966,2018)) )
-#ggsave(p_cha, file="cha_season-region_panel.png", path=plot_folder,scale=1,
-#       dpi=300, units="cm",width=25.5,height=20)
+ggsave(p_cha, file="cha_season-region_panel.png", scale=1,
+       dpi=300, units="cm",width=25.5,height=20)
 
 #plot nitrate/nitrite by region using faceting
 (p_nit <- ggplot(dwid, aes(x=qyear, y=nit))+
@@ -369,17 +384,18 @@ str(dwid)
 #       dpi=300, units="cm",width=25.5,height=20)
 
 #secchi
-#calculate means
+
 (p_sec <- ggplot(dwid, aes(x=qyear, y=secchi))+
     geom_line(colour="black")+geom_point(colour="black") +
+    geom_hline(data = wqsum3, aes(yintercept = secchi), size = 0.9, color = "red", linetype = "dashed")+
     theme_iep() + facet_grid(quarter~region
                              ,labeller = as_labeller(
                                c(region_names,season_names))) +
     theme(legend.position="none") + 
     scale_y_continuous("Secchi Depth (cm)",limits=c(0, max(dwid$secchi)))+
     scale_x_continuous("Year", limits=c(1966,2018)) )
-#ggsave(p_sec, file="secchi_season-region_panel.png", path=plot_folder,scale=1,
-#       dpi=300, units="cm",width=25.5,height=20)
+ggsave(p_sec, file="secchi_season-region_panel.png", scale=1,
+       dpi=300, units="cm",width=25.5,height=20)
 
 
 #turbidity
@@ -404,12 +420,34 @@ fspl<-subset(fall,region=="spl")
 
 str(fspl)
 
+#now winter
+wdt<-subset(winter,region=="dt")
+wss<-subset(winter,region=="ss")
+wspl<-subset(winter,region=="spl")
+
+
 
 #plot temperature------------------------
 
 ylab <- expression("Temperature " ( degree*C)) #allows for degree symbol for temperature
 
 #temperature
+tempplot = function(reg, season) {
+  dat = filter(season, region ==reg)
+  p_temp <- ggplot(dat, aes(x=qyear, y=temp))+
+    geom_line(colour="black")+geom_point(colour="black") +
+    geom_hline(aes(yintercept = mean(dat$temp)), size = 0.9, color = "red", linetype = "dashed")+
+    theme_iep() + 
+    theme(legend.position="none") + 
+    scale_y_continuous("Temperature in Celcius", limits=c(min(season$temp), max(season$temp)))+
+    scale_x_continuous(paste("Year(", dat[1,"quarter"],")"),  limits=c(1966,2018)) 
+  return(p_temp)
+}
+
+Delta_winter_temp = tempplot("dt", winter)
+Suisun_winter_temp = tempplot("ss", winter)
+SP_winter_temp = tempplot("spl", winter)
+
 (p_temp <- ggplot(dwid, aes(x=qyear, y=temp))+
     geom_line(colour="black")+geom_point(colour="black") +
     theme_iep() + facet_grid(quarter~region
