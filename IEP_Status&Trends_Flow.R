@@ -11,6 +11,7 @@ library(ggplot2) #plots
 library(zoo)  # yearmon and yearqtr classes
 library(tidyr) #separate one column into two
 library(lubridate) #formatting dates
+library(tidyverse)
 
 #import data
 alldata<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/flow_1929-10-01_2018-09-30.csv") #daily outflow for full time series
@@ -117,7 +118,7 @@ winter = ggplot(filter(dmean, season == "Q1"), aes(x=qyear, y=out/1000)) +
 theme_bw()+theme(plot.margin=margin(0.01,0.01,0.01,0.01,"in"))
 winter
 
-ggsave(winter, file="winter_outflow_update.png", dpi=300, units="cm", width=9.3, height=6.8, path = "~/latex/figures")
+ggsave(winter, file="winter_outflow_update.png", dpi=300, units="cm", width=9.3, height=6.8)
 
 
 #plot data from all years with just fall season 
