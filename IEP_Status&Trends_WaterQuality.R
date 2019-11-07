@@ -191,6 +191,12 @@ wqsum<-aggregate(value~region+qyear+quarter+parameter,data=tot,FUN=mean,na.rm=T)
 wqsum$parameter<-as.factor(wqsum$parameter)
 str(wqsum)
 
+#generate means by region, quarter, and parameter
+wqsum2<-aggregate(value~region+quarter+parameter,data=tot,FUN=mean,na.rm=T)
+wqsum2$parameter<-as.factor(wqsum2$parameter)
+str(wqsum2)
+
+
 
 #look at all cases where N = 0 (ie, no samples for a given station-quarter-parameter combo)
 #zeros<-subset(wqsum,N==0) #132 cases
@@ -363,6 +369,7 @@ str(dwid)
 #       dpi=300, units="cm",width=25.5,height=20)
 
 #secchi
+#calculate means
 (p_sec <- ggplot(dwid, aes(x=qyear, y=secchi))+
     geom_line(colour="black")+geom_point(colour="black") +
     theme_iep() + facet_grid(quarter~region

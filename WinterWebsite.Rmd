@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Delta Outflow
 ```{r, echo = F}
-include_graphics("winter_report/latex/figures/outflow_tmp.png")
+include_graphics("winter_outflow_update.png")
 ```
 Freshwater flow influences water quality, plankton, and fish populations.
 Winter flow is driven primarily by rainfall and upstream dam releases.
