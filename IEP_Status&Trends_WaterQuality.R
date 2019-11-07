@@ -4,7 +4,8 @@
 #Water quality: temperature, nutrients, fluorescence
 
 #Created by Nick Rasmussen
-#last updated: 3/15/2019
+#edited by Rosemary Hartman
+#last updated: 11/6/2019
 
 #geographic regions 
 #San Pablo: West of Carquinez straight
@@ -191,6 +192,9 @@ wqsum<-aggregate(value~region+qyear+quarter+parameter,data=tot,FUN=mean,na.rm=T)
 wqsum$parameter<-as.factor(wqsum$parameter)
 str(wqsum)
 
+#make year an integer
+wqsum$qyear = as.numeric(wqsum$qyear)
+
 #generate means by region, quarter, and parameter
 wqsum2<-aggregate(value~region+quarter+parameter,data=tot,FUN=mean,na.rm=T)
 wqsum2$parameter<-as.factor(wqsum2$parameter)
@@ -268,7 +272,7 @@ plot(log(dwid$chla),log(dwid$chlf)) #plot log of parameters
 #two distinct clusters of uncorrelated values
 
 #export chla dataset so I can make graphic panel for chla + zoop
-chla<-dwid[c(1:3,5)]
+#chla<-dwid[c(1:3,5)]
 #write.csv(chla,"C:/Users/nrasmuss/OneDrive - California Department of Water Resources/IEP/IEP_EstuaryIndicesProject/CDFW_Zoop_Data/chla_all_seasons.csv",row.names = F)
 
 #create subsets for each season
@@ -304,8 +308,14 @@ theme_iep <- function(){
 }
 
 #set up facet labels
-season_names<-c('Q1'="Winter",'Q2'="Spring",'Q3'="Summer",'Q4'="Fall")
+season_names<-c('Q1'="December-February",'Q2'="March-May",'Q3'="June-August",'Q4'="September-November")
 region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
+parameter_labs = c("chlf" = "Chlorophyll Fluoresence (RFU)", 
+                   "chla" = "Chlorophyll-a (ug/L)",
+                   "temp" = "Temperature (C)",
+                   "ammonia" = "Ammonium (mg/L)",
+                   "nit" = "Dissolved Nitrate + Nitrite (mg/L)",
+                   "secchi" = "Secchi Depth (cm)")
 
 #set order of seasons and regions for plotting
 dwid$quarter = factor(dwid$quarter, levels=c('Q1','Q2','Q3','Q4'))
@@ -319,117 +329,29 @@ str(dwid)
 #Create facet of plots for each parameter showing all combinations of region and season
 wqsum3 = spread(wqsum2, parameter, value)
 
-#chlf
-(p_chf <- ggplot(dwid, aes(x=qyear, y=chlf))+
+allplots = function(data, param){
+  dat = filter(data, parameter == param)
+  p <- ggplot(dat, aes(x=qyear, y=value))+
     geom_line(colour="black")+geom_point(colour="black") +
-    theme_iep() + facet_grid(quarter~region
-                             ,labeller = as_labeller(
+    geom_hline(data = filter(wqsum2, parameter == param),
+               aes(yintercept = value), size = 0.9, color = "red", linetype = "dashed")+
+    theme_iep() + facet_grid(quarter~region,
+                             labeller = as_labeller(
                                c(region_names,season_names))) +
     theme(legend.position="none") + 
-    scale_y_continuous("Chlorophyll-a Fluorescence",limits=c(0, max(dwid$chlf)))+
-    scale_x_continuous("Year", limits=c(1966,2018)) )
-#ggsave(p_chf, file="chf_season-region_panel.png", path=plot_folder,scale=1,
-#       dpi=300, units="cm",width=25.5,height=20)
-#values were an order of magnitude higher in late 90s and early 2000s when data collection started
+    scale_y_continuous(name = parameter_labs[param],limits=c(0, max(dat$value)))+
+    scale_x_continuous("Year", limits=c(1966,2018))
+  return(p)
+}
 
-
-#Temperature
-(p_temp <- ggplot(dwid, aes(x=qyear, y=temp))+
-    geom_line(colour="black")+geom_point(colour="black") +
-    geom_hline(data = wqsum3, aes(yintercept = temp), size = 0.9, color = "red", linetype = "dashed")+
-    theme_iep() + facet_grid(quarter~region
-                             ,labeller = as_labeller(
-                               c(region_names,season_names))) +
-    theme(legend.position="none") + 
-    scale_y_continuous("Temperature in Celcius",limits=c(0, max(dwid$chlf)))+
-    scale_x_continuous("Year", limits=c(1966,2018)) )
-ggsave(p_temp, file="temp_season-region_panel.png", scale=1, dpi=300, units="cm",width=25.5,height=20)
-
-
-#chla
-(p_cha <- ggplot(dwid, aes(x=qyear, y=chla))+
-    geom_line(colour="black")+geom_point(colour="black") +
-    geom_hline(data = wqsum3, aes(yintercept = chla), size = 0.9, color = "red", linetype = "dashed")+
-    theme_iep() + facet_grid(quarter~region                              
-                    ,labeller = as_labeller(
-                      c(region_names,season_names))) +
-    theme(legend.position="none") + 
-    scale_y_continuous("Chlorophyll-a (ug/L)",limits=c(0, max(dwid$chla)))+
-    scale_x_continuous("Year", limits=c(1966,2018)) )
-ggsave(p_cha, file="cha_season-region_panel.png", scale=1,
-       dpi=300, units="cm",width=25.5,height=20)
-
-#plot nitrate/nitrite by region using faceting
-(p_nit <- ggplot(dwid, aes(x=qyear, y=nit))+
-    geom_line(colour="black")+geom_point(colour="black") +
-    theme_iep() + facet_grid(quarter~region                              
-                             ,labeller = as_labeller(                                
-                               c(region_names,season_names))) +
-    theme(legend.position="none") + 
-    scale_y_continuous("Nitrate & Nitrite (mg/L)",limits=c(0, max(dwid$nit)))+
-    scale_x_continuous("Year", limits=c(1966,2018)) )
-#ggsave(p_nit, file="N_season-region_panel.png", path=plot_folder,scale=1,
-#       dpi=300, units="cm",width=25.5,height=20)
-
-#plot ammonium by region using faceting
-(p_amm <- ggplot(dwid, aes(x=qyear, y=ammonia))+
-    geom_line(colour="black")+geom_point(colour="black") +
-    theme_iep() + facet_grid(quarter~region                              
-                             ,labeller = as_labeller(                                
-                               c(region_names,season_names))) +
-    theme(legend.position="none") + 
-    scale_y_continuous("Ammonium (mg/L)",limits=c(0, max(dwid$ammonia)))+
-    scale_x_continuous("Year", limits=c(1966,2018)) )
-#ggsave(p_amm, file="ammonium_season-region_panel.png", path=plot_folder,scale=1,
-#       dpi=300, units="cm",width=25.5,height=20)
-
-#secchi
-
-(p_sec <- ggplot(dwid, aes(x=qyear, y=secchi))+
-    geom_line(colour="black")+geom_point(colour="black") +
-    geom_hline(data = wqsum3, aes(yintercept = secchi), size = 0.9, color = "red", linetype = "dashed")+
-    theme_iep() + facet_grid(quarter~region
-                             ,labeller = as_labeller(
-                               c(region_names,season_names))) +
-    theme(legend.position="none") + 
-    scale_y_continuous("Secchi Depth (cm)",limits=c(0, max(dwid$secchi)))+
-    scale_x_continuous("Year", limits=c(1966,2018)) )
-ggsave(p_sec, file="secchi_season-region_panel.png", scale=1,
-       dpi=300, units="cm",width=25.5,height=20)
-
-
-#turbidity
-(p_turb <- ggplot(dwid, aes(x=qyear, y=turb))+
-    geom_line(colour="black")+geom_point(colour="black") +
-    theme_iep() + facet_grid(quarter~region
-                             ,labeller = as_labeller(
-                               c(region_names,season_names))) +
-    theme(legend.position="none") + 
-    scale_y_continuous("Turbidity (NTU)",limits=c(0, max(dwid$turb)))+
-    scale_x_continuous("Year", limits=c(1966,2018)) )
-#ggsave(p_turb, file="turbidity_season-region_panel.png", path=plot_folder,scale=1,
-#       dpi=300, units="cm",width=25.5,height=20)
-
+allplots(wqsum, "chla")
+allplots(wqsum, "chlf")
+allplots(wqsum, "temp")
+allplots(wqsum, "secchi")
 
 
 #now, for fall, make a plot for each region and parameter separately
 #do this so you can patch them together as grobs (like fish data panel)
-fdt<-subset(fall,region=="dt")
-fss<-subset(fall,region=="ss")
-fspl<-subset(fall,region=="spl")
-
-str(fspl)
-
-#now winter
-wdt<-subset(winter,region=="dt")
-wss<-subset(winter,region=="ss")
-wspl<-subset(winter,region=="spl")
-
-
-
-#plot temperature------------------------
-
-ylab <- expression("Temperature " ( degree*C)) #allows for degree symbol for temperature
 
 #temperature
 tempplot = function(reg, season) {
@@ -440,7 +362,7 @@ tempplot = function(reg, season) {
     theme_iep() + 
     theme(legend.position="none") + 
     scale_y_continuous("Temperature in Celcius", limits=c(min(season$temp), max(season$temp)))+
-    scale_x_continuous(paste("Year(", dat[1,"quarter"],")"),  limits=c(1966,2018)) 
+    scale_x_continuous(paste("Year(", season_names[dat[1,"quarter"]],")", sep = ""),  limits=c(1966,2018)) 
   return(p_temp)
 }
 
@@ -448,70 +370,53 @@ Delta_winter_temp = tempplot("dt", winter)
 Suisun_winter_temp = tempplot("ss", winter)
 SP_winter_temp = tempplot("spl", winter)
 
-(p_temp <- ggplot(dwid, aes(x=qyear, y=temp))+
-    geom_line(colour="black")+geom_point(colour="black") +
-    theme_iep() + facet_grid(quarter~region
-                             ,labeller = as_labeller(
-                               c(region_names,season_names))) +
-    theme(legend.position="none") + 
-    scale_y_continuous(ylab,limits=c(min(dwid$temp), max(dwid$temp)))+
-    scale_x_continuous("Year", limits=c(1966,2018)) )
-#ggsave(p_temp, file="temperature_season-region_panel.png", path=plot_folder,scale=1,
-#       dpi=300, units="cm",width=25.5,height=20)
-
-#delta
-(p_temp_d <- ggplot(fdt, aes(x=qyear, y=temp))+
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
-    theme_iep() +
-    theme(legend.position="none")+ 
-    scale_x_continuous("", limits=c(1966,2018)) +
-    scale_y_continuous(ylab, limits=c(min(fall$temp),max(fall$temp))))
-
-#then suisun
-(p_temp_ss <- ggplot(fss, aes(x=qyear, y=temp))+
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
-    theme_iep() +
-    theme(legend.position="none")+ 
-    scale_x_continuous("", limits=c(1966,2018))+ 
-      scale_y_continuous(ylab, limits=c(min(fall$temp),max(fall$temp))))
+Delta_fall_temp = tempplot("dt", fall)
+Suisun_fall_temp = tempplot("ss", fall)
+SP_fall_temp = tempplot("spl", fall)
 
 
-#then san pablo
-(p_temp_sp <- ggplot(fspl, aes(x=qyear, y=temp))+
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
-    theme_iep() +
-    #theme(axis.title.x=element_blank())+ #removes label from x axis
-    theme(legend.position="none")+ 
-    scale_x_continuous("", limits=c(1966,2018))+
-    scale_y_continuous(ylab, limits=c(min(fall$temp),max(fall$temp))))
+tmps<-plot_grid(SP_winter_temp, Suisun_winter_temp, Delta_winter_temp,ncol = 3, nrow = 1, align="v")
+tmps
+
+tmpsf<-plot_grid(SP_fall_temp, Suisun_fall_temp, Delta_fall_temp,ncol = 3, nrow = 1, align="v")
+tmpsf
+
+ggsave(tmps, file="temp_panel_winter.png",scale=1.8,  dpi=300, units="in",width=11,height=4.5)
+ggsave(tmpsf, file="temp_panel_fall.png",scale=1.8,  dpi=300, units="in",width=11,height=4.5)
 
 
 #secchi depth: separate plots for different regions---------
+secplot = function(reg, season) {
+  dat = filter(season, region ==reg)
+  p_sec <- ggplot(dat, aes(x=qyear, y=secchi))+
+    geom_line(colour="black")+geom_point(colour="black") +
+    geom_hline(aes(yintercept = mean(dat$secchi)), size = 0.9, color = "red", linetype = "dashed")+
+    theme_iep() + 
+    theme(legend.position="none") + 
+    scale_y_continuous("Secchi depth in cm", limits=c(min(season$secchi), max(season$secchi)))+
+    scale_x_continuous(paste("Year(", season_names[dat[1,"quarter"]],")", sep = ""),  limits=c(1966,2018)) 
+  return(p_sec)
+}
 
-#delta
-(p_sec_d <- ggplot(fdt, aes(x=qyear, y=secchi))+
-    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
-    theme_iep() +
-    theme(legend.position="none")+ 
-    scale_x_continuous("", limits=c(1966,2018)) +
-    scale_y_continuous("Secchi Depth (cm)", limits=c(min(fall$secchi),max(fall$secchi))))
 
-#then suisun
-(p_sec_ss <- ggplot(fss, aes(x=qyear, y=secchi))+
-    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
-    theme_iep() +
-    theme(legend.position="none")+ 
-    scale_x_continuous("", limits=c(1966,2018))+ 
-    scale_y_continuous("Secchi Depth (cm)", limits=c(min(fall$secchi),max(fall$secchi))))
 
-#then san pablo
-(p_sec_sp <- ggplot(fspl, aes(x=qyear, y=secchi))+
-    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
-    theme_iep() +
-    #theme(axis.title.x=element_blank())+ #removes label from x axis
-    theme(legend.position="none")+ 
-    scale_x_continuous("", limits=c(1966,2018))+
-    scale_y_continuous("Secchi Depth (cm)", limits=c(min(fall$secchi),max(fall$secchi))))
+Delta_winter_sec = secplot("dt", winter)
+Suisun_winter_sec = secplot("ss", winter)
+SP_winter_sc = secplot("spl", winter)
+
+Delta_fall_sec = secplot("dt", fall)
+Suisun_fall_sec = secplot("ss", fall)
+SP_fall_sec = secplot("spl", fall)
+
+
+secs<-plot_grid(SP_winter_sec, Suisun_winter_sec, Delta_winter_sec,ncol = 3, nrow = 1, align="v")
+secs
+
+secf<-plot_grid(SP_fall_sec, Suisun_fall_sec, Delta_fall_sec,ncol = 3, nrow = 1, align="v")
+secf
+
+
+
 
 
 #Nutrients: Plots in color-----------
