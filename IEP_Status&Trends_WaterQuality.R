@@ -228,53 +228,6 @@ str(dwid)
 #change "Dissolved Nitrate + Nitrite" header
 names(dwid)[7]<-"nit"
 
-#look at relationship between ammonia vs nitrate/nitrite (includes all quarters)
-
-#correlation 
-cor.test(dwid$ammonia,dwid$nit)
-#t = 19.118, df = 505, p-value < 2.2e-16
-#cor = 0.6479664 
-
-#Plot: correlation 
-plot(dwid$ammonia,dwid$nit)
-#correlation is pretty good looking; not sure whether to plot one or both for report
-
-#look at relationship between turb and secchi (includes all seasons)
-
-#correlation 
-cor.test(dwid$secchi,dwid$turb)
-#t = -21.085, df = 507, p-value < 2.2e-16
-#cor = -0.6835226  
-
-
-#Plot: correlation 
-plot(dwid$secchi,dwid$turb)
-range(dwid$secchi,na.rm=T) # 22.23333 228.20000
-range(dwid$turb,na.rm=T) # 1.800 112.381
-hist(dwid$secchi)
-hist(dwid$turb)
-
-#look at relationship between chlf and chla (includes all seasons)
-
-#correlation 
-cor.test(dwid$chla,dwid$chlf)
-#t = 1.0123, df = 235, p-value = 0.3124
-#cor = 0.06589423   
-#NOTE: seems like correlation should be higher
-
-#Plot: correlation 
-plot(dwid$chla,dwid$chlf)
-range(dwid$chla,na.rm=T) # 0.42500 30.48966
-range(dwid$chlf,na.rm=T) # 0.9888889 52.8126923
-hist(dwid$chla)
-hist(dwid$chlf)
-plot(log(dwid$chla),log(dwid$chlf)) #plot log of parameters
-#two distinct clusters of uncorrelated values
-
-#export chla dataset so I can make graphic panel for chla + zoop
-#chla<-dwid[c(1:3,5)]
-#write.csv(chla,"C:/Users/nrasmuss/OneDrive - California Department of Water Resources/IEP/IEP_EstuaryIndicesProject/CDFW_Zoop_Data/chla_all_seasons.csv",row.names = F)
-
 #create subsets for each season
 #looks like this converts qyear back to chr, so need to convert back to integer
 fall<-subset(dwid,quarter=="Q4")
@@ -399,24 +352,65 @@ secplot = function(reg, season) {
 }
 
 
-
+#run the code for all the winter secchi depths
 Delta_winter_sec = secplot("dt", winter)
 Suisun_winter_sec = secplot("ss", winter)
 SP_winter_sc = secplot("spl", winter)
 
+
+#now do it for the fall secchi depths
 Delta_fall_sec = secplot("dt", fall)
 Suisun_fall_sec = secplot("ss", fall)
 SP_fall_sec = secplot("spl", fall)
 
-
-secs<-plot_grid(SP_winter_sec, Suisun_winter_sec, Delta_winter_sec,ncol = 3, nrow = 1, align="v")
+#now stich them together
+secs<-plot_grid(SP_winter_sc, Suisun_winter_sec, Delta_winter_sec,ncol = 3, nrow = 1, align="v")
 secs
 
 secf<-plot_grid(SP_fall_sec, Suisun_fall_sec, Delta_fall_sec,ncol = 3, nrow = 1, align="v")
 secf
 
+#save the results
+ggsave(secs, file="secchi_panel_winter.png",scale=1.8,  dpi=300, units="in",width=11,height=4.5)
+ggsave(secf, file="secchi_panel_fall.png",scale=1.8,  dpi=300, units="in",width=11,height=4.5)
 
 
+
+#Chlorophyll: separate plots for different regions---------
+chplot = function(reg, season) {
+  dat = filter(season, region ==reg)
+  p_ch <- ggplot(dat, aes(x=qyear, y=chla))+
+    geom_line(colour="black")+geom_point(colour="black") +
+    geom_hline(aes(yintercept = mean(dat$chla)), size = 0.9, color = "red", linetype = "dashed")+
+    theme_iep() + 
+    theme(legend.position="none") + 
+    scale_y_continuous("Chlorophyll-a (ug/L)", limits=c(min(season$chla), max(season$chla)))+
+    scale_x_continuous(paste("Year(", season_names[dat[1,"quarter"]],")", sep = ""),  
+                       limits=c(1966,2018)) 
+  return(p_ch)
+}
+
+
+
+Delta_winter_ch = chplot("dt", winter)
+Suisun_winter_ch = chplot("ss", winter)
+SP_winter_ch = chplot("spl", winter)
+
+Delta_fall_ch = chplot("dt", fall)
+Suisun_fall_ch = chplot("ss", fall)
+SP_fall_ch = chplot("spl", fall)
+
+
+chs<-plot_grid(SP_winter_ch, Suisun_winter_ch, Delta_winter_ch,ncol = 3, nrow = 1, align="v")
+chs
+
+chf<-plot_grid(SP_fall_ch, Suisun_fall_ch, Delta_fall_ch,ncol = 3, nrow = 1, align="v")
+chf
+
+
+
+ggsave(chs, file="chla_panel_winter.png",scale=1.8,  dpi=300, units="in",width=11,height=4.5)
+ggsave(chf, file="chla_panel_fall.png",scale=1.8,  dpi=300, units="in",width=11,height=4.5)
 
 
 #Nutrients: Plots in color-----------
@@ -478,39 +472,6 @@ ptn
 #ggsave(ptn, file="wq_panel_color.png", path=plot_folder,scale=1.8,  dpi=300, units="cm",width=25.5,height=10.8)
 
 
-#make panel for chla---------------
-
-#delta
-(p_chla_d <- ggplot(fdt, aes(x=qyear, y=chla))+
-    geom_vline(xintercept = 1986, size=1,linetype = "longdash",color="dark gray")+ #clam invasion
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
-    theme_iep() +
-    theme(legend.position="none") + 
-    scale_y_continuous("Chlorophyll-a (ug/L)",limits=c(0, max(fall$chla))) +
-    scale_x_continuous("", limits=c(1966,2018)) )
-
-#then Suisun
-(p_chla_ss <- ggplot(fss, aes(x=qyear, y=chla))+
-    geom_vline(xintercept = 1986, size=1,linetype = "longdash",color="dark gray")+ #clam invasion
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
-    theme_iep() +
-    theme(legend.position="none") + 
-    scale_y_continuous("Chlorophyll-a (ug/L)",limits=c(0, max(fall$chla))) +
-    scale_x_continuous("", limits=c(1966,2018)) )
-
-#then San Pablo
-(p_chla_sp <- ggplot(fspl, aes(x=qyear, y=chla))+
-    geom_vline(xintercept = 1986, size=1,linetype = "longdash",color="dark gray")+ #clam invasion
-    geom_line(colour="black", size=1.3)+geom_point(colour="black",size=3) +
-    theme_iep() +
-    theme(legend.position="none") + 
-    scale_y_continuous("Chlorophyll-a (ug/L)",limits=c(0, max(fall$chla))) +
-    scale_x_continuous("", limits=c(1966,2018)) )
-
-#creates a grid of plots where everything lines up properly
-#http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/81-ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page/
-
-(pch<-plot_grid(p_chla_sp,p_chla_ss,p_chla_d, ncol = 3, nrow = 1, align="v"))
 
 #save plots as .png
 #ggsave(pch, file="chla_fall_panel.png", path=plot_folder,scale=1.8, dpi=300, units="cm",width=25.5,height=5.4)
