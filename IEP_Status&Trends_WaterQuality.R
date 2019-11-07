@@ -1,5 +1,5 @@
 #IEP Status and Trends Report
-#Fall Season
+#Fall and winter Season
 #Data up to and including 2017
 #Water quality: temperature, nutrients, fluorescence
 
@@ -18,6 +18,7 @@ library(ggplot2)
 library(zoo)  # yearmon and yearqtr classes
 library(tidyr) #separate one column into two
 library(dplyr) #count()
+library(tidyverse)
 library(cowplot) #grid_plot()
 
 
@@ -79,16 +80,14 @@ range(alldat$date[alldat$parameter=="Field Temperature"]) #"1979-01-16 PST" "201
 #repesented in Field Water Temperature, so combine these two categories
 
 #rename parameters with simpler names
-alldat$parameter<-gsub("Field Water Temperature", "temp", alldat$parameter)
-alldat$parameter<-gsub("Field Temperature", "temp", alldat$parameter)
-alldat$parameter<-gsub("Total Ammonia", "ammonia", alldat$parameter)
-alldat$parameter<-gsub("Dissolved Ammonia", "ammonia", alldat$parameter)
-alldat$parameter<-gsub("Field Fluorescence", "chlf", alldat$parameter)
-alldat$parameter<-gsub("Chlorophyll a", "chla", alldat$parameter)
-alldat$parameter<-gsub("Field Secchi Depth", "secchi", alldat$parameter)
-alldat$parameter<-gsub("Field Turbidity", "turb", alldat$parameter)
-alldat$parameter<-gsub("Dissolved Nitrate + Nitrite", "nitro", alldat$parameter) #has never worked for some reason
-unique(alldat$parameter)
+params = data.frame(parameter = c('Field Water Temperature', "Field Temperature", "Total Ammonia", "Dissolved Ammonia",
+               "Field Fluorescence","Chlorophyll a","Field Secchi Depth",
+               "Field Turbidity","Dissolved Nitrate + Nitrite"),
+paramsshort = c("temp", "temp", "ammonia", "ammonia", "chlf", "chla", "secchi", "turb", "nitro"))
+
+alldat = left_join(alldat, params, by = "parameter") %>%
+  mutate(parameter = paramsshort) %>%
+  mutate(paramsshort = NULL)
 
 #look at units
 units<-unique(alldat$units)  #looks like there are several different types of length units (likely for secchi depth)
@@ -106,7 +105,7 @@ sft<-subset(alldat,parameter=="secchi" & units=="Feet") #1 obs
 allda<-subset(alldat,units!="Feet" & units!="Meters")
 
 #look at combination of site and id and look at how many cases there are of each combo
-sites<-count(allda,vars = c('name','id')) 
+sites<-count(allda, name, id) 
 #export this data frame so you can add 'id' to the df with the lat and long by hand 
 #write.csv(sites,"O:/IEP/IEP_EstuaryIndicesProject/Report_Fall/WaterQualitySourceData/site_id.csv"
 #         ,row.names = F)
