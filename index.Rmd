@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 library(knitr)
 knitr::opts_chunk$set(echo = TRUE)
+#I could use bookdown and blogdown
 ```
 
 ```{r, out.width= 80, echo = F, fig.align='center'}
@@ -22,9 +23,6 @@ This report shows trends in water quality, plankton, and fish across multiple IE
 
 
 - [Winter Report](WinterWebsite.html)
-- Dave's longfin graph
-- Dave's sturgeon graph
-- Lara's SKT graphs
 
 
 ## Regions of the Estuary
