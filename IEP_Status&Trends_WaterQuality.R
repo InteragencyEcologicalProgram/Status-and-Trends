@@ -45,8 +45,6 @@ alldata$date<-as.POSIXct(alldata$date, format="%m/%d/%Y")
 alldata$value<-as.numeric(as.character(alldata$value))
 #cases where value is below detection limit (ie, < R.L.) become NAs
 
-#check structure again
-str(alldata) # looks good
 
 #look at parameter list
 parameters<-unique(alldata$parameter)
@@ -55,10 +53,11 @@ parameters<-unique(alldata$parameter)
 #Total Ammonia, Field Water Temperature, Chlorophyll a, Dissolved Nitrate + Nitrite,
 #Dissolved Ammonia, Field Fluorescence, Field Secchi Depth, Field Turbidity
 
-alldat<-subset(alldata, parameter=="Total Ammonia" | parameter=="Field Water Temperature" | 
-                 parameter=="Chlorophyll a"| parameter=="Dissolved Nitrate + Nitrite" | 
-                 parameter=="Dissolved Ammonia" | parameter=="Field Fluorescence" 
-               | parameter=="Field Temperature" | parameter=="Field Secchi Depth" | parameter=="Field Turbidity" )
+alldat<-filter(alldata, parameter %in% c("Total Ammonia" , "Field Water Temperature" ,
+                                         "Chlorophyll a", "Dissolved Nitrate + Nitrite",
+                                         "Dissolved Ammonia", "Field Fluorescence" ,
+                                         "Field Temperature" , "Field Secchi Depth",
+                                         "Field Turbidity" ))
 
 #now look at list of parameters again
 parameters2<-unique(alldat$parameter)
@@ -76,6 +75,7 @@ range(alldat$date[alldat$parameter=="Field Turbidity"]) #"1975-01-07 PST" "2017-
 #compare Field Water Temperature vs Field Temperature
 range(alldat$date[alldat$parameter=="Field Water Temperature"]) #"1975-01-07 PST" "1978-12-07 PST"
 range(alldat$date[alldat$parameter=="Field Temperature"]) #"1979-01-16 PST" "2017-12-15 PST"
+
 #NOTE: Field Temperature is only used as a parameter name for one observation, which isn't
 #repesented in Field Water Temperature, so combine these two categories
 
@@ -94,11 +94,6 @@ units<-unique(alldat$units)  #looks like there are several different types of le
 
 #look closer at units for secchi
 unique(alldat$units[alldat$parameter=="secchi"]) #yep, Centimeters, Meters, and Feet; need to make these all same units
-
-#how many observations for each type of units
-scm<-subset(alldat,parameter=="secchi" & units=="Centimeters") #14126 obs
-smt<-subset(alldat,parameter=="secchi" & units=="Meters") #2 obs
-sft<-subset(alldat,parameter=="secchi" & units=="Feet") #1 obs
 #nearly all are in cm; just exclude the three other observations for now
 
 #remove secchi depth observations that aren't in cm
@@ -172,21 +167,6 @@ tot$region<-ifelse(tot$long < -122.216, "spl",
 tot$region<-factor(tot$region)
 
 
-#look at stations within each region
-west<-subset(tot,region=="spl")
-unique(west$site) #D42   D41   NZ325 D41A 
-range(west$long) #-122.3907 -122.2847
-
-midd<-subset(tot,region=="ss")
-unique(midd$site)
-#D7    D9    D2    D6    D10   D8    S42   NZS42 NZ032 NZ002 NZ004
-
-east<-subset(tot,region=="dt")
-unique(east$site)
-#D4    D11   D22   D15   D24   D19   D26   D16   D12   D14A  P2    MD10  C7    C10   C3    P12   C9    P8    D28A  MD6   MD7   P10  
-#P10A  MD7A  P12A  MD10A C3A   C10A  NZ068
-
-
 #generate means by region, year, quarter, and parameter
 wqsum<-aggregate(value~region+qyear+quarter+parameter,data=tot,FUN=mean,na.rm=T)
 wqsum$parameter<-as.factor(wqsum$parameter)
@@ -226,7 +206,7 @@ dwid <- spread(wqsum, parameter, value)
 str(dwid)
 
 #change "Dissolved Nitrate + Nitrite" header
-names(dwid)[7]<-"nit"
+#names(dwid)[7]<-"nit"
 
 #create subsets for each season
 #looks like this converts qyear back to chr, so need to convert back to integer
@@ -293,7 +273,7 @@ allplots(wqsum, "secchi")
 tempplot = function(reg, season) {
   dat = filter(season, region ==reg)
   p_temp <- ggplot(dat, aes(x=qyear, y=temp))+
-    geom_line(colour="black")+geom_point(colour="black") +
+    geom_line(colour="black", size = 0.9)+geom_point(colour="black", size = 1.6) +
     geom_hline(aes(yintercept = mean(dat$temp)), size = 0.9, color = "red", linetype = "dashed")+
     theme_iep() + 
     theme(legend.position="none") + 
@@ -305,6 +285,7 @@ tempplot = function(reg, season) {
 
 Delta_winter_temp = tempplot("dt", winter)
 Suisun_winter_temp = tempplot("ss", winter)
+
 SP_winter_temp = tempplot("spl", winter)
 
 Delta_fall_temp = tempplot("dt", fall)
@@ -326,12 +307,13 @@ ggsave(tmpsf, file="temp_panel_fall.png", dpi=300, units="cm",width=27.9,height=
 secplot = function(reg, season) {
   dat = filter(season, region ==reg)
   p_sec <- ggplot(dat, aes(x=qyear, y=secchi))+
-    geom_line(colour="black")+geom_point(colour="black") +
+    geom_line(colour="black", size = 0.9)+geom_point(colour="black", size = 1.6) +
     geom_hline(aes(yintercept = mean(dat$secchi)), size = 0.9, color = "red", linetype = "dashed")+
     theme_iep() + 
     theme(legend.position="none") + 
     scale_y_continuous("Secchi depth in cm", limits=c(min(season$secchi), max(season$secchi)))+
-    scale_x_continuous(paste("Year(", season_names[dat[1,"quarter"]],")", sep = ""),  limits=c(1966,2018)) 
+    scale_x_continuous(paste("Year(", season_names[dat[1,"quarter"]],")", sep = ""),  
+                       limits=c(1966,2018)) 
   return(p_sec)
 }
 
@@ -355,17 +337,18 @@ secf<-plot_grid(SP_fall_sec, Suisun_fall_sec, Delta_fall_sec,ncol = 3, nrow = 1,
 secf
 
 #save the results
-ggsave(secs, file="secchi_panel_winter.png", dpi=300, units="in",width=27.9,height=6.8)
-ggsave(secf, file="secchi_panel_fall.png",  dpi=300, units="in",width=27.9,height=6.8)
-
+ggsave(secs, file="secchi_panel_winter.png", dpi=300, units="cm",width=27.9,height=6.8)
+ggsave(secf, file="secchi_panel_fall.png",  dpi=300, units="cm",width=27.9,height=6.8)
 
 
 #Chlorophyll: separate plots for different regions---------
 chplot = function(reg, season) {
   dat = filter(season, region ==reg)
   p_ch <- ggplot(dat, aes(x=qyear, y=chla))+
-    geom_line(colour="black")+geom_point(colour="black") +
+    geom_line(colour="black",  size=0.9)+geom_point(colour="black", size = 1.6) +
     geom_hline(aes(yintercept = mean(dat$chla)), size = 0.9, color = "red", linetype = "dashed")+
+    geom_vline(aes(xintercept = 1986), linetype = "dashed", color = "grey", size = 0.5) +
+    annotate("text", x = 1990, y = max(season$chla)-5, label = "Clam Invasion", angle = 90)+
     theme_iep() + 
     theme(legend.position="none") + 
     scale_y_continuous("Chlorophyll-a (ug/L)", limits=c(min(season$chla), max(season$chla)))+
@@ -393,8 +376,8 @@ chf
 
 
 
-ggsave(chs, file="chla_panel_winter.png",scale=1.8,  dpi=300, units="in",width=11,height=4.5)
-ggsave(chf, file="chla_panel_fall.png",scale=1.8,  dpi=300, units="in",width=11,height=4.5)
+ggsave(chs, file="chla_panel_winter.png",  dpi=300, units="cm",width=27.9,height=10)
+ggsave(chf, file="chla_panel_fall.png",  dpi=300, units="cm",width=27.9,height=10)
 
 
 #Nutrients: Plots in color-----------

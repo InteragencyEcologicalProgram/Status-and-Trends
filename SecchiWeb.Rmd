@@ -16,20 +16,15 @@ library(knitr)
 - Secchi depth is measured monthly by DWR’s Environmental Monitoring Program by dropping a black-and-white disk in the water until it disappears.
 - Suisun Bay tends to have the lowest Secchi depth due to its extensive shallow areas and high winds.
 
-### San Pablo Bay
-```{r, out.width= 500, echo = F, fig.align='center'}
-include_graphics("winter_report/latex/figures/secchi/secchi_san_pablo_bay_tmp.png")
+### San Pablo Bay     Suisun Bay      Delta
+```{r, out.width= 1000, echo = F, fig.align='center'}
+include_graphics("secchi_panel_winter.png")
 
 ```
 In 2017, San Pablo bay was clearer than the long-term average.
 
-### Suisun Bay
-```{r, out.width= 500, echo = F, fig.align='center'}
-include_graphics("winter_report/latex/figures/secchi/secchi_suisun_bay_tmp.png")
-
-```
-In 2017, San Pablo bay was clearer than the long-term average.
-
+Suisun Bay was about average
+The Delta was somethign or other.
 i don't know what i'm doing
 
 [Back to Winter Menu](WinterWebsite.html)
