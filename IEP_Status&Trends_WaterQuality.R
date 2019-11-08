@@ -375,10 +375,8 @@ chf<-plot_grid(SP_fall_ch, Suisun_fall_ch, Delta_fall_ch,ncol = 3, nrow = 1, ali
 chf
 
 
-
 ggsave(chs, file="chla_panel_winter.png",  dpi=300, units="cm",width=27.9,height=6.8)
 ggsave(chf, file="chla_panel_fall.png",  dpi=300, units="cm",width=27.9,height=6.8)
-
 
 #Nutrients: Plots in color-----------
 
