@@ -118,6 +118,17 @@ source("IEP_Plot_Theme.R")
     return(p)
   }
 
+  #Different colors based on fish species  
+  f_columns <- function(p, FSpec) {
+    
+    p <- p+
+      geom_col(aes(fill = FSpec))+
+      scale_fill_manual(values = c("lonsme" = "#664F2B", "whistu" = "#748D83"))+
+     guides(fill = F)
+    
+    return(p)
+  }
+
   # Add a dashed line for long term average
   f_PlotLtAvg <- function(p, Avg) {
     
@@ -208,7 +219,7 @@ source("IEP_Plot_Theme.R")
       p <- p +
         labs(
           x = "Year",
-          y = "YCI"
+          y = "Year Class Index"
         )
     }
     
@@ -294,10 +305,11 @@ source("IEP_Plot_Theme.R")
   f_PlotFinal <- function(df, FSpec, Avg, PlotType) {
     
     pFinal <- f_PlotBase(df) %>% 
+      f_columns(FSpec) %>%
       f_PlotLtAvg(Avg) %>% 
       f_PlotModAxis(FSpec, PlotType) %>% 
       f_PlotAxisLab(FSpec) %>% 
-      f_PlotAddText(FSpec)
+      f_PlotAddText(FSpec) 
     
     return(pFinal)
   }
