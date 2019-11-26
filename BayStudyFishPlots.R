@@ -21,7 +21,7 @@ library(lubridate)
   
   # Clean and modify longfin.orig df
   lonsme.clean <- lonsme.orig %>% 
-    select(Year:ChanShoal, TowVolume, LONSME) %>% 
+    select(Year:ChanShoal, TowVolume, LONSMEAge1) %>% 
     mutate(
       Month = month(Date, label = TRUE, abbr = TRUE),
       Year.Index = if_else(
@@ -37,7 +37,7 @@ library(lubridate)
 
   # Calculate CPUE values & average them for each year
   lonsme.cpue <- lonsme.clean %>% 
-    mutate(CPUE = (LONSME/TowVolume) * 10000) %>% 
+    mutate(CPUE = (LONSMEAge1/TowVolume) * 10000) %>% 
     group_by(Year.Index) %>% 
     summarize(y.val = mean(CPUE)) %>% 
     ungroup()
@@ -212,7 +212,7 @@ source("IEP_Plot_Theme.R")
       p <- p + 
         labs(
           x = "Year (December - February)",
-          y = expression(paste("Average CPUE (fish/m"^{3}, " x 10,000)"))
+          y = expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))
         )
       
     } else if (FSpec == "whistu") {
@@ -243,7 +243,7 @@ source("IEP_Plot_Theme.R")
       Year.Index = c(1983, 1994),
       yValue = c(27, 0),
       label = c(
-        "Ave CPUE was 94 in 1982",
+        "Ave CPUE was 88 in 1982",
         "No data"
       )
     )
@@ -463,14 +463,14 @@ Plot_Fun <- function(df, FSpec, Avg, PlotType) {
     p <- p + 
       labs(
         x = "Year (December - February)",
-        y = expression(paste("Average CPUE (fish/m"^{3}, " x 10,000)"))
+        y = expression(paste("Average CPUE (fish/(m"^{3}, " x 10,000))"))
       )
     
   } else if (FSpec == "whistu") {
     p <- p +
       labs(
         x = "Year",
-        y = "YCI"
+        y = "Year Class Index"
       )
   }
   
