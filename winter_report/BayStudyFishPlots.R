@@ -17,7 +17,7 @@ library(lubridate)
 # Longfin smelt
   # Import Dataset
   lonsme.orig <- 
-    read_excel(path = "Bay Study_MWT_1980-2018_FishMatrix.xlsx") 
+    read_excel(path = "data/Bay Study_MWT_1980-2018_FishMatrix.xlsx") 
   
   # Clean and modify longfin.orig df
   lonsme.clean <- lonsme.orig %>% 
@@ -121,10 +121,10 @@ source("IEP_Plot_Theme.R")
   #Different colors based on fish species  
   f_columns <- function(p, FSpec) {
     
-    p <- p+
-      geom_col(aes(fill = FSpec))+
-      scale_fill_manual(values = c("lonsme" = "#664F2B", "whistu" = "#748D83"))+
-     guides(fill = F)
+    p <- p +
+      geom_col(aes(fill = FSpec)) +
+      scale_fill_manual(values = c("lonsme" = "#664F2B", "whistu" = "#748D83")) +
+      guides(fill = F)
     
     return(p)
   }
@@ -352,127 +352,4 @@ walk2(
     height = 6.8
   )
 )
-  
-Plot_Fun <- function(df, FSpec, Avg, PlotType) {
-  
-  # Define df2 and yearBreaks based upon PlotType argument- All or Recent
-  if (PlotType == "All") {
-    # Keep all data
-    df2 <- df
-    # define x-axis breaks
-    yearBreaks <- seq(1970, endYear, 10)
-    
-  } else if (PlotType == "Recent") {
-    # subset data for recent trends plots
-    df2 <- df %>% filter(Year.Index >= startYearRec)
-    # define x-axis breaks
-    yearBreaks <- seq(2005, endYear, 5)
-  }
-  
-  # Create base plot p
-  p <- 
-    ggplot(
-      data = df2,
-      aes(
-        x = Year.Index,
-        y = y.val
-      )
-    ) +
-    geom_col() +
-    theme_iep() +
-    scale_x_continuous(breaks = yearBreaks) +
-    geom_hline(
-      yintercept = Avg, 
-      color = "red",
-      linetype = "dashed", 
-      size = 0.9
-    )
-  
-  # Add text and adjust axis limits of the plots based upon Species and PlotType
-  if (PlotType == "All") {
-    # Define text size
-    textSize <- 1.5
-    
-    # Add text to plots for all years
-    p <- p +
-      geom_text(
-        data = AllYearsText,
-        aes(
-          x = Year.Index,
-          y = yValue,
-          label = label
-        ),
-        inherit.aes = FALSE,
-        hjust = "left",
-        size = textSize
-      )
-    
-    if (FSpec == "lonsme") {
-      p <- p +
-        #set axis limits manually
-        coord_cartesian(
-          xlim = c(startYearAll, endYear),
-          ylim = c(0, 40)
-        ) +
-        # Add text to plot
-        geom_text(
-          data = lonsmeText,
-          aes(
-            x = Year.Index,
-            y = yValue,
-            label = label
-          ),
-          inherit.aes = FALSE,
-          hjust = "left",
-          vjust = "center",
-          size = textSize,
-          angle = 90
-        )
-      
-    } else if (FSpec == "whistu") {
-      p <- p +
-        #set axis limits manually
-        coord_cartesian(
-          xlim = c(startYearAll, endYear),
-          ylim = c(0, 720)
-        )
-      # annotate("text", label = ("Data were not collected until 1980"), x = "1974", y = 1.235, size = textSize)
-    }
-    
-  } else if (PlotType == "Recent") {
-    if (FSpec == "lonsme") {
-      p <- p +
-        #set axis limits manually
-        coord_cartesian(
-          xlim = c(startYearRec, endYear),
-          ylim = c(0, 8)
-        )
-      
-    } else if (FSpec == "whistu") {
-      p <- p +
-        #set axis limits manually
-        coord_cartesian(
-          xlim = c(startYearRec, endYear),
-          ylim = c(0, 300)
-        )
-    }
-  }
-  
-  # Add axis labels to plots based upon Species
-  if (FSpec == "lonsme") {
-    p <- p + 
-      labs(
-        x = "Year (December - February)",
-        y = expression(paste("Average CPUE (fish/(m"^{3}, " x 10,000))"))
-      )
-    
-  } else if (FSpec == "whistu") {
-    p <- p +
-      labs(
-        x = "Year",
-        y = "Year Class Index"
-      )
-  }
-  
-  return(p)
-}
+
