@@ -1,10 +1,10 @@
 #IEP Status and Trends Report
-#Fall Season
-#Data up to and including 2017
+#all seasons
+#Data up to and including 2018
 #Zooplankton Biomass Per Unit Effort
 
 #Created by Nick Rasmussen
-#last updated: 3/18/2019
+#last updated: 1/17/2020
 
 #Clark-Bumpus Net: Calanoid copepods, Cladocerans, Cyclopoids (Acanthocyclops and other cyclopoids)
 #Rotifer pump: Cyclopoids (Oithona, Limnoithona)
@@ -17,30 +17,26 @@ library(ggplot2)
 library(colorspace) #color palette
 library(zoo) ## yearmon and yearqtr classes
 library(cowplot)
+library(tidyverse)
+library(lubridate)
 
 
 #import datasets----------------
 
 #Clark-Bumpus net survey data
-zoopcb<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/zoop_cb.csv") 
-
-#rotifer pump survey data
-zoopp<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/zoop_pump.csv") 
+zoopcb<-read.csv("./data/zoop_cb.csv") 
 
 #mysid net survey data
-mysid<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/zoop_mysid.csv") 
+mysid<-read.csv("./data/zoop_mysid.csv") 
 
 #details of sampling station locations
-station<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/zoop_stations.csv") 
+station<-read.csv("./data/zoop_stations.csv") 
 
 #carbon mass for individual zooplankton taxa (cladocerans, copepods)
-zmass<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/zoop_individual_mass.csv") 
+zmass<-read.csv("./data/zoop_individual_mass.csv") 
 
 #mysid shrimp biomass for all samples collected 
-mmass<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/zoop_mysid_mass.csv") 
-
-#chlorophyll-a data; used to create chl-a/zoop plot panel for report
-chlora<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/chla_all_seasons.csv") 
+mmass<-read.csv("./data/zoop_mysid_mass.csv") 
 
 
 #CB net: formatting data---------
@@ -87,83 +83,17 @@ str(zoopl)
 str(zmass)
 
 #add in individual biomass data
-zoopb<-join(zoopl,zmass,by="taxon",type="left")
+zoopb<-left_join(zoopl,zmass,by="taxon")
 
 #calculate biomass by sample-taxon combo
 zoopb$bpue<-zoopb$cpue*zoopb$mass_indiv_ug
-
-#plot cpue vs bpue as a quick check
-plot(zoopb$cpue,zoopb$bpue)
-
-#look at date ranges of data sets
-range(zoopb$date) #"1974-03-13" "2017-12-15", good - it ends at same date as WQ data I'm using
-
-#Rotifer pump: formatting data---------
-
-names(zoopp)
-
-#exclude unneeded rows:
-#exclude EZ stations (NZEZ2, NZEZ6)
-#exclude non-core stations (core = 0); 1 = sampled since 1972, 2 = sampled since 1974
-#exclude 1972-1973 because only subset of core stations were sampled during those years
-#exclude survey replicate 2 for the months that have those; vast majority of monthly surveys are just one replicate
-#exclude the winter months (1,2,12) initially because they have a shorter time series than the other months
-zoop_sub2<-subset(zoopp, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1973 & SurveyRep!=2 & Survey>2 & Survey<12)
-
-#create separate subset of the two san pablo stations to include in graphs (no core stations in SP)
-zoop_subsp2<-subset(zoopp, Station=="NZD41" | Station=="NZ41A")
-
-#create separate subset for winter months with its shorter time series
-zoop_subw2<-subset(zoopp, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1993 & SurveyRep!=2 & (Survey<3 | Survey>11))
-
-#combine the three data subsets
-zoop_s2<-rbind(zoop_sub2,zoop_subsp2,zoop_subw2)
-
-#reduce zooplankton data to just needed columns
-#"Year","Survey","SampleDate","Station" 
-#"LIMNOSINE"+"LIMNOSPP"+"LIMNOTET" + "OITHDAV" + "OITHSIM" + "OITHSPP" = the two cyclopoid genera best surveyed by pump
-zoop2<-subset(zoop_s2,select=c("Year","Survey","SampleDate","Station","LIMNOSINE","LIMNOSPP","LIMNOTET","OITHDAV","OITHSIM","OITHSPP"))
-
-#convert zoop data frame from wide to long format
-zoopl2<-gather(zoop2,taxon,cpue,LIMNOSINE:OITHSPP)
-
-#name columns
-names(zoopl2)[1:4]<-c("year","survey","date","station")
-
-#format some columns
-zoopl2$date<-as.Date(zoopl2$date,format="%m/%d/%Y")
-zoopl2$taxon<-factor(zoopl2$taxon)
-zoopl2$cpue<-as.numeric(zoopl2$cpue)
-str(zoopl2)
-str(zmass)
-
-#add in individual biomass data
-zoopb2<-join(zoopl2,zmass,by="taxon",type="left")
-
-#calculate biomass by sample-taxon combo
-zoopb2$bpue<-zoopb2$cpue*zoopb2$mass_indiv_ug
-
-#plot cpue vs bpue as a quick check
-plot(zoopb2$cpue,zoopb2$bpue)
-
-#look at date ranges of data sets
-range(zoopb2$date) #"1974-03-13" "2017-12-15", good - it ends at same date as WQ data I'm using
-
-
-#combine the CB and pump data sets
-names(zoopb)
-names(zoopb2)
-str(zoopb)
-str(zoopb2)
-zall<-rbind(zoopb,zoopb2)
-
 #create new column for zooplankton categories
 #calanoids: "ACARTELA","ACARTIA","DIAPTOM","EURYTEM","OTHCALAD","PDIAPFOR","PDIAPMAR","SINOCAL","TORTANUS"
 #cyclopoids: "AVERNAL","OTHCYCAD","LIMNOSINE","LIMNOSPP","LIMNOTET" , "OITHDAV" , "OITHSIM" , "OITHSPP"
 #cladocerans: "BOSMINA","DAPHNIA","DIAPHAN","OTHCLADO"
 
 #duplicate the taxon column to make a higher and lower taxon column
-zall$taxonl<-zall$taxon
+zall = mutate(zoopb, taxonl = taxon)
 
 #first, create vectors of strings to replace with broader category names 
 calan<-c("ACARTELA","ACARTIA","DIAPTOM","EURYTEM","OTHCALAD","PDIAPFOR","PDIAPMAR","SINOCAL","TORTANUS")
@@ -193,12 +123,8 @@ zall$taxon<-factor(zall$taxon)
 str(zall)
 
 #add together biomass for all species within each of the three taxonomic groups
-zll<-aggregate(cbind(cpue,bpue)~year+survey+date+station+taxon,data=zall,FUN=sum,na.rm=T)
-
-
-#reduce to just needed columns
-zal<-subset(zll,select=c("year","survey","date","station","taxon","cpue","bpue"))
-
+zll<- group_by(zall, year, survey, date, station, taxon) %>%
+  summarize(cpue = sum(cpue, na.rm = T), bpue = sum(bpue, na.rm = T))
 
 #mysids: formatting data---------
 
@@ -243,32 +169,20 @@ zoop3b<-subset(mmass,select=c("Year","Survey","Date","Station","bpue"))
 #combine cpue and bpue data sets
 str(zoop3)
 str(zoop3b)
-zoop3m<-join(zoop3,zoop3b,by=c("Year","Survey","Date","Station"),type="left")
+zoop3m<-left_join(zoop3,zoop3b,by=c("Year","Survey","Date","Station"))
 
 names(zoop3m)<-c("year","survey","date","station","cpue","bpue")
 
 #add a taxon column so that this data frame can be combined with the others
 zoop3m$taxon<-"mys"
-zoop3m$taxon<-factor(zoop3m$taxon)
+zoop3m$taxon<-zoop3m$taxon
 names(zoop3m)
 
-#reorder columns
-zoopl3<-zoop3m[c(1:4,7,5:6)]
-
 #format date
-zoopl3$date<-as.Date(zoopl3$date,format="%m/%d/%Y")
-str(zoopl3)
-
-#look at date ranges of data sets
-range(zoopl3$date) #"1974-03-13" "2017-12-15", good - it ends at same date as WQ data I'm using
-
-#then combine with rest of zooplankton data
-names(zal)
-str(zal)
-names(zoopl3)
+zoop3m$date<-as.Date(zoop3m$date,format="%m/%d/%Y")
 
 #combine all zoop data sets
-mza<-rbind(zal,zoopl3)
+mza<-bind_rows(zll,zoop3m)
 
 
 #Stations: formatting data---------
@@ -287,7 +201,7 @@ str(stati)
 stati<-stati[order(stati$long_dec),]
 
 #merge with zooplankton cpue data
-mcpg<-join(mza,stati,type="left")
+mcpg<-left_join(mza, stati)
 
 unique(mcpg$station) #18 stations: 16 core stations + 2 san pablo stations
 
@@ -297,22 +211,7 @@ mcpg$region<-ifelse(mcpg$long_dec > 122.216, "spl",
                            ifelse(mcpg$long_dec < 121.829, "dt",NA))) 
 
 #make region a factor
-mcpg$region<-factor(mcpg$region)
-
-
-#look at stations within each region
-west<-subset(mcpg,region=="spl")
-unique(west$station)
-
-midd<-subset(mcpg,region=="ss")
-unique(midd$station)
-
-east<-subset(mcpg,region=="dt")
-unique(east$station)
-
-#count data points by region
-table(mcpg$region)
-
+mcpg$region<-factor(mcpg$region, levels=c('spl','ss','dt'))
 
 #add column for season
 #a bit tricky because winter is Dec. of one year and then Jan./Feb. of the following year
@@ -320,137 +219,32 @@ table(mcpg$region)
 #use survey number instead of trying to make and use a month column
 
 #combine month and year
-mcpg$ym <- as.yearmon(paste(mcpg$survey, mcpg$year), "%m %Y")
-
-#create a year quarter column; the "+ 1/12" makes sure that December ends up as the first month of Q1 instead of Jan
-mcpg$yq <- as.yearqtr(mcpg$ym + 1/12)
-
-#date ranges based on quarters
-range(mcpg$yq) # "1974 Q2" "2018 Q1"
-
-str(mcpg)
-
-#create columns that split the year and quarter into separate columns
-#these will be used for plotting
-mcpg$yq2<-mcpg$yq
-mcpg<-mcpg %>% separate(yq2, c('qyear', 'quarter'), sep=" ")
-mcpg$year<-as.integer(mcpg$year)
-
-
-#count data points by season
-table(mcpg$quarter)
-#winter (Q1) season has almost half as many data points as other seasons which probably makes sense
-str(mcpg)
-
-#make quarter a factor and year an integer
-mcpg$quarter<-factor(mcpg$quarter)
-mcpg$qyear<-as.integer(mcpg$qyear)
+mcpg = mutate(mcpg, ym =as.yearmon(paste(survey, year), "%m %Y"),
+              yq =as.yearqtr(ym + 1/12),
+              yq2 = yq) %>%
+  separate(yq2, c('qyear', 'quarter'), sep=" ") %>%
+  mutate(quarter = factor(quarter, levels=c('Q1','Q2','Q3','Q4')),
+         qyear = as.integer(qyear))
 
 
 #generate means by region, year, quarter, and taxon
 zmeans<-aggregate(cbind(cpue,bpue)~region+qyear+quarter+taxon,data=mcpg,FUN=mean,na.rm=T)
 str(zmeans)
 
-#export summary data 
-#write.csv(zmeans,"zoop_bpue_means.csv", row.names=F)
-
-#quick summary stats
-range(zmeans$cpue)
-range(zmeans$bpue)
-
-
-#create subset without mysids
-cbp<-subset(zmeans,taxon!="mys")
-
-#create subset with only mysids
-mys<-subset(zmeans,taxon=="mys")
 
 
 #CPUE plots: stacked line plots for each season and region------------
 
 #create custom plot formatting function
-theme_iep <- function(){
-  theme_bw()+
-    theme(axis.text.x = element_text(size = 9),
-          axis.text.y = element_text(size = 9),
-          axis.title.x = element_text(size = 10, face = "plain"),
-          axis.title.y = element_text(size = 10, face = "plain"
-                                      ,margin=margin(t = 0, r = 10, b = 0, l = 0)
-          ),             
-          panel.grid.major.x = element_blank(), 
-          panel.grid.minor.x = element_blank(),
-          panel.grid.minor.y = element_blank(),
-          panel.grid.major.y = element_blank(),  
-          #plot.margin = unit(c(0.1, 0.3, 0.1, 0.9), units = , "cm"), #top, right, bottom, left
-          plot.margin = unit(c(0.25, 0.4, 0.1, 0.4), units = , "cm"), #adjusted the "top" and "right" values so nothing is cut off
-          plot.title = element_text(size = 20, vjust = 1, hjust = 0.5),
-          legend.text = element_text(size = 9, face = "plain"),
-          legend.title=element_text(size=10))
-}
+source("IEP_Plot_Theme.R")
 
 #set up facet labels
 season_names<-c('Q1'="Winter",'Q2'="Spring",'Q3'="Summer",'Q4'="Fall")
 region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
 
-#set order of seasons and regions for plotting
-zmeans$quarter = factor(zmeans$quarter, levels=c('Q1','Q2','Q3','Q4'))
-zmeans$region = factor(zmeans$region, levels=c('spl','ss','dt'))
-
-cbp$quarter = factor(cbp$quarter, levels=c('Q1','Q2','Q3','Q4'))
-cbp$region = factor(cbp$region, levels=c('spl','ss','dt'))
-
-mys$quarter = factor(mys$quarter, levels=c('Q1','Q2','Q3','Q4'))
-mys$region = factor(mys$region, levels=c('spl','ss','dt'))
-
 #custom colors
 (custcol<-diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))
 #"#664F2B" "#928678" "#748D83" "#095E49"
-
-#All zoop CPUE: facets of stacked line plots
-(cpl<-ggplot(zmeans, aes(x = qyear, y = cpue, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Density (Number/m"^" 3", ")")), limits=c(0,max(zmeans$cpue))))
-#NOTE: mysids are effectively invisible because there are so few of them per sample; would need to use a log scale for them to show up
-
-#ggsave(cpl, file="zoop_cpue_all.png",scale=1,dpi=300, units="cm",width=30,height=20.5)
-
-#Zoop CPUE, no mysids: facets of stacked line plots 
-(cplnm<-ggplot(cbp, aes(x = qyear, y = cpue, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids")
-                      ,values=c("#664F2B","#928678","#748D83"))+
-                    scale_y_continuous(expression(paste("Zooplankton Density (Number/m"^" 3", ")")), limits=c(0,max(cbp$cpue))))
- 
-#ggsave(cplnm, file="zoop_cpue_no_mysids.png",scale=1,dpi=300, units="cm",width=30,height=20.5)
-
-
-#Mysids only CPUE: facets of stacked line plots 
-(cplm<-ggplot(mys, aes(x = qyear, y = cpue, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Mysids"),values="#095E49")+
-    scale_y_continuous(expression(paste("Zooplankton Density (Number/m"^" 3", ")")), limits=c(0,max(mys$cpue))))
-
-#ggsave(cplm, file="zoop_cpue_only_mysids.png",scale=1,dpi=300, units="cm",width=30,height=20.5)
 
 
 #BPUE plots: stacked line plots for each season and region------------
@@ -484,44 +278,6 @@ mys$region = factor(mys$region, levels=c('spl','ss','dt'))
                        #, limits=c(0,max(zmeans$bpue)/1000)
                        ))
 #NOTE: mysids overwhelm everything else because they are so much larger
-
-#ggsave(bpl2, file="zoop_bpue_all.png",scale=1,dpi=300, units="cm",width=30,height=20.5)
-
-
-#Zoop BPUE, no mysids (mg): facets of stacked line plots   
-(bplnm<-ggplot(cbp, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids")
-                      ,values=c("#664F2B","#928678","#748D83"))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(cbp$bpue)/1000)
-                       ))
-
-#ggsave(bplnm, file="zoop_bpue_no_mysids.png",scale=1,dpi=300, units="cm",width=30,height=20.5)
-
-
-#Mysids only BPUE: facets of stacked line plots  
-(bplm<-ggplot(mys, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Mysids"),values="#095E49")+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(mys$bpue)/1000)
-                       ))
-
-#ggsave(bplm, file="zoop_bpue_only_mysids.png",scale=1,dpi=300, units="cm",width=30,height=20.5)
-
 
 #BPUE, all zooplankton categories, each season is separate panel-----------------
 
@@ -725,78 +481,4 @@ bfnm<-subset(zmeans,quarter=="Q4" & taxon!="mys")
 #ggsave(bfnmp, file="zoop_bpue_no_mysids_fall.png",scale=2,dpi=300, units="cm",width=30,height=7)
 
 
-
-###Chlorophyll-a: code to create plots and then combine them with the zooplankton plots------------
-
-str(chlora)
-
-#create subsets for each quarter
-fall<-subset(chlora,quarter=="Q4")
-winter<-subset(chlora,quarter=="Q1")
-spring<-subset(chlora,quarter=="Q2")
-summer<-subset(chlora,quarter=="Q3")
-
-#set order of quarters and regions for plotting
-chlora$quarter = factor(chlora$quarter, levels=c('Q1','Q2','Q3','Q4'))
-chlora$region = factor(chlora$region, levels=c('spl','ss','dt'))
-
-
-#now, for fall, make a plot for each region separately
-#do this so you can patch them together for report
-fdt<-subset(fall,region=="dt")
-fss<-subset(fall,region=="ss")
-fspl<-subset(fall,region=="spl")
-
-#delta plot
-(p_chla_d <- ggplot(fdt, aes(x=qyear, y=chla))+
-    geom_vline(xintercept = 1986, size=0.7,linetype = "longdash",color="dark gray")+ #clam invasion
-    annotate("text", label = "clam invasion", x = 1995, y = 20.12, color = "black", size=4)+
-    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
-    theme_iep() +
-    theme(legend.position="none") + 
-    scale_y_continuous(expression(paste("Chlorophyll-a (",mu,"g / L)")),limits=c(0, max(fall$chla))) +
-    scale_x_continuous("", limits=c(1966,2018)) )
-
-#scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), limits=c(0,max(zmeans$bpue))))
-
-
-#then Suisun plot
-(p_chla_ss <- ggplot(fss, aes(x=qyear, y=chla))+
-    geom_vline(xintercept = 1986, size=0.7,linetype = "longdash",color="dark gray")+ #clam invasion
-    annotate("text", label = "clam invasion", x = 1995, y = 20.12, color = "black", size=4)+
-    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
-    theme_iep() +
-    theme(legend.position="none") + 
-    scale_y_continuous(expression(paste("Chlorophyll-a (",mu,"g / L)")),limits=c(0, max(fall$chla))) +
-    scale_x_continuous("", limits=c(1966,2018)) )
-
-#then San Pablo plot
-(p_chla_sp <- ggplot(fspl, aes(x=qyear, y=chla))+
-    geom_vline(xintercept = 1986, size=0.7,linetype = "longdash",color="dark gray")+ #clam invasion
-    annotate("text", label = "clam invasion", x = 1995, y = 20.12, color = "black", size=4)+
-    geom_line(colour="black", size=0.9)+geom_point(colour="black",size=1.6) +
-    theme_iep() +
-    theme(legend.position="none") + 
-    scale_y_continuous(expression(paste("Chlorophyll-a (",mu,"g / L)")),limits=c(0, max(fall$chla))) +
-    scale_x_continuous("", limits=c(1966,2018)) )
-
-#creates a grid of plots where everything lines up properly; chlor-a and zoop
-#http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/81-ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page/
-
-pchz<-plot_grid(p_chla_sp,p_chla_ss,p_chla_d,p_bz_sp,p_bz_ss,p_bz_d, ncol = 3, nrow = 2, align="v")
-pchz #eventualy the plot will render but it's slow
-
-#ggsave(pchz, file="zoop+chla_fall_panel.png", path=plot_folder,scale=1.8, dpi=300, units="cm",width=25.5,height=10.8)
-
-
-
-## Final figure:
-plankton_main_layout <- rbind(c(1,2,3),
-															c(4,5,6))
-plankton_main_fig <- grid.arrange(
-						 p_chla_sp, p_chla_ss, p_chla_d, 
-						 p_bz_sp, p_bz_ss, p_bz_d, 
-						 layout_matrix = plankton_main_layout,
-						 heights=unit(c(68,68), c("mm")),
-						 widths=unit(c(102,102,102), c("mm")))
 
