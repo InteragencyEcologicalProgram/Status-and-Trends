@@ -1,10 +1,10 @@
 #IEP Status and Trends Report
-#Fall Season
-#Data up to and including 2017
+#all seasons
+#Data up to and including 2018
 #Net Delta Outflow
 
 #Created by Nick Rasmussen
-#last updated: 3/15/2019
+#last updated: 1/17/2020 by Rosemary Hartman
 
 #packages
 library(ggplot2) #plots
@@ -13,54 +13,27 @@ library(tidyr) #separate one column into two
 library(lubridate) #formatting dates
 library(tidyverse)
 
-#import data
-alldata<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/flow_1929-10-01_2018-09-30.csv") #daily outflow for full time series
-
+source("drivr_sqlite.R")
+alldata<-flow
 #rename columns
 names(alldata)<-c("date","out")
 
-#look at data structure
-alldata$date<-ymd(alldata$date) #format date
-alldata$out<-as.numeric(alldata$out)
-str(alldata)
+#reformat date
+alldata$date<-mdy(alldata$date) #format date
 
 #look at range of values for flow
 range(alldata$out) #-37433 629494
 range(alldata$date) #"1929-10-01" "2017-09-30"
 
-#create a month column
-alldata$month<-format(as.Date(alldata$date, format="%Y-%m-%d"),"%m")
+#create a month column, year, and quarter (putting december in first month of Q1)
+alldata = mutate(alldata, month = month(date),
+                 year = year(date),
+                 ym = as.yearmon(paste(month, year), "%m %Y"),
+                 yq = as.yearqtr(ym + 1/12), yq2 = yq) %>%
+                 separate(yq2, c('qyear', 'quarter'), sep=" ") %>%
+  mutate(qyear = as.integer(qyear), quarter = factor(quarter))
 
-#create a year column
-alldata$year<-format(as.Date(alldata$date, format="%Y-%m-%d"),"%Y")
 
-#now look at the series to dates to make sure they are correct
-dseries<-unique(alldata$year) #looks good
-alldata$month<-as.integer(alldata$month)
-unique(alldata$month)
-
-alldata$year<-as.integer(alldata$year)
-str(alldata)
-
-#combine month and year
-alldata$ym <- as.yearmon(paste(alldata$month, alldata$year), "%m %Y")
-
-#create a year-quarter column; the "+ 1/12" makes sure that December ends up as the first month of Q1 instead of Jan
-alldata$yq <- as.yearqtr(alldata$ym + 1/12)
-
-#date ranges based on quarters
-range(alldata$yq) # "1929 Q4" "2017 Q4"
-
-str(alldata)
-
-#create columns that split the year and quarter into separate columns
-#these will be used for plotting
-alldata$yq2<-alldata$yq
-alldata<-alldata %>% separate(yq2, c('qyear', 'quarter'), sep=" ")
-
-alldata$qyear<-as.integer(alldata$qyear)
-alldata$quarter<-factor(alldata$quarter)
-str(alldata)
 
 #count data points by quarter
 table(alldata$quarter)
@@ -72,26 +45,8 @@ str(dmean)
 
 #plots-----------------
 
-#create custom plot formatting function
-theme_iep <- function(){
-  theme_bw()+
-    theme(axis.text.x = element_text(size = 14),
-          axis.text.y = element_text(size = 14),
-          axis.title.x = element_text(size = 14, face = "plain"),
-          axis.title.y = element_text(size = 14, face = "plain"
-                                      ,margin=margin(t = 0, r = 10, b = 0, l = 0)
-          ),             
-          panel.grid.major.x = element_blank(),
-          panel.grid.minor.x = element_blank(),
-          panel.grid.minor.y = element_blank(),
-          panel.grid.major.y = element_blank(),  
-          #plot.margin = unit(c(0.1, 0.3, 0.1, 0.9), units = , "cm"), #top, right, bottom, left
-          plot.margin = unit(c(0.25, 0.4, 0.1, 0.4), units = , "cm"), #adjusted the "top" and "right" values so nothing is cut off
-          plot.title = element_text(size = 20, vjust = 1, hjust = 0.5),
-          legend.text = element_text(size = 9, face = "plain"),
-          legend.title=element_text(size=10))
-}
-
+#source custom plot formatting function
+source("IEP_Plot_Theme.R")
 
 #create list of season names to replace quarter names in plots
 #set up facet labels
@@ -108,53 +63,39 @@ ezq<-ggplot(dmean, aes(x=qyear, y=out)) +geom_line()+
   ggtitle("Net Delta Outflow Index")+theme_bw()+theme(plot.margin=margin(0.01,0.01,0.01,0.01,"in"));ezq
 #ggsave("Flow_FacetedBySeason.png",type ="cairo-png",width=6.5, height=4.6,units="in",dpi=300)
 
-wintermean = mean(filter(dmean, season == "Q1")$out)/1000
-winter = ggplot(filter(dmean, season == "Q1"), aes(x=qyear, y=out/1000)) +
-                  geom_line()+
-  geom_point(colour="black") +
-  geom_hline(aes(yintercept = wintermean), size = 0.9, color = "red", linetype = "dashed")+
-  scale_x_continuous("Year (December - February)",limits = c(1966,2017))+
-  scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s x 1,000)"))) +
-theme_bw()+theme(plot.margin=margin(0.01,0.01,0.01,0.01,"in"))
-winter
 
-ggsave(winter, file="winter_outflow_update.png", dpi=300, units="cm", width=9.3, height=6.8)
+#now a function to plot one season at a time
+flows = function(quart, data) {
+  dat = filter(data, quarter == quart) 
+  p = ggplot(dat, aes(x=qyear, y=out/1000)) +
+    geom_line()+
+    geom_point(colour="black") +
+    geom_hline(aes(yintercept = mean(dat$out)/1000), size = 0.9, color = "red", linetype = "dashed")+
+    scale_x_continuous("Year (December - February)",limits = c(1966,2018))+
+    scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s x 1,000)"))) +
+    theme_iep()
+  p
+}
 
-
-#plot data from all years with just fall season 
-
-#create subset with just fall
-fall<-subset(dmean,quarter=="Q4")
-str(fall)
-
-#Plot of 1967 - 2017
-(pfflow<-ggplot(fall, aes(x=qyear, y=out/1000)) +
-    geom_line(colour="black", size=1.5)+geom_point(colour="black",size=2.8) +
-    theme(legend.position="none")+ theme_iep()+
-    scale_x_continuous("Year (September - November)",limits = c(1966,2017))+
-    scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s x 1,000)")), limits=c(0,max(fall$out)/1000))) 
-#ggsave(pfflow, file="flow_fall.png", path=plot_folder,scale=1.8, dpi=300, units="cm",width=8.5,height=5.4)
-#NOTE: need to set path for plot_folder before saving
+flows(quart = "Q1",data = dmean)
 
 
-#create plot with just 2002-2017
-(pfflow2<-ggplot(fall, aes(x=qyear, y=out/1000)) +
-    geom_line(colour="black", size=1.5)+geom_point(colour="black",size=2.8) +
-    theme(legend.position="none")+ theme_iep()+
-    scale_x_continuous("Year (September - November)",limits = c(2002,2017))+
-    scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s, ? 1,000)")), limits=c(0,13000/1000)))
-#ggsave(pfflow2, file="flow_recent.png", path=plot_folder,scale=1.8, dpi=300, units="cm",width=8.5,height=5.4)
-#NOTE: need to set path for plot_folder before saving
+ggsave(flows(quart = "Q1",data = dmean), 
+       file="winter_outflow_update.png", 
+       dpi=300, units="cm", width=9.3, height=6.8,
+       path = "./winter_report")
 
+ggsave(flows(quart = "Q2",data = dmean), 
+       file="spring_outflow_update.png", 
+       dpi=300, units="cm", width=9.3, height=6.8,
+       path = "./spring_report")
 
-## Final figures:
-flow_fig <- gridExtra::grid.arrange(pfflow, layout_matrix=rbind(1), 
-												 heights=unit(102, c("mm")),
-												 widths=unit(160, c("mm")))
+ggsave(flows(quart = "Q3",data = dmean), 
+       file="summer_outflow_update.png", 
+       dpi=300, units="cm", width=9.3, height=6.8,
+       path = "./summer_report")
 
-flow2_fig <- gridExtra::grid.arrange(pfflow2, layout_matrix=rbind(1), 
-												 heights=unit(102, c("mm")),
-												 widths=unit(160, c("mm")))
-
-flow_fig
-flow2_fig
+ggsave(flows(quart = "Q4",data = dmean), 
+       file="fall_outflow_update.png", 
+       dpi=300, units="cm", width=9.3, height=6.8,
+       path = "./fall_report")
