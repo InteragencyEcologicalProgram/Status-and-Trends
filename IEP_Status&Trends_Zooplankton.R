@@ -189,7 +189,7 @@ mza<-bind_rows(zll,zoop3m)
 
 names(station)
 
-#combine deg, min, sec for lat and for long
+#combine deg, min, zoop for lat and for long
 
 #first calculate decimal deg, min, sec
 station$long_dec<-station$long_deg + station$long_min/60 + station$long_sec/3600
@@ -219,8 +219,10 @@ mcpg$region<-factor(mcpg$region, levels=c('spl','ss','dt'))
 #use survey number instead of trying to make and use a month column
 
 #combine month and year
-mcpg = mutate(mcpg, ym =as.yearmon(paste(survey, year), "%m %Y"),
-              yq =as.yearqtr(ym + 1/12),
+mcpg = ungroup(mcpg) %>%
+  mutate( month = month(date), 
+              ym =as.yearmon(paste(month, year), format =  "%m %Y"),
+              yq =as.yearqtr(ym + 1/12, format = "%Y Q%q"),
               yq2 = yq) %>%
   separate(yq2, c('qyear', 'quarter'), sep=" ") %>%
   mutate(quarter = factor(quarter, levels=c('Q1','Q2','Q3','Q4')),
@@ -229,6 +231,9 @@ mcpg = mutate(mcpg, ym =as.yearmon(paste(survey, year), "%m %Y"),
 
 #generate means by region, year, quarter, and taxon
 zmeans<-aggregate(cbind(cpue,bpue)~region+qyear+quarter+taxon,data=mcpg,FUN=mean,na.rm=T)
+
+zmeans = group_by(mcpg, region, qyear, quarter, taxon) %>%
+  summarise(cpue = mean(cpue), bpue = mean(bpue))
 str(zmeans)
 
 
@@ -249,6 +254,8 @@ region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
 
 #BPUE plots: stacked line plots for each season and region------------
 
+
+
 #All zoop BPUE (ug): facets of stacked line plots
 (bpl<-ggplot(zmeans, aes(x = qyear, y = bpue, fill = taxon)) + 
     geom_area(position = 'stack')+
@@ -263,222 +270,74 @@ region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
     scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), limits=c(0,max(zmeans$bpue))))
 #NOTE: mysids overwhelm everything else because they are so much larger
 
-#All zoop BPUE (mg): facets of stacked line plots
-(bpl2<-ggplot(zmeans, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
+zoops = function(quart, reg, data) {
+  dat = filter(data, quarter == quart, region == reg)
+  
+  #calculate long-term average
+  sums = group_by(dat, qyear) %>% summarize(bpuetot = sum(bpue))
+  meanB = mean(sums$bpuetot)
+  
+  #make a plot
+  bpl<-ggplot(dat, aes(x = qyear, y = bpue, fill = taxon)) + 
     geom_area(position = 'stack')+
     theme_iep()+
     #theme(legend.position="none") + 
     scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
+    facet_grid(.~region,labeller = as_labeller(
                  c(region_names,season_names))) +
+    geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
                       ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(zmeans$bpue)/1000)
-                       ))
-#NOTE: mysids overwhelm everything else because they are so much larger
-
-#BPUE, all zooplankton categories, each season is separate panel-----------------
-
-bw<-subset(zmeans,quarter=="Q1")
-bsp<-subset(zmeans,quarter=="Q2")
-bsu<-subset(zmeans,quarter=="Q3")
-bf<-subset(zmeans,quarter=="Q4")
+    scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), 
+                       limits=c(0,max(zmeans$bpue)))
+  bpl
 
 
-#Winter, all zoop BPUE (mg): facets of stacked line plots
-(bwp<-ggplot(bw, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(bw$bpue/1000))  #this seems to mess up line for calanoids
-                       ))
-
-#ggsave(bwp, file="zoop_bpue_all_winter.png",scale=2,dpi=300, units="cm",width=30,height=7)
+}
 
 
-#Spring, all zoop BPUE (mg): facets of stacked line plots
-(bspp<-ggplot(bsp, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(bsp$bpue)/1000)
-                       ))
+zoops("Q1", "ss", zmeans)
 
-#ggsave(bspp, file="zoop_bpue_all_spring.png",scale=2,dpi=300, units="cm",width=30,height=7)
+#winter zoops plot
+zoopsw<-plot_grid(zoops("spl", "Q1", zmeans),
+                 zoops("ss", "Q1", zmeans), 
+                 zoops("dt", "Q1", zmeans),
+                 ncol = 3, nrow = 1, align="v")
+
+#save it
+ggsave(zoopsw, file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=6.8,
+       path = "./winter_report")
 
 
-#Summer, all zoop BPUE (mg): facets of stacked line plots
-(bsup<-ggplot(bsu, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(bsu$bpue)/1000)
-                       ))
-
-#ggsave(bsup, file="zoop_bpue_all_summer.png",scale=2,dpi=300, units="cm",width=30,height=7)
-
-#Fall, all zoop BPUE (mg): facets of stacked line plots
-(bfp<-ggplot(bf, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(bf$bpue)/1000)
-                       ))
-
-#ggsave(bfp, file="zoop_bpue_all_fall.png",scale=2,dpi=300, units="cm",width=30,height=7)
-
-#now, for fall, make a plot for each region separately
-#do this so you can patch them together for report
-bfdt<-subset(bf,region=="dt")
-bfss<-subset(bf,region=="ss")
-bfspl<-subset(bf,region=="spl")
-
-#delta plot
-(p_bz_d <- ggplot(bfdt, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    theme(legend.position="none") + 
-    scale_x_continuous("Year (September - November)", limits=c(1966,2018)) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       , limits=c(0,38) #set the max by hand based on all three regional plots for the season
-                       
-    ))
-
-#then Suisun plot
-(p_bz_ss <- ggplot(bfss, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    theme(legend.position="none") + 
-    scale_x_continuous("Year (September - November)", limits=c(1966,2018)) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       , limits=c(0,38) #set the max by hand based on all three regional plots for the season
-                       
-    ))
-
-#then San Pablo plot
-(p_bz_sp <- ggplot(bfspl, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+theme(legend.position=c(0.2,0.67)) +
-    scale_x_continuous("Year (September - November)", limits=c(1966,2018)) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       , limits=c(0,38) #set the max by hand based on all three regional plots for the season
-    ))
+#spring zoops plot
+zoopsf<-plot_grid(zoops("spl", "Q2", zmeans),
+                 zoops("ss", "Q2", zmeans),
+                 zoops("spl", "Q2", zmeans),
+                 ncol = 3, nrow = 1, align="v")
+zoopsf
+#save it
+ggsave(zoopsf, file="zoops_panel_spring.png", dpi=300, units="cm",width=27.9,height=6.8,
+       path = "./spring_report")
 
 
-
-#BPUE, mysids excluded, each season is separate panel-----------------
-
-bwnm<-subset(zmeans,quarter=="Q1" & taxon!="mys")
-bspnm<-subset(zmeans,quarter=="Q2" & taxon!="mys")
-bsunm<-subset(zmeans,quarter=="Q3" & taxon!="mys")
-bfnm<-subset(zmeans,quarter=="Q4" & taxon!="mys")
-
-
-#Winter, all zoop except mysids BPUE (mg): facets of stacked line plots
-(bwnmp<-ggplot(bwnm, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(bwnm$bpue/1000))  #this seems to mess up line for calanoids
-    ))
-
-#ggsave(bwnmp, file="zoop_bpue_no_mysids_winter.png",scale=2,dpi=300, units="cm",width=30,height=7)
+#summer chla plot
+zoopss<-plot_grid(zoops("spl", "Q3", zmeans),
+                 zoops("ss", "Q3", zmeans),
+                 zoops("spl", "Q3", zmeans),
+                 ncol = 3, nrow = 1, align="v")
+zoopss
+#save it
+ggsave(zoopss, file="zoops_panel_summer.png", 
+       dpi=300, units="cm",width=27.9,height=6.8,
+       path = "./summer_report")
 
 
-#Spring, all zoop except mysids BPUE (mg): facets of stacked line plots
-(bspnmp<-ggplot(bspnm, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(bspnm$bpue)/1000)
-    ))
-
-#ggsave(bspnmp, file="zoop_bpue_no_mysids_spring.png",scale=2,dpi=300, units="cm",width=30,height=7)
-
-
-#Summer, all zoop except mysids BPUE (mg): facets of stacked line plots
-(bsunmp<-ggplot(bsunm, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(bsunm$bpue)/1000)
-    ))
-
-#ggsave(bsunmp, file="zoop_bpue_no_mysids_summer.png",scale=2,dpi=300, units="cm",width=30,height=7)
-
-#Fall, all zoop except mysids BPUE (mg): facets of stacked line plots
-(bfnmp<-ggplot(bfnm, aes(x = qyear, y = bpue/1000, fill = taxon)) + 
-    geom_area(position = 'stack')+
-    theme_iep()+
-    #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(quarter~region
-               ,labeller = as_labeller(
-                 c(region_names,season_names))) +
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C / m"^" 3", ")"))
-                       #, limits=c(0,max(bfnm$bpue)/1000)
-    ))
-
-#ggsave(bfnmp, file="zoop_bpue_no_mysids_fall.png",scale=2,dpi=300, units="cm",width=30,height=7)
-
-
-
+#fall chlae plot
+zoopsf<-plot_grid(zoops("spl", "Q4", "chla", zmeans),
+                 zoops("ss", "Q4", "chla", zmeans),
+                 zoops("spl", "Q4", "chla", zmeans),
+                 ncol = 3, nrow = 1, align="v")
+zoopsf
+#save it
+ggsave(zoopsf, file="chla_panel_fall.png", dpi=300, units="cm",width=27.9,height=6.8,
+       path = "./fall_report")
