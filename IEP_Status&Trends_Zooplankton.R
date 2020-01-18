@@ -282,9 +282,7 @@ zoops = function(quart, reg, data) {
     geom_area(position = 'stack')+
     theme_iep()+
     #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
-    facet_grid(.~region,labeller = as_labeller(
-                 c(region_names,season_names))) +
+    scale_x_continuous("Year", limits=c(1966,2018))  +
     geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
                       ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
@@ -333,9 +331,9 @@ ggsave(zoopss, file="zoops_panel_summer.png",
 
 
 #fall chlae plot
-zoopsf<-plot_grid(zoops("spl", "Q4", "chla", zmeans),
-                 zoops("ss", "Q4", "chla", zmeans),
-                 zoops("spl", "Q4", "chla", zmeans),
+zoopsf<-plot_grid(zoops("spl", "Q4", zmeans),
+                 zoops("ss", "Q4", zmeans),
+                 zoops("spl", "Q4", zmeans),
                  ncol = 3, nrow = 1, align="v")
 zoopsf
 #save it
