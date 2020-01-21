@@ -11,7 +11,6 @@
 #Mysid net: all species
 
 #packages
-library(plyr) #join()
 library(tidyr) #convert df from wide to long
 library(ggplot2)
 library(colorspace) #color palette
@@ -270,7 +269,7 @@ region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
     scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), limits=c(0,max(zmeans$bpue))))
 #NOTE: mysids overwhelm everything else because they are so much larger
 
-zoops = function(quart, reg, data) {
+zoops = function(reg, quart, data) {
   dat = filter(data, quarter == quart, region == reg)
   
   #calculate long-term average
@@ -281,7 +280,7 @@ zoops = function(quart, reg, data) {
   bpl<-ggplot(dat, aes(x = qyear, y = bpue, fill = taxon)) + 
     geom_area(position = 'stack')+
     theme_iep()+
-    #theme(legend.position="none") + 
+    theme(legend.position="none") + 
     scale_x_continuous("Year", limits=c(1966,2018))  +
     geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
@@ -294,7 +293,60 @@ zoops = function(quart, reg, data) {
 }
 
 
-zoops("Q1", "ss", zmeans)
+#Let's try one that puts all the regions together
+
+zoops2 = function(quart, data) {
+  dat = filter(data, quarter == quart)
+  
+  #calculate long-term average
+  sums = group_by(dat, region, qyear) %>% summarize(bpuetot = sum(bpue))
+  meanB = mean(sums$bpuetot)
+  
+  #make a plot
+  bpl<-ggplot(dat, aes(x = qyear, y = bpue, fill = taxon)) + 
+    geom_area(position = 'stack')+
+    theme_iep()+ facet_wrap(~region) +
+    theme(legend.position="bottom", 
+          strip.background = element_blank(),
+          strip.text = element_blank()) + 
+    scale_x_continuous(paste("Year(", season_names[unlist(dat[1,"quarter"])],")"), limits=c(1966,2018))  +
+    geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
+    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
+                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
+    scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), 
+                       limits=c(0,max(zmeans$bpue)))
+  bpl
+  
+  
+}
+
+zoops2("Q1", data)
+zoops2("Q2", data)
+zoops2("Q3", data)
+zoops2("Q4", data)
+
+
+ggsave(zoops2("Q3", zmeans), file="zoops_panel_summer.png", 
+       dpi=300, units="cm",width=27.9,height=6.8,
+       path = "./summer_report")
+
+ggsave(zoops2("Q2", zmeans), file="zoops_panel_spring.png", dpi=300, units="cm",width=27.9,height=7.2,
+       path = "./spring_report")
+
+ggsave(zoops2("Q1", zmeans), file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=7.2,
+       path = "./winter_report")
+
+ggsave(zoops2("Q1", zmeans), file="zoops_panel_fall.png", 
+       dpi=300, units="cm",width=27.9,height=7.2,
+       path = "./fall_report")
+
+
+
+
+
+#####################################################################################
+#this is the old version that grobs them together, but i need to do something about the legend.
+
 
 #winter zoops plot
 zoopsw<-plot_grid(zoops("spl", "Q1", zmeans),
@@ -303,8 +355,6 @@ zoopsw<-plot_grid(zoops("spl", "Q1", zmeans),
                  ncol = 3, nrow = 1, align="v")
 
 #save it
-ggsave(zoopsw, file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=6.8,
-       path = "./winter_report")
 
 
 #spring zoops plot
@@ -314,8 +364,7 @@ zoopsf<-plot_grid(zoops("spl", "Q2", zmeans),
                  ncol = 3, nrow = 1, align="v")
 zoopsf
 #save it
-ggsave(zoopsf, file="zoops_panel_spring.png", dpi=300, units="cm",width=27.9,height=6.8,
-       path = "./spring_report")
+
 
 
 #summer chla plot
@@ -325,9 +374,6 @@ zoopss<-plot_grid(zoops("spl", "Q3", zmeans),
                  ncol = 3, nrow = 1, align="v")
 zoopss
 #save it
-ggsave(zoopss, file="zoops_panel_summer.png", 
-       dpi=300, units="cm",width=27.9,height=6.8,
-       path = "./summer_report")
 
 
 #fall chlae plot
