@@ -12,6 +12,7 @@ con <- dbConnect(RSQLite::SQLite(), db_path)
 #generate a list of tames for each table included in the database
 tablenames= dbListTables(con)
 
+zoopsql = collect(tbl(con, tablenames[1]) )
 
 # emp field water quality data
 wqf_datatbl = collect(tbl(con, tablenames[5]) )
