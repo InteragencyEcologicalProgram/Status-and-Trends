@@ -18,12 +18,13 @@ library(zoo) ## yearmon and yearqtr classes
 library(cowplot)
 library(tidyverse)
 library(lubridate)
-
+source("drivr_sqlite.R")
 
 #import datasets----------------
 
 #Clark-Bumpus net survey data
-zoopcb<-read.csv("./data/zoop_cb.csv") 
+zoopcb<-zoopsql 
+zoopcb$Date = as.Date(zoopcb$Date)
 
 #mysid net survey data
 mysid<-read.csv("./data/zoop_mysid.csv") 
@@ -76,10 +77,7 @@ zoopl<-gather(zoop,taxon,cpue,ACARTELA:OTHCLADO)
 names(zoopl)[1:4]<-c("year","survey","date","station")
 
 #format some columns
-zoopl$date<-as.Date(zoopl$date,format="%m/%d/%Y")
 zoopl$taxon<-factor(zoopl$taxon)
-str(zoopl)
-str(zmass)
 
 #add in individual biomass data
 zoopb<-left_join(zoopl,zmass,by="taxon")
@@ -157,7 +155,7 @@ zoop3<-subset(zoop_s3,select=c("Year","Survey","Date","Station","cpue"))
 #next format the bpue dataset
 
 #add up bpue across species
-mmass$bpue_mg<-rowSums(mmass[25:32])
+mmass$bpue_mg<-rowSums(mmass[20:27])
 
 #create column with bpue in micrograms instead of milligrams because rest of zoop is in micrograms
 mmass$bpue<-mmass$bpue*1000
@@ -320,11 +318,6 @@ zoops2 = function(quart, data) {
   
 }
 
-zoops2("Q1", data)
-zoops2("Q2", data)
-zoops2("Q3", data)
-zoops2("Q4", data)
-
 
 ggsave(zoops2("Q3", zmeans), file="zoops_panel_summer.png", 
        dpi=300, units="cm",width=27.9,height=6.8,
@@ -336,7 +329,7 @@ ggsave(zoops2("Q2", zmeans), file="zoops_panel_spring.png", dpi=300, units="cm",
 ggsave(zoops2("Q1", zmeans), file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=7.2,
        path = "./winter_report")
 
-ggsave(zoops2("Q1", zmeans), file="zoops_panel_fall.png", 
+ggsave(zoops2("Q4", zmeans), file="zoops_panel_fall.png", 
        dpi=300, units="cm",width=27.9,height=7.2,
        path = "./fall_report")
 
@@ -354,8 +347,6 @@ zoopsw<-plot_grid(zoops("spl", "Q1", zmeans),
                  zoops("dt", "Q1", zmeans),
                  ncol = 3, nrow = 1, align="v")
 
-#save it
-
 
 #spring zoops plot
 zoopsf<-plot_grid(zoops("spl", "Q2", zmeans),
@@ -363,8 +354,6 @@ zoopsf<-plot_grid(zoops("spl", "Q2", zmeans),
                  zoops("spl", "Q2", zmeans),
                  ncol = 3, nrow = 1, align="v")
 zoopsf
-#save it
-
 
 
 #summer chla plot
@@ -372,9 +361,6 @@ zoopss<-plot_grid(zoops("spl", "Q3", zmeans),
                  zoops("ss", "Q3", zmeans),
                  zoops("spl", "Q3", zmeans),
                  ncol = 3, nrow = 1, align="v")
-zoopss
-#save it
-
 
 #fall chlae plot
 zoopsf<-plot_grid(zoops("spl", "Q4", zmeans),
@@ -382,6 +368,3 @@ zoopsf<-plot_grid(zoops("spl", "Q4", zmeans),
                  zoops("spl", "Q4", zmeans),
                  ncol = 3, nrow = 1, align="v")
 zoopsf
-#save it
-ggsave(zoopsf, file="chla_panel_fall.png", dpi=300, units="cm",width=27.9,height=6.8,
-       path = "./fall_report")
