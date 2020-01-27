@@ -2,7 +2,7 @@
 title: "Collaborative Etiquette"
 author: "Rosemary Hartman"
 date: "12/11/2019"
-output: html_document
+output: github_document
 ---
 
 # Some basic ground rules
