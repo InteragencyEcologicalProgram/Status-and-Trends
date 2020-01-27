@@ -102,3 +102,6 @@ LabData = rbind(Lab_Data_1975_1984x, Lab_Data_1985_1995x, Lab_Data_1996_2012x) %
 LabData = rename(LabData, AnalyteName = ConstituentName)
 
 WQ_all = rbind(LabData, FieldData2)
+
+#save the result
+write.csv(WQ_all, "./data/WQ_Discrete_1975-2018.csv")
