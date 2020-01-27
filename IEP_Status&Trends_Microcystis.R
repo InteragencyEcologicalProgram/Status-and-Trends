@@ -9,18 +9,32 @@ Stations<-read_csv("data/Master station key.csv", col_types = "ccddc")%>%
 
 Micro_season <- "Summer"
 
+EMP<-read_csv("data/WQ_Discrete_1975-2018.csv")%>%
+  select(Date=SampleDate, Station=StationCode, Result, Parameter=AnalyteName)%>%
+  filter(Parameter=="Microcystis" & !is.na(Result))%>%
+  select(-Parameter)%>%
+  rename(Microcystis=Result)%>%
+  mutate(Source="EMP",
+         Date=as.POSIXct(Date))
+
 TNS <-read_excel("Data/STN Sample.xlsx", guess_max=10000)%>%
   select(Date=SampleDate, Station=StationCode, Microcystis)%>%
-  mutate(Source="TNS",
-         Month=month(Date),
+  mutate(Source="TNS")%>%
+  filter(!is.na(Microcystis))
+
+
+Micro<-bind_rows(EMP, TNS)%>%
+  mutate(Month=month(Date),
          Year=year(Date))%>%
   left_join(Stations, by=c("Source", "Station"))%>%
+  filter(!is.na(Longitude))%>%
   mutate(Season=case_when(
     Month%in%c(12,1,2) ~ "Winter",
     Month%in%c(3,4,5) ~ "Spring",
     Month%in%c(6,7,8) ~ "Summer",
     Month%in%c(9,10,11) ~ "Fall"),
-    Year=if_else(Month==12, Year-1, Year)
+    Year=if_else(Month==12, Year-1, Year),
+    Microcystis=as.integer(Microcystis)
   )%>%
   mutate(Region=case_when(
     Longitude < -122.216 ~ "San Pablo Bay",
@@ -38,13 +52,12 @@ TNS <-read_excel("Data/STN Sample.xlsx", guess_max=10000)%>%
   filter(N_Microcystis>0)%>%
   gather(key="Severity", value="Frequency", Microcystis1, Microcystis2, Microcystis3, Microcystis4, Microcystis5)%>%
   mutate(Severity=recode(Severity, "Microcystis1"="Absent", "Microcystis2"="Low", "Microcystis3"="Medium", "Microcystis4"="High", "Microcystis5"="Very high"))%>%
-  filter(Severity!="Absent")%>%
-  mutate(Severity=factor(Severity, levels=c("Very high", "High", "Medium", "Low")))
+  mutate(Severity=factor(Severity, levels=c("Very high", "High", "Medium", "Low", "Absent")))
 
 pMicro<-ggplot()+
-  geom_bar(data=TNS, aes(x=Year, y=Frequency, fill=Severity), stat="identity")+
+  geom_bar(data=Micro, aes(x=Year, y=Frequency, fill=Severity), stat="identity")+
   scale_fill_brewer(type="div", palette="RdYlBu", guide=guide_legend(keyheight=0.8, title=NULL, direction="horizontal", label.position="top", reverse=TRUE))+
-  scale_x_continuous(limits=c(1967, max(TNS$Year)+1), expand=expand_scale(0,0))+
+  scale_x_continuous(limits=c(1967, max(Micro$Year)+1), expand=expand_scale(0,0))+
   scale_y_continuous(expand=expand_scale(0,0))+
   facet_wrap(~Region, scales = "free_x")+
   ylab("Relative frequency")+
