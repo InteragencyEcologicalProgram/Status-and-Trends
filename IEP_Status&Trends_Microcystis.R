@@ -63,7 +63,7 @@ pMicro<-ggplot()+
   ylab("Relative frequency")+
   xlab("Date")+
   theme_iep()+
-  theme(legend.position=c(0.1, 0.8), legend.background=element_rect(fill="white", color="black"))
+  theme(legend.position=c(0.12, 0.8), legend.background=element_rect(fill="white", color="black"))
 pMicro
 
 ggsave(pMicro, file="Microcystis_summer.png", dpi=300, units="cm",width=27.9,height=6.8,
