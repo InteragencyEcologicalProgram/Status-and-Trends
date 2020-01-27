@@ -23,7 +23,7 @@ library(cowplot) #grid_plot()
 library(lubridate)
 
 
-source("drivr_sqlite.R")
+source("WQ_data_download.R")
 #EMP WQ data (1975-2017)
 alldata<- WQ_all
   str(alldata)
@@ -42,38 +42,24 @@ alldata$value<-as.numeric(as.character(alldata$Result))
 #cases where value is below detection limit (ie, < R.L.) become NAs
 
 
-#reduce AnalyteName list to just those of interest
-#Total Ammonia, Field Water Temperature, Chlorophyll a, Dissolved Nitrate + Nitrite,
-#Dissolved Ammonia, Field Fluorescence, Field Secchi Depth, Field Turbidity
+#reduce AnalyteName list to just those of interest: 
+#Field Water Temperature, Chlorophyll a, Field Secchi Depth, microcystis, Specific conductance
 
-alldat<-filter(alldata, AnalyteName %in% c("Ammonia (Total)" ,"Ammonia (Dissolved)" , "Temperature" ,
-                                         "Chlorophyll a", "Nitrite + Nitrate (Dissolved)",
-                                         "Dissolved Ammonia", "Fluorescence" ,
-                                         "Temperature" , "Secchi Depth",
-                                         "Turbidity" ))
+alldat<-filter(alldata, AnalyteName %in% c( "Temperature" , "Secchi",  "Microcystis","SpCndSurface",
+                                            "WTSurface",
+                                         "Temperature" , "Secchi Depth", "Chlorophyll a"))
 
 
-#NOTE: Dissolved Ammonia and Total Ammonia are the dame thing but names
-# have changed over time. Field Temperature is only used as a AnalyteName name for 
-#one observation, which isn't
-#repesented in Field Water Temperature, so combine these two categories
 
 #rename AnalyteNames with simpler names
-params = data.frame(AnalyteName = c("Ammonia (Total)" ,"Ammonia (Dissolved)" , 
-                                    "Temperature" ,
-                                    "Chlorophyll a", "Nitrite + Nitrate (Dissolved)",
-                                     "Fluorescence" ,
-                                     "Secchi Depth",
-                                    "Turbidity"),
-paramsshort = c("ammonia", "ammonia","temp", "chla", "nitro", "chlf",  "secchi", "turb" ))
+params = data.frame(AnalyteName = c("Temperature" , "Secchi",  "Microcystis","SpCndSurface",
+                                    "WTSurface",
+                                    "Temperature" , "Secchi Depth", "Chlorophyll a"),
+paramsshort = c("temp", "secchi","Microcystis","cond", "temp", "temp" , "secchi", "chla"))
 
 alldat = left_join(alldat, params, by = "AnalyteName") %>%
   mutate(AnalyteName = paramsshort) %>%
   mutate(paramsshort = NULL)
-
-#remove secchi depth observations that aren't in cm
-allda<-subset(alldat,UnitName !="Feet" & UnitName!="Meters")
-
 
 
 #add lat and long to alldat
@@ -199,7 +185,7 @@ ggsave(tmps, file="temp_panel_winter.png", dpi=300, units="cm",width=27.9,height
 #spring tempearture plot
 tmpsf<-plot_grid(WQplot("spl", "Q2", "temp", wqsum),
                  WQplot("ss", "Q2", "temp", wqsum),
-                 WQplot("spl", "Q2", "temp", wqsum),
+                 WQplot("dt", "Q2", "temp", wqsum),
   ncol = 3, nrow = 1, align="v")
 tmpsf
 #save it
@@ -210,7 +196,7 @@ ggsave(tmpsf, file="temp_panel_spring.png", dpi=300, units="cm",width=27.9,heigh
 #summer tempearture plot
 tmpss<-plot_grid(WQplot("spl", "Q3", "temp", wqsum),
                  WQplot("ss", "Q3", "temp", wqsum),
-                 WQplot("spl", "Q3", "temp", wqsum),
+                 WQplot("dt", "Q3", "temp", wqsum),
                  ncol = 3, nrow = 1, align="v")
 tmpss
 #save it
@@ -221,7 +207,7 @@ ggsave(tmpss, file="temp_panel_summer.png", dpi=300, units="cm",width=27.9,heigh
 #fall tempearture plot
 tmpsf<-plot_grid(WQplot("spl", "Q4", "temp", wqsum),
                  WQplot("ss", "Q4", "temp", wqsum),
-                 WQplot("spl", "Q4", "temp", wqsum),
+                 WQplot("dt", "Q4", "temp", wqsum),
                  ncol = 3, nrow = 1, align="v")
 tmpsf
 #save it
@@ -243,7 +229,7 @@ ggsave(secsw, file="secchi_panel_winter.png", dpi=300, units="cm",width=27.9,hei
 #spring secchi plot
 secsf<-plot_grid(WQplot("spl", "Q2", "secchi", wqsum),
                  WQplot("ss", "Q2", "secchi", wqsum),
-                 WQplot("spl", "Q2", "secchi", wqsum),
+                 WQplot("dt", "Q2", "secchi", wqsum),
                  ncol = 3, nrow = 1, align="v")
 secsf
 #save it
@@ -254,7 +240,7 @@ ggsave(secsf, file="secchi_panel_spring.png", dpi=300, units="cm",width=27.9,hei
 #summer secchi plot
 secss<-plot_grid(WQplot("spl", "Q3", "secchi", wqsum),
                  WQplot("ss", "Q3", "secchi", wqsum),
-                 WQplot("spl", "Q3", "secchi", wqsum),
+                 WQplot("dt", "Q3", "secchi", wqsum),
                  ncol = 3, nrow = 1, align="v")
 secss
 #save it
@@ -265,7 +251,7 @@ ggsave(secss, file="secchi_panel_summer.png", dpi=300, units="cm",width=27.9,hei
 #fall secchie plot
 secsf<-plot_grid(WQplot("spl", "Q4", "secchi", wqsum),
                  WQplot("ss", "Q4", "secchi", wqsum),
-                 WQplot("spl", "Q4", "secchi", wqsum),
+                 WQplot("dt", "Q4", "secchi", wqsum),
                  ncol = 3, nrow = 1, align="v")
 secsf
 #save it
@@ -287,7 +273,7 @@ ggsave(secsw, file="chla_panel_winter.png", dpi=300, units="cm",width=27.9,heigh
 #spring chla plot
 secsf<-plot_grid(WQplot("spl", "Q2", "chla", wqsum),
                  WQplot("ss", "Q2", "chla", wqsum),
-                 WQplot("spl", "Q2", "chla", wqsum),
+                 WQplot("dt", "Q2", "chla", wqsum),
                  ncol = 3, nrow = 1, align="v")
 secsf
 #save it
@@ -298,7 +284,7 @@ ggsave(secsf, file="chla_panel_spring.png", dpi=300, units="cm",width=27.9,heigh
 #summer chla plot
 secss<-plot_grid(WQplot("spl", "Q3", "chla", wqsum),
                  WQplot("ss", "Q3", "chla", wqsum),
-                 WQplot("spl", "Q3", "chla", wqsum),
+                 WQplot("dt", "Q3", "chla", wqsum),
                  ncol = 3, nrow = 1, align="v")
 secss
 #save it
@@ -310,7 +296,7 @@ ggsave(secss, file="chla_panel_summer.png",
 #fall chlae plot
 secsf<-plot_grid(WQplot("spl", "Q4", "chla", wqsum),
                  WQplot("ss", "Q4", "chla", wqsum),
-                 WQplot("spl", "Q4", "chla", wqsum),
+                 WQplot("dt", "Q4", "chla", wqsum),
                  ncol = 3, nrow = 1, align="v")
 secsf
 #save it
