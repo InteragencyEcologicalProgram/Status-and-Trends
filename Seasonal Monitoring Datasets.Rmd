@@ -2,7 +2,7 @@
 title: "IEP Seasonal Monitoring Report Datasets"
 author: "Rosemary Hartman"
 date: "12/27/2019"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
