@@ -3,7 +3,10 @@
 # Author: Dave Bosworth
 
 
-# Custom plot formatting function
+# Function to customize plot formatting
+#' Custom formatting for plots in the IEP Seasonal Monitoring Reports
+#' This function builds off of the theme_bw() ggplot theme and removes plot gridlines and modifies the text size of various plot elements.
+#' @export
 theme_iep <- function() {
   theme_bw() +
   theme(
@@ -41,3 +44,6 @@ theme_iep <- function() {
     legend.title=element_text(size = 10)
   )
 }
+
+
+
