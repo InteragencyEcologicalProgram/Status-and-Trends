@@ -4,6 +4,7 @@
 
 
 # Function to customize plot formatting
+
 #' Custom formatting for plots in the IEP Seasonal Monitoring Reports
 #' This function builds off of the theme_bw() ggplot theme and removes plot gridlines and modifies the text size of various plot elements.
 #' @export
@@ -39,6 +40,32 @@ theme_iep <- function() {
     legend.title=element_text(size = 10)
   )
 }
+
+
+# Function to add a dashed red line to plots representing the long-term average
+
+#' Add a horizontal line to a ggplot representing the long-term average
+#' This function adds a dashed red line to a ggplot representing the provided long-term average of a dataset.
+#' @param lt_avg The long-term average of the data
+#' @return A horizontal dashed red line to a ggplot
+#' @export
+lt_avg_line <- function(lt_avg) {
+  geom_hline(
+    yintercept = lt_avg, 
+    color = "red",
+    linetype = "dashed", 
+    size = 0.9
+  )
+}
+
+
+# Function to define x-axis limits and breaks - plots for all years
+
+
+# Function to define x-axis limits and breaks - plots for recent years
+
+
+
 
 
 
