@@ -1,7 +1,6 @@
-# Summer 2018 Status and Trends Report
-# Bay Study
+# Summer 2018 Seasonal Monitoring Report
+# Purpose: Create plots of Northern Anchovy CPUE from the Bay Study dataset
 # Author: Dave Bosworth
-# Purpose: Create plots for Northern Anchovy CPUE
 
 # Load packages
 library(tidyverse)
@@ -9,14 +8,8 @@ library(readxl)
 library(lubridate)
 library(scales)
 
-# Define defaults
-# Start year for plots- all years
-start_year_all <- 1966
-# Report Year
+# Define report year
 report_year <- 2018
-# Start year for plots- recent trends (most recent 15 years from the Report Year)
-start_year_rec <- report_year - 14
-
 
 # 1. Import Data ----------------------------------------------------------
 # Dataset is on SharePoint site for the Seasonal Monitoring Report
@@ -54,32 +47,13 @@ noranc_cpue <- noranc %>%
 # 3. Set up options for plots ---------------------------------------------
 
 # Calculate long-term average of CPUE
-lt_avg <- mean(noranc_cpue$ave_cpue)
-
-# Function to round a number to the nearest b
-round_to_b <- function(num, b) {
-  num_round <- round(num/b) * b
-  return(num_round)
-}
-
-# Set break points for x-axis
-year_breaks_all <- seq(
-  from = round_to_b(start_year_all, 10), 
-  to = round_to_b(report_year, 10), 
-  by = 10
-)
-
-year_breaks_rec <- seq(
-  from = round_to_b(start_year_rec, 5),
-  to = round_to_b(report_year, 5),
-  by = 5
-)
+lt_avg_cpue <- mean(noranc_cpue$ave_cpue)
 
 # Define text size for text comments on plots
 text_size_all <- 1.5
 text_size_rec <- 2
 
-# Create df's for text comments on plots
+# Create dataframes for text comments on plots
 noranc_text_h <- tibble(
   Year = 1964,
   yValue = 40,
@@ -92,7 +66,7 @@ noranc_text_v <- tibble(
   label = "No data"
 )
 
-# Import IEP theme for plots
+# Import functions for plots
 source("IEP_Plot_Theme.R")
 
 
@@ -107,17 +81,22 @@ noranc_plot_all <- noranc_cpue %>%
     )
   ) +
   geom_col() +
+  # apply custom theme
   theme_iep() +
   # customize axis labels
   labs(
     x = "Year (June - August)",
     y = expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))
   ) +
-  # custom y-axis breaks and add thousanths comma
+  # define y-axis breaks and add thousanths comma
   scale_y_continuous(
     breaks = seq(0, 1250, by = 250),
     labels = label_comma()
   ) +
+  # add horizontal line for long-term average CPUE
+  lt_avg_line(lt_avg_cpue) +
+  # standardize x-axis
+  std_x_axis_all_years(report_year) +
   # add horizontal text to plot
   geom_text(
     data = noranc_text_h,
@@ -143,20 +122,11 @@ noranc_plot_all <- noranc_cpue %>%
     vjust = "center",
     size = text_size_all,
     angle = 90
-  ) +
-  # can add all code below to iep_theme function:
-  scale_x_continuous(breaks = year_breaks_all) +
-  coord_cartesian(xlim = c(start_year_all, report_year)) +
-  geom_hline(
-    yintercept = lt_avg, 
-    color = "red",
-    linetype = "dashed", 
-    size = 0.9
   )
 
 # Plot for recent years (15 years from report date)
 noranc_plot_rec <- noranc_cpue %>% 
-  filter(Year >= start_year_rec) %>% 
+  filter(Year >= report_year - 14) %>% 
   ggplot(
     aes(
       x = Year,
@@ -164,6 +134,7 @@ noranc_plot_rec <- noranc_cpue %>%
     )
   ) +
   geom_col() +
+  # apply custom theme
   theme_iep() +
   # customize axis labels
   labs(
@@ -172,6 +143,10 @@ noranc_plot_rec <- noranc_cpue %>%
   ) +
   # custom y-axis breaks
   scale_y_continuous(breaks = seq(0, 500, by = 100)) +
+  # add horizontal line for long-term average CPUE
+  lt_avg_line(lt_avg_cpue) +
+  # standardize x-axis
+  std_x_axis_rec_years(report_year) +
   # add vertical text to plot
   geom_text(
     data = noranc_text_v,
@@ -185,16 +160,8 @@ noranc_plot_rec <- noranc_cpue %>%
     vjust = "center",
     size = text_size_rec,
     angle = 90
-  ) +
-  # can add all code below to iep_theme function:
-  scale_x_continuous(breaks = year_breaks_rec) +
-  coord_cartesian(xlim = c(start_year_rec, report_year)) +
-  geom_hline(
-    yintercept = lt_avg, 
-    color = "red",
-    linetype = "dashed", 
-    size = 0.9
-  )
+  ) 
+
 
 # Print Plots
   # Plot for all years
