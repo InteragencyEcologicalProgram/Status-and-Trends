@@ -7,6 +7,7 @@ library(tidyverse)
 library(readxl)
 library(lubridate)
 library(scales)
+library(smonitr)
 
 # Define report year
 report_year <- 2018
@@ -66,9 +67,6 @@ noranc_text_v <- tibble(
   label = "No data"
 )
 
-# Import functions for plots
-source("IEP_Plot_Theme.R")
-
 
 # 3. Create Plots ---------------------------------------------------------
 
@@ -82,7 +80,7 @@ noranc_plot_all <- noranc_cpue %>%
   ) +
   geom_col() +
   # apply custom theme
-  theme_iep() +
+  theme_smr() +
   # customize axis labels
   labs(
     x = "Year (June - August)",
@@ -135,7 +133,7 @@ noranc_plot_rec <- noranc_cpue %>%
   ) +
   geom_col() +
   # apply custom theme
-  theme_iep() +
+  theme_smr() +
   # customize axis labels
   labs(
     x = "Year (June - August)",
