@@ -3,10 +3,8 @@
 # Author: Dave Bosworth
 
 
-# Function to customize plot formatting
-
-#' Custom formatting for plots in the IEP Seasonal Monitoring Reports
-#' This function builds off of the theme_bw() ggplot theme and removes plot gridlines and modifies the text size of various plot elements.
+#' @title Custom formatting for ggplots in the IEP Seasonal Monitoring Reports
+#' @description This custom theme builds off of the \code{theme_bw()} ggplot theme and removes plot gridlines and modifies the text size of various ggplot elements.
 #' @export
 theme_iep <- function() {
   theme_bw() +
@@ -42,10 +40,8 @@ theme_iep <- function() {
 }
 
 
-# Function to add a dashed red line to plots representing the long-term average
-
-#' Add a horizontal line to a ggplot representing the long-term average
-#' This function adds a dashed red line to a ggplot representing the provided long-term average of a dataset.
+#' @title Add a horizontal line to a ggplot
+#' @description Adds a horizontal dashed red line to a ggplot. Its intended use is to represent the provided long-term average of a dataset.
 #' @param lt_avg The long-term average of the data
 #' @return A horizontal dashed red line to a ggplot
 #' @export
@@ -59,13 +55,64 @@ lt_avg_line <- function(lt_avg) {
 }
 
 
-# Function to define x-axis limits and breaks - plots for all years
+#' @title Round an integer to the nearest multiple
+#' @description Used to round a year value to the nearest multiple of a defined value. This is an internal function used to define x-axis breaks for plots.
+#' @param num Integer to round 
+#' @param mult Mulitple value to round to 
+#' @keywords internal
+#' @return A value rounded to the nearest multiple of the \code{mult} parameter
+#' @examples
+#' round_to_mult(2017, 10)
+#' round_to_mult(2017, 5)
+round_to_mult <- function(num, mult) {
+  num_round <- round(num/mult) * mult
+  return(num_round)
+}
 
 
-# Function to define x-axis limits and breaks - plots for recent years
+#' @title  Standardize x-axis elements for ggplot of all years
+#' @description Standardizes the x-axis limits and breaks for a ggplot of all years of data.
+#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report
+#' @param start_yr The start year that defines the minimum x-axis limit for the ggplot. Default is 1966.
+#' @return Two ggplot layers that define the x-axis limits and breaks based upon user-defined arguments
+#' @export
+std_x_axis_all_years <- function(rpt_yr, start_yr = 1966) {
+  # Define year breaks
+  year_breaks <- seq(
+    from = round_to_mult(start_yr, 10), 
+    to = round_to_mult(rpt_yr, 10), 
+    by = 10
+  )
+  
+  # Create a list of layers to add to ggplot object
+  list(
+    scale_x_continuous(breaks = year_breaks), 
+    coord_cartesian(xlim = c(start_yr, rpt_yr))
+  )
+}
 
 
-
-
+#' @title  Standardize x-axis elements for ggplot of recent years
+#' @description Standardizes the x-axis limits and breaks for a ggplot of recent years of data. This function works best if the dataset is filtered to tne necessary date range beforehand.
+#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report
+#' @return Two ggplot layers that define the x-axis limits and breaks based upon user-defined arguments
+#' @export
+std_x_axis_rec_years <- function(rpt_yr) {
+  # Define start year for recent years plots
+  start_yr <- rpt_yr - 14
+  
+  # Define year breaks
+  year_breaks <- seq(
+    from = round_to_mult(start_yr, 5), 
+    to = round_to_mult(rpt_yr, 5), 
+    by = 5
+  )
+  
+  # Create a list of layers to add to ggplot object
+  list(
+    scale_x_continuous(breaks = year_breaks), 
+    coord_cartesian(xlim = c(start_yr, rpt_yr))
+  )
+}
 
 
