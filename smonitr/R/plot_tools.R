@@ -137,3 +137,11 @@ std_x_axis_rec_years <- function(rpt_yr) {
   )
 }
 
+
+# Next steps --------------------------------------------------------------
+
+# 1. Add a function to place asterisks in place of missing data in plots
+
+# 2. Possibly modify the lt_avg_line function to be able to receive the
+# dataframe and name of the values variable to calculate the average
+# within the function itself.
