@@ -7,14 +7,22 @@
 std_x_axis_all_years(rpt_yr, start_yr = 1966)
 }
 \arguments{
-\item{rpt_yr}{The user-defined report year for the Seasonal Monitoring Report. Must be an integer.}
+\item{rpt_yr}{The user-defined report year for the Seasonal Monitoring Report.
+Must be an integer.}
 
-\item{start_yr}{The start year that defines the minimum x-axis limit for the ggplot. Must be an integer. Default is 1966.}
+\item{start_yr}{The start year that defines the minimum x-axis limit for the
+ggplot. Must be an integer. Default is 1966.}
 }
 \value{
-Two ggplot layers that define the x-axis limits and breaks based upon user-defined arguments
+Two ggplot layers that define the x-axis limits and breaks based upon
+    user-defined arguments
 }
 \description{
-Standardizes the x-axis limits and breaks for a ggplot of all years of data.
-    The x variable needs to be type "integer" representing years.
+Standardizes the x-axis limits and breaks for a ggplot of
+    all years of data.
 }
+\section{Special Instructions}{
+
+The x-variable in the ggplot needs to be "numeric" type.
+}
+

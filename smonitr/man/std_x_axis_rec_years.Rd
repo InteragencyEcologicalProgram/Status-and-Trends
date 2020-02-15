@@ -7,13 +7,22 @@
 std_x_axis_rec_years(rpt_yr)
 }
 \arguments{
-\item{rpt_yr}{The user-defined report year for the Seasonal Monitoring Report. Must be an integer.}
+\item{rpt_yr}{The user-defined report year for the Seasonal Monitoring Report.
+Must be an integer.}
 }
 \value{
-Two ggplot layers that define the x-axis limits and breaks based upon user-defined arguments
+Two ggplot layers that define the x-axis limits and breaks based upon
+    user-defined arguments
 }
 \description{
-Standardizes the x-axis limits and breaks for a ggplot of recent years of data.
-    The x variable needs to be type "integer" representing years. This function
-    works best if the dataset is filtered to the necessary date range beforehand.
+Standardizes the x-axis limits and breaks for a ggplot of recent
+    years of data. "Recent years" is defined as the prior 15 years from the
+    \code{rpt_yr}.
 }
+\section{Special Instructions}{
+
+The x-variable in the ggplot needs to be "numeric" type. This function
+    works best if the dataset is filtered to the necessary date range
+    beforehand.
+}
+
