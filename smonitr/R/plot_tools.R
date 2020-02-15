@@ -1,6 +1,8 @@
 #' @title Custom formatting for ggplots in the IEP Seasonal Monitoring Reports
-#' @description This custom theme builds off of the \code{theme_bw()} ggplot theme
-#'     and removes plot gridlines and modifies the text size of various ggplot elements.
+#' @description This custom theme builds off of the \code{theme_bw()}
+#'     ggplot theme and removes plot gridlines and modifies the text size of
+#'     various ggplot elements.
+#'
 #' @import ggplot2
 #' @export
 theme_smr <- function() {
@@ -39,7 +41,9 @@ theme_smr <- function() {
 
 #' @title Add a horizontal line to a ggplot
 #' @description Adds a horizontal dashed red line to a ggplot. Its intended use
-#'     is to represent the provided long-term average of a dataset.
+#'     is to represent the provided long-term average of a dataset. For now the
+#'     user is required to input the long-term average value into the function.
+#'
 #' @param lt_avg The long-term average of the data
 #' @return A horizontal dashed red line to a ggplot
 #' @import ggplot2
@@ -55,8 +59,9 @@ lt_avg_line <- function(lt_avg) {
 
 
 #' @title Round an integer to the nearest multiple
-#' @description Used to round a year value to the nearest multiple of a defined value. This is
-#'     an internal function used to define x-axis breaks for plots.
+#' @description Used to round a year value to the nearest multiple of a defined
+#'     value. This is an internal function used to define x-axis breaks for plots.
+#'
 #' @param num Integer to round
 #' @param mult Mulitple value to round to
 #' @keywords internal
@@ -68,11 +73,18 @@ round_to_mult <- function(num, mult) {
 
 
 #' @title  Standardize x-axis elements for ggplot of all years
-#' @description Standardizes the x-axis limits and breaks for a ggplot of all years of data.
-#'     The x variable needs to be type "integer" representing years.
-#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report. Must be an integer.
-#' @param start_yr The start year that defines the minimum x-axis limit for the ggplot. Must be an integer. Default is 1966.
-#' @return Two ggplot layers that define the x-axis limits and breaks based upon user-defined arguments
+#' @description Standardizes the x-axis limits and breaks for a ggplot of
+#'     all years of data.
+#'
+#' @section Special Instructions:
+#' The x-variable in the ggplot needs to be "numeric" type.
+#'
+#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
+#'     Must be an integer.
+#' @param start_yr The start year that defines the minimum x-axis limit for the
+#'     ggplot. Must be an integer. Default is 1966.
+#' @return Two ggplot layers that define the x-axis limits and breaks based upon
+#'     user-defined arguments
 #' @import ggplot2
 #' @export
 std_x_axis_all_years <- function(rpt_yr, start_yr = 1966) {
@@ -92,11 +104,19 @@ std_x_axis_all_years <- function(rpt_yr, start_yr = 1966) {
 
 
 #' @title  Standardize x-axis elements for ggplot of recent years
-#' @description Standardizes the x-axis limits and breaks for a ggplot of recent years of data.
-#'     The x variable needs to be type "integer" representing years. This function
-#'     works best if the dataset is filtered to the necessary date range beforehand.
-#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report. Must be an integer.
-#' @return Two ggplot layers that define the x-axis limits and breaks based upon user-defined arguments
+#' @description Standardizes the x-axis limits and breaks for a ggplot of recent
+#'     years of data. "Recent years" is defined as the prior 15 years from the
+#'     \code{rpt_yr}.
+#'
+#' @section Special Instructions:
+#' The x-variable in the ggplot needs to be "numeric" type. This function
+#'     works best if the dataset is filtered to the necessary date range
+#'     beforehand.
+#'
+#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
+#'     Must be an integer.
+#' @return Two ggplot layers that define the x-axis limits and breaks based upon
+#'     user-defined arguments
 #' @import ggplot2
 #' @export
 std_x_axis_rec_years <- function(rpt_yr) {

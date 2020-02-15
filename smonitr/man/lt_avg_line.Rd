@@ -14,5 +14,6 @@ A horizontal dashed red line to a ggplot
 }
 \description{
 Adds a horizontal dashed red line to a ggplot. Its intended use
-    is to represent the provided long-term average of a dataset.
+    is to represent the provided long-term average of a dataset. For now the
+    user is required to input the long-term average value into the function.
 }
