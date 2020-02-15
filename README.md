@@ -9,6 +9,7 @@ Below is an inventory of all the files in the GitHub repository for the IEP Stat
 ## Main folder
 *	[IEP_Status&Trends_DatasetsBySeason_Table.pdf](IEP_Status&Trends_DatasetsBySeason_Table.pdf): Draft Table of data sets to plot in IEP Status and Trends Reports by season
 * [basemap.png](basemap.png) – figure showing all the regions of the estuary
+* smonitr package - a group of functions used to standardize the formatting and elements of all the plots. [Installation instructions](#smonitr-package---installation-instructions) are provided at the end of this document.
 - [IEP_Plot_Theme.R](IEP_Plot_Theme.R) – ggplot theme to standardize the look of all the figures
 - [IEP_Status&Trends_util.R](IEP_Status&Trends_util.R) – another place with the theme. I don’t know why there are two.
 
@@ -59,4 +60,18 @@ Below is an inventory of all the files in the GitHub repository for the IEP Stat
 *	yci_bs.csv – San Francisco Bay Study white sturgeon Year Class Index
 *	redbluff_all.csv – passage estimates for juvenile chinook salmon from the Red Bluff Diversion Dam
 *	Bay Study_MWT_1980-2018_FishMatrix.xlsx – San Francisco Bay Study fish catch.
+
+# smonitr package - Installation instructions
+
+1. Install the R package `devtools`:
+
+```
+install.packages("devtools")
+```
+
+2. Install the development version from Github:
+
+```
+devtools::install_github("InteragencyEcologicalProgram/Status-and-Trends/smonitr")
+```
 
