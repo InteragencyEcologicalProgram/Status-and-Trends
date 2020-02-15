@@ -69,8 +69,9 @@ round_to_mult <- function(num, mult) {
 
 #' @title  Standardize x-axis elements for ggplot of all years
 #' @description Standardizes the x-axis limits and breaks for a ggplot of all years of data.
-#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report
-#' @param start_yr The start year that defines the minimum x-axis limit for the ggplot. Default is 1966.
+#'     The x variable needs to be type "integer" representing years.
+#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report. Must be an integer.
+#' @param start_yr The start year that defines the minimum x-axis limit for the ggplot. Must be an integer. Default is 1966.
 #' @return Two ggplot layers that define the x-axis limits and breaks based upon user-defined arguments
 #' @import ggplot2
 #' @export
@@ -91,9 +92,10 @@ std_x_axis_all_years <- function(rpt_yr, start_yr = 1966) {
 
 
 #' @title  Standardize x-axis elements for ggplot of recent years
-#' @description Standardizes the x-axis limits and breaks for a ggplot of recent years of data. This function
+#' @description Standardizes the x-axis limits and breaks for a ggplot of recent years of data.
+#'     The x variable needs to be type "integer" representing years. This function
 #'     works best if the dataset is filtered to the necessary date range beforehand.
-#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report
+#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report. Must be an integer.
 #' @return Two ggplot layers that define the x-axis limits and breaks based upon user-defined arguments
 #' @import ggplot2
 #' @export
