@@ -1,0 +1,57 @@
+library(tidyverse)
+library(readxl)
+library(lubridate)
+
+source("IEP_Plot_Theme.R")
+
+Stations<-read_csv("data/Master station key.csv", col_types = "ccddc")%>%
+  select(Source, Station, Latitude, Longitude)
+
+Micro_season <- "Summer"
+
+TNS <-read_excel("Data/STN Sample.xlsx", guess_max=10000)%>%
+  select(Date=SampleDate, Station=StationCode, Microcystis)%>%
+  mutate(Source="TNS",
+         Month=month(Date),
+         Year=year(Date))%>%
+  left_join(Stations, by=c("Source", "Station"))%>%
+  mutate(Season=case_when(
+    Month%in%c(12,1,2) ~ "Winter",
+    Month%in%c(3,4,5) ~ "Spring",
+    Month%in%c(6,7,8) ~ "Summer",
+    Month%in%c(9,10,11) ~ "Fall"),
+    Year=if_else(Month==12, Year-1, Year)
+  )%>%
+  mutate(Region=case_when(
+    Longitude < -122.216 ~ "San Pablo Bay",
+    Longitude > -122.216 & Longitude < -121.829 ~ "Suisun Bay",
+    Longitude > -121.829 ~ "Delta",
+    TRUE ~ NA_character_
+  ))%>%
+  select(Month, Region, Microcystis, Year, Season)%>%
+  filter(!is.na(Microcystis))%>%
+  filter(Season%in%Micro_season)%>%
+  droplevels()%>%
+  group_by(Region, Year)%>%
+  summarise(N_Microcystis=length(which(!is.na(Microcystis))), Microcystis1=length(which(Microcystis==1))/N_Microcystis, Microcystis2=length(which(Microcystis==2))/N_Microcystis, Microcystis3=length(which(Microcystis==3))/N_Microcystis, Microcystis4=length(which(Microcystis==4))/N_Microcystis, Microcystis5=length(which(Microcystis==5))/N_Microcystis)%>%
+  ungroup()%>%
+  filter(N_Microcystis>0)%>%
+  gather(key="Severity", value="Frequency", Microcystis1, Microcystis2, Microcystis3, Microcystis4, Microcystis5)%>%
+  mutate(Severity=recode(Severity, "Microcystis1"="Absent", "Microcystis2"="Low", "Microcystis3"="Medium", "Microcystis4"="High", "Microcystis5"="Very high"))%>%
+  filter(Severity!="Absent")%>%
+  mutate(Severity=factor(Severity, levels=c("Very high", "High", "Medium", "Low")))
+
+pMicro<-ggplot()+
+  geom_bar(data=TNS, aes(x=Year, y=Frequency, fill=Severity), stat="identity")+
+  scale_fill_brewer(type="div", palette="RdYlBu", guide=guide_legend(keyheight=0.8, title=NULL, direction="horizontal", label.position="top", reverse=TRUE))+
+  scale_x_continuous(limits=c(1967, max(TNS$Year)+1), expand=expand_scale(0,0))+
+  scale_y_continuous(expand=expand_scale(0,0))+
+  facet_wrap(~Region, scales = "free_x")+
+  ylab("Relative frequency")+
+  xlab("Date")+
+  theme_iep()+
+  theme(legend.position=c(0.1, 0.8), legend.background=element_rect(fill="white", color="black"))
+pMicro
+
+ggsave(pMicro, file="Microcystis_summer.png", dpi=300, units="cm",width=27.9,height=6.8,
+       path = "./summer_report")
