@@ -13,17 +13,17 @@ library(tidyr) #separate one column into two
 library(lubridate) #formatting dates
 library(tidyverse)
 
-source("drivr_sqlite.R")
-alldata<-flow
+source("data_access_scripts/data_access_dayflow.R")
+alldata<-DayFlow
 #rename columns
 names(alldata)<-c("date","out")
 
 #reformat date
-alldata$date<-mdy(alldata$date) #format date
+#alldata$date<-mdy(alldata$date) #format date
 
 #look at range of values for flow
 range(alldata$out) #-37433 629494
-range(alldata$date) #"1929-10-01" "2017-09-30"
+range(alldata$date) #"1929-10-01" "2019-09-30"
 
 #create a month column, year, and quarter (putting december in first month of Q1)
 alldata = mutate(alldata, month = month(date),
