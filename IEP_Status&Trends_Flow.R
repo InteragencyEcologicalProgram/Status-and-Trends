@@ -12,6 +12,7 @@ library(zoo)  # yearmon and yearqtr classes
 library(tidyr) #separate one column into two
 library(lubridate) #formatting dates
 library(tidyverse)
+library(smonitr)
 
 source("data_access_scripts/data_access_dayflow.R")
 alldata<-DayFlow
@@ -45,8 +46,6 @@ str(dmean)
 
 #plots-----------------
 
-#source custom plot formatting function
-source("IEP_Plot_Theme.R")
 
 #create list of season names to replace quarter names in plots
 #set up facet labels
@@ -71,9 +70,9 @@ flows = function(quart, data) {
     geom_line()+
     geom_point(colour="black") +
     geom_hline(aes(yintercept = mean(dat$out)/1000), size = 0.9, color = "red", linetype = "dashed")+
-    scale_x_continuous("Year (December - February)",limits = c(1966,2018))+
+    std_x_axis_all_years(2018) + xlab(paste("Year(", season_names[quart], ")", sep = "")) +
     scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s x 1,000)"))) +
-    theme_iep()
+    theme_smr()
   p
 }
 
