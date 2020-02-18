@@ -92,4 +92,4 @@ AllAdults = left_join(Fall, Winter) %>%
   left_join(Spring)
 
 #CSV of all the adult escapement
-write.csv(AllAdults, "data/Grandtab_adultsalmon.csv")
+write.csv(AllAdults, "data/Grandtab_adultsalmon.csv", row.names = F)
