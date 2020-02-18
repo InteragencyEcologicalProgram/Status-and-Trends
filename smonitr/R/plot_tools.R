@@ -138,6 +138,55 @@ std_x_axis_rec_years <- function(rpt_yr) {
 }
 
 
+#' Title
+#'
+#' @param df
+#' @param yr_var
+#' @param rpt_yr
+#'
+#' @return
+#' @export
+#'
+#' @examples
+missing_data_symb <- function(df, yr_var, rpt_yr) {
+  # Convert yr_var to enquo for non-standard eval
+  yr_var_enquo <- rlang::enquo(yr_var)
+
+  # Calculate minimum year in df
+  yr_min <- min(dplyr::pull(df, !!yr_var_enquo))
+
+  # Create a tibble with all possible years
+  all_yrs <- tibble::tibble(
+    years = seq(yr_min, rpt_yr, 1),
+    result = 0
+  )
+
+  # Find missing years in df
+  missing_yrs <- dplyr::anti_join(
+    all_yrs,
+    df,
+    by = c("years" = rlang::as_name(yr_var_enquo))
+  )
+
+  # Add in symbols for missing years if necessary
+  if (!is.null(missing_yrs)) {
+    geom_point(
+      data = missing_yrs,
+      aes(
+        x = years,
+        y = result
+      ),
+      inherit.aes = FALSE,
+      na.rm = TRUE,
+      shape = 8,
+      size = 0.5,
+      color = "red"
+    )
+  }
+
+}
+
+
 # Next steps --------------------------------------------------------------
 
 # 1. Add a function to place asterisks in place of missing data in plots
