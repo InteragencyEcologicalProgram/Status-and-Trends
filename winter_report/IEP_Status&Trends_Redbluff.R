@@ -29,7 +29,7 @@ theme_iep <- function(){
           legend.title=element_text(size=10))
 }
 
-redbluff = read.csv("redbluff_all.csv")[,2:5]
+redbluff = read.csv("redbluff_all.csv")
 str(redbluff)
 
 redbluff$Date = as.Date(redbluff$Date, format = "%Y-%m-%d")
