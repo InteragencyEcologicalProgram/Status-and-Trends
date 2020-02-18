@@ -11,7 +11,10 @@ Authors@R:
 Description: A collection of R functions for the IEP Seasonal Monitoring Reports.
 Depends: R (>= 3.6)
 Imports: 
-    ggplot2
+    ggplot2,
+    rlang,
+    dplyr,
+    tibble
 License: Apache License (>= 2.0)
 Encoding: UTF-8
 LazyData: true

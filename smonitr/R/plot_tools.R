@@ -138,17 +138,32 @@ std_x_axis_rec_years <- function(rpt_yr) {
 }
 
 
-#' Title
+#' @title Add symbols to a ggplot representing missing data
+#' @description Adds brown open diamond symbols to a ggplot to represent
+#'     years with missing data. This function is intended to be used on plots
+#'     with \code{geom_col} geoms. Can be used with plots of all years and
+#'     recent years, specified by the \code{plot_type} argument.
 #'
-#' @param df
-#' @param yr_var
-#' @param rpt_yr
+#' @param df The dataframe that contains the data in the ggplot
+#' @param yr_var The name of the variable in df that contains the years used
+#'     in the ggplot. Must be "numeric" type.
+#' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
+#'     Must be an integer.
+#' @param plot_type Specifies the type of plot the function is being used on. Use
+#'     \code{plot_type = "all"} for plots of all years, and
+#'     \code{plot_type = "recent"} for plots of recent years.
 #'
-#' @return
+#' @return Brown open diamond symbols to a ggplot representing years with missing
+#'     data. The symbols are scaled differently depending upon if it is on a
+#'     plot of all years or recent years.
+#' @import ggplot2
+#' @importFrom rlang enquo
+#' @importFrom rlang as_name
+#' @importFrom dplyr pull
+#' @importFrom dplyr anti_join
+#' @importFrom tibble tibble
 #' @export
-#'
-#' @examples
-missing_data_symb <- function(df, yr_var, rpt_yr) {
+missing_data_symb <- function(df, yr_var, rpt_yr, plot_type) {
   # Convert yr_var to enquo for non-standard eval
   yr_var_enquo <- rlang::enquo(yr_var)
 
@@ -168,6 +183,13 @@ missing_data_symb <- function(df, yr_var, rpt_yr) {
     by = c("years" = rlang::as_name(yr_var_enquo))
   )
 
+  # Define symbol size base upon plot_type
+  if (plot_type == "all") {
+    symb_size <- 1
+  } else if (plot_type == "recent") {
+    symb_size <- 2
+  }
+
   # Add in symbols for missing years if necessary
   if (!is.null(missing_yrs)) {
     geom_point(
@@ -178,9 +200,9 @@ missing_data_symb <- function(df, yr_var, rpt_yr) {
       ),
       inherit.aes = FALSE,
       na.rm = TRUE,
-      shape = 8,
-      size = 0.5,
-      color = "red"
+      shape = 5,
+      size = symb_size,
+      color = "saddlebrown"
     )
   }
 
@@ -189,8 +211,6 @@ missing_data_symb <- function(df, yr_var, rpt_yr) {
 
 # Next steps --------------------------------------------------------------
 
-# 1. Add a function to place asterisks in place of missing data in plots
-
-# 2. Possibly modify the lt_avg_line function to be able to receive the
+# 1. Possibly modify the lt_avg_line function to be able to receive the
 # dataframe and name of the values variable to calculate the average
 # within the function itself.
