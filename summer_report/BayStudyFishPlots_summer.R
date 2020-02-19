@@ -58,7 +58,7 @@ text_size_rec <- 2
 noranc_text_h <- tibble(
   Year = 1964,
   yValue = 40,
-  label = "Data were not collected\nuntil 1980"
+  label = "Data were not\ncollected until 1980"
 )
 
 noranc_text_v <- tibble(
@@ -105,7 +105,7 @@ noranc_plot_all <- noranc_cpue %>%
     ),
     inherit.aes = FALSE,
     hjust = "left",
-    size = text_size_all
+    size = 2
   ) +
   # add vertical text to plot
   geom_text(
