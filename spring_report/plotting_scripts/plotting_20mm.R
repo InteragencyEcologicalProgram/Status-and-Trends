@@ -1,7 +1,5 @@
 
-library(odbc)
-library(DBI)
-library(tidyverse)
+library(ggplot2)
 
 projectRoot <- "."
 reportRoot <- file.path(projectRoot,"spring_report")

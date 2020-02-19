@@ -1,4 +1,6 @@
 
+library(ggplot2)
+
 projectRoot <- "."
 reportRoot <- file.path(projectRoot,"spring_report")
 dataRoot <- file.path(projectRoot,"data")
