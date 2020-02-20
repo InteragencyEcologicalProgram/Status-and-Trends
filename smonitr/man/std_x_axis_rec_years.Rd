@@ -12,17 +12,17 @@ Must be an integer.}
 }
 \value{
 Two ggplot layers that define the x-axis limits and breaks based upon
-    user-defined arguments
+user-defined arguments
 }
 \description{
 Standardizes the x-axis limits and breaks for a ggplot of recent
-    years of data. "Recent years" is defined as the prior 15 years from the
-    \code{rpt_yr}.
+years of data. "Recent years" is defined as the prior 15 years from the
+\code{rpt_yr}.
 }
 \section{Special Instructions}{
 
 The x-variable in the ggplot needs to be "numeric" type. This function
-    works best if the dataset is filtered to the necessary date range
-    beforehand.
+works best if the dataset is filtered to the necessary date range
+beforehand.
 }
 

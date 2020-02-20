@@ -8,6 +8,6 @@ theme_smr()
 }
 \description{
 This custom theme builds off of the \code{theme_bw()}
-    ggplot theme and removes plot gridlines and modifies the text size of
-    various ggplot elements.
+ggplot theme and removes plot gridlines and modifies the text size of
+various ggplot elements.
 }

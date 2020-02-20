@@ -16,6 +16,6 @@ A value rounded to the nearest multiple of the \code{mult} parameter
 }
 \description{
 Used to round a year value to the nearest multiple of a defined
-    value. This is an internal function used to define x-axis breaks for plots.
+value. This is an internal function used to define x-axis breaks for plots.
 }
 \keyword{internal}

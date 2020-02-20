@@ -11,5 +11,10 @@ A collection of R functions for the IEP Seasonal Monitoring Reports.
 \author{
 \strong{Maintainer}: Dave Bosworth \email{David.Bosworth@water.ca.gov} (\href{https://orcid.org/0000-0003-0740-3390}{ORCID})
 
+Other contributors:
+\itemize{
+  \item Michael Koohafkan [contributor]
+}
+
 }
 \keyword{internal}

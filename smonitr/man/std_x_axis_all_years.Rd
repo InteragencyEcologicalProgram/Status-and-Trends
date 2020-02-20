@@ -15,11 +15,11 @@ ggplot. Must be an integer. Default is 1966.}
 }
 \value{
 Two ggplot layers that define the x-axis limits and breaks based upon
-    user-defined arguments
+user-defined arguments
 }
 \description{
 Standardizes the x-axis limits and breaks for a ggplot of
-    all years of data.
+all years of data.
 }
 \section{Special Instructions}{
 
