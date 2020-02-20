@@ -52,7 +52,7 @@ yolo_splittail_fig = cpue %>%
     geom_col(fill = "black") +
     lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
     std_x_axis_all_years(rpt_yr = report_year,
-      start_yr = min(cpue$Year)) +
+      start_yr = min(.$Year)) +
     scale_y_continuous("fish catch per thousand hours",
       labels = scales::label_number(scale = 1000))
   }
@@ -64,8 +64,8 @@ yolo_chinook_fig = cpue %>%
     geom_col(fill = "black") +
     lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
     std_x_axis_all_years(rpt_yr = report_year,
-      start_yr = min(cpue$Year)) +
-    scale_y_continuous("fish catch per thousand hours",
+      start_yr = min(.$Year)) +
+    scale_y_continuous("Fish catch per thousand hours",
       labels = scales::label_number(scale = 1000))
   }
 
