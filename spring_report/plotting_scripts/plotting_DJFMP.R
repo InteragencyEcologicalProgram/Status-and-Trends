@@ -3,22 +3,27 @@
 
 library(tidyverse)
 
+report_year <- 2018
+
 projectRoot <- "."
 reportRoot <- file.path(projectRoot,"spring_report")
 dataRoot <- file.path(projectRoot,"data")
 thisDataRoot <- file.path(dataRoot,"DJFMP")
 figRoot <- file.path(reportRoot,"figures")
 
-source(file.path(projectRoot, "IEP_Plot_Theme.R"))
+source(file.path(projectRoot,"smonitr","R","plot_tools.R"))
 
 ##########################################################################
 ## Read in data:
 
-seineDf <- read.csv(file.path(thisDataRoot,"springReportData_DJ_seine.csv"), 
-										stringsAsFactors=FALSE)
-chippsDf <- read.csv(file.path(thisDataRoot,"springReportData_DJ_Chipps.csv"), 
-										 stringsAsFactors=FALSE)
+seineDf_raw <- read.csv(file.path(thisDataRoot,"springReportData_DJ_seine.csv"), 
+                        stringsAsFactors=FALSE)
+chippsDf_raw <- read.csv(file.path(thisDataRoot,"springReportData_DJ_Chipps.csv"), 
+                         stringsAsFactors=FALSE)
 
+## Truncate the data according to the specified report year:
+seineDf <- subset(seineDf_raw, Year <= report_year)
+chippsDf <- subset(chippsDf_raw, Year <= report_year)
 
 ##########################################################################
 ## Beach Seine: Splittail and Sacramento Pikeminnow
@@ -67,12 +72,11 @@ seineIndexDf
 ## Figures:
 splittail_fig <- ggplot(seineIndexDf, aes(x=Year, y=SplittailIndex)) +
   geom_bar(stat="identity") +
-  theme_iep() +
+  theme_smr() +
   theme(legend.position="none") + 
-  scale_x_continuous("Year (March - May)") + 
   scale_y_continuous(expression(paste("Splittail Index"))) + 
-  geom_hline(yintercept=mean(seineIndexDf$SplittailIndex, na.rm=TRUE), col="red", 
-             linetype="dashed", size=0.9)
+  lt_avg_line(lt_avg=mean(seineIndexDf$SplittailIndex, na.rm=TRUE)) + 
+  std_x_axis_all_years(rpt_yr=report_year, start_yr=min(seineIndexDf$Year))
 
 ggsave(splittail_fig, file=file.path(figRoot,"DJFMP_splittail.png"), dpi=300, units="cm", 
 			 width=9.3, height=6.8)
@@ -80,12 +84,11 @@ ggsave(splittail_fig, file=file.path(figRoot,"DJFMP_splittail.png"), dpi=300, un
 
 sacpikeminnow_fig <- ggplot(seineIndexDf, aes(x=Year, y=SacPikeminnowIndex)) +
   geom_bar(stat="identity") +
-  theme_iep() +
+  theme_smr() +
   theme(legend.position="none") + 
-  scale_x_continuous("Year (March - May)") + 
   scale_y_continuous(expression(paste("Sacramento Pikeminnow Index"))) + 
-  geom_hline(yintercept=mean(seineIndexDf$SacPikeminnowIndex, na.rm=TRUE), col="red", 
-             linetype="dashed", size=0.9)
+  lt_avg_line(lt_avg=mean(seineIndexDf$SacPikeminnowIndex, na.rm=TRUE)) + 
+  std_x_axis_all_years(rpt_yr=report_year, start_yr=min(seineIndexDf$Year))
 
 ggsave(sacpikeminnow_fig, file=file.path(figRoot,"DJFMP_sacpikeminnow.png"), dpi=300, 
 			 units="cm", width=9.3, height=6.8)
@@ -130,12 +133,11 @@ chippsIndexDf
 chinook_winterByLength_fig <- ggplot(chippsIndexDf, 
 																		 aes(x=Year, y=chinook_winterByLengthIndex)) +
   geom_bar(stat="identity") +
-  theme_iep() +
+  theme_smr() +
   theme(legend.position="none") + 
-  scale_x_continuous("Year (March - May)") + 	
   scale_y_continuous(expression(paste("Chinook Salmon Index\n(Winterrun, Unmarked Fish)"))) + 
-  geom_hline(yintercept=mean(chippsIndexDf$chinook_winterByLengthIndex, na.rm=TRUE), 
-						 col="red", linetype="dashed", size=0.9)
+  lt_avg_line(lt_avg=mean(chippsIndexDf$chinook_winterByLengthIndex, na.rm=TRUE)) + 
+  std_x_axis_all_years(rpt_yr=report_year, start_yr=min(chippsIndexDf$Year))
 
 ggsave(chinook_winterByLength_fig, 
 			 file=file.path(figRoot,"DJFMP_chinook_winterByLength.png"), 
