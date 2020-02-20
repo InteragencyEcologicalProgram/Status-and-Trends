@@ -53,7 +53,7 @@ yolo_splittail_fig = cpue %>%
     lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
     std_x_axis_all_years(rpt_yr = report_year,
       start_yr = min(.$Year)) +
-    scale_y_continuous("fish catch per thousand hours",
+    scale_y_continuous("Fish catch per thousand hours",
       labels = scales::label_number(scale = 1000))
   }
 
