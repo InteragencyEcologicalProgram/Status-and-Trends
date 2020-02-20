@@ -12,18 +12,19 @@ library(zoo)  # yearmon and yearqtr classes
 library(tidyr) #separate one column into two
 library(lubridate) #formatting dates
 library(tidyverse)
+library(smonitr)
 
-source("drivr_sqlite.R")
-alldata<-flow
+source("data_access_scripts/data_access_dayflow.R")
+alldata<-DayFlow
 #rename columns
 names(alldata)<-c("date","out")
 
 #reformat date
-alldata$date<-mdy(alldata$date) #format date
+#alldata$date<-mdy(alldata$date) #format date
 
 #look at range of values for flow
 range(alldata$out) #-37433 629494
-range(alldata$date) #"1929-10-01" "2017-09-30"
+range(alldata$date) #"1929-10-01" "2019-09-30"
 
 #create a month column, year, and quarter (putting december in first month of Q1)
 alldata = mutate(alldata, month = month(date),
@@ -45,8 +46,6 @@ str(dmean)
 
 #plots-----------------
 
-#source custom plot formatting function
-source("IEP_Plot_Theme.R")
 
 #create list of season names to replace quarter names in plots
 #set up facet labels
@@ -71,9 +70,9 @@ flows = function(quart, data) {
     geom_line()+
     geom_point(colour="black") +
     geom_hline(aes(yintercept = mean(dat$out)/1000), size = 0.9, color = "red", linetype = "dashed")+
-    scale_x_continuous("Year (December - February)",limits = c(1966,2018))+
+    std_x_axis_all_years(2018) + xlab(paste("Year(", season_names[quart], ")", sep = "")) +
     scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s x 1,000)"))) +
-    theme_iep()
+    theme_smr()
   p
 }
 
