@@ -1,5 +1,7 @@
-library(readr)
+# devtools::install_github("InteragencyEcologicalProgram/Status-and-Trends/smonitr")
+
 library(smonitr)
+library(readr)
 
 
 # Download the YBFMP Files
