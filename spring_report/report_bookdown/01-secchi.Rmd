@@ -1,2 +1,13 @@
 # Secchi Depth {#secchi}
 
+### Interagency Ecological Program Spring Season report
+
+## Background
+* Organisms in this ecosystem are adapted to high turbidity conditions, and reductions in turbidity can have many negative ecological effects.
+* Higher values for Secchi depth indicate lower turbidity.
+* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) by dropping a black-and-white disk in the water until it disappears.
+
+![](figures/secchidisc.png)
+
+## San Pablo Bay          Suisun Bay            Delta
+![](figures/secchi_panel_spring.png)

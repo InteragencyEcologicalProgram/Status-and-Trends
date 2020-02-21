@@ -6,24 +6,25 @@
 #also white sturgeon, fall run chinook salmon
 
 #Created by Nick Rasmussen
-#last updated: 3/15/2019
+#udated by Rosemary Hartman 2/18/2020
 
 #packages
 library(ggplot2) 
 library(cowplot) #plot_grid()
+library(tidyverse)
 
 #import data
 
 #fall midwater trawl: Delta smelt, longfin smelt, striped bass, American shad
-fmwt<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/fmwt.csv")
+fmwt<-read.csv("data/fmwt.csv")
 str(fmwt)
 
 #CA Fish & Wildlife: Sturgeon Trammel Net Surveys
-wst<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/wst.csv")
+wst<-read.csv("data/wst.csv")
 str(wst)
 
 #Fall run chinook salmon counts
-frch<-read.csv("https://raw.githubusercontent.com/InteragencyEcologicalProgram/Status-and-Trends/master/frch.csv")
+frch<-read.csv("data/Grandtab_adultsalmon.csv")
 str(frch)
 
 #create custom plot formatting function
@@ -63,7 +64,7 @@ as<-subset(fmwt,species=="as")
   geom_bar(stat="identity",fill="#095E49") +
   theme_iep() +
   theme(legend.position="none") + 
-  scale_y_continuous("Delta Smelt Index (× 1,000)",limits=c(0, max(ds$index)/1000)) +
+  scale_y_continuous("Delta Smelt Index (? 1,000)",limits=c(0, max(ds$index)/1000)) +
   scale_x_continuous("", limits=c(1966,2018))) 
 #ggsave(p_ds, file="ds_trad_fmwt_color.png", path=plot_folder,scale=2,
 #       dpi=300, units="cm",width=8.5,height=5.4)
@@ -77,7 +78,7 @@ as<-subset(fmwt,species=="as")
     geom_bar(stat="identity",fill="#095E49") +
     theme_iep() +
     theme(legend.position="none") + 
-    scale_y_continuous("Longfin Smelt Index (× 1,000)",limits=c(0, max(lfs$index)/1000)) +
+    scale_y_continuous("Longfin Smelt Index (? 1,000)",limits=c(0, max(lfs$index)/1000)) +
     scale_x_continuous("Year", limits=c(1966,2018)) )
 #ggsave(p_lfs, file="lfs_trad_fmwt_color.png", path=plot_folder,scale=2,
 #       dpi=300, units="cm",width=8.5,height=5.4)
@@ -91,7 +92,7 @@ as<-subset(fmwt,species=="as")
   geom_bar(stat="identity",fill="#095E49") +
   theme_iep() +
   theme(legend.position="none") + 
-  scale_y_continuous("Striped Bass Index (× 1,000)",limits=c(0, max(sb0$index)/1000)) +
+  scale_y_continuous("Striped Bass Index (? 1,000)",limits=c(0, max(sb0$index)/1000)) +
   scale_x_continuous("", limits=c(1966,2018)) )
 #ggsave(p_sb0, file="sb0_trad_fmwt_color.png", path=plot_folder,scale=2,
 #       dpi=300, units="cm",width=8.5,height=5.4)
@@ -105,7 +106,7 @@ as<-subset(fmwt,species=="as")
    geom_bar(stat="identity",fill="#095E49") +
    theme_iep() +
    theme(legend.position="none") + 
-   scale_y_continuous("American Shad Index (× 1,000)",limits=c(0, max(as$index)/1000)) +
+   scale_y_continuous("American Shad Index (? 1,000)",limits=c(0, max(as$index)/1000)) +
    scale_x_continuous("Year", limits=c(1966,2018)) )
 #ggsave(p_as, file="as_trad_fmwt_color.png", path=plot_folder,scale=2,
 #       dpi=300, units="cm",width=8.5,height=5.4)
@@ -128,11 +129,11 @@ as<-subset(fmwt,species=="as")
 
 #fall run chinook salmon
 
-(p_frch <- ggplot(frch, aes(x=Year, y=Total/100000))+
+(p_frch <- ggplot(frch, aes(x=Year, y=FallRun/100000))+
     geom_bar(stat="identity", fill="black") +
     theme_iep() +
     theme(legend.position="none") + 
-    scale_y_continuous("Fall Run Chinook Counts (× 100,000)",limits=c(0, max(frch$Total)/100000)) +
+    scale_y_continuous("Fall Run Chinook Counts (? 100,000)",limits=c(0, max(frch$FallRun)/100000)) +
     scale_x_continuous("Year", limits=c(1966,2018)) )
 
 
@@ -175,7 +176,7 @@ str(wsta)
    geom_bar(stat="identity",fill="#095E49") +
    theme_iep() +
    theme(legend.position="none") + 
-   scale_y_continuous("Delta Smelt Index (× 1,000)",limits=c(0, max(dsa$index)/1000)) +
+   scale_y_continuous("Delta Smelt Index (? 1,000)",limits=c(0, max(dsa$index)/1000)) +
    scale_x_continuous("", limits=c(2001,2018))) 
 #ggsave(p_dsv, file="ds_trad_fmwt_recent_color.png", path=plot_folder,scale=2,
 #      dpi=300, units="cm",width=8.5,height=5.4)
@@ -187,7 +188,7 @@ str(wsta)
     geom_bar(stat="identity",fill="#095E49") +
     theme_iep() +
     theme(legend.position="none") + 
-    scale_y_continuous("Longfin Smelt Index (× 1,000)",limits=c(0, max(lsa$index)/1000)) +
+    scale_y_continuous("Longfin Smelt Index (? 1,000)",limits=c(0, max(lsa$index)/1000)) +
     scale_x_continuous("Year", limits=c(2001,2018)) )
 
 #Striped Bass
@@ -197,7 +198,7 @@ str(wsta)
     geom_bar(stat="identity",fill="#095E49") +
     theme_iep() +
     theme(legend.position="none") + 
-    scale_y_continuous("Striped Bass Index (× 1,000)",limits=c(0, max(sba$index)/1000)) +
+    scale_y_continuous("Striped Bass Index (? 1,000)",limits=c(0, max(sba$index)/1000)) +
     scale_x_continuous("", limits=c(2001,2018)) )
 
 #American Shad
@@ -207,7 +208,7 @@ str(wsta)
     geom_bar(stat="identity",fill="#095E49") +
     theme_iep() +
     theme(legend.position="none") + 
-    scale_y_continuous("American Shad Index (× 1,000)",limits=c(0, max(asa$index)/1000)) +
+    scale_y_continuous("American Shad Index (? 1,000)",limits=c(0, max(asa$index)/1000)) +
     scale_x_continuous("Year", limits=c(2001,2018)) )
 
 #White Sturgeon
@@ -219,11 +220,11 @@ str(wsta)
     scale_x_continuous("", limits=c(2001,2018)) )
 
 #Chinook Salmon
-(p_frchv <- ggplot(frcha, aes(x=Year, y=Total/100000))+
+(p_frchv <- ggplot(frcha, aes(x=Year, y=FallRun/100000))+
     geom_bar(stat="identity", fill="black") +
     theme_iep() +
     theme(legend.position="none") + 
-    scale_y_continuous("Fall Run Chinook Counts (× 100,000)",limits=c(0, max(frcha$Total)/100000)) +
+    scale_y_continuous("Fall Run Chinook Counts (? 100,000)",limits=c(0, max(frcha$FallRun)/100000)) +
     scale_x_continuous("Year", limits=c(2001,2018)) )
 
 
