@@ -2,6 +2,7 @@
 library(odbc)
 library(DBI)
 library(tidyverse)
+library(smonitr)
 
 projectRoot <- "."
 reportRoot <- file.path(projectRoot,"spring_report")
@@ -25,9 +26,10 @@ lfsIndexDf <- read.csv(file.path(thisDataRoot,"20mm_LFS_index.csv"),
 
 dsm_fig <- ggplot(dsmIndexDf, aes(x=Year, y=Index))+
   geom_bar(stat="identity") +
-  theme_iep() +
+  theme_smr() +
   theme(legend.position="none") + 
   scale_y_continuous(expression(paste("Index"))) + 
+  std_x_axis_rec_years(2018) +
   geom_hline(yintercept=mean(dsmIndexDf$Index, na.rm=TRUE), col="red", 
              linetype="dashed", size=0.9)
 
@@ -38,11 +40,12 @@ ggsave(dsm_fig, file=file.path(figRoot,"20mm_DSM.png"), dpi=300, units="cm",
 ##########################################################################
 ## Longfin Smelt
 
-lfs_fig <- ggplot(lfsIndexDf, aes(x=Year, y=Index))+
+lfs_fig <- ggplot(filter(lfsIndexDf, Year <=2018), aes(x=Year, y=Index))+
   geom_bar(stat="identity") +
-  theme_iep() +
+  theme_smr() +
   theme(legend.position="none") + 
   scale_y_continuous(expression(paste("Index"))) + 
+  std_x_axis_rec_years(2018) +
   geom_hline(yintercept=mean(lfsIndexDf$Index, na.rm=TRUE), col="red", 
              linetype="dashed", size=0.9)
 
