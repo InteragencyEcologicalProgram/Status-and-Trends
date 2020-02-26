@@ -298,17 +298,17 @@ zoops2 = function(quart, data) {
   
   #calculate long-term average
   sums = group_by(dat, region, qyear) %>% summarize(bpuetot = sum(bpue))
-  meanB = mean(sums$bpuetot)
+  meanB = group_by(sums, region) %>% summarize(bpueM =mean(bpuetot))
   
   #make a plot
   bpl<-ggplot(dat, aes(x = qyear, y = bpue, fill = taxon)) + 
     geom_area(position = 'stack')+
     theme_iep()+ facet_wrap(~region) +
-    theme(legend.position="bottom", 
+    theme(legend.position="top", legend.margin = margin(0,0,0,0) , 
           strip.background = element_blank(),
           strip.text = element_blank()) + 
     scale_x_continuous(paste("Year(", season_names[unlist(dat[1,"quarter"])],")"), limits=c(1966,2018))  +
-    geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
+    geom_hline(data = meanB, aes(yintercept = bpueM), size = 0.9, color = "red", linetype = "dashed")+
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
                       ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
     scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), 
@@ -318,19 +318,20 @@ zoops2 = function(quart, data) {
   
 }
 
+zmeans = filter(zmeans, qyear <= 2018)
 
 ggsave(zoops2("Q3", zmeans), file="zoops_panel_summer.png", 
-       dpi=300, units="cm",width=27.9,height=6.8,
+       dpi=300, units="cm",width=27.9,height=7.5,
        path = "./summer_report")
 
-ggsave(zoops2("Q2", zmeans), file="zoops_panel_spring.png", dpi=300, units="cm",width=27.9,height=7.2,
+ggsave(zoops2("Q2", zmeans), file="zoops_panel_spring.png", dpi=300, units="cm",width=27.9,height=7.5,
        path = "./spring_report")
 
-ggsave(zoops2("Q1", zmeans), file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=7.2,
+ggsave(zoops2("Q1", zmeans), file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=7.5,
        path = "./winter_report")
 
 ggsave(zoops2("Q4", zmeans), file="zoops_panel_fall.png", 
-       dpi=300, units="cm",width=27.9,height=7.2,
+       dpi=300, units="cm",width=27.9,height=7.5,
        path = "./fall_report")
 
 

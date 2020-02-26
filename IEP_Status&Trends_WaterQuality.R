@@ -23,7 +23,7 @@ library(cowplot) #grid_plot()
 library(lubridate)
 
 
-source("WQ_data_download.R")
+source("data_access_scripts/WQ_data_download.R")
 #EMP WQ data (1975-2017)
 alldata<- WQ_all
   str(alldata)
@@ -47,15 +47,15 @@ alldata$value<-as.numeric(as.character(alldata$Result))
 
 alldat<-filter(alldata, AnalyteName %in% c( "Temperature" , "Secchi",  "Microcystis","SpCndSurface",
                                             "WTSurface",
-                                         "Temperature" , "Secchi Depth", "Chlorophyll a"))
+                                         "Temperature" , "Secchi Depth", "Chlorophyll a", "Chla"))
 
 
 
 #rename AnalyteNames with simpler names
 params = data.frame(AnalyteName = c("Temperature" , "Secchi",  "Microcystis","SpCndSurface",
                                     "WTSurface",
-                                    "Temperature" , "Secchi Depth", "Chlorophyll a"),
-paramsshort = c("temp", "secchi","Microcystis","cond", "temp", "temp" , "secchi", "chla"))
+                                    "Temperature" , "Secchi Depth", "Chlorophyll a", "Chla"),
+paramsshort = c("temp", "secchi","Microcystis","cond", "temp", "temp" , "secchi", "chla", "chla"))
 
 alldat = left_join(alldat, params, by = "AnalyteName") %>%
   mutate(AnalyteName = paramsshort) %>%
@@ -122,11 +122,12 @@ wqsum$region = factor(wqsum$region, levels=c('spl','ss','dt'))
 
 #change year from chr to int
 wqsum$qyear<-as.integer(wqsum$qyear)
+
  
 #Create facet of plots for each AnalyteName showing all combinations of region and season
 
-allplots = function(data, param){
-  dat = filter(data, AnalyteName == param)
+allplots = function(data, param, reportyear){
+  dat = filter(data, AnalyteName == param, qyear <= reportyear)
   p <- ggplot(dat, aes(x=qyear, y=value))+
     geom_line(colour="black")+geom_point(colour="black") +
     geom_hline(data = filter(wqsum2, AnalyteName == param),
@@ -140,19 +141,19 @@ allplots = function(data, param){
   return(p)
 }
 
-allplots(wqsum, "chla")
-allplots(wqsum, "chlf")
-allplots(wqsum, "temp")
-allplots(wqsum, "secchi")
+allplots(wqsum, "chla", 2018)
+allplots(wqsum, "chlf", 2018)
+allplots(wqsum, "temp", 2018)
+allplots(wqsum, "secchi", 2018)
 
 
 #now, for fall, make a plot for each region, season, and AnalyteName separately
 #do this so you can patch them together as grobs (like fish data panel)
 
 #first a function
-WQplot = function(reg, quart, analyte, data) {
+WQplot = function(reg, quart, analyte, data, reportyear) {
   #filter the dataset based on season, analyte, and region
-  dat = filter(data, quarter == quart, region ==reg, AnalyteName == analyte)
+  dat = filter(data, quarter == quart, region ==reg, AnalyteName == analyte, qyear <= reportyear)
   
   #set up limits for plot based on the max and min for all years and regions
   dat2 = filter(data, AnalyteName == analyte)
@@ -162,18 +163,20 @@ WQplot = function(reg, quart, analyte, data) {
   p_sec <- ggplot(dat, aes(x=qyear, y= value))+
     geom_line(colour="black", size = 0.9)+geom_point(colour="black", size = 1.6) +
     geom_hline(aes(yintercept = mean(dat$value)), size = 0.9, color = "red", linetype = "dashed")+
-    theme_iep() + 
+    theme_smr() + 
     theme(legend.position="none") + 
     scale_y_continuous(AnalyteName_labs[analyte] , limits=lims)+
     scale_x_continuous(paste("Year(", season_names[dat[1,"quarter"]],")", sep = ""),  
                        limits=c(1966,2018)) 
+  }
+  
   return(p_sec)
 }
 
 #winter temperature plot
-tmps<-plot_grid(WQplot("spl", "Q1", "temp", wqsum),
-                WQplot("ss", "Q1", "temp", wqsum), 
-                WQplot("dt", "Q1", "temp", wqsum),
+tmps<-plot_grid(WQplot("spl", "Q1", "temp", wqsum, 2018),
+                WQplot("ss", "Q1", "temp", wqsum, 2018), 
+                WQplot("dt", "Q1", "temp", wqsum, 2018),
                 ncol = 3, nrow = 1, align="v")
 tmps
 
@@ -183,9 +186,9 @@ ggsave(tmps, file="temp_panel_winter.png", dpi=300, units="cm",width=27.9,height
 
 
 #spring tempearture plot
-tmpsf<-plot_grid(WQplot("spl", "Q2", "temp", wqsum),
-                 WQplot("ss", "Q2", "temp", wqsum),
-                 WQplot("dt", "Q2", "temp", wqsum),
+tmpsf<-plot_grid(WQplot("spl", "Q2", "temp", wqsum, 2018),
+                 WQplot("ss", "Q2", "temp", wqsum, 2018),
+                 WQplot("dt", "Q2", "temp", wqsum, 2018),
   ncol = 3, nrow = 1, align="v")
 tmpsf
 #save it
@@ -194,9 +197,9 @@ ggsave(tmpsf, file="temp_panel_spring.png", dpi=300, units="cm",width=27.9,heigh
 
 
 #summer tempearture plot
-tmpss<-plot_grid(WQplot("spl", "Q3", "temp", wqsum),
-                 WQplot("ss", "Q3", "temp", wqsum),
-                 WQplot("dt", "Q3", "temp", wqsum),
+tmpss<-plot_grid(WQplot("spl", "Q3", "temp", wqsum, 2018),
+                 WQplot("ss", "Q3", "temp", wqsum, 2018),
+                 WQplot("dt", "Q3", "temp", wqsum, 2018),
                  ncol = 3, nrow = 1, align="v")
 tmpss
 #save it
@@ -205,9 +208,9 @@ ggsave(tmpss, file="temp_panel_summer.png", dpi=300, units="cm",width=27.9,heigh
 
 
 #fall tempearture plot
-tmpsf<-plot_grid(WQplot("spl", "Q4", "temp", wqsum),
-                 WQplot("ss", "Q4", "temp", wqsum),
-                 WQplot("dt", "Q4", "temp", wqsum),
+tmpsf<-plot_grid(WQplot("spl", "Q4", "temp", wqsum, 2018),
+                 WQplot("ss", "Q4", "temp", wqsum, 2018),
+                 WQplot("dt", "Q4", "temp", wqsum, 2018),
                  ncol = 3, nrow = 1, align="v")
 tmpsf
 #save it
@@ -216,9 +219,9 @@ ggsave(tmpsf, file="temp_panel_fall.png", dpi=300, units="cm",width=27.9,height=
 
 
 #winter secchi plot
-secsw<-plot_grid(WQplot("spl", "Q1", "secchi", wqsum),
-                WQplot("ss", "Q1", "secchi", wqsum), 
-                WQplot("dt", "Q1", "secchi", wqsum),
+secsw<-plot_grid(WQplot("spl", "Q1", "secchi", wqsum, 2018),
+                WQplot("ss", "Q1", "secchi", wqsum, 2018), 
+                WQplot("dt", "Q1", "secchi", wqsum, 2018),
                 ncol = 3, nrow = 1, align="v")
 
 #save it
@@ -227,9 +230,9 @@ ggsave(secsw, file="secchi_panel_winter.png", dpi=300, units="cm",width=27.9,hei
 
 
 #spring secchi plot
-secsf<-plot_grid(WQplot("spl", "Q2", "secchi", wqsum),
-                 WQplot("ss", "Q2", "secchi", wqsum),
-                 WQplot("dt", "Q2", "secchi", wqsum),
+secsf<-plot_grid(WQplot("spl", "Q2", "secchi", wqsum, 2018),
+                 WQplot("ss", "Q2", "secchi", wqsum, 2018),
+                 WQplot("dt", "Q2", "secchi", wqsum, 2018),
                  ncol = 3, nrow = 1, align="v")
 secsf
 #save it
@@ -238,9 +241,9 @@ ggsave(secsf, file="secchi_panel_spring.png", dpi=300, units="cm",width=27.9,hei
 
 
 #summer secchi plot
-secss<-plot_grid(WQplot("spl", "Q3", "secchi", wqsum),
-                 WQplot("ss", "Q3", "secchi", wqsum),
-                 WQplot("dt", "Q3", "secchi", wqsum),
+secss<-plot_grid(WQplot("spl", "Q3", "secchi", wqsum, 2018),
+                 WQplot("ss", "Q3", "secchi", wqsum, 2018),
+                 WQplot("dt", "Q3", "secchi", wqsum, 2018),
                  ncol = 3, nrow = 1, align="v")
 secss
 #save it
@@ -249,9 +252,9 @@ ggsave(secss, file="secchi_panel_summer.png", dpi=300, units="cm",width=27.9,hei
 
 
 #fall secchie plot
-secsf<-plot_grid(WQplot("spl", "Q4", "secchi", wqsum),
-                 WQplot("ss", "Q4", "secchi", wqsum),
-                 WQplot("dt", "Q4", "secchi", wqsum),
+secsf<-plot_grid(WQplot("spl", "Q4", "secchi", wqsum, 2018),
+                 WQplot("ss", "Q4", "secchi", wqsum, 2018),
+                 WQplot("dt", "Q4", "secchi", wqsum, 2018),
                  ncol = 3, nrow = 1, align="v")
 secsf
 #save it
@@ -260,9 +263,9 @@ ggsave(secsf, file="secchi_panel_fall.png", dpi=300, units="cm",width=27.9,heigh
 
 
 #winter chla plot
-secsw<-plot_grid(WQplot("spl", "Q1", "chla", wqsum),
-                 WQplot("ss", "Q1", "chla", wqsum), 
-                 WQplot("dt", "Q1", "chla", wqsum),
+secsw<-plot_grid(WQplot("spl", "Q1", "chla", wqsum, 2018),
+                 WQplot("ss", "Q1", "chla", wqsum, 2018), 
+                 WQplot("dt", "Q1", "chla", wqsum, 2018),
                  ncol = 3, nrow = 1, align="v")
 
 #save it
@@ -271,9 +274,9 @@ ggsave(secsw, file="chla_panel_winter.png", dpi=300, units="cm",width=27.9,heigh
 
 
 #spring chla plot
-secsf<-plot_grid(WQplot("spl", "Q2", "chla", wqsum),
-                 WQplot("ss", "Q2", "chla", wqsum),
-                 WQplot("dt", "Q2", "chla", wqsum),
+secsf<-plot_grid(WQplot("spl", "Q2", "chla", wqsum, 2018),
+                 WQplot("ss", "Q2", "chla", wqsum, 2018),
+                 WQplot("dt", "Q2", "chla", wqsum, 2018),
                  ncol = 3, nrow = 1, align="v")
 secsf
 #save it
@@ -282,9 +285,9 @@ ggsave(secsf, file="chla_panel_spring.png", dpi=300, units="cm",width=27.9,heigh
 
 
 #summer chla plot
-secss<-plot_grid(WQplot("spl", "Q3", "chla", wqsum),
-                 WQplot("ss", "Q3", "chla", wqsum),
-                 WQplot("dt", "Q3", "chla", wqsum),
+secss<-plot_grid(WQplot("spl", "Q3", "chla", wqsum, 2018),
+                 WQplot("ss", "Q3", "chla", wqsum, 2018),
+                 WQplot("dt", "Q3", "chla", wqsum, 2018),
                  ncol = 3, nrow = 1, align="v")
 secss
 #save it
@@ -294,9 +297,9 @@ ggsave(secss, file="chla_panel_summer.png",
 
 
 #fall chlae plot
-secsf<-plot_grid(WQplot("spl", "Q4", "chla", wqsum),
-                 WQplot("ss", "Q4", "chla", wqsum),
-                 WQplot("dt", "Q4", "chla", wqsum),
+secsf<-plot_grid(WQplot("spl", "Q4", "chla", wqsum, 2018),
+                 WQplot("ss", "Q4", "chla", wqsum, 2018),
+                 WQplot("dt", "Q4", "chla", wqsum, 2018),
                  ncol = 3, nrow = 1, align="v")
 secsf
 #save it

@@ -2,6 +2,7 @@
 ## See a copy of the document "#22 Metadata (Updated May 30, 2019).doc" for reference.
 
 library(tidyverse)
+library(smonitr)
 
 projectRoot <- "."
 reportRoot <- file.path(projectRoot,"spring_report")
@@ -9,7 +10,7 @@ dataRoot <- file.path(projectRoot,"data")
 thisDataRoot <- file.path(dataRoot,"DJFMP")
 figRoot <- file.path(reportRoot,"figures")
 
-source(file.path(projectRoot, "IEP_Plot_Theme.R"))
+#source(file.path(projectRoot, "IEP_Plot_Theme.R"))
 
 ##########################################################################
 ## Read in data:
@@ -67,9 +68,10 @@ seineIndexDf
 ## Figures:
 splittail_fig <- ggplot(seineIndexDf, aes(x=Year, y=SplittailIndex)) +
   geom_bar(stat="identity") +
-  theme_iep() +
+  theme_smr() +
   theme(legend.position="none") + 
   scale_x_continuous("Year (March - May)") + 
+  std_x_axis_all_years(2018)+
   scale_y_continuous(expression(paste("Splittail Index"))) + 
   geom_hline(yintercept=mean(seineIndexDf$SplittailIndex, na.rm=TRUE), col="red", 
              linetype="dashed", size=0.9)
@@ -80,9 +82,10 @@ ggsave(splittail_fig, file=file.path(figRoot,"DJFMP_splittail.png"), dpi=300, un
 
 sacpikeminnow_fig <- ggplot(seineIndexDf, aes(x=Year, y=SacPikeminnowIndex)) +
   geom_bar(stat="identity") +
-  theme_iep() +
+  theme_smr() +
   theme(legend.position="none") + 
   scale_x_continuous("Year (March - May)") + 
+  std_x_axis_all_years(2018)+
   scale_y_continuous(expression(paste("Sacramento Pikeminnow Index"))) + 
   geom_hline(yintercept=mean(seineIndexDf$SacPikeminnowIndex, na.rm=TRUE), col="red", 
              linetype="dashed", size=0.9)
@@ -130,15 +133,30 @@ chippsIndexDf
 chinook_winterByLength_fig <- ggplot(chippsIndexDf, 
 																		 aes(x=Year, y=chinook_winterByLengthIndex)) +
   geom_bar(stat="identity") +
-  theme_iep() +
+  theme_smr() +
   theme(legend.position="none") + 
-  scale_x_continuous("Year (March - May)") + 	
+  xlab("Year (March - May)") + 	
+  std_x_axis_all_years(2018) +
   scale_y_continuous(expression(paste("Chinook Salmon Index\n(Winterrun, Unmarked Fish)"))) + 
   geom_hline(yintercept=mean(chippsIndexDf$chinook_winterByLengthIndex, na.rm=TRUE), 
 						 col="red", linetype="dashed", size=0.9)
 
 ggsave(chinook_winterByLength_fig, 
-			 file=file.path(figRoot,"DJFMP_chinook_winterByLength.png"), 
+			 file=file.path(figRoot,"DJFMP_chinook_winterByLength_allyears.png"), 
 			 dpi=300, units="cm", width=9.3, height=6.8)
 
+## Figures:
+chinook_winterByLength_fig <- ggplot(chippsIndexDf, 
+                                     aes(x=Year, y=chinook_winterByLengthIndex)) +
+  geom_bar(stat="identity") +
+  theme_smr() +
+  theme(legend.position="none") + 
+  xlab("Year (March - May)") + 	
+  std_x_axis_rec_years(2018) +
+  scale_y_continuous(expression(paste("Chinook Salmon Index\n(Winterrun, Unmarked Fish)"))) + 
+  geom_hline(yintercept=mean(chippsIndexDf$chinook_winterByLengthIndex, na.rm=TRUE), 
+             col="red", linetype="dashed", size=0.9)
 
+ggsave(chinook_winterByLength_fig, 
+       file=file.path(figRoot,"DJFMP_chinook_winterByLength_recyears.png"), 
+       dpi=300, units="cm", width=9.3, height=6.8)
