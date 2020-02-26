@@ -23,8 +23,12 @@ library(cowplot) #grid_plot()
 library(lubridate)
 
 
-source("data_access_scripts/WQ_data_download.R")
-#EMP WQ data (1975-2017)
+#source("data_access_scripts/WQ_data_download.R")
+#or skip this if you've updated it recently and just do
+alldata = read.csv("data/WQ_discrete_1975-2018.csv", stringsAsFactors = F)
+alldata$SampleDate = as.Date(alldata$SampleDate)
+
+#EMP WQ data (1975-2018)
 alldata<- WQ_all
   str(alldata)
 
@@ -168,10 +172,10 @@ WQplot = function(reg, quart, analyte, data, reportyear) {
     scale_y_continuous(AnalyteName_labs[analyte] , limits=lims)+
     scale_x_continuous(paste("Year(", season_names[dat[1,"quarter"]],")", sep = ""),  
                        limits=c(1966,2018)) 
+   return(p_sec)
   }
   
-  return(p_sec)
-}
+ 
 
 #winter temperature plot
 tmps<-plot_grid(WQplot("spl", "Q1", "temp", wqsum, 2018),
@@ -307,4 +311,44 @@ ggsave(secsf, file="chla_panel_fall.png", dpi=300, units="cm",width=27.9,height=
        path = "./fall_report")
 
 
+######################################################################################################
+#temperature included in recent trends for summer
+#now, for fall, make a plot for each region, season, and AnalyteName separately
+#do this so you can patch them together as grobs (like fish data panel)
 
+#first a function
+recWQplot = function(reg, quart, analyte, data, reportyear) {
+  #filter the dataset based on season, analyte, and region
+  dat = filter(data, quarter == quart, region ==reg, AnalyteName == analyte, qyear <= reportyear)
+  
+  #set up limits for plot based on the max and min for all years and regions
+  dat2 = filter(data, AnalyteName == analyte)
+  lims = c(min(5), max(25))
+  
+  #make the plot
+  p_sec <- ggplot(dat, aes(x=qyear, y= value))+
+    geom_line(colour="black", size = 0.9)+geom_point(colour="black", size = 1.6) +
+    geom_hline(aes(yintercept = mean(dat$value)), size = 0.9, color = "red", linetype = "dashed")+
+    theme_smr() + 
+    theme(legend.position="none") + 
+    scale_y_continuous(AnalyteName_labs[analyte] , limits=lims)+
+    std_x_axis_rec_years(2018) + xlab("Year(June - August)")
+  return(p_sec)
+}
+
+sumtemp = recWQplot("dt", "Q3", "temp", wqsum, 2018)
+sumtemp
+ggsave(sumtemp, file="temp_summer_recent.png", dpi=300, units="cm",width=9.3,height=6.8,
+       path = "./summer_report")
+
+#that was mighty boring. What do the max temperatures look like?
+wqmax<-group_by(tot, region, qyear, quarter, AnalyteName, date) %>%
+  summarize(maxval = max(value))
+wqmaxmean = group_by(wqmax, region, qyear, quarter, AnalyteName) %>%
+  summarize(value = mean(maxval))
+wqmaxmean2 = ungroup(wqmaxmean) %>%
+  mutate(qyear = as.numeric(qyear))
+
+maxsumtemp = recWQplot("dt", "Q3", "temp", wqmaxmean2, 2018)
+maxsumtemp
+#nope. Still boring.

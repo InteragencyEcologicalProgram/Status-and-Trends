@@ -104,4 +104,4 @@ LabData = rename(LabData, AnalyteName = ConstituentName)
 WQ_all = rbind(LabData, FieldData2)
 
 #save the result
-write.csv(WQ_all, "./data/WQ_Discrete_1975-2018.csv")
+write.csv(WQ_all, "./data/WQ_Discrete_1975-2018.csv", row.names = F)

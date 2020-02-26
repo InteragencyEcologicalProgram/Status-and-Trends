@@ -1,6 +1,8 @@
 
+library(smonitr)
+
 projectRoot <- "."
-reportRoot <- file.path(projectRoot,"spring_report")
+reportRoot <- file.path(projectRoot,"summer_report")
 dataRoot <- file.path(projectRoot,"data")
 thisDataRoot <- file.path(dataRoot,"STN")
 figRoot <- file.path(reportRoot,"figures")
@@ -19,9 +21,10 @@ dsmIndexDf
 
 dsm_fig <- ggplot(dsmIndexDf, aes(x=Year, y=Index))+
   geom_bar(stat="identity") +
-  theme_iep() +
+  theme_smr() +
   theme(legend.position="none") + 
   scale_y_continuous(expression(paste("Index"))) + 
+  std_x_axis_all_years(2018) +
   geom_hline(yintercept=mean(dsmIndexDf$Index, na.rm=TRUE), col="red", 
              linetype="dashed", size=0.9)
 
