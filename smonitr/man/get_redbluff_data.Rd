@@ -33,3 +33,9 @@ extracted from the report files.
 \description{
 Download Redbluff data from \href{https://cbr.washington.edu}{cbr.washington.edu}.
 }
+\examples{
+\dontrun{
+get_redbluff_data(2018, 2016, na = "--")
+}
+
+}

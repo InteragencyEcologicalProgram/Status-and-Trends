@@ -21,4 +21,11 @@ A character vector of nodes or attributes.
 \description{
 Parse an HTML index page.
 }
+\examples{
+\dontrun{
+parse_html_index(paste0("https://emp.baydeltalive.com/assets/",
+  "00c870b6fdc0e30d0f92d719984cfb44/application/vnd.ms-excel"))
+}
+
+}
 \keyword{internal}

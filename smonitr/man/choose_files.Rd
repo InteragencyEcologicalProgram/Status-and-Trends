@@ -4,7 +4,7 @@
 \alias{choose_files}
 \title{Choose Files}
 \usage{
-choose_files(files, selections = ".*", verbose)
+choose_files(files, selections = ".*", verbose = FALSE)
 }
 \arguments{
 \item{files}{A vector of file names.}
@@ -19,4 +19,11 @@ A vector of file names.
 }
 \description{
 Subset a list of files based on filenames or regex strings.
+}
+\examples{
+\dontrun{
+file.list = parse_ftp_index("ftp://ftp.dfg.ca.gov/IEP_Zooplankton")
+choose_files(file.list, c("CBMatrix", "MysidMatrix"))
+}
+
 }

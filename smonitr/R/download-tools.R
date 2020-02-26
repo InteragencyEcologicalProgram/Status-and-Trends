@@ -1,24 +1,3 @@
-#' Download File
-#'
-#' Helper function to download files using curl::curl_download().
-#' This function can be supplied in place of argument `parse_fun`
-#' to download files without attempting to read their contents.
-#'
-#' @param url The url of the file to download.
-#' @param fname The name of the file to save to. By default, the
-#'   filename at the end of the url is used.
-#' @param download_dir The directory to place the downloaded file in.
-#'   By default, the session temporary directory is used.
-#' @return The path of the downloaded file.
-#'
-#' @importFrom curl curl_download
-#' @export
-download_file = function(url, fname = basename(url), download_dir = tempdir()) {
-  out_path = file.path(download_dir, fname)
-  res = curl_download(url = url, destfile = out_path)
-  res
-}
-
 #' Default Parse Function
 #'
 #' Return the default file parsing function, and throw error
@@ -39,6 +18,41 @@ default_parse_fun = function(verbose) {
   }
 }
 
+
+#############################
+###      file parsing     ###
+#############################
+
+
+#' Download File
+#'
+#' Helper function to download files using curl::curl_download().
+#' This function can be supplied in place of argument `parse_fun`
+#' to download files without attempting to read their contents.
+#'
+#' @param url The url of the file to download.
+#' @param fname The name of the file to save to. By default, the
+#'   filename at the end of the url is used.
+#' @param download_dir The directory to place the downloaded file in.
+#'   By default, the session temporary directory is used.
+#' @return The path of the downloaded file.
+#'
+#' @examples
+#' \dontrun{
+#' download_file(paste0("https://raw.githubusercontent.com/",
+#'   "InteragencyEcologicalProgram/Status-and-Trends/master/data/",
+#'   "Grandtab_adultsalmon.csv"))
+#' }
+#'
+#' @importFrom curl curl_download
+#' @export
+download_file = function(url, fname = basename(url), download_dir = tempdir()) {
+  out_path = file.path(download_dir, fname)
+  res = curl_download(url = url, destfile = out_path)
+  res
+}
+
+
 #' Parse Remotely-Hosted Excel File
 #'
 #' Helper function for parsing an Excel file hosted on a website
@@ -49,6 +63,16 @@ default_parse_fun = function(verbose) {
 #'
 #' @param path The URL or FTP directory of the Excel file.
 #' @param ... Other arguments to pass to [readxl::read_excel()]
+#' @return A dataframe.
+#'
+#' @examples
+#' \dontrun{
+#' parse_remote_excel(paste0("https://github.com/",
+#'     "InteragencyEcologicalProgram/Status-and-Trends/blob/",
+#'     "9d1ba8ec3f475e96dbdd7788b45c26fb0fc55b0b/data/",
+#'     "EMPMysidBPUEMatrixAug2019.xlsx?raw=true"),
+#'   sheet = "MysidBPUEMatrix1972-2018", guess_max = 100000)
+#' }
 #'
 #' @importFrom curl curl_download
 #' @importFrom stringr str_detect
@@ -57,9 +81,10 @@ parse_remote_excel = function(path, ...) {
   if (!requireNamespace("readxl")) {
     stop("package \"readxl\" is not available.")
   }
-  if (str_detect(path, "xlsx$")) {
+  # added "?.*" to regex to support urls with query arguments
+  if (str_detect(path, "(xlsx)?.*$")) {
     type = ".xlsx"
-  } else if (str_detect(path, "xls$")) {
+  } else if (str_detect(path, "(xls)?.*$")) {
     type = ".xls"
   } else {
     stop(path, " does not appear to be a valid Excel file.")
@@ -68,6 +93,12 @@ parse_remote_excel = function(path, ...) {
   curl::curl_download(path, tf)
   readxl::read_excel(path = tf, ...)
 }
+
+
+#############################
+###    webpage parsing    ###
+#############################
+
 
 #' Parse HTML Index
 #'
@@ -79,6 +110,12 @@ parse_remote_excel = function(path, ...) {
 #' @param attribute if not `NULL`, the attribute of the node to
 #'   extract.
 #' @return A character vector of nodes or attributes.
+#'
+#' @examples
+#' \dontrun{
+#' parse_html_index(paste0("https://emp.baydeltalive.com/assets/",
+#'   "00c870b6fdc0e30d0f92d719984cfb44/application/vnd.ms-excel"))
+#' }
 #'
 #' @importFrom xml2 read_xml xml_find_all xml_attrs
 #' @keywords internal
@@ -93,12 +130,18 @@ parse_html_index = function(url, node = "//a", attribute = "href") {
   }
 }
 
+
 #' Parse FTP Index
 #'
 #' Parse an FTP index page.
 #'
 #' @param url The url of the FTP directory to parse.
 #' @return A character vector of file names.
+#'
+#' @examples
+#' \dontrun{
+#' parse_ftp_index("ftp://ftp.dfg.ca.gov/IEP_Zooplankton")
+#' }
 #'
 #' @importFrom curl curl new_handle
 #' @importFrom stringr str_detect str_c
@@ -113,6 +156,12 @@ parse_ftp_index = function(url) {
   readLines(con)
 }
 
+
+#############################
+###    main interfaces    ###
+#############################
+
+
 #' Choose Files
 #'
 #' Subset a list of files based on filenames or regex strings.
@@ -123,10 +172,16 @@ parse_ftp_index = function(url) {
 #' @param verbose If `TRUE`, display descriptive message.
 #' @return A vector of file names.
 #'
+#' @examples
+#' \dontrun{
+#' file.list = parse_ftp_index("ftp://ftp.dfg.ca.gov/IEP_Zooplankton")
+#' choose_files(file.list, c("CBMatrix", "MysidMatrix"))
+#' }
+#'
 #' @importFrom stringr str_c str_detect
 #' @importFrom glue glue
 #' @export
-choose_files = function(files, selections = ".*", verbose) {
+choose_files = function(files, selections = ".*", verbose = FALSE) {
   if (verbose) {
     message("Found files:\n",
       str_c("    ", files, sep = "", collapse = "\n"))
@@ -198,6 +253,7 @@ get_edi_data = function(pkg_id, fnames, parse_fun, ..., verbose = TRUE) {
   dfs
 }
 
+
 #' Download Open Data Portal Package Files
 #'
 #' Download files from an Open Data Portal, assuming it uses the CKAN
@@ -236,6 +292,7 @@ get_odp_data = function(portal_url = "https://data.cnra.ca.gov", pkg_id, fnames,
   map(included_entities, parse_fun, ...)
 }
 
+
 #' Download Redbluff Data
 #'
 #' Download Redbluff data from [cbr.washington.edu](https://cbr.washington.edu).
@@ -247,6 +304,11 @@ get_odp_data = function(portal_url = "https://data.cnra.ca.gov", pkg_id, fnames,
 #' @return a named list of dataframes. The list also includes an
 #'   attribute "Notes" of same length containing the notes section
 #'   extracted from the report files.
+#'
+#' @examples
+#' \dontrun{
+#' get_redbluff_data(2018, 2016, na = "--")
+#' }
 #'
 #' @importFrom utils head tail
 #' @importFrom stringr str_detect
@@ -323,6 +385,7 @@ get_baydeltalive_data = function(asset_id, path_suffix, fnames, parse_fun, ..., 
   dfs
 }
 
+
 #' Download FTP Data
 #'
 #' Download data from an FTP server.
@@ -336,10 +399,10 @@ get_baydeltalive_data = function(asset_id, path_suffix, fnames, parse_fun, ..., 
 #'
 #' @examples
 #' \dontrun{
-#' get_baydeltalive_data("00c870b6fdc0e30d0f92d719984cfb44",
-#'   "application/vnd.ms-excel", "Field_Data_[0-9]{4}-[0-9]{4}x*",
-#'   parse_remote_excel, guess_max = 100000L)
-#'}
+#' get_ftp_data("ftp://ftp.dfg.ca.gov", "IEP_Zooplankton", "MysidMatrix",
+#'   parse_remote_excel, sheet = "Mysid CPUE Matrix 1972-2018 ",
+#'   guess_max = 100000L)
+#' }
 #'
 #' @importFrom utils head tail
 #' @importFrom stringr str_subset

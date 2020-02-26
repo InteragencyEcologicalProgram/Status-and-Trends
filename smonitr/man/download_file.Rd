@@ -23,3 +23,11 @@ Helper function to download files using curl::curl_download().
 This function can be supplied in place of argument \code{parse_fun}
 to download files without attempting to read their contents.
 }
+\examples{
+\dontrun{
+download_file(paste0("https://raw.githubusercontent.com/",
+  "InteragencyEcologicalProgram/Status-and-Trends/master/data/",
+  "Grandtab_adultsalmon.csv"))
+}
+
+}

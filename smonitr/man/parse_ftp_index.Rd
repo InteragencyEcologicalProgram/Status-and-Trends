@@ -15,4 +15,10 @@ A character vector of file names.
 \description{
 Parse an FTP index page.
 }
+\examples{
+\dontrun{
+parse_ftp_index("ftp://ftp.dfg.ca.gov/IEP_Zooplankton")
+}
+
+}
 \keyword{internal}

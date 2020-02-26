@@ -31,9 +31,9 @@ Download data from an FTP server.
 }
 \examples{
 \dontrun{
-get_baydeltalive_data("00c870b6fdc0e30d0f92d719984cfb44",
-  "application/vnd.ms-excel", "Field_Data_[0-9]{4}-[0-9]{4}x*",
-  parse_remote_excel, guess_max = 100000L)
+get_ftp_data("ftp://ftp.dfg.ca.gov", "IEP_Zooplankton", "MysidMatrix",
+  parse_remote_excel, sheet = "Mysid CPUE Matrix 1972-2018 ",
+  guess_max = 100000L)
 }
 
 }
