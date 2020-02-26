@@ -45,32 +45,61 @@ cpue = catch %>%
   ungroup() %>%
   mutate(CPUE = Catch / Time)
 
-yolo_splittail_fig = cpue %>%
+# full plots
+yolo_splittail_all = cpue %>%
   filter(CommonName == "Splittail") %>% {
-  ggplot(., aes(x = Year, y = CPUE)) +
+    ggplot(., aes(x = Year, y = CPUE)) +
     theme_smr() +
     geom_col(fill = "black") +
     lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
-    std_x_axis_all_years(rpt_yr = report_year,
-      start_yr = min(.$Year)) +
+    std_x_axis_all_years(rpt_yr = report_year) +
     scale_y_continuous("Fish catch per thousand hours",
       labels = scales::label_number(scale = 1000))
   }
 
-yolo_chinook_fig = cpue %>%
+yolo_chinook_all = cpue %>%
   filter(CommonName == "Chinook Salmon") %>% {
     ggplot(., aes(x = Year, y = CPUE)) +
     theme_smr() +
     geom_col(fill = "black") +
     lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
-    std_x_axis_all_years(rpt_yr = report_year,
-      start_yr = min(.$Year)) +
+    std_x_axis_all_years(rpt_yr = report_year) +
     scale_y_continuous("Fish catch per thousand hours",
       labels = scales::label_number(scale = 1000))
   }
 
-ggsave(yolo_splittail_fig, file = file.path(fig.root, "yolo_splittail.png"),
+# recent plots
+yolo_splittail_recent = cpue %>%
+  filter(CommonName == "Splittail") %>% {
+    ggplot(., aes(x = Year, y = CPUE)) +
+    theme_smr() +
+    geom_col(fill = "black") +
+    lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
+    std_x_axis_rec_years(rpt_yr = report_year) +
+    scale_y_continuous("Fish catch per thousand hours",
+      labels = scales::label_number(scale = 1000))
+  }
+
+yolo_chinook_recent = cpue %>%
+  filter(CommonName == "Chinook Salmon") %>% {
+    ggplot(., aes(x = Year, y = CPUE)) +
+    theme_smr() +
+    geom_col(fill = "black") +
+    lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
+    std_x_axis_rec_years(rpt_yr = report_year) +
+    scale_y_continuous("Fish catch per thousand hours",
+      labels = scales::label_number(scale = 1000))
+  }
+
+# save plots
+ggsave(yolo_splittail_all, file = file.path(fig.root, "yolo_splittail.png"),
   dpi = 300, units = "cm", width = 9.3, height = 6.8)
 
-ggsave(yolo_chinook_fig, file = file.path(fig.root, "yolo_chinook.png"),
+ggsave(yolo_chinook_all, file = file.path(fig.root, "yolo_chinook.png"),
+  dpi = 300, units = "cm", width = 9.3, height = 6.8)
+
+ggsave(yolo_splittail_recent, file = file.path(fig.root, "yolo_splittail_recent.png"),
+  dpi = 300, units = "cm", width = 9.3, height = 6.8)
+
+ggsave(yolo_chinook_recent, file = file.path(fig.root, "yolo_chinook_recent.png"),
   dpi = 300, units = "cm", width = 9.3, height = 6.8)
