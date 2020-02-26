@@ -1,3 +1,24 @@
+#' Download File
+#'
+#' Helper function to download files using curl::curl_download().
+#' This function can be supplied in place of argument `parse_fun`
+#' to download files without attempting to read their contents.
+#'
+#' @param url The url of the file to download.
+#' @param fname The name of the file to save to. By default, the
+#'   filename at the end of the url is used.
+#' @param download_dir The directory to place the downloaded file in.
+#'   By default, the session temporary directory is used.
+#' @return The path of the downloaded file.
+#'
+#' @importFrom curl curl_download
+#' @export
+download_file = function(url, fname = basename(url), download_dir = tempdir()) {
+  out_path = file.path(download_dir, fname)
+  res = curl_download(url = url, destfile = out_path)
+  res
+}
+
 #' Default Parse Function
 #'
 #' Return the default file parsing function, and throw error
