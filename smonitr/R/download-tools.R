@@ -18,6 +18,36 @@ default_parse_fun = function(verbose) {
   }
 }
 
+#' Parse Remotely-Hosted Excel File
+#'
+#' Helper function for parsing an Excel file hosted on a website
+#' or FTP server.
+#'
+#' @note This function will be defunct once `readxl::read_excel()`
+#'   [supports reading from more general inputs](https://github.com/tidyverse/readxl/issues/278).
+#'
+#' @param path The URL or FTP directory of the Excel file.
+#' @param ... Other arguments to pass to [readxl::read_excel()]
+#'
+#' @importFrom curl curl_download
+#' @importFrom stringr str_detect
+#' @export
+parse_remote_excel = function(path, ...) {
+  if (!requireNamespace("readxl")) {
+    stop("package \"readxl\" is not available.")
+  }
+  if (str_detect(path, "xlsx$")) {
+    type = ".xlsx"
+  } else if (str_detect(path, "xls$")) {
+    type = ".xls"
+  } else {
+    stop(path, " does not appear to be a valid Excel file.")
+  }
+  tf = tempfile(fileext = type)
+  curl::curl_download(path, tf)
+  readxl::read_excel(path = tf, ...)
+}
+
 #' Parse HTML Index
 #'
 #' Parse an HTML index page.
@@ -29,10 +59,10 @@ default_parse_fun = function(verbose) {
 #'   extract.
 #' @return A character vector of nodes or attributes.
 #'
-#' @importFrom xml2 read_html xml_find_all xml_attrs
+#' @importFrom xml2 read_xml xml_find_all xml_attrs
 #' @keywords internal
 parse_html_index = function(url, node = "//a", attribute = "href") {
-  index.page = read_html(url)
+  index.page = read_xml(url, as_html = TRUE)
   nodes = xml_find_all(index.page, "//a")
   if (!is.null(attribute)) {
     node.attr = xml_attrs(nodes, "href")
@@ -41,6 +71,27 @@ parse_html_index = function(url, node = "//a", attribute = "href") {
     paste(nodes)
   }
 }
+
+#' Parse FTP Index
+#'
+#' Parse an FTP index page.
+#'
+#' @param url The url of the FTP directory to parse.
+#' @return A character vector of file names.
+#'
+#' @importFrom curl curl new_handle
+#' @importFrom stringr str_detect str_c
+#' @keywords internal
+parse_ftp_index = function(url) {
+  if (!str_detect(url, "/$")) {
+    url = str_c(url, "/")
+  }
+  con = curl(url = url, "r",
+    handle = new_handle(dirlistonly = TRUE))
+  on.exit(close(con))
+  readLines(con)
+}
+
 
 #' Download EDI Package Files
 #'
@@ -200,12 +251,6 @@ get_redbluff_data = function(report_year, start_year = 2004, parse_fun, ..., ver
 #'
 #' @examples
 #' \dontrun{
-#'  parse_remote_excel = function(url, type = c(".xlsx", ".xls"), ...) {
-#'    type = match.arg(type, c(".xlsx", ".xls"))
-#'    tf = tempfile(fileext = type)
-#'    curl::curl_download(url, tf)
-#'    readxl::read_excel(tf, ...)
-#' }
 #' get_baydeltalive_data("00c870b6fdc0e30d0f92d719984cfb44",
 #'   "application/vnd.ms-excel", "Field_Data_[0-9]{4}-[0-9]{4}x*",
 #'   parse_remote_excel, guess_max = 100000L)
@@ -222,7 +267,7 @@ get_baydeltalive_data = function(asset_id, path_suffix, fnames, parse_fun, ..., 
   } else if (!is.function(parse_fun)) {
     stop("argument \"parse_fun\" must be a function.")
   }
-  bdl_url = glue("https://emp.baydeltalive.com/assets/{asset_id}/{path_suffix}")  
+  bdl_url = glue("https://emp.baydeltalive.com/assets/{asset_id}/{path_suffix}")
   all_files = parse_html_index(bdl_url, "//a", "href")
   if (verbose) {
     message("Asset contains entries:\n",
@@ -240,6 +285,61 @@ get_baydeltalive_data = function(asset_id, path_suffix, fnames, parse_fun, ..., 
       str_c("    ", included_files, sep = "", collapse = "\n"))
   }
   dfs = map(glue("{bdl_url}/{included_files}"), parse_fun, ...)
+  names(dfs) = included_files
+  dfs
+}
+
+#' Download FTP Data
+#'
+#' Download data from an FTP server.
+#'
+#' @param ftp_path The FTP directory.
+#' @param path_suffix Path suffix(es), specifying subfolders of the
+#'   asset to search
+#' @inheritParams get_edi_data
+#' @return a named list of dataframes. The list also includes an
+#'   attribute "Notes" of same length containing the notes section
+#'   extracted from the report files.
+#'
+#' @examples
+#' \dontrun{
+#' get_baydeltalive_data("00c870b6fdc0e30d0f92d719984cfb44",
+#'   "application/vnd.ms-excel", "Field_Data_[0-9]{4}-[0-9]{4}x*",
+#'   parse_remote_excel, guess_max = 100000L)
+#'}
+#'
+#' @importFrom utils head tail
+#' @importFrom stringr str_subset
+#' @importFrom glue glue
+#' @importFrom purrr map map2
+#' @export
+get_ftp_data = function(ftp_address, dir_path, fnames, parse_fun, ..., verbose = TRUE) {
+  if (missing(parse_fun)) {
+    parse_fun = default_parse_fun(verbose)
+  } else if (!is.function(parse_fun)) {
+    stop("argument \"parse_fun\" must be a function.")
+  }
+  if (!str_detect(ftp_address, "^ftp://")) {
+    ftp_address = str_c("ftp://", ftp_address)
+  }
+  ftp_path = glue("{ftp_address}/{dir_path}")
+  all_files = parse_ftp_index(ftp_path)
+  if (verbose) {
+    message("Directory contains files:\n",
+      str_c("    ", paste(all_files), sep = "", collapse = "\n"))
+  }
+  # select entities that match fnames
+  fname_regex = str_c(glue("({fnames})"), collapse = "|")
+  included_files = str_subset(all_files, fname_regex)
+  if (length(included_files) < length(fnames)) {
+    stop("Not all specified filenames are included in package")
+  }
+  # download data
+  if (verbose) {
+    message("Downloading files:\n",
+      str_c("    ", included_files, sep = "", collapse = "\n"))
+  }
+  dfs = map(glue("{ftp_path}/{included_files}"), parse_fun, ...)
   names(dfs) = included_files
   dfs
 }
