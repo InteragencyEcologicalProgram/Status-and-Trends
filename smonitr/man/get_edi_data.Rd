@@ -25,3 +25,9 @@ A named list of dataframes.
 \description{
 Download the latest revision of files in an EDI package
 }
+\examples{
+\dontrun{
+get_edi_data(233, "YBFMP_Fish", guess_max = 1000000)
+}
+
+}

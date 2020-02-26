@@ -7,6 +7,10 @@
 get_ftp_data(ftp_address, dir_path, fnames, parse_fun, ..., verbose = TRUE)
 }
 \arguments{
+\item{ftp_address}{The FTP server address.}
+
+\item{dir_path}{FTP directory to search.}
+
 \item{fnames}{A vector of file names in the package to download.
 Supports regex.}
 
@@ -16,11 +20,6 @@ all files in fnames can be parsed using \code{readr::read_csv()}.}
 \item{...}{Additional arguments to pass to \code{parse_fun}.}
 
 \item{verbose}{If \code{TRUE}, display descriptive messages.}
-
-\item{ftp_path}{The FTP directory.}
-
-\item{path_suffix}{Path suffix(es), specifying subfolders of the
-asset to search}
 }
 \value{
 a named list of dataframes. The list also includes an

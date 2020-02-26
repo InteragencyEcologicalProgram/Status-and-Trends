@@ -35,3 +35,9 @@ a named list of dataframes.
 Download files from an Open Data Portal, assuming it uses the CKAN
 API.
 }
+\examples{
+\dontrun{
+get_odp_data(pkg_id = "dayflow", "Dayflow Results")
+}
+
+}

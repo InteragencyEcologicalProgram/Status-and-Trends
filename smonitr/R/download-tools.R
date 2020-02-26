@@ -92,6 +92,37 @@ parse_ftp_index = function(url) {
   readLines(con)
 }
 
+#' Choose Files
+#'
+#' Subset a list of files based on filenames or regex strings.
+#'
+#' @param files A vector of file names.
+#' @param selections A vector of file names to choose from `files`.
+#'   Supports regex.
+#' @param verbose If `TRUE`, display descriptive message.
+#' @return A vector of file names.
+#'
+#' @importFrom stringr str_c str_detect
+#' @importFrom glue glue
+#' @export
+choose_files = function(files, selections = ".*", verbose) {
+  if (verbose) {
+    message("Found files:\n",
+      str_c("    ", files, sep = "", collapse = "\n"))
+  }
+  # select entities that match fnames
+  fname_regex = str_c(glue("({selections})"), collapse = "|")
+  selected_files = files[str_detect(files, fname_regex)]
+  if (length(selected_files) < length(selections)) {
+    stop("Not all specified selections were found.")
+  }
+  if (verbose) {
+    message("Selected files:\n",
+      str_c("    ", selected_files, sep = "", collapse = "\n"))
+  }
+  selected_files
+}
+
 
 #' Download EDI Package Files
 #'
@@ -105,6 +136,11 @@ parse_ftp_index = function(url) {
 #' @param ... Additional arguments to pass to `parse_fun`.
 #' @param verbose If `TRUE`, display descriptive messages.
 #' @return A named list of dataframes.
+#'
+#' @examples
+#' \dontrun{
+#' get_edi_data(233, "YBFMP_Fish", guess_max = 1000000)
+#' }
 #'
 #' @importFrom utils tail
 #' @importFrom glue glue
@@ -130,20 +166,10 @@ get_edi_data = function(pkg_id, fnames, parse_fun, ..., verbose = TRUE) {
   all_entities = readLines(pkg_url, warn = FALSE)
   name_urls = glue("https://pasta.lternet.edu/package/name/eml/edi/{pkg_id}/{latest_revision}/{all_entities}")
   names(all_entities) = map_chr(name_urls, readLines, warn = FALSE)
-  if (verbose) {
-    message("Package contains files:\n",
-      str_c("    ", names(all_entities), sep = "", collapse = "\n"))
-  }
-  # select entities that match fnames
-  fname_regex = str_c(glue("({fnames})"), collapse = "|")
-  included_entities = all_entities[str_detect(names(all_entities), fname_regex)]
-  if (length(included_entities) < length(fnames)) {
-    stop("Not all specified filenames are included in package")
-  }
+  included_entities = all_entities[choose_files(names(all_entities), fnames, verbose)]
   # download data
   if (verbose) {
-    message("Downloading files:\n",
-      str_c("    ", names(included_entities), sep = "", collapse = "\n"))
+    message("Downloading files...")
   }
   dfs = map(glue("https://portal.edirepository.org/nis/dataviewer?packageid=edi.{pkg_id}.{latest_revision}&entityid={included_entities}"),
     parse_fun, ...)
@@ -160,6 +186,11 @@ get_edi_data = function(pkg_id, fnames, parse_fun, ..., verbose = TRUE) {
 #' @inheritParams get_edi_data
 #' @return a named list of dataframes.
 #'
+#' @examples
+#' \dontrun{
+#' get_odp_data(pkg_id = "dayflow", "Dayflow Results")
+#' }
+#'
 #' @importFrom glue glue
 #' @importFrom stringr str_detect str_c
 #' @importFrom jsonlite fromJSON
@@ -172,25 +203,16 @@ get_odp_data = function(portal_url = "https://data.cnra.ca.gov", pkg_id, fnames,
     stop("argument \"parse_fun\" must be a function.")
   }
   opd_url = glue("{portal_url}/api/3/action/package_show?id={pkg_id}")
-  all_entities = fromJSON(opd_url)[[c("result", "resources")]][c("name", "url")]
-  if (verbose) {
-    message("Package contains files:\n",
-      str_c("    ", paste(all_entities$name), sep = "", collapse = "\n"))
-  }
-  # select entities that match fnames
-  fname_regex = str_c(glue("({fnames})"), collapse = "|")
-  included_entities = all_entities[which(str_detect(all_entities$name, fname_regex)), ]
-  if (length(included_entities$name) < length(fnames)) {
-    stop("Not all specified filenames are included in package")
-  }
+  entity_list = fromJSON(opd_url)[[c("result", "resources")]][c("name", "url")]
+  all_entities = as.list(entity_list$url)
+  # use paste() to handle NA names
+  names(all_entities) = paste(entity_list$name)
+  included_entities = all_entities[choose_files(names(all_entities), fnames, verbose)]
   # download data
   if (verbose) {
-    message("Downloading files:\n",
-      str_c("    ", names(included_entities$name), sep = "", collapse = "\n"))
+    message("Downloading files...")
   }
-  dfs = map(included_entities$url, parse_fun, ...)
-  names(dfs) = included_entities$name
-  dfs
+  map(included_entities, parse_fun, ...)
 }
 
 #' Download Redbluff Data
@@ -269,20 +291,11 @@ get_baydeltalive_data = function(asset_id, path_suffix, fnames, parse_fun, ..., 
   }
   bdl_url = glue("https://emp.baydeltalive.com/assets/{asset_id}/{path_suffix}")
   all_files = parse_html_index(bdl_url, "//a", "href")
-  if (verbose) {
-    message("Asset contains entries:\n",
-      str_c("    ", paste(all_files), sep = "", collapse = "\n"))
-  }
   # select entities that match fnames
-  fname_regex = str_c(glue("({fnames})"), collapse = "|")
-  included_files = str_subset(all_files, fname_regex)
-  if (length(included_files) < length(fnames)) {
-    stop("Not all specified filenames are included in package")
-  }
+  included_files = choose_files(all_files, fnames, verbose)
   # download data
   if (verbose) {
-    message("Downloading files:\n",
-      str_c("    ", included_files, sep = "", collapse = "\n"))
+    message("Downloading files...")
   }
   dfs = map(glue("{bdl_url}/{included_files}"), parse_fun, ...)
   names(dfs) = included_files
@@ -293,9 +306,8 @@ get_baydeltalive_data = function(asset_id, path_suffix, fnames, parse_fun, ..., 
 #'
 #' Download data from an FTP server.
 #'
-#' @param ftp_path The FTP directory.
-#' @param path_suffix Path suffix(es), specifying subfolders of the
-#'   asset to search
+#' @param ftp_address The FTP server address.
+#' @param dir_path FTP directory to search.
 #' @inheritParams get_edi_data
 #' @return a named list of dataframes. The list also includes an
 #'   attribute "Notes" of same length containing the notes section
@@ -324,20 +336,10 @@ get_ftp_data = function(ftp_address, dir_path, fnames, parse_fun, ..., verbose =
   }
   ftp_path = glue("{ftp_address}/{dir_path}")
   all_files = parse_ftp_index(ftp_path)
-  if (verbose) {
-    message("Directory contains files:\n",
-      str_c("    ", paste(all_files), sep = "", collapse = "\n"))
-  }
-  # select entities that match fnames
-  fname_regex = str_c(glue("({fnames})"), collapse = "|")
-  included_files = str_subset(all_files, fname_regex)
-  if (length(included_files) < length(fnames)) {
-    stop("Not all specified filenames are included in package")
-  }
+  included_files = choose_files(all_files, fnames, verbose)
   # download data
   if (verbose) {
-    message("Downloading files:\n",
-      str_c("    ", included_files, sep = "", collapse = "\n"))
+    message("Downloading files...")
   }
   dfs = map(glue("{ftp_path}/{included_files}"), parse_fun, ...)
   names(dfs) = included_files
