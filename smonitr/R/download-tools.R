@@ -73,8 +73,15 @@ extract_files = function(path, fnames = ".*", ..., verbose = TRUE) {
 #' }
 #'
 #' @importFrom curl curl_download
+#' @importFrom stringr str_detect str_replace
 #' @export
 download_file = function(url, fname = basename(url), download_dir = tempdir()) {
+  if (fname == basename(url)) {
+    # remove queries from fname
+    if (str_detect(fname, ".+\\?.*$")) {
+      fname = str_replace(fname, "\\?.*$", "")
+    }
+  }
   out_path = file.path(download_dir, fname)
   res = curl_download(url = url, destfile = out_path)
   res
@@ -110,9 +117,9 @@ parse_remote_excel = function(path, ...) {
     stop("package \"readxl\" is not available.")
   }
   # added "?.*" to regex to support urls with query arguments
-  if (str_detect(path, "(xlsx)?.*$")) {
+  if (str_detect(path, "(xlsx)\\?.*$")) {
     type = ".xlsx"
-  } else if (str_detect(path, "(xls)?.*$")) {
+  } else if (str_detect(path, "(xls)\\?.*$")) {
     type = ".xls"
   } else {
     stop(path, " does not appear to be a valid Excel file.")
