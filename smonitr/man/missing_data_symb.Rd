@@ -4,29 +4,26 @@
 \alias{missing_data_symb}
 \title{Add symbols to a ggplot representing missing data}
 \usage{
-missing_data_symb(df, yr_var, rpt_yr, plot_type)
+missing_data_symb(df, yr_var, rpt_yr, symb_size)
 }
 \arguments{
 \item{df}{The dataframe that contains the data in the ggplot}
 
-\item{yr_var}{The name of the variable in df that contains the years used
-in the ggplot. Must be "numeric" type.}
+\item{yr_var}{The name of the variable in \code{df} that contains the years
+used in the ggplot. Must be "numeric" type.}
 
 \item{rpt_yr}{The user-defined report year for the Seasonal Monitoring Report.
 Must be an integer.}
 
-\item{plot_type}{Specifies the type of plot the function is being used on. Use
-\code{plot_type = "all"} for plots of all years, and
-\code{plot_type = "recent"} for plots of recent years.}
+\item{symb_size}{Specifies the size of the symbol used to represent missing
+data.}
 }
 \value{
-Brown open diamond symbols to a ggplot representing years with missing
-    data. The symbols are scaled differently depending upon if it is on a
-    plot of all years or recent years.
+A ggplot object with tan triangle symbols that represent years with
+    missing data.
 }
 \description{
-Adds brown open diamond symbols to a ggplot to represent
-    years with missing data. This function is intended to be used on plots
-    with \code{geom_col} geoms. Can be used with plots of all years and
-    recent years, specified by the \code{plot_type} argument.
+Adds tan triangle symbols to a ggplot to represent years with
+    missing data. This function is intended to be used on plots with
+    \code{geom_col} geoms.
 }

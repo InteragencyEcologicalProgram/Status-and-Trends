@@ -139,23 +139,20 @@ std_x_axis_rec_years <- function(rpt_yr) {
 
 
 #' @title Add symbols to a ggplot representing missing data
-#' @description Adds brown open diamond symbols to a ggplot to represent
-#'     years with missing data. This function is intended to be used on plots
-#'     with \code{geom_col} geoms. Can be used with plots of all years and
-#'     recent years, specified by the \code{plot_type} argument.
+#' @description Adds tan triangle symbols to a ggplot to represent years with
+#'     missing data. This function is intended to be used on plots with
+#'     \code{geom_col} geoms.
 #'
 #' @param df The dataframe that contains the data in the ggplot
-#' @param yr_var The name of the variable in df that contains the years used
-#'     in the ggplot. Must be "numeric" type.
+#' @param yr_var The name of the variable in \code{df} that contains the years
+#'     used in the ggplot. Must be "numeric" type.
 #' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
 #'     Must be an integer.
-#' @param plot_type Specifies the type of plot the function is being used on. Use
-#'     \code{plot_type = "all"} for plots of all years, and
-#'     \code{plot_type = "recent"} for plots of recent years.
+#' @param symb_size Specifies the size of the symbol used to represent missing
+#'     data.
 #'
-#' @return Brown open diamond symbols to a ggplot representing years with missing
-#'     data. The symbols are scaled differently depending upon if it is on a
-#'     plot of all years or recent years.
+#' @return A ggplot object with tan triangle symbols that represent years with
+#'     missing data.
 #' @import ggplot2
 #' @importFrom rlang enquo
 #' @importFrom rlang as_name
@@ -163,32 +160,25 @@ std_x_axis_rec_years <- function(rpt_yr) {
 #' @importFrom dplyr anti_join
 #' @importFrom tibble tibble
 #' @export
-missing_data_symb <- function(df, yr_var, rpt_yr, plot_type) {
+missing_data_symb <- function(df, yr_var, rpt_yr, symb_size) {
   # Convert yr_var to enquo for non-standard eval
-  yr_var_enquo <- rlang::enquo(yr_var)
+  yr_var_enquo <- enquo(yr_var)
 
   # Calculate minimum year in df
-  yr_min <- min(dplyr::pull(df, !!yr_var_enquo))
+  yr_min <- min(pull(df, !!yr_var_enquo))
 
   # Create a tibble with all possible years
-  all_yrs <- tibble::tibble(
+  all_yrs <- tibble(
     years = seq(yr_min, rpt_yr, 1),
     result = 0
   )
 
   # Find missing years in df
-  missing_yrs <- dplyr::anti_join(
+  missing_yrs <- anti_join(
     all_yrs,
     df,
-    by = c("years" = rlang::as_name(yr_var_enquo))
+    by = c("years" = as_name(yr_var_enquo))
   )
-
-  # Define symbol size base upon plot_type
-  if (plot_type == "all") {
-    symb_size <- 1
-  } else if (plot_type == "recent") {
-    symb_size <- 2
-  }
 
   # Add in symbols for missing years if necessary
   if (!is.null(missing_yrs)) {
@@ -200,9 +190,10 @@ missing_data_symb <- function(df, yr_var, rpt_yr, plot_type) {
       ),
       inherit.aes = FALSE,
       na.rm = TRUE,
-      shape = 5,
+      shape = 24,
       size = symb_size,
-      color = "saddlebrown"
+      fill = "tan2",
+      color = "gray10"
     )
   }
 
