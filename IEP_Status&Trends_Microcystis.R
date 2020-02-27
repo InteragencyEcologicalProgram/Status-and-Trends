@@ -1,8 +1,7 @@
 library(tidyverse)
 library(readxl)
 library(lubridate)
-
-source("IEP_Plot_Theme.R")
+require(smonitr)
 
 Stations<-read_csv("data/Master station key.csv", col_types = "ccddc")%>%
   select(Source, Station, Latitude, Longitude)
@@ -52,19 +51,19 @@ Micro<-bind_rows(EMP, TNS)%>%
   filter(N_Microcystis>0)%>%
   gather(key="Severity", value="Frequency", Microcystis1, Microcystis2, Microcystis3, Microcystis4, Microcystis5)%>%
   mutate(Severity=recode(Severity, "Microcystis1"="Absent", "Microcystis2"="Low", "Microcystis3"="Medium", "Microcystis4"="High", "Microcystis5"="Very high"))%>%
-  mutate(Severity=factor(Severity, levels=c("Very high", "High", "Medium", "Low", "Absent")))
+  mutate(Severity=factor(Severity, levels=c("Very high", "High", "Medium", "Low", "Absent")))%>%
+  filter(Region%in%"Delta" & Severity!="Absent" & Year>=2004)
 
 pMicro<-ggplot()+
   geom_bar(data=Micro, aes(x=Year, y=Frequency, fill=Severity), stat="identity")+
-  scale_fill_brewer(type="div", palette="RdYlBu", guide=guide_legend(keyheight=0.8, title=NULL, direction="horizontal", label.position="top", reverse=TRUE))+
-  scale_x_continuous(limits=c(1967, max(Micro$Year)+1), expand=expand_scale(0,0))+
+  scale_fill_brewer(type="div", palette="RdYlBu", guide=guide_legend(keyheight=0.5, title=NULL, direction="horizontal", label.position="top", reverse=TRUE))+
+  std_x_axis_rec_years(2018)+
   scale_y_continuous(expand=expand_scale(0,0))+
-  facet_wrap(~Region, scales = "free_x")+
   ylab("Relative frequency")+
   xlab("Date")+
-  theme_iep()+
-  theme(legend.position=c(0.12, 0.8), legend.background=element_rect(fill="white", color="black"))
+  theme_smr()+
+  theme(legend.position=c(0.5, 1.13), legend.background=element_rect(fill="white", color="black"), plot.margin = margin(t=40))
 pMicro
 
-ggsave(pMicro, file="Microcystis_summer.png", dpi=300, units="cm",width=27.9,height=6.8,
-       path = "./summer_report")
+ggsave(pMicro, file="Microcystis_summer.png", dpi=300, units="cm", width=9.3, height=6.8,
+      path = "./summer_report")
