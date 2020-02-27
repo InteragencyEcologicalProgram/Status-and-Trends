@@ -24,6 +24,14 @@ Subset a list of files based on filenames or regex strings.
 \dontrun{
 file.list = parse_ftp_index("ftp://ftp.dfg.ca.gov/IEP_Zooplankton")
 choose_files(file.list, c("CBMatrix", "MysidMatrix"))
+
+# can also be used to select sheets in an excel file
+f = download_file(paste0("https://github.com/",
+    "InteragencyEcologicalProgram/Status-and-Trends/blob/",
+    "9d1ba8ec3f475e96dbdd7788b45c26fb0fc55b0b/data/",
+    "EMPMysidBPUEMatrixAug2019.xlsx?raw=true"), "temp.xlsx")
+sheets = readxl::excel_sheets(f)
+choose_files(sheets, "Mysid")
 }
 
 }

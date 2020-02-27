@@ -23,6 +23,34 @@ default_parse_fun = function(verbose) {
 ###      file parsing     ###
 #############################
 
+#' Extract Files From Zip
+#'
+#' Extract files from a zip archive.
+#'
+#' @param path The path to the zipfile.
+#' @param fnames A vector of file names in the archive to extract.
+#'   Supports regex.
+#' @param ... Other arguments passed to `utils::unzip()`.
+#' @param verbose If `TRUE`, display descriptive message.
+#' @return A vector of extracted file paths.
+#'
+#' @examples
+#' \dontrun{
+#' f = download_file("ftp://ftp.wildlife.ca.gov/Delta%20Smelt/SKT.zip")
+#' extract_files(f, "SKT", exdir = tempdir())
+#' }
+#'
+#' @importFrom utils unzip
+#' @export
+extract_files = function(path, fnames = ".*", ..., verbose = TRUE) {
+  all_files = unzip(path, list = TRUE)$Name
+  included_files = choose_files(all_files, fnames, verbose)
+  if (verbose) {
+    message("Extracting files...")
+  }
+  res = unzip(zipfile = path, files = included_files, ...)
+  res
+}
 
 #' Download File
 #'
@@ -176,6 +204,14 @@ parse_ftp_index = function(url) {
 #' \dontrun{
 #' file.list = parse_ftp_index("ftp://ftp.dfg.ca.gov/IEP_Zooplankton")
 #' choose_files(file.list, c("CBMatrix", "MysidMatrix"))
+#'
+#' # can also be used to select sheets in an excel file
+#' f = download_file(paste0("https://github.com/",
+#'     "InteragencyEcologicalProgram/Status-and-Trends/blob/",
+#'     "9d1ba8ec3f475e96dbdd7788b45c26fb0fc55b0b/data/",
+#'     "EMPMysidBPUEMatrixAug2019.xlsx?raw=true"), "temp.xlsx")
+#' sheets = readxl::excel_sheets(f)
+#' choose_files(sheets, "Mysid")
 #' }
 #'
 #' @importFrom stringr str_c str_detect
