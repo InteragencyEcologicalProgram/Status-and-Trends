@@ -21,9 +21,10 @@ library(dplyr) #count()
 library(tidyverse)
 library(cowplot) #grid_plot()
 library(lubridate)
+library(smonitr)
 
 
-#source("data_access_scripts/WQ_data_download.R")
+source("data_access_scripts/WQ_data_download.R")
 #or skip this if you've updated it recently and just do
 alldata = read.csv("data/WQ_discrete_1975-2018.csv", stringsAsFactors = F)
 alldata$SampleDate = as.Date(alldata$SampleDate)
@@ -104,6 +105,16 @@ str(wqsum)
 wqsum2<-aggregate(value~region+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
 wqsum2$AnalyteName<-as.factor(wqsum2$AnalyteName)
 str(wqsum2)
+
+#generate means by region, year, quarter, and AnalyteName
+wqsumz<- group_by(tot, region, qyear, quarter, AnalyteName) %>%
+  summarize(value = mean(value, an.rm = T)) %>%
+  filter(AnalyteName == "temp", region == "dt", quarter == "Q3")
+  
+  aggregate(value~region+qyear+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
+wqsum$AnalyteName<-as.factor(wqsum$AnalyteName)
+str(wqsum)
+
 
 #create custom plot formatting function
 source("winter_report/IEP_Status&Trends_util.R")
