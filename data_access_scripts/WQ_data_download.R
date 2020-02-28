@@ -92,8 +92,8 @@ names(Field) = c("StationCode", "SampleDate", "AnalyteName", "Result")
 
 #Bind all the data files together.
 FieldData = rbind(Field_Data_1975_1987x, Field_Data_1988_2006x[,-17]) %>%
-  select(SampleDate, StationCode, Result, AnalyteName) %>%
-  filter(SampleDate < "2000-01-01")
+  filter(SampleDate < "2000-01-01", Matrix == "Water") %>%
+  select(SampleDate, StationCode, Result, AnalyteName)
 
 FieldData2 = rbind(Field, FieldData)
 
@@ -104,4 +104,5 @@ LabData = rename(LabData, AnalyteName = ConstituentName)
 WQ_all = rbind(LabData, FieldData2)
 
 #save the result
-write.csv(WQ_all, "./data/WQ_Discrete_1975-2018.csv")
+write.csv(WQ_all, "./data/WQ_Discrete_1975-2018.csv", row.names = F)
+
