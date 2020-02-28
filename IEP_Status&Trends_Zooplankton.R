@@ -134,23 +134,24 @@ names(mysid)
 #exclude 1972-1973 because only subset of core stations were sampled during those years
 #exclude survey replicate 2 for the months that have those; vast majority of monthly surveys are just one replicate
 #exclude the winter months (1,2,12) initially because they have a shorter time series than the other months
-zoop_sub3<-subset(mysid, Station!="NZEZ2" & Station!="NZEZ6" & Index!=0 & Year>1973 & SurveyRep!=2 & Survey>2 & Survey<12)
+zoop_sub3<-subset(mysid, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1973 & SurveyRep!=2 & Survey>2 & Survey<12)
 
 #create separate subset of the two san pablo stations to include in graphs (no core stations in SP)
 zoop_subsp3<-subset(mysid, Station=="NZD41" | Station=="NZ41A")
 
 #create separate subset for winter months with its shorter time series
-zoop_subw3<-subset(mysid, Station!="NZEZ2" & Station!="NZEZ6" & Index!=0 & Year>1993 & SurveyRep!=2 & (Survey<3 | Survey>11))
+zoop_subw3<-subset(mysid, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1993 & SurveyRep!=2 & (Survey<3 | Survey>11))
 
 #combine the three data subsets
 zoop_s3<-rbind(zoop_sub3,zoop_subsp3,zoop_subw3)
 
 #create column that adds up counts of all mysid species
-zoop_s3$cpue<-rowSums(zoop_s3[25:32])
+zoop_s3$cpue<-rowSums(zoop_s3[17:24], na.rm = T)
 
 #reduce zooplankton data to just needed columns
 #"Year","Survey","Date","Station", "cpue"
-zoop3<-subset(zoop_s3,select=c("Year","Survey","Date","Station","cpue"))
+zoop3<-subset(zoop_s3,select=c("Year","Survey","SampleDate","Station","cpue"))
+zoop3 = mutate(zoop3, Date = SampleDate, SampleDate = NULL)
 
 #next format the bpue dataset
 
@@ -161,14 +162,14 @@ mmass$bpue_mg<-rowSums(mmass[20:27])
 mmass$bpue<-mmass$bpue*1000
 
 #reduce bpue data set to just needed columns
-zoop3b<-subset(mmass,select=c("Year","Survey","Date","Station","bpue"))
+zoop3b<-subset(mmass,select=c("Year","Survey","Station", "Date","bpue"))
 
 #combine cpue and bpue data sets
 str(zoop3)
 str(zoop3b)
 zoop3m<-left_join(zoop3,zoop3b,by=c("Year","Survey","Date","Station"))
 
-names(zoop3m)<-c("year","survey","date","station","cpue","bpue")
+names(zoop3m)<-c("year","survey","station","cpue","date","bpue")
 
 #add a taxon column so that this data frame can be combined with the others
 zoop3m$taxon<-"mys"

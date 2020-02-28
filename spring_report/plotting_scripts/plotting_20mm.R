@@ -52,4 +52,8 @@ lfs_fig <- ggplot(filter(lfsIndexDf, Year <=2018), aes(x=Year, y=Index))+
 ggsave(lfs_fig, file=file.path(figRoot,"20mm_LFS.png"), dpi=300, units="cm", 
 			 width=9.3, height=6.8)
 
+library(lubridate)
 
+dsm_fig +coord_cartesian(xlim = c(ymd_hms("2019-02-03 00:00:00"), ymd_hms("2019-02-06 00:00:00")))
+
+limits =c(ymd_hms("2019-02-03 00:00:00"), ymd_hms("2019-02-06 00:00:00"))
