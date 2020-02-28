@@ -1,10 +1,14 @@
 
+<<<<<<< HEAD
 library(ggplot2)
 
 report_year <- 2018
+=======
+library(smonitr)
+>>>>>>> rosiesstuff
 
 projectRoot <- "."
-reportRoot <- file.path(projectRoot,"spring_report")
+reportRoot <- file.path(projectRoot,"summer_report")
 dataRoot <- file.path(projectRoot,"data")
 thisDataRoot <- file.path(dataRoot,"STN")
 figRoot <- file.path(reportRoot,"figures")
@@ -29,8 +33,14 @@ dsm_fig <- ggplot(dsmIndexDf, aes(x=Year, y=Index))+
   theme_smr() +
   theme(legend.position="none") + 
   scale_y_continuous(expression(paste("Index"))) + 
+<<<<<<< HEAD
   lt_avg_line(lt_avg=mean(dsmIndexDf$Index, na.rm=TRUE)) + 
   std_x_axis_all_years(rpt_yr=report_year, start_yr=min(dsmIndexDf$Year))
+=======
+  std_x_axis_all_years(2018) +
+  geom_hline(yintercept=mean(dsmIndexDf$Index, na.rm=TRUE), col="red", 
+             linetype="dashed", size=0.9)
+>>>>>>> rosiesstuff
 
 ggsave(dsm_fig, file=file.path(figRoot,"STN_DSM.png"), dpi=300, units="cm", 
 			 width=9.3, height=6.8)

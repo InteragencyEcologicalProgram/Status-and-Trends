@@ -78,6 +78,8 @@ flows = function(quart, data) {
 
 flows(quart = "Q1",data = dmean)
 
+reportyear = 2018
+dmean = filter(dmean, qyear < 2019)
 
 ggsave(flows(quart = "Q1",data = dmean), 
        file="winter_outflow_update.png", 
