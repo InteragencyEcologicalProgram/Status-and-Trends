@@ -12,11 +12,8 @@ dataRoot <- file.path(projectRoot,"data")
 thisDataRoot <- file.path(dataRoot,"DJFMP")
 figRoot <- file.path(reportRoot,"figures")
 
-<<<<<<< HEAD
 source(file.path(projectRoot,"smonitr","R","plot_tools.R"))
-=======
-#source(file.path(projectRoot, "IEP_Plot_Theme.R"))
->>>>>>> rosiesstuff
+
 
 ##########################################################################
 ## Read in data:
@@ -79,11 +76,6 @@ splittail_fig <- ggplot(seineIndexDf, aes(x=Year, y=SplittailIndex)) +
   geom_bar(stat="identity") +
   theme_smr() +
   theme(legend.position="none") + 
-<<<<<<< HEAD
-=======
-  scale_x_continuous("Year (March - May)") + 
-  std_x_axis_all_years(2018)+
->>>>>>> rosiesstuff
   scale_y_continuous(expression(paste("Splittail Index"))) + 
   lt_avg_line(lt_avg=mean(seineIndexDf$SplittailIndex, na.rm=TRUE)) + 
   std_x_axis_all_years(rpt_yr=report_year, start_yr=min(seineIndexDf$Year))
@@ -96,11 +88,6 @@ sacpikeminnow_fig <- ggplot(seineIndexDf, aes(x=Year, y=SacPikeminnowIndex)) +
   geom_bar(stat="identity") +
   theme_smr() +
   theme(legend.position="none") + 
-<<<<<<< HEAD
-=======
-  scale_x_continuous("Year (March - May)") + 
-  std_x_axis_all_years(2018)+
->>>>>>> rosiesstuff
   scale_y_continuous(expression(paste("Sacramento Pikeminnow Index"))) + 
   lt_avg_line(lt_avg=mean(seineIndexDf$SacPikeminnowIndex, na.rm=TRUE)) + 
   std_x_axis_all_years(rpt_yr=report_year, start_yr=min(seineIndexDf$Year))
@@ -150,11 +137,6 @@ chinook_winterByLength_fig <- ggplot(chippsIndexDf,
   geom_bar(stat="identity") +
   theme_smr() +
   theme(legend.position="none") + 
-<<<<<<< HEAD
-=======
-  xlab("Year (March - May)") + 	
-  std_x_axis_all_years(2018) +
->>>>>>> rosiesstuff
   scale_y_continuous(expression(paste("Chinook Salmon Index\n(Winterrun, Unmarked Fish)"))) + 
   lt_avg_line(lt_avg=mean(chippsIndexDf$chinook_winterByLengthIndex, na.rm=TRUE)) + 
   std_x_axis_all_years(rpt_yr=report_year, start_yr=min(chippsIndexDf$Year))
