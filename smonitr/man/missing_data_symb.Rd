@@ -16,7 +16,8 @@ used in the ggplot. Must be "numeric" type.}
 Must be an integer.}
 
 \item{symb_size}{Specifies the size of the symbol used to represent missing
-data.}
+data. Must be numeric. Usually either \code{symb_size = 1} or
+\code{symb_size = 2}.}
 }
 \value{
 A ggplot object with tan triangle symbols that represent years with

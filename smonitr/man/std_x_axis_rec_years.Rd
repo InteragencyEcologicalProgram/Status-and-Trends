@@ -11,18 +11,13 @@ std_x_axis_rec_years(rpt_yr)
 Must be an integer.}
 }
 \value{
-Two ggplot layers that define the x-axis limits and breaks based upon
-    user-defined arguments
+A ggplot layer that defines the x-axis limits and breaks for plots of
+    recent data. The default limits are \code{rpt_yr - 14} to \code{rpt_yr},
+    and the default break interval is 5 years.
 }
 \description{
 Standardizes the x-axis limits and breaks for a ggplot of recent
     years of data. "Recent years" is defined as the prior 15 years from the
-    \code{rpt_yr}.
+    \code{rpt_yr}. For plots with \code{geom_col} geoms, the x-variable used
+    in the ggplot needs to be a \strong{factor}.
 }
-\section{Special Instructions}{
-
-The x-variable in the ggplot needs to be "numeric" type. This function
-    works best if the dataset is filtered to the necessary date range
-    beforehand.
-}
-
