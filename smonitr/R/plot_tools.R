@@ -74,67 +74,50 @@ round_to_mult <- function(num, mult) {
 
 #' @title  Standardize x-axis elements for ggplot of all years
 #' @description Standardizes the x-axis limits and breaks for a ggplot of
-#'     all years of data.
-#'
-#' @section Special Instructions:
-#' The x-variable in the ggplot needs to be "numeric" type.
+#'     all years of data. For plots with \code{geom_col} geoms, the
+#'     x-variable used in the ggplot needs to be a \strong{factor}.
 #'
 #' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
 #'     Must be an integer.
 #' @param start_yr The start year that defines the minimum x-axis limit for the
 #'     ggplot. Must be an integer. Default is 1966.
-#' @return Two ggplot layers that define the x-axis limits and breaks based upon
-#'     user-defined arguments
+#' @param break_int The x-axis break interval in years. Must be an integer.
+#'     Default is 10.
+#'
+#' @return A ggplot layer that defines the x-axis limits and breaks based upon
+#'     user-defined arguments.
 #' @import ggplot2
 #' @export
-std_x_axis_all_years <- function(rpt_yr, start_yr = 1966) {
+std_x_axis_all_years <- function(rpt_yr, start_yr = 1966, break_int = 10) {
   # Define year breaks
-  year_breaks <- seq(
-    from = round_to_mult(start_yr, 10),
-    to = round_to_mult(rpt_yr, 10),
-    by = 10
+  year_breaks <- as.character(
+    seq(
+      from = round_to_mult(start_yr, break_int),
+      to = round_to_mult(rpt_yr, break_int),
+      by = break_int
+    )
   )
 
-  # Create a list of layers to add to ggplot object
-  list(
-    scale_x_continuous(breaks = year_breaks),
-    coord_cartesian(xlim = c(start_yr, rpt_yr))
-  )
+  # Add layer to ggplot object
+scale_x_discrete(limits = as.character(start_yr:rpt_yr), breaks = year_breaks)
 }
 
 
 #' @title  Standardize x-axis elements for ggplot of recent years
 #' @description Standardizes the x-axis limits and breaks for a ggplot of recent
 #'     years of data. "Recent years" is defined as the prior 15 years from the
-#'     \code{rpt_yr}.
-#'
-#' @section Special Instructions:
-#' The x-variable in the ggplot needs to be "numeric" type. This function
-#'     works best if the dataset is filtered to the necessary date range
-#'     beforehand.
+#'     \code{rpt_yr}. For plots with \code{geom_col} geoms, the x-variable used
+#'     in the ggplot needs to be a \strong{factor}.
 #'
 #' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
 #'     Must be an integer.
-#' @return Two ggplot layers that define the x-axis limits and breaks based upon
-#'     user-defined arguments
+#' @return A ggplot layer that defines the x-axis limits and breaks for plots of
+#'     recent data. The default limits are \code{rpt_yr - 14} to \code{rpt_yr},
+#'     and the default break interval is 5 years.
 #' @import ggplot2
 #' @export
 std_x_axis_rec_years <- function(rpt_yr) {
-  # Define start year for recent years plots
-  start_yr <- rpt_yr - 14
-
-  # Define year breaks
-  year_breaks <- seq(
-    from = round_to_mult(start_yr, 5),
-    to = round_to_mult(rpt_yr, 5),
-    by = 5
-  )
-
-  # Create a list of layers to add to ggplot object
-  list(
-    scale_x_continuous(breaks = year_breaks),
-    coord_cartesian(xlim = c(start_yr, rpt_yr))
-  )
+  std_x_axis_all_years(rpt_yr, rpt_yr - 14, 5)
 }
 
 
@@ -149,7 +132,8 @@ std_x_axis_rec_years <- function(rpt_yr) {
 #' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
 #'     Must be an integer.
 #' @param symb_size Specifies the size of the symbol used to represent missing
-#'     data.
+#'     data. Must be numeric. Usually either \code{symb_size = 1} or
+#'     \code{symb_size = 2}.
 #'
 #' @return A ggplot object with tan triangle symbols that represent years with
 #'     missing data.
@@ -158,27 +142,34 @@ std_x_axis_rec_years <- function(rpt_yr) {
 #' @importFrom rlang as_name
 #' @importFrom dplyr pull
 #' @importFrom dplyr anti_join
+#' @importFrom dplyr mutate
 #' @importFrom tibble tibble
 #' @export
 missing_data_symb <- function(df, yr_var, rpt_yr, symb_size) {
   # Convert yr_var to enquo for non-standard eval
   yr_var_enquo <- enquo(yr_var)
 
+  # Convert yr_var in df to numeric class
+  df1 <- df %>%
+    mutate(!!yr_var_enquo := as.numeric(as.character(!!yr_var_enquo)))
+
   # Calculate minimum year in df
-  yr_min <- min(pull(df, !!yr_var_enquo))
+  yr_min <- min(pull(df1, !!yr_var_enquo))
 
   # Create a tibble with all possible years
   all_yrs <- tibble(
-    years = seq(yr_min, rpt_yr, 1),
+    years = seq.int(yr_min, rpt_yr, 1),
     result = 0
   )
 
   # Find missing years in df
-  missing_yrs <- anti_join(
-    all_yrs,
-    df,
-    by = c("years" = as_name(yr_var_enquo))
-  )
+  missing_yrs <-
+    anti_join(
+      all_yrs,
+      df1,
+      by = c("years" = as_name(yr_var_enquo))
+    ) %>%
+    mutate(years = factor(years))
 
   # Add in symbols for missing years if necessary
   if (!is.null(missing_yrs)) {
