@@ -6,6 +6,9 @@
 \usage{
 theme_smr()
 }
+\value{
+A ggplot layer that applies a custom theme as described above.
+}
 \description{
 This custom theme builds off of the \code{theme_bw()}
     ggplot theme and removes plot gridlines and modifies the text size of
