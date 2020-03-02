@@ -10,7 +10,7 @@ missing_data_symb(df, yr_var, rpt_yr, symb_size)
 \item{df}{The dataframe that contains the data in the ggplot}
 
 \item{yr_var}{The name of the variable in \code{df} that contains the years
-used in the ggplot. Must be "numeric" type.}
+used in the ggplot. Should be a \strong{factor}.}
 
 \item{rpt_yr}{The user-defined report year for the Seasonal Monitoring Report.
 Must be an integer.}

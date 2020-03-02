@@ -18,7 +18,7 @@ Must be an integer.}
 \item{x_scale_type}{The scale type for the x variable. Can be either
 \code{x_scale_type = "discrete"} or \code{x_scale_type = "cont"}. Plots
 with \code{geom_col} geoms are "discrete" scale type, and \code{geom_line}
-\code{geom_area} geoms are "cont" or continuous scale type.}
+and \code{geom_area} geoms are "cont" or continuous scale type.}
 
 \item{start_yr}{The start year that defines the minimum x-axis limit for the
 ggplot. Must be an integer. Default is 1966.}
