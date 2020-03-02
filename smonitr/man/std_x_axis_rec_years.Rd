@@ -13,7 +13,7 @@ Must be an integer.}
 \item{x_scale_type}{The scale type for the x variable. Can be either
 \code{x_scale_type = "discrete"} or \code{x_scale_type = "cont"}. Plots
 with \code{geom_col} geoms are "discrete" scale type, and \code{geom_line}
-\code{geom_area} geoms are "cont" or continuous scale type. Default is
+and \code{geom_area} geoms are "cont" or continuous scale type. Default is
 \code{x_scale_type = "discrete"}.}
 }
 \value{
@@ -24,6 +24,6 @@ A ggplot layer that defines the x-axis limits and breaks for plots of
 \description{
 Standardizes the x-axis limits and breaks for a ggplot of recent
     years of data. "Recent years" is defined as the prior 15 years from the
-    \code{rpt_yr}. For plots with \code{geom_col} geoms, the x-variable used
-    in the ggplot needs to be a \strong{factor}.
+    \code{rpt_yr} argument. For plots with \code{geom_col} geoms, the
+    x-variable used in the ggplot needs to be a \strong{factor}.
 }
