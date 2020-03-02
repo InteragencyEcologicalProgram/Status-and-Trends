@@ -4,11 +4,17 @@
 \alias{std_x_axis_rec_years}
 \title{Standardize x-axis elements for ggplot of recent years}
 \usage{
-std_x_axis_rec_years(rpt_yr)
+std_x_axis_rec_years(rpt_yr, x_scale_type = c("discrete", "cont"))
 }
 \arguments{
 \item{rpt_yr}{The user-defined report year for the Seasonal Monitoring Report.
 Must be an integer.}
+
+\item{x_scale_type}{The scale type for the x variable. Can be either
+\code{x_scale_type = "discrete"} or \code{x_scale_type = "cont"}. Plots
+with \code{geom_col} geoms are "discrete" scale type, and \code{geom_line}
+\code{geom_area} geoms are "cont" or continuous scale type. Default is
+\code{x_scale_type = "discrete"}.}
 }
 \value{
 A ggplot layer that defines the x-axis limits and breaks for plots of

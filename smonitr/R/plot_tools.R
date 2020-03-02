@@ -74,11 +74,16 @@ round_to_mult <- function(num, mult) {
 
 #' @title  Standardize x-axis elements for ggplot of all years
 #' @description Standardizes the x-axis limits and breaks for a ggplot of
-#'     all years of data. For plots with \code{geom_col} geoms, the
-#'     x-variable used in the ggplot needs to be a \strong{factor}.
+#'     all years of data. For plots with a discrete x-variable including
+#'     \code{geom_col} geoms, the x-variable used in the ggplot needs to
+#'     be a \strong{factor}.
 #'
 #' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
 #'     Must be an integer.
+#' @param x_scale_type The scale type for the x variable. Can be either
+#'     \code{x_scale_type = "discrete"} or \code{x_scale_type = "cont"}. Plots
+#'     with \code{geom_col} geoms are "discrete" scale type, and \code{geom_line}
+#'     \code{geom_area} geoms are "cont" or continuous scale type.
 #' @param start_yr The start year that defines the minimum x-axis limit for the
 #'     ggplot. Must be an integer. Default is 1966.
 #' @param break_int The x-axis break interval in years. Must be an integer.
@@ -88,18 +93,32 @@ round_to_mult <- function(num, mult) {
 #'     user-defined arguments.
 #' @import ggplot2
 #' @export
-std_x_axis_all_years <- function(rpt_yr, start_yr = 1966, break_int = 10) {
+std_x_axis_all_years <- function(rpt_yr,
+                                 x_scale_type = c("discrete", "cont"),
+                                 start_yr = 1966,
+                                 break_int = 10) {
+  # evaluate choices for scale_type
+  x_scale_type <- match.arg(x_scale_type, c("discrete", "cont"))
+
   # Define year breaks
-  year_breaks <- as.character(
-    seq(
-      from = round_to_mult(start_yr, break_int),
-      to = round_to_mult(rpt_yr, break_int),
-      by = break_int
-    )
+  year_breaks <- seq(
+    from = round_to_mult(start_yr, break_int),
+    to = round_to_mult(rpt_yr, break_int),
+    by = break_int
   )
 
   # Add layer to ggplot object
-scale_x_discrete(limits = as.character(start_yr:rpt_yr), breaks = year_breaks)
+  if (x_scale_type == "discrete") {
+    scale_x_discrete(
+      limits = as.character(start_yr:rpt_yr),
+      breaks = as.character(year_breaks)
+    )
+  } else {
+    scale_x_continuous(
+      limits = c(start_yr, rpt_yr),
+      breaks = year_breaks
+    )
+  }
 }
 
 
@@ -111,13 +130,18 @@ scale_x_discrete(limits = as.character(start_yr:rpt_yr), breaks = year_breaks)
 #'
 #' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
 #'     Must be an integer.
+#' @param x_scale_type The scale type for the x variable. Can be either
+#'     \code{x_scale_type = "discrete"} or \code{x_scale_type = "cont"}. Plots
+#'     with \code{geom_col} geoms are "discrete" scale type, and \code{geom_line}
+#'     \code{geom_area} geoms are "cont" or continuous scale type. Default is
+#'     \code{x_scale_type = "discrete"}.
 #' @return A ggplot layer that defines the x-axis limits and breaks for plots of
 #'     recent data. The default limits are \code{rpt_yr - 14} to \code{rpt_yr},
 #'     and the default break interval is 5 years.
 #' @import ggplot2
 #' @export
-std_x_axis_rec_years <- function(rpt_yr) {
-  std_x_axis_all_years(rpt_yr, rpt_yr - 14, 5)
+std_x_axis_rec_years <- function(rpt_yr, x_scale_type = c("discrete", "cont")) {
+  std_x_axis_all_years(rpt_yr, x_scale_type, start_yr = rpt_yr - 14, break_int = 5)
 }
 
 
