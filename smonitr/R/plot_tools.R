@@ -34,7 +34,9 @@ theme_smr <- function() {
       face = "plain"
     ),
     # Define text size of legend title
-    legend.title=element_text(size = 10)
+    legend.title = element_text(size = 10),
+    # Define legend position
+    legend.position = "top"
   )
 }
 
