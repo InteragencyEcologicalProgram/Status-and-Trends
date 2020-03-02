@@ -1,6 +1,6 @@
 Package: smonitr
 Title: IEP Seasonal Monitoring Report Tools
-Version: 0.1.0.9000
+Version: 1.1.0.9000
 Date: 2020-02-14
 Authors@R: 
     person(given = "Dave",

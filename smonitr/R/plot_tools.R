@@ -88,7 +88,7 @@ round_to_mult <- function(num, mult) {
 #' @param x_scale_type The scale type for the x variable. Can be either
 #'     \code{x_scale_type = "discrete"} or \code{x_scale_type = "cont"}. Plots
 #'     with \code{geom_col} geoms are "discrete" scale type, and \code{geom_line}
-#'     \code{geom_area} geoms are "cont" or continuous scale type.
+#'     and \code{geom_area} geoms are "cont" or continuous scale type.
 #' @param start_yr The start year that defines the minimum x-axis limit for the
 #'     ggplot. Must be an integer. Default is 1966.
 #' @param break_int The x-axis break interval in years. Must be an integer.
@@ -130,15 +130,15 @@ std_x_axis_all_years <- function(rpt_yr,
 #' @title  Standardize x-axis elements for ggplot of recent years
 #' @description Standardizes the x-axis limits and breaks for a ggplot of recent
 #'     years of data. "Recent years" is defined as the prior 15 years from the
-#'     \code{rpt_yr}. For plots with \code{geom_col} geoms, the x-variable used
-#'     in the ggplot needs to be a \strong{factor}.
+#'     \code{rpt_yr} argument. For plots with \code{geom_col} geoms, the
+#'     x-variable used in the ggplot needs to be a \strong{factor}.
 #'
 #' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
 #'     Must be an integer.
 #' @param x_scale_type The scale type for the x variable. Can be either
 #'     \code{x_scale_type = "discrete"} or \code{x_scale_type = "cont"}. Plots
 #'     with \code{geom_col} geoms are "discrete" scale type, and \code{geom_line}
-#'     \code{geom_area} geoms are "cont" or continuous scale type. Default is
+#'     and \code{geom_area} geoms are "cont" or continuous scale type. Default is
 #'     \code{x_scale_type = "discrete"}.
 #'
 #' @return A ggplot layer that defines the x-axis limits and breaks for plots of
@@ -188,7 +188,7 @@ std_x_axis_label <- function(season = c("winter", "spring", "summer", "fall", "a
 #'
 #' @param df The dataframe that contains the data in the ggplot
 #' @param yr_var The name of the variable in \code{df} that contains the years
-#'     used in the ggplot. Must be "numeric" type.
+#'     used in the ggplot. Should be a \strong{factor}.
 #' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
 #'     Must be an integer.
 #' @param symb_size Specifies the size of the symbol used to represent missing
