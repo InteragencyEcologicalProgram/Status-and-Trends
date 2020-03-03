@@ -472,3 +472,23 @@ get_ftp_data = function(ftp_address, dir_path, fnames, parse_fun, ..., verbose =
   names(dfs) = included_files
   dfs
 }
+
+#' Download GrandTab Data
+#'
+#' Download CDFW GrandTab data from SacPass.
+#'
+#' @importFrom glue glue
+#' @importFrom stringr str_replace_all str_replace
+#' @export
+get_grandtab_data = function(season = c("Winter", "Spring", "Fall", "Late-Fall"), parse_fun, ..., verbose = TRUE) {
+  stop("not implemented")
+  if (!all(season %in% c("Winter", "Spring", "Fall", "Late-Fall"))) {
+    stop("Unrecognized value in argument \"seasons\"")
+  }
+  species = "Chinook"
+  spawn_type = "In-River"
+  spawn_location = str_replace_all("Sacramento and San Joaquin River Systems",
+    " ", "+")
+
+  grandtab_url = glue("http://www.cbr.washington.edu/sacramento/data/php/rpt/grandtab_graph.php?outputFormat=csv&species={species}%3A{season}&type={spawn_type}&locType=location&location={spawn_location }%3AAll%3AAll")
+}
