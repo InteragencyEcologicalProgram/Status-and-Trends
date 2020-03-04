@@ -42,7 +42,8 @@ noranc_cpue <- noranc %>%
   mutate(cpue = (NORANC/TowVolume) * 10000) %>% 
   group_by(Year) %>% 
   summarize(ave_cpue = mean(cpue)) %>% 
-  ungroup()
+  ungroup() %>% 
+  mutate(Year = factor(Year))
 
 
 # 3. Set up options for plots ---------------------------------------------
@@ -50,23 +51,12 @@ noranc_cpue <- noranc %>%
 # Calculate long-term average of CPUE
 lt_avg_cpue <- mean(noranc_cpue$ave_cpue)
 
-# Define text size for text comments on plots
-text_size_all <- 1.5
-text_size_rec <- 2
-
 # Create dataframes for text comments on plots
 noranc_text_h <- tibble(
-  Year = 1964,
+  Year = as.factor(1966),
   yValue = 40,
   label = "Data were not\ncollected until 1980"
 )
-
-noranc_text_v <- tibble(
-  Year = c(1994, 2018),
-  yValue = 0,
-  label = "No data"
-)
-
 
 # 3. Create Plots ---------------------------------------------------------
 
@@ -82,10 +72,8 @@ noranc_plot_all <- noranc_cpue %>%
   # apply custom theme
   theme_smr() +
   # customize axis labels
-  labs(
-    x = "Year (June - August)",
-    y = expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))
-  ) +
+  ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))) +
+  std_x_axis_label("summer") +
   # define y-axis breaks and add thousanths comma
   scale_y_continuous(
     breaks = seq(0, 1250, by = 250),
@@ -94,7 +82,9 @@ noranc_plot_all <- noranc_cpue %>%
   # add horizontal line for long-term average CPUE
   lt_avg_line(lt_avg_cpue) +
   # standardize x-axis
-  std_x_axis_all_years(report_year) +
+  std_x_axis_all_years(report_year, "discrete") +
+  # add markers for missing data
+  missing_data_symb(noranc_cpue, Year, report_year, 0.85) +
   # add horizontal text to plot
   geom_text(
     data = noranc_text_h,
@@ -105,26 +95,11 @@ noranc_plot_all <- noranc_cpue %>%
     ),
     inherit.aes = FALSE,
     hjust = "left",
-    size = 2
-  ) +
-  # add vertical text to plot
-  geom_text(
-    data = noranc_text_v,
-    aes(
-      x = Year,
-      y = yValue,
-      label = label
-    ),
-    inherit.aes = FALSE,
-    hjust = "left",
-    vjust = "center",
-    size = text_size_all,
-    angle = 90
+    size = 1.9
   )
 
 # Plot for recent years (15 years from report date)
-noranc_plot_rec <- noranc_cpue %>% 
-  filter(Year >= report_year - 14) %>% 
+noranc_plot_rec <- noranc_cpue %>%
   ggplot(
     aes(
       x = Year,
@@ -135,30 +110,16 @@ noranc_plot_rec <- noranc_cpue %>%
   # apply custom theme
   theme_smr() +
   # customize axis labels
-  labs(
-    x = "Year (June - August)",
-    y = expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))
-  ) +
+  ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))) +
+  std_x_axis_label("summer") +
   # custom y-axis breaks
   scale_y_continuous(breaks = seq(0, 500, by = 100)) +
   # add horizontal line for long-term average CPUE
   lt_avg_line(lt_avg_cpue) +
   # standardize x-axis
-  std_x_axis_rec_years(report_year) +
-  # add vertical text to plot
-  geom_text(
-    data = noranc_text_v,
-    aes(
-      x = Year,
-      y = yValue,
-      label = label
-    ),
-    inherit.aes = FALSE,
-    hjust = "left",
-    vjust = "center",
-    size = text_size_rec,
-    angle = 90
-  ) 
+  std_x_axis_rec_years(report_year, "discrete") +
+  # add markers for missing data
+  missing_data_symb(noranc_cpue, Year, report_year, 2.2)
 
 
 # Print Plots
