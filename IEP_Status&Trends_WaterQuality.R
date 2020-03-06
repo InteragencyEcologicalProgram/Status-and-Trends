@@ -106,18 +106,9 @@ wqsum2<-aggregate(value~region+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
 wqsum2$AnalyteName<-as.factor(wqsum2$AnalyteName)
 str(wqsum2)
 
-#generate means by region, year, quarter, and AnalyteName
-wqsumz<- group_by(tot, region, qyear, quarter, AnalyteName) %>%
-  summarize(value = mean(value, an.rm = T)) %>%
-  filter(AnalyteName == "temp", region == "dt", quarter == "Q3")
-  
-  aggregate(value~region+qyear+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
-wqsum$AnalyteName<-as.factor(wqsum$AnalyteName)
-str(wqsum)
-
 
 #create custom plot formatting function
-source("winter_report/IEP_Status&Trends_util.R")
+#source("winter_report/IEP_Status&Trends_util.R")
 
 #set up facet labels
 season_names<-c('Q1'="December-February",'Q2'="March-May",'Q3'="June-August",'Q4'="September-November")
@@ -147,7 +138,7 @@ allplots = function(data, param, reportyear){
     geom_line(colour="black")+geom_point(colour="black") +
     geom_hline(data = filter(wqsum2, AnalyteName == param),
                aes(yintercept = value), size = 0.9, color = "red", linetype = "dashed")+
-    theme_iep() + facet_grid(quarter~region,
+    theme_smr() + facet_grid(quarter~region,
                              labeller = as_labeller(
                                c(region_names,season_names))) +
     theme(legend.position="none") + 
