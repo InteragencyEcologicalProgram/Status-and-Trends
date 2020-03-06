@@ -2,6 +2,7 @@
 ## See a copy of the document "#22 Metadata (Updated May 30, 2019).doc" for reference.
 
 library(tidyverse)
+library(smonitr)
 
 report_year <- 2018
 
@@ -12,6 +13,7 @@ thisDataRoot <- file.path(dataRoot,"DJFMP")
 figRoot <- file.path(reportRoot,"figures")
 
 source(file.path(projectRoot,"smonitr","R","plot_tools.R"))
+
 
 ##########################################################################
 ## Read in data:
@@ -140,7 +142,21 @@ chinook_winterByLength_fig <- ggplot(chippsIndexDf,
   std_x_axis_all_years(rpt_yr=report_year, start_yr=min(chippsIndexDf$Year))
 
 ggsave(chinook_winterByLength_fig, 
-			 file=file.path(figRoot,"DJFMP_chinook_winterByLength.png"), 
+			 file=file.path(figRoot,"DJFMP_chinook_winterByLength_allyears.png"), 
 			 dpi=300, units="cm", width=9.3, height=6.8)
 
+## Figures:
+chinook_winterByLength_fig <- ggplot(chippsIndexDf, 
+                                     aes(x=Year, y=chinook_winterByLengthIndex)) +
+  geom_bar(stat="identity") +
+  theme_smr() +
+  theme(legend.position="none") + 
+  xlab("Year (March - May)") + 	
+  std_x_axis_rec_years(2018) +
+  scale_y_continuous(expression(paste("Chinook Salmon Index\n(Winterrun, Unmarked Fish)"))) + 
+  geom_hline(yintercept=mean(chippsIndexDf$chinook_winterByLengthIndex, na.rm=TRUE), 
+             col="red", linetype="dashed", size=0.9)
 
+ggsave(chinook_winterByLength_fig, 
+       file=file.path(figRoot,"DJFMP_chinook_winterByLength_recyears.png"), 
+       dpi=300, units="cm", width=9.3, height=6.8)
