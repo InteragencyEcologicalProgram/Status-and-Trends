@@ -12,10 +12,9 @@
 #required packages
 library(tidyverse) #plotting data; converting between long and wide data frames
 library(scales) #modifying y axis to include '%'
-library(devtools) #needed for installing 'smonitr' from GitHub
 
 #install and load most up to date version of 'smonitr' from GitHub
-#devtools::install_github("InteragencyEcologicalProgram/Status-and-Trends/smonitr")
+#remotes::install_github("InteragencyEcologicalProgram/smonitr")
 library(smonitr) #standardizes formatting of plots
 
 
@@ -53,6 +52,9 @@ percl<-gather(perc,type,perc,sav_perc:fav_perc,factor_key=T)
 #excludes WH and WP data
 ppercl<-subset(percl,type=="sav_perc" | type=="fav_perc")
 
+#year needs to be a factor in order for some of 'smonitr' plotting functions to work
+ppercl$year<-as.factor(ppercl$year)
+
 #create subset with acres 
 #alist<-c("year","sav_acres", "wp_acres",  "wh_acres",  "fav_acres")
 #acr<-veg[,alist]
@@ -77,80 +79,41 @@ ppercl<-subset(percl,type=="sav_perc" | type=="fav_perc")
 #first sum FAV and SAV within each year
 vtot<-setNames(aggregate(x=ppercl$perc,by=list(ppercl$year),FUN=sum), c("year","perc"))
 str(vtot)
+#calculate mean
 mean(vtot$perc) #29.6
 
 #stack bar colors
 repcols<-c("sav_perc" = "#556B2F",
-           "fav_perc" = "#A2CD5A")
+           "fav_perc" = "#88BA33")
 
 #reorder factor levels for vegetation type so FAV is on top
 ppercl$type = factor(ppercl$type, levels=c('fav_perc','sav_perc'))
-
-
-#function for missing data symbol
-missing_data_symb <- function(df, yr_var, rpt_yr) {
-  # Convert yr_var to enquo for non-standard eval
-  yr_var_enquo <- rlang::enquo(yr_var)
-  
-  # Calculate minimum year in df
-  yr_min <- min(dplyr::pull(df, !!yr_var_enquo))
-  
-  # Create a tibble with all possible years
-  all_yrs <- tibble::tibble(
-    years = seq(yr_min, rpt_yr, 1),
-    result = 0
-  )
-  
-  # Find missing years in df
-  missing_yrs <- dplyr::anti_join(
-    all_yrs,
-    df,
-    by = c("years" = rlang::as_name(yr_var_enquo))
-  )
-  
-  # Add in symbols for missing years if necessary
-  if (!is.null(missing_yrs)) {
-    geom_point(
-      data = missing_yrs,
-      aes(
-        x = years,
-        y = result
-      ),
-      inherit.aes = FALSE,
-      na.rm = TRUE,
-      shape = 8,
-      size = 1,
-      color = "red"
-    )
-  }
-  
-}
 
 
 #4. Create plots---------------------------------------------
 
 
 #stacked bar plot of percent coverage
-pperc<-ggplot(ppercl,aes(x=year, y=perc,fill=type))+
-   #specifies the dependent and independent variables 
-    geom_bar(position = "stack", stat = "identity",colour="grey25")+
-   #specifies that this is a stacked bar plot
-    ylab("Water area occupied") + xlab("Year")+
-   #axis labels
-    scale_y_continuous(labels= function(x) paste0(x, "%"))+
-   #adds a percent sign after each y axis tick label numbers
-    scale_fill_manual(name = "",labels=c("Floating","Submerged"),values=repcols)+
-   #customizes names in legend key and specifies the custom color palette
-  theme_smr()+
-  #implements standardized plot formatting
-    theme(legend.position=c(0.38,0.85),legend.direction="horizontal")+
-   #specifies location of legend and that elements of legend should be arranged horizontally
-    missing_data_symb(ppercl,year,2018)+
-   #adds symbols anywhere there is missing data
-    lt_avg_line(mean(vtot$perc))+
-   #adds horizontal line to plot to indicate long term average for data
-    std_x_axis_rec_years(2018)
-   #standardizes the x axis range
+(pperc<-ggplot(ppercl,aes(x=year, y=perc,fill=type))
+   #specifies the independent and dependent variables as well as groupings
+    +geom_bar(position = "stack", stat = "identity",colour="grey25")
+ #specifies that this is a stacked bar plot
+  +theme_smr()
+ #implements standardized plot formatting
+ +ylab("Water area occupied")  
+ #y-axis label
+ +scale_y_continuous(labels= function(x) paste0(x, "%"))
+ #adds a percent sign after each y axis tick label number
+ +scale_fill_manual(name = "",labels=c("Floating","Submerged"),values=repcols)
+ #customizes names in legend key and specifies the custom color palette
+ +lt_avg_line(mean(vtot$perc))
+ #adds horizontal line to plot to indicate long term average for data
+ +std_x_axis_rec_years(2018, x_scale_type= "discrete")
+ #implements standardized x-axis range of years
+ +missing_data_symb(ppercl,year,2018, symb_size = 2.2)
+ #adds symbols anywhere there is missing data
+  +std_x_axis_label("annual")
+ )
 
 
 #print plot
@@ -174,7 +137,6 @@ ggsave(
 #(pacr<-ggplot(sacrl,aes(x=year, y=acres))+
 #  geom_col(aes(fill=type))+theme_iep()
 #  )
-#ggsave("veg_acres.png",scale=0.7, height=8,width=11, units="in",dpi=300)
 
 
 
