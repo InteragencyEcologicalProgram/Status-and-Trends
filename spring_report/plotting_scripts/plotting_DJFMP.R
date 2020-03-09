@@ -72,28 +72,37 @@ seineIndexDf
 
 
 ## Figures:
-splittail_fig <- ggplot(seineIndexDf, aes(x=Year, y=SplittailIndex)) +
+
+#turn year into a factor so the standardized scale works
+seineIndexDf = mutate(seineIndexDf, fyear = as.factor(Year))
+
+splittail_fig <- ggplot(seineIndexDf, aes(x=fyear, y=SplittailIndex)) +
   geom_bar(stat="identity") +
   theme_smr() +
   theme(legend.position="none") + 
   scale_y_continuous(expression(paste("Splittail Index"))) + 
   lt_avg_line(lt_avg=mean(seineIndexDf$SplittailIndex, na.rm=TRUE)) + 
-  std_x_axis_all_years(rpt_yr=report_year, start_yr=min(seineIndexDf$Year))
+  std_x_axis_all_years(rpt_yr=report_year, "discrete")+
+  std_x_axis_label("spring")
 
 ggsave(splittail_fig, file=file.path(figRoot,"DJFMP_splittail.png"), dpi=300, units="cm", 
 			 width=9.3, height=6.8)
 
 
-sacpikeminnow_fig <- ggplot(seineIndexDf, aes(x=Year, y=SacPikeminnowIndex)) +
+sacpikeminnow_fig <- ggplot(seineIndexDf, aes(x=fyear, y=SacPikeminnowIndex)) +
   geom_bar(stat="identity") +
   theme_smr() +
   theme(legend.position="none") + 
   scale_y_continuous(expression(paste("Sacramento Pikeminnow Index"))) + 
   lt_avg_line(lt_avg=mean(seineIndexDf$SacPikeminnowIndex, na.rm=TRUE)) + 
-  std_x_axis_all_years(rpt_yr=report_year, start_yr=min(seineIndexDf$Year))
+  std_x_axis_all_years(rpt_yr=report_year, "discrete")+
+  std_x_axis_label("summer")
 
 ggsave(sacpikeminnow_fig, file=file.path(figRoot,"DJFMP_sacpikeminnow.png"), dpi=300, 
 			 units="cm", width=9.3, height=6.8)
+
+
+
 
 
 
@@ -132,14 +141,16 @@ chippsIndexDf
 
 
 ## Figures:
+chippsIndexDf$fYear = factor(chippsIndexDf$Year)
 chinook_winterByLength_fig <- ggplot(chippsIndexDf, 
-																		 aes(x=Year, y=chinook_winterByLengthIndex)) +
+																		 aes(x=fYear, y=chinook_winterByLengthIndex)) +
   geom_bar(stat="identity") +
   theme_smr() +
   theme(legend.position="none") + 
   scale_y_continuous(expression(paste("Chinook Salmon Index\n(Winterrun, Unmarked Fish)"))) + 
   lt_avg_line(lt_avg=mean(chippsIndexDf$chinook_winterByLengthIndex, na.rm=TRUE)) + 
-  std_x_axis_all_years(rpt_yr=report_year, start_yr=min(chippsIndexDf$Year))
+  std_x_axis_all_years(rpt_yr=report_year, "discrete")+
+  std_x_axis_label("spring")
 
 ggsave(chinook_winterByLength_fig, 
 			 file=file.path(figRoot,"DJFMP_chinook_winterByLength_allyears.png"), 
@@ -147,12 +158,12 @@ ggsave(chinook_winterByLength_fig,
 
 ## Figures:
 chinook_winterByLength_fig <- ggplot(chippsIndexDf, 
-                                     aes(x=Year, y=chinook_winterByLengthIndex)) +
+                                     aes(x=fYear, y=chinook_winterByLengthIndex)) +
   geom_bar(stat="identity") +
   theme_smr() +
   theme(legend.position="none") + 
-  xlab("Year (March - May)") + 	
-  std_x_axis_rec_years(2018) +
+  std_x_axis_label("spring") + 	
+  std_x_axis_rec_years(2018, "discrete") +
   scale_y_continuous(expression(paste("Chinook Salmon Index\n(Winterrun, Unmarked Fish)"))) + 
   geom_hline(yintercept=mean(chippsIndexDf$chinook_winterByLengthIndex, na.rm=TRUE), 
              col="red", linetype="dashed", size=0.9)

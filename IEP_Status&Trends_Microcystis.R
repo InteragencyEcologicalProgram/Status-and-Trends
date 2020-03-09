@@ -54,13 +54,17 @@ Micro<-bind_rows(EMP, TNS)%>%
   mutate(Severity=factor(Severity, levels=c("Very high", "High", "Medium", "Low", "Absent")))%>%
   filter(Region%in%"Delta" & Severity!="Absent" & Year>=2004)
 
+
+#turn year into a factor so it works with the standardized axis
+Micro = mutate(Micro, fyear = as.factor(Year))
+
 pMicro<-ggplot()+
-  geom_bar(data=Micro, aes(x=Year, y=Frequency, fill=Severity), stat="identity")+
+  geom_bar(data=Micro, aes(x=fyear, y=Frequency, fill=Severity), stat="identity")+
   scale_fill_brewer(type="div", palette="RdYlBu", guide=guide_legend(keyheight=0.5, title=NULL, direction="horizontal", label.position="top", reverse=TRUE))+
-  std_x_axis_rec_years(2018)+
+  std_x_axis_rec_years(2018, "discrete")+
   scale_y_continuous(expand=expand_scale(0,0))+
   ylab("Relative frequency")+
-  xlab("Date")+
+  std_x_axis_label("summer")+
   theme_smr()+
   theme(legend.position=c(0.5, 1.13), legend.background=element_rect(fill="white", color="black"), plot.margin = margin(t=40))
 pMicro
