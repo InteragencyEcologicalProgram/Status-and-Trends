@@ -83,7 +83,8 @@ splittail_fig <- ggplot(seineIndexDf, aes(x=fyear, y=SplittailIndex)) +
   scale_y_continuous(expression(paste("Splittail Index"))) + 
   lt_avg_line(lt_avg=mean(seineIndexDf$SplittailIndex, na.rm=TRUE)) + 
   std_x_axis_all_years(rpt_yr=report_year, "discrete")+
-  std_x_axis_label("spring")
+  std_x_axis_label("spring")+
+  annotate("text", x = as.factor(1970), y = 0.2, label = "Data not collected until 1995", hjust = 0, size = 2)
 
 ggsave(splittail_fig, file=file.path(figRoot,"DJFMP_splittail.png"), dpi=300, units="cm", 
 			 width=9.3, height=6.8)
@@ -96,7 +97,9 @@ sacpikeminnow_fig <- ggplot(seineIndexDf, aes(x=fyear, y=SacPikeminnowIndex)) +
   scale_y_continuous(expression(paste("Sacramento Pikeminnow Index"))) + 
   lt_avg_line(lt_avg=mean(seineIndexDf$SacPikeminnowIndex, na.rm=TRUE)) + 
   std_x_axis_all_years(rpt_yr=report_year, "discrete")+
-  std_x_axis_label("summer")
+  std_x_axis_label("summer")+
+  annotate("text", x = as.factor(1970), y = 0.2, label = "Data not collected until 1995", hjust = 0, size = 2)
+sacpikeminnow_fig
 
 ggsave(sacpikeminnow_fig, file=file.path(figRoot,"DJFMP_sacpikeminnow.png"), dpi=300, 
 			 units="cm", width=9.3, height=6.8)
