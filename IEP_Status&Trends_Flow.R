@@ -49,7 +49,7 @@ str(dmean)
 
 #create list of season names to replace quarter names in plots
 #set up facet labels
-season_names<-c('Q1'="Winter",'Q2'="Spring",'Q3'="Summer",'Q4'="Fall")
+season_names<-c('Q1'="winter",'Q2'="spring",'Q3'="summer",'Q4'="fall")
 
 #set order of seasons for plotting
 dmean$season = factor(dmean$quarter, levels=c('Q1','Q2','Q3','Q4'))
@@ -69,8 +69,10 @@ flows = function(quart, data) {
   p = ggplot(dat, aes(x=qyear, y=out/1000)) +
     geom_line()+
     geom_point(colour="black") +
-    geom_hline(aes(yintercept = mean(dat$out)/1000), size = 0.9, color = "red", linetype = "dashed")+
-    std_x_axis_all_years(2018) + xlab(paste("Year(", season_names[quart], ")", sep = "")) +
+    lt_avg_line(mean(dat$out)/1000)+
+  #  geom_hline(aes(yintercept = mean(out)/1000), size = 0.9, color = "red", linetype = "dashed")+
+    std_x_axis_all_years(2018, x_scale_type = "cont") + 
+    std_x_axis_label(season_names[quart])+
     scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s x 1,000)"))) +
     theme_smr()
   p

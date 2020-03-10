@@ -18,12 +18,14 @@ library(zoo) ## yearmon and yearqtr classes
 library(cowplot)
 library(tidyverse)
 library(lubridate)
-source("drivr_sqlite.R")
+#source("drivr_sqlite.R")
+library(smonitr)
+library(readxl)
 
 #import datasets----------------
 
 #Clark-Bumpus net survey data
-zoopcb<-zoopsql 
+zoopcb<- read_excel("data/1972-2018CBMatrix.xlsx", sheet = "CB CPUE Matrix 1972-2018", guess_max = 100000)
 zoopcb$Date = as.Date(zoopcb$Date)
 
 #mysid net survey data
@@ -228,21 +230,22 @@ mcpg = ungroup(mcpg) %>%
 
 
 #generate means by region, year, quarter, and taxon
-zmeans<-aggregate(cbind(cpue,bpue)~region+qyear+quarter+taxon,data=mcpg,FUN=mean,na.rm=T)
+#zmeans<-aggregate(cbind(cpue,bpue)~region+qyear+quarter+taxon,data=mcpg,FUN=mean,na.rm=T)
 
 zmeans = group_by(mcpg, region, qyear, quarter, taxon) %>%
   summarise(cpue = mean(cpue), bpue = mean(bpue))
 str(zmeans)
+zmeans = mutate(zmeans, bpue_mg = bpue/1000 )
 
 
 
 #CPUE plots: stacked line plots for each season and region------------
 
 #create custom plot formatting function
-source("IEP_Plot_Theme.R")
+#source("IEP_Plot_Theme.R")
 
 #set up facet labels
-season_names<-c('Q1'="Winter",'Q2'="Spring",'Q3'="Summer",'Q4'="Fall")
+season_names<-c('Q1'="winter",'Q2'="spring",'Q3'="summer",'Q4'="fall")
 region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
 
 #custom colors
@@ -272,11 +275,11 @@ zoops = function(reg, quart, data) {
   dat = filter(data, quarter == quart, region == reg)
   
   #calculate long-term average
-  sums = group_by(dat, qyear) %>% summarize(bpuetot = sum(bpue))
+  sums = group_by(dat, qyear) %>% summarize(bpuetot = sum(bpue_mg))
   meanB = mean(sums$bpuetot)
   
   #make a plot
-  bpl<-ggplot(dat, aes(x = qyear, y = bpue, fill = taxon)) + 
+  bpl<-ggplot(dat, aes(x = qyear, y = bpue_mg, fill = taxon)) + 
     geom_area(position = 'stack')+
     theme_iep()+
     theme(legend.position="none") + 
@@ -284,7 +287,7 @@ zoops = function(reg, quart, data) {
     geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
                       ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), 
+    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C/m"^" 3", ")")), 
                        limits=c(0,max(zmeans$bpue)))
   bpl
 
@@ -298,40 +301,82 @@ zoops2 = function(quart, data) {
   dat = filter(data, quarter == quart)
   
   #calculate long-term average
-  sums = group_by(dat, region, qyear) %>% summarize(bpuetot = sum(bpue))
+  sums = group_by(dat, region, qyear) %>% summarize(bpuetot = sum(bpue_mg))
   meanB = group_by(sums, region) %>% summarize(bpueM =mean(bpuetot))
   
   #make a plot
-  bpl<-ggplot(dat, aes(x = qyear, y = bpue, fill = taxon)) + 
+  bpl<-ggplot(dat, aes(x = qyear, y = bpue_mg, fill = taxon)) + 
     geom_area(position = 'stack')+
-    theme_iep()+ facet_wrap(~region) +
-    theme(legend.position="top", legend.margin = margin(0,0,0,0) , 
+    theme_smr()+ facet_wrap(~region) +
+    theme(legend.position="top", legend.box.spacing = unit(0, units = "cm"), 
           strip.background = element_blank(),
           strip.text = element_blank()) + 
-    scale_x_continuous(paste("Year(", season_names[unlist(dat[1,"quarter"])],")"), limits=c(1966,2018))  +
+    std_x_axis_all_years(2018, "cont")  +
+    std_x_axis_label(season_names[quart]) +
     geom_hline(data = meanB, aes(yintercept = bpueM), size = 0.9, color = "red", linetype = "dashed")+
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
                       ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), 
-                       limits=c(0,max(zmeans$bpue)))
+    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C/m"^" 3", ")")), 
+                       limits=c(0,max(zmeans$bpue_mg)))
   bpl
   
   
 }
 
+#filter to the report year and convert biomass to mg
 zmeans = filter(zmeans, qyear <= 2018)
+  
 
-ggsave(zoops2("Q3", zmeans), file="zoops_panel_summer.png", 
+
+# Create dataframes for text comments on plots
+nodata <- tibble(
+  Year = 1966,
+  yValue = 10,
+  label = c("Data were not collected until 1998","",""),
+  region = factor(c("spl", "ss","dt"))
+)
+
+summer = zoops2("Q3", zmeans) + 
+  geom_text(data = nodata,
+  aes(x = Year, y = yValue, label = label),
+  inherit.aes = FALSE,
+  hjust = "left",
+  size = 1.9)
+
+
+fall = zoops2("Q4", zmeans) + 
+  geom_text(data = nodata,
+            aes(x = Year, y = yValue, label = label),
+            inherit.aes = FALSE,
+            hjust = "left",
+            size = 1.9)
+
+
+winter = zoops2("Q1", zmeans) + 
+  geom_text(data = nodata,
+            aes(x = Year, y = yValue, label = label),
+            inherit.aes = FALSE,
+            hjust = "left",
+            size = 1.9)
+
+spring = zoops2("Q2", zmeans) + 
+  geom_text(data = nodata,
+            aes(x = Year, y = yValue, label = label),
+            inherit.aes = FALSE,
+            hjust = "left",
+            size = 1.9)
+
+ggsave(summer, file="zoops_panel_summer.png", 
        dpi=300, units="cm",width=27.9,height=7.5,
        path = "./summer_report")
 
-ggsave(zoops2("Q2", zmeans), file="zoops_panel_spring.png", dpi=300, units="cm",width=27.9,height=7.5,
+ggsave(spring, file="zoops_panel_spring.png", dpi=300, units="cm",width=27.9,height=7.5,
        path = "./spring_report")
 
-ggsave(zoops2("Q1", zmeans), file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=7.5,
+ggsave(winter, file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=7.5,
        path = "./winter_report")
 
-ggsave(zoops2("Q4", zmeans), file="zoops_panel_fall.png", 
+ggsave(fall, file="zoops_panel_fall.png", 
        dpi=300, units="cm",width=27.9,height=7.5,
        path = "./fall_report")
 

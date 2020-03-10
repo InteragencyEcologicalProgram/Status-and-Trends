@@ -6,13 +6,14 @@ source("data_access_scripts/data_access_sacpass.R")
 
 
 #Spring run salmon
-
-p_spch <- ggplot(Spring, aes(x=Year, y=sprinrun))+
-    geom_bar(stat="identity", fill="salmon1") +
+Spring$fyear = as.factor(Spring$Year)
+p_spch <- ggplot(filter(Spring, Year <= 2018), aes(x=fyear, y=sprinrun))+
+    geom_bar(stat="identity") +
     theme_smr() +
     theme(legend.position="none") + 
     scale_y_continuous("Spring Run Chinook Adult Returns",limits=c(0, max(Spring$sprinrun))) +
-    std_x_axis_all_years(2018) +
+    std_x_axis_all_years(2018, "discrete") +
+  std_x_axis_label("spring")+
   lt_avg_line(mean(Spring$sprinrun))
 p_spch
 
@@ -20,13 +21,14 @@ ggsave(p_spch, file="SpringRun_1966.png", dpi=300, units="cm", width=9.3, height
 
 
 #Fall run salmon
-
-p_frch <- ggplot(Fall, aes(x=Year, y=FallRun))+
-  geom_bar(stat="identity", fill="salmon1") +
+Fall$fyear = as.factor(Fall$Year)
+p_frch <- ggplot(Fall, aes(x=fyear, y=FallRun))+
+  geom_bar(stat="identity") +
   theme_smr() +
   theme(legend.position="none") + 
   scale_y_continuous("Fall Run Chinook Adult Returns",limits=c(0, max(Fall$FallRun))) +
-  std_x_axis_all_years(2018) +
+  std_x_axis_all_years(2018, "discrete") +
+  std_x_axis_label("fall")+
   lt_avg_line(mean(Fall$FallRun))
 p_frch
 
