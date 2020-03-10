@@ -1,18 +1,22 @@
 library(tidyverse)
 library(lubridate)
+library(smonitr)
 
+# load from RData file on sharepoint site
 sharepoint_path = normalizePath(
   file.path(
     Sys.getenv("USERPROFILE"),
     "California Department of Water Resources/DWR - Seasonal monitoring report - Documents/Data"
   )
 )
-
 load(file.path(sharepoint_path, "ybfmp.RData"))
 
-load("ybfmp.RData")
+# report year and output directory
+report_year = 2018
+fig.root = file.path("spring_report", "figures")
 
 
+# format catch data
 catch = ybfmp[["YBFMP_Fish_Catch_and_Water_Quality.csv"]] %>%
   mutate(
     SampleDate = mdy(SampleDate),
@@ -20,12 +24,14 @@ catch = ybfmp[["YBFMP_Fish_Catch_and_Water_Quality.csv"]] %>%
     Year = as.integer(year(SampleDate))
   )
 
+# format effort data
 effort = ybfmp[["YBFMP_Trap_Effort.csv"]] %>%
   mutate(
     Year = as.integer(Year),
     Month = as.integer(factor(Month, month.abb))
   )
 
+# compute catch per effort - total over season
 cpue = catch %>%
   filter(
     MethodCode == "RSTR", 
@@ -39,12 +45,69 @@ cpue = catch %>%
     Time = as.numeric(sum(OperationTimeHRS))
   ) %>%
   ungroup() %>%
-  mutate(CPUE = Catch / Time) 
+  mutate(CPUE = Catch / Time)
 
-ggplot(cpue) + ggthemes::theme_few() + aes(x = Year, y = CPUE * 1000) +
-  geom_col(fill = "black") + facet_wrap(~CommonName, ncol = 1) +
-  scale_x_continuous(NULL) +
-  ylab("fish catch per thousand hours")
 
-ggsave("YBFMP_yolo_spittail_chinook.pdf", width = 5, height = 5)
+
+# full plots
+yolo_splittail_all = cpue %>%
+  filter(CommonName == "Splittail") %>% {
+    ggplot(., aes(x = Year, y = CPUE)) +
+    theme_smr() +
+    geom_col(fill = "black") +
+    lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
+    std_x_axis_all_years(rpt_yr = report_year) +
+    scale_y_continuous("Fish catch per thousand hours",
+      labels = scales::label_number(scale = 1000))
+  }
+
+yolo_chinook_all = cpue %>%
+  filter(CommonName == "Chinook Salmon") %>% {
+    ggplot(., aes(x = Year, y = CPUE)) +
+    theme_smr() +
+    geom_col(fill = "black") +
+    lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
+    std_x_axis_all_years(rpt_yr = report_year) +
+    scale_y_continuous("Fish catch per thousand hours",
+      labels = scales::label_number(scale = 1000))
+  }
+
+
+# recent plots
+yolo_splittail_recent = cpue %>%
+  filter(CommonName == "Splittail") %>% {
+    ggplot(., aes(x = Year, y = CPUE)) +
+    theme_smr() +
+    geom_col(fill = "black") +
+    lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
+    std_x_axis_rec_years(rpt_yr = report_year) +
+    scale_y_continuous("Fish catch per thousand hours",
+      labels = scales::label_number(scale = 1000))
+  }
+
+yolo_chinook_recent = cpue %>%
+  filter(CommonName == "Chinook Salmon") %>% {
+    ggplot(., aes(x = Year, y = CPUE)) +
+    theme_smr() +
+    geom_col(fill = "black") +
+    lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
+    std_x_axis_rec_years(rpt_yr = report_year) +
+    scale_y_continuous("Fish catch per thousand hours",
+      labels = scales::label_number(scale = 1000))
+  }
+
+
+# save plots
+ggsave(yolo_splittail_all, file = file.path(fig.root, "yolo_splittail.png"),
+  dpi = 300, units = "cm", width = 9.3, height = 6.8)
+
+ggsave(yolo_chinook_all, file = file.path(fig.root, "yolo_chinook.png"),
+  dpi = 300, units = "cm", width = 9.3, height = 6.8)
+
+ggsave(yolo_splittail_recent, file = file.path(fig.root, "yolo_splittail_recent.png"),
+  dpi = 300, units = "cm", width = 9.3, height = 6.8)
+
+ggsave(yolo_chinook_recent, file = file.path(fig.root, "yolo_chinook_recent.png"),
+  dpi = 300, units = "cm", width = 9.3, height = 6.8)
+
 
