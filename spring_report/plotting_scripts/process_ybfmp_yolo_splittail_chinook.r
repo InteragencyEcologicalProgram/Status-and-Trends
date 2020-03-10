@@ -111,3 +111,33 @@ ggsave(yolo_chinook_recent, file = file.path(fig.root, "yolo_chinook_recent.png"
   dpi = 300, units = "cm", width = 9.3, height = 6.8)
 
 
+# test comparison to average of months instead of total season
+
+cpue.bymonth = catch %>%
+  filter(
+    MethodCode == "RSTR",
+    CommonName %in% c("Splittail", "Chinook Salmon"),
+  Month %in% c(3L, 4L, 5L)
+  ) %>%
+  left_join(effort, by = c("Year", "Month", "MethodCode")) %>%
+  group_by(StationCode, MethodCode, CommonName, Year, Month) %>%
+  summarize(
+    Catch = sum(Count),
+    Time = as.numeric(sum(OperationTimeHRS))
+  ) %>%
+  summarize(
+    CPUE = mean(Catch / Time),
+    num.obs = n()
+  ) %>%
+  ungroup()
+
+left_join(
+  select(cpue, Year, CommonName, CPUE),
+  select(cpue.bymonth, Year, CommonName, CPUE),
+  by = c("Year", "CommonName"),
+  suffix = c(".total", ".mean")
+) %>%
+  rename(total = CPUE.total, mean = CPUE.mean) %>%
+  gather(type, CPUE, mean, total) %>%
+  ggplot() + aes(x = Year, y = CPUE, fill = type) +
+  geom_col(position = "dodge") + facet_wrap(~CommonName)
