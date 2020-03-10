@@ -1,6 +1,15 @@
 library(tidyverse)
 library(lubridate)
 
+sharepoint_path = normalizePath(
+  file.path(
+    Sys.getenv("USERPROFILE"),
+    "California Department of Water Resources/DWR - Seasonal monitoring report - Documents/Data"
+  )
+)
+
+load(file.path(sharepoint_path, "ybfmp.RData"))
+
 load("ybfmp.RData")
 
 
