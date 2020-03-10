@@ -42,7 +42,7 @@ load(file = paste0(sharepoint_path, "/BayStudyFish.RData"))
 ```
 
 Prepare midwater trawl data for plots:
-```{r prepare mwt data}
+```{r prepare mwt data, message = FALSE}
 mwt_clean <- midwater_trawl_data %>% 
   # adjust years for surveys 1 and 2 (January and March)
   mutate(year_index = if_else(Survey <= 2, Year - 1, Year)) %>% 
@@ -66,6 +66,33 @@ mwt_clean <- midwater_trawl_data %>%
     Station = factor(Station),
     season = factor(season, levels = c("Winter", "Spring", "Summer", "Fall"))
   )
+
+# Create a nested df with year_index = 2018 to fill in zeros
+mwt_2018 <- mwt_clean %>% 
+  group_nest(Series) %>% 
+  mutate(
+    data1 = map(
+      data, 
+      ~slice(.x, 1) %>% 
+      mutate(year_index = 2018, num_survey = 0)
+    )
+  ) %>% 
+  select(-data)
+
+# Fill in zeros for missing Station, Year, Season combos
+mwt_complete <- mwt_clean %>% 
+  group_nest(Series) %>% 
+  left_join(mwt_2018) %>%
+  mutate(
+    data_all = map2(
+      data, 
+      data1, 
+      ~bind_rows(.x, .y) %>% 
+      mutate(Station = fct_drop(Station)) %>% 
+      complete(Station, year_index, season, fill = list(num_survey = 0)) 
+    )
+  ) %>% 
+  select(-c(data, data1))
 ```
 
 # Midwater Trawl Summary
@@ -83,13 +110,13 @@ heatmap_summ <- function(df) {
     geom_tile(aes(fill = num_survey)) +
     facet_grid(cols = vars(season)) +
     scale_fill_gradient(
-      low = "gold", 
-      high = "steelblue", 
+      low = "wheat1",
+      high = "steelblue4", 
       name = "# of surveys"
     ) +
     xlab("Year") +
     scale_x_continuous(
-      limits = c(1979, 2019),
+      limits = c(1979.4, 2018.6),
       breaks = c(1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2018)
     ) +
     theme(axis.text.x = element_text(angle = 90, hjust = 1))
@@ -100,9 +127,8 @@ heatmap_summ <- function(df) {
 
 Run heatmap_summ function on each Series
 ```{r create heatmap plots}
-mwt_plots <- mwt_clean %>% 
-  group_nest(Series) %>% 
-  mutate(heatmap_plot = map(data, .f = heatmap_summ))
+mwt_plots <- mwt_complete %>% 
+  mutate(heatmap_plot = map(data_all, .f = heatmap_summ))
 ```
 
 ## Series 1 stations
