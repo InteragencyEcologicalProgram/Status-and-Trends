@@ -9,7 +9,7 @@
 library(tidyverse)
 library(lubridate)
 
-urls =  http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2019&biweekly=other&wtemp=default
+urls =  "http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2019&biweekly=other&wtemp=default"
 
 #notes:
 #For passage estimates values: “—“ (two dashes) indicates that no sampling occurred, 
