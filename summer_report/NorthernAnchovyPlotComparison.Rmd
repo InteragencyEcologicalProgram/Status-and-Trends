@@ -2,7 +2,12 @@
 title: "Northern Anchovy Plot Comparison"
 author: "Dave Bosworth"
 date: "3/10/2020"
-output: html_document
+output: 
+  html_document: 
+    code_folding: hide
+    toc: yes
+    toc_float:
+      collapsed: no
 editor_options: 
   chunk_output_type: console
 ---
@@ -68,14 +73,106 @@ noranc <- midwater_trawl_data %>%
     mutate(Year = factor(Year))
 ```
 
+# Create Plot functions
 
+Define global settings for plots:
+```{r global plot settings}
+# Define report year
+report_year <- 2018
 
+# Calculate long-term average of CPUE
+# All Stations
+lt_avg_cpue_all <- mean(noranc_cpue_all$ave_cpue)
 
+# Just Series 1 stations
+lt_avg_cpue_s1 <- mean(noranc_cpue_s1$ave_cpue)
+```
 
+Base plot function:
+```{r fun base plot}
+base_plot <- function(df, ltavg) {
+  p <- df %>% 
+    ggplot(
+      aes(
+        x = Year,
+        y = ave_cpue
+      )
+    ) +
+    geom_col() +
+    # apply custom theme
+    theme_smr() +
+    # customize axis labels
+    ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))) +
+    std_x_axis_label("summer") +
+    # add horizontal line for long-term average CPUE
+    lt_avg_line(ltavg)
+  
+  return(p)
+}
+```
 
+Function to add options for plots of all years:
+```{r fun all yrs plot}
+plot_all_yrs <- function() {
+  list(
+    # define y-axis limits, breaks and add thousanths comma
+    scale_y_continuous(
+      limits = c(0, 1540),
+      breaks = seq(0, 1500, by = 250),
+      labels = label_comma()
+    ),
+    # standardize x-axis
+    std_x_axis_all_years(report_year, "discrete", start_yr = 1980),
+    # add markers for missing data
+    missing_data_symb(noranc_cpue_all, Year, report_year, 2)
+  )
+}
+```
 
+Function to add options for plots of recent years:
+```{r fun rec yrs plot}
+plot_rec_yrs <- function() {
+  list(
+    # define y-axis limits, breaks and add thousanths comma
+    scale_y_continuous(
+      limits = c(0, 740),
+      breaks = seq(0, 700, by = 100),
+      labels = label_comma()
+    ),
+    # standardize x-axis
+    std_x_axis_rec_years(report_year, "discrete"),
+    # add markers for missing data
+    missing_data_symb(noranc_cpue_all, Year, report_year, 4)
+  )
+}
+```
 
+# Plots of all years
 
+## All Stations
 
+```{r plot all yrs all stations, fig.height = 4, fig.width = 6}
+base_plot(noranc_cpue_all, lt_avg_cpue_all) + plot_all_yrs()
+```
+
+## Just Series 1 Stations
+
+```{r plot all yrs s1 stations, fig.height = 4, fig.width = 6}
+base_plot(noranc_cpue_s1, lt_avg_cpue_s1) + plot_all_yrs()
+```
+
+# Plots of recent years
+
+## All Stations
+
+```{r plot rec yrs all stations, warning = FALSE, fig.height = 4, fig.width = 6}
+base_plot(noranc_cpue_all, lt_avg_cpue_all) + plot_rec_yrs()
+```
+
+## Just Series 1 Stations
+
+```{r plot rec yrs s1 stations, warning = FALSE, fig.height = 4, fig.width = 6}
+base_plot(noranc_cpue_s1, lt_avg_cpue_s1) + plot_rec_yrs()
+```
 
 
