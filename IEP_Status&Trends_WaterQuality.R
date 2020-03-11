@@ -106,21 +106,12 @@ wqsum2<-aggregate(value~region+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
 wqsum2$AnalyteName<-as.factor(wqsum2$AnalyteName)
 str(wqsum2)
 
-#generate means by region, year, quarter, and AnalyteName
-wqsumz<- group_by(tot, region, qyear, quarter, AnalyteName) %>%
-  summarize(value = mean(value, an.rm = T)) %>%
-  filter(AnalyteName == "temp", region == "dt", quarter == "Q3")
-  
-  aggregate(value~region+qyear+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
-wqsum$AnalyteName<-as.factor(wqsum$AnalyteName)
-str(wqsum)
-
 
 #create custom plot formatting function
-source("winter_report/IEP_Status&Trends_util.R")
+#source("winter_report/IEP_Status&Trends_util.R")
 
 #set up facet labels
-season_names<-c('Q1'="December-February",'Q2'="March-May",'Q3'="June-August",'Q4'="September-November")
+season_names<-c('Q1'="winter",'Q2'="spring",'Q3'="summer",'Q4'="fall")
 region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
 AnalyteName_labs = c("chlf" = "Chlorophyll Fluoresence (RFU)", 
                    "chla" = "Chlorophyll-a (ug/L)",
@@ -147,7 +138,7 @@ allplots = function(data, param, reportyear){
     geom_line(colour="black")+geom_point(colour="black") +
     geom_hline(data = filter(wqsum2, AnalyteName == param),
                aes(yintercept = value), size = 0.9, color = "red", linetype = "dashed")+
-    theme_iep() + facet_grid(quarter~region,
+    theme_smr() + facet_grid(quarter~region,
                              labeller = as_labeller(
                                c(region_names,season_names))) +
     theme(legend.position="none") + 
@@ -177,12 +168,13 @@ WQplot = function(reg, quart, analyte, data, reportyear) {
     #make the plot
   p_sec <- ggplot(dat, aes(x=qyear, y= value))+
     geom_line(colour="black", size = 0.9)+geom_point(colour="black", size = 1.6) +
-    geom_hline(aes(yintercept = mean(dat$value)), size = 0.9, color = "red", linetype = "dashed")+
+    geom_hline(aes(yintercept = mean(value)), size = 0.9, color = "red", linetype = "dashed")+
     theme_smr() + 
     theme(legend.position="none") + 
+    std_x_axis_all_years(2018, "cont")+
     scale_y_continuous(AnalyteName_labs[analyte] , limits=lims)+
-    scale_x_continuous(paste("Year(", season_names[dat[1,"quarter"]],")", sep = ""),  
-                       limits=c(1966,2018)) 
+    std_x_axis_label(season_names[quart])
+    
    return(p_sec)
   }
   
@@ -321,45 +313,3 @@ secsf
 ggsave(secsf, file="chla_panel_fall.png", dpi=300, units="cm",width=27.9,height=6.8,
        path = "./fall_report")
 
-
-######################################################################################################
-#temperature included in recent trends for summer
-#now, for fall, make a plot for each region, season, and AnalyteName separately
-#do this so you can patch them together as grobs (like fish data panel)
-
-#first a function
-recWQplot = function(reg, quart, analyte, data, reportyear) {
-  #filter the dataset based on season, analyte, and region
-  dat = filter(data, quarter == quart, region ==reg, AnalyteName == analyte, qyear <= reportyear)
-  
-  #set up limits for plot based on the max and min for all years and regions
-  dat2 = filter(data, AnalyteName == analyte)
-  lims = c(min(5), max(25))
-  
-  #make the plot
-  p_sec <- ggplot(dat, aes(x=qyear, y= value))+
-    geom_line(colour="black", size = 0.9)+geom_point(colour="black", size = 1.6) +
-    geom_hline(aes(yintercept = mean(dat$value)), size = 0.9, color = "red", linetype = "dashed")+
-    theme_smr() + 
-    theme(legend.position="none") + 
-    scale_y_continuous(AnalyteName_labs[analyte] , limits=lims)+
-    std_x_axis_rec_years(2018) + xlab("Year(June - August)")
-  return(p_sec)
-}
-
-sumtemp = recWQplot("dt", "Q3", "temp", wqsum, 2018)
-sumtemp
-ggsave(sumtemp, file="temp_summer_recent.png", dpi=300, units="cm",width=9.3,height=6.8,
-       path = "./summer_report")
-
-#that was mighty boring. What do the max temperatures look like?
-wqmax<-group_by(tot, region, qyear, quarter, AnalyteName, date) %>%
-  summarize(maxval = max(value))
-wqmaxmean = group_by(wqmax, region, qyear, quarter, AnalyteName) %>%
-  summarize(value = mean(maxval))
-wqmaxmean2 = ungroup(wqmaxmean) %>%
-  mutate(qyear = as.numeric(qyear))
-
-maxsumtemp = recWQplot("dt", "Q3", "temp", wqmaxmean2, 2018)
-maxsumtemp
-#nope. Still boring.

@@ -1,0 +1,81 @@
+---
+title: "Northern Anchovy Plot Comparison"
+author: "Dave Bosworth"
+date: "3/10/2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Purpose
+This document compares plots of the Bay Study northern anchovy CPUE including all stations versus only the Series 1 stations. Series 1 stations are considered the "core" sampling locations.
+
+# Import and Prepare Data
+
+Load R packages:
+```{r load packages, message = FALSE, warning = FALSE}
+# Load packages
+library(tidyverse)
+library(lubridate)
+library(scales)
+library(smonitr)
+```
+
+Import data:
+```{r import data}
+# Define path on SharePoint site for data
+sharepoint_path <- normalizePath(
+  file.path(
+    Sys.getenv("USERPROFILE"),
+    "California Department of Water Resources/DWR - Seasonal monitoring report - Documents/Data"
+  )
+)  
+
+# Import fish data
+load(file = paste0(sharepoint_path, "/BayStudyFish.RData"))
+```
+
+Prepare northern anchovy data for plots:
+```{r prepare noranc data}
+# Clean and modify midwater_trawl_data df
+noranc <- midwater_trawl_data %>% 
+  select(Year:ChanShoal, TowVolume, NORANC) %>% 
+  # Used Survey = 6, 7, 8 instead of month to include complete dataset
+  filter(Survey >= 6 & Survey <= 8) %>% 
+  # remove data from July 2016 due to invalid tow data
+  filter(!(Year == 2016 & Survey == 7))
+
+# Calculate CPUE values & average them for each year
+  # All stations
+  noranc_cpue_all <- noranc %>% 
+    mutate(cpue = (NORANC/TowVolume) * 10000) %>% 
+    group_by(Year) %>% 
+    summarize(ave_cpue = mean(cpue)) %>% 
+    ungroup() %>% 
+    mutate(Year = factor(Year))
+  
+  # Just Series 1 stations
+  noranc_cpue_s1 <- noranc %>% 
+    filter(Series == 1) %>% 
+    mutate(cpue = (NORANC/TowVolume) * 10000) %>% 
+    group_by(Year) %>% 
+    summarize(ave_cpue = mean(cpue)) %>% 
+    ungroup() %>% 
+    mutate(Year = factor(Year))
+```
+
+
+
+
+
+
+
+
+
+
+
+
