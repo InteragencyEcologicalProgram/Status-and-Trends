@@ -35,7 +35,9 @@ noranc <- midwater_trawl_data %>%
   # Used Survey = 6, 7, 8 instead of month to include complete dataset
   filter(Survey >= 6 & Survey <= 8) %>% 
   # remove data from July 2016 due to invalid tow data
-  filter(!(Year == 2016 & Survey == 7))
+  filter(!(Year == 2016 & Survey == 7)) %>% 
+  # Only include series 1 stations in plots
+  filter(Series == 1)
 
 # Calculate CPUE values & average them for each year
 noranc_cpue <- noranc %>% 
@@ -76,7 +78,7 @@ noranc_plot_all <- noranc_cpue %>%
   std_x_axis_label("summer") +
   # define y-axis breaks and add thousanths comma
   scale_y_continuous(
-    breaks = seq(0, 1250, by = 250),
+    breaks = seq(0, 1500, by = 250),
     labels = label_comma()
   ) +
   # add horizontal line for long-term average CPUE
@@ -84,7 +86,7 @@ noranc_plot_all <- noranc_cpue %>%
   # standardize x-axis
   std_x_axis_all_years(report_year, "discrete") +
   # add markers for missing data
-  missing_data_symb(noranc_cpue, Year, report_year, 0.85) +
+  missing_data_symb(noranc_cpue, Year, report_year, 0.9) +
   # add horizontal text to plot
   geom_text(
     data = noranc_text_h,
@@ -113,13 +115,13 @@ noranc_plot_rec <- noranc_cpue %>%
   ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))) +
   std_x_axis_label("summer") +
   # custom y-axis breaks
-  scale_y_continuous(breaks = seq(0, 500, by = 100)) +
+  scale_y_continuous(breaks = seq(0, 700, by = 100)) +
   # add horizontal line for long-term average CPUE
   lt_avg_line(lt_avg_cpue) +
   # standardize x-axis
   std_x_axis_rec_years(report_year, "discrete") +
   # add markers for missing data
-  missing_data_symb(noranc_cpue, Year, report_year, 2.2)
+  missing_data_symb(noranc_cpue, Year, report_year, 2.5)
 
 
 # Print Plots
