@@ -2,6 +2,10 @@
 
 This repository holds all the code associated with the Interagency Ecological Program Seasonal Monitoring reports. Most of the data is acccessable online and harvested regularly via the SQLlite database hosted on the DWR Sharepoint site (get link). 
 
+# smonitr R package:
+
+The [smonitr R package](https://github.com/InteragencyEcologicalProgram/smonitr) is a group of R functions used to standardize the formatting and elements of the plots in the Status and Trends Reports. Files for this package are stored within its own `smonitr` GitHub repository, and installation instructions are provided in its README file.
+
 # Guide to files:
 
 Below is an inventory of all the files in the GitHub repository for the IEP Status and Trends Reports. 
@@ -9,7 +13,6 @@ Below is an inventory of all the files in the GitHub repository for the IEP Stat
 ## Main folder
 *	[IEP_Status&Trends_DatasetsBySeason_Table.pdf](IEP_Status&Trends_DatasetsBySeason_Table.pdf): Draft Table of data sets to plot in IEP Status and Trends Reports by season
 * [basemap.png](basemap.png) – figure showing all the regions of the estuary
-* [smonitr package](https://github.com/InteragencyEcologicalProgram/smonitr) - a group of R functions used to standardize the formatting and elements of the plots in the Status and Trends Reports. Installation instructions for this package are provided in the README file within the smonitr repository. The smonitr repository is a subrepository of this repository.
 - [IEP_Plot_Theme.R](IEP_Plot_Theme.R) – ggplot theme to standardize the look of all the figures
 - [IEP_Status&Trends_util.R](IEP_Status&Trends_util.R) – another place with the theme. I don’t know why there are two.
 
