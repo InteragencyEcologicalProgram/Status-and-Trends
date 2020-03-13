@@ -13,8 +13,6 @@ Below is an inventory of all the files in the GitHub repository for the IEP Stat
 ## Main folder
 *	[IEP_Status&Trends_DatasetsBySeason_Table.pdf](IEP_Status&Trends_DatasetsBySeason_Table.pdf): Draft Table of data sets to plot in IEP Status and Trends Reports by season
 * [basemap.png](basemap.png) – figure showing all the regions of the estuary
-- [IEP_Plot_Theme.R](IEP_Plot_Theme.R) – ggplot theme to standardize the look of all the figures
-- [IEP_Status&Trends_util.R](IEP_Status&Trends_util.R) – another place with the theme. I don’t know why there are two.
 
 ## fall_report
 *	IEP_Status&Trends_2017_Fall_Metadata.pdf: Metadata associated with data sets depicted in the IEP Status and Trends Fall 2017 Report
