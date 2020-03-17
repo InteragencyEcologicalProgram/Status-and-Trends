@@ -281,16 +281,24 @@ zoops = function(reg, quart, data) {
   #make a plot
   bpl<-ggplot(dat, aes(x = qyear, y = bpue_mg, fill = taxon)) + 
     geom_area(position = 'stack')+
-    theme_iep()+
-    theme(legend.position="none") + 
+    theme_smr()+
     scale_x_continuous("Year", limits=c(1966,2018))  +
     geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                      ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
+    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids"),values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
     scale_y_continuous(expression(paste("Zooplankton Biomass (mg C/m"^" 3", ")")), 
-                       limits=c(0,max(zmeans$bpue)))
+                       limits=c(0,max(zmeans$bpue_mg)))
+    
+  if(reg != "spl") {
+    bpl = bpl + theme(legend.position="none")
+  
+  ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
+         dpi=300, units="cm",width=9.3,height=7.5,
+         path = paste("./", season_names[quart],"_report", sep = ""))
+  } else ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
+                       dpi=300, units="cm",width=9.3,height=6.9,
+                       path = paste("./", season_names[quart],"_report", sep = ""))
+  
   bpl
-
 
 }
 
@@ -319,6 +327,8 @@ zoops2 = function(quart, data) {
     scale_y_continuous(expression(paste("Zooplankton Biomass (mg C/m"^" 3", ")")), 
                        limits=c(0,max(zmeans$bpue_mg)))
   bpl
+  
+
   
   
 }
