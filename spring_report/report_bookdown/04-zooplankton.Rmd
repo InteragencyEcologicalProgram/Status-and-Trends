@@ -1,2 +1,76 @@
-# Zooplankton
+# Zooplankton {#zooplankton}
 
+### Interagency Ecological Program Spring Season report
+
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+## Background
+
+
+* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling in San Pablo Bay did not begin until 1998. 
+* Zooplankton are an important food source for pelagic fish. 
+* Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
+* Biomass in Spring tends to be higher than Winter, but lower than Summer. 
+
+:::
+
+::: {.column width="30%"}
+
+
+
+Copepod
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+knitr::include_graphics("copepod.tif")
+```
+
+
+Mysid
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+knitr::include_graphics("mysid.tif")
+```
+
+
+:::
+::::::
+
+
+## Average Spring Zooplankton Biomass by Region 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average spring zooplankton biomass in San Pablo Bay from 1975 to 2018. Values range from 3 to 24.", echo=FALSE}
+knitr::include_graphics(file.path("..","zoop_splspring.png"))
+```
+
+In 2018, San Pablo Bay chlorophyll was similar to the long-term average.
+
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2018. Values range from 2 to 19.", echo=FALSE}
+knitr::include_graphics(file.path("..","zoop_ssspring.png"))
+```
+
+In 2018, Suisun Bay chlorophyll was also about average. 
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r echo=FALSE, fig.cap= "Graph of average spring chlorophyll in the Delta from 1975 to 2018. Values range from 3.5 to 29."}
+knitr::include_graphics(file.path("..","chla_dtspring.png"))
+```
+
+In 2018, the Delta had lower clorophyll than average.
+
+:::
+
+::::::
