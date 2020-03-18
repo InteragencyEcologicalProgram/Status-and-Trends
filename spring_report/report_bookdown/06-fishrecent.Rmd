@@ -18,8 +18,10 @@
 ::: {.column width="30%"}
 
 <center> __Delta Smelt__ </center>
-```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
-#knitr::include_graphics(file.path("..","figures/deltasmelt.png"))
+
+```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+
 ```
 
 
@@ -35,7 +37,8 @@ The Delta Smelt 20mm index was zero in 2018, the lowest index on record.
 <center> __Longfin smelt__ </center>
 
 ```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
-#knitr::include_graphics(file.path("..","figures/longfinsmelt.png"))
+knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+
 ```
 
 
@@ -53,6 +56,12 @@ Adult Longfin smelt abundance in 2018 was much lower than the long-term average.
 ::: {.column width="30%"}
 
 <center> __Juvenile Winter-Run Chinook__ </center>
+```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+
+```
+
+
 ```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 2004 to 2018. Values range from 0.2 to 6."}
 knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
 ```
