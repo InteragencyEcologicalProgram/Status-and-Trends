@@ -6,6 +6,11 @@ p.caption {
   margin: 0px;
 	visibility: hidden;
 }
+
+p.disclaimer {
+	font-size: 12px;
+}
+
 p code {
   white-space: inherit;
 }

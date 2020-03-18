@@ -32,7 +32,7 @@ The Delta Smelt 20mm index was zero in 2018, the lowest index on record.
 :::
 
 ::: {.column width="30%"}
-<center> __Longfin smelt_ </center>
+<center> __Longfin smelt__ </center>
 
 ```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
 #knitr::include_graphics(file.path("..","figures/longfinsmelt.png"))
