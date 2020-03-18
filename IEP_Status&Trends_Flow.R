@@ -86,19 +86,19 @@ dmean = filter(dmean, qyear < 2019)
 ggsave(flows(quart = "Q1",data = dmean), 
        file="winter_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = "./winter_report")
+       path = "./winter_report/figures")
 
 ggsave(flows(quart = "Q2",data = dmean), 
        file="spring_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = "./spring_report")
+       path = "./spring_report/figures")
 
 ggsave(flows(quart = "Q3",data = dmean), 
        file="summer_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = "./summer_report")
+       path = "./summer_report/figures")
 
 ggsave(flows(quart = "Q4",data = dmean), 
        file="fall_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = "./fall_report")
+       path = "./fall_report/figrues")

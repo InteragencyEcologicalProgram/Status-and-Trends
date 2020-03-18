@@ -21,13 +21,13 @@
 
 Copepod
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
-knitr::include_graphics("copepod.tif")
+knitr::include_graphics("figures/copepod.jpg")
 ```
 
 
 Mysid
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
-knitr::include_graphics("mysid.tif")
+knitr::include_graphics("figures/mysid.jpg")
 ```
 
 
@@ -43,34 +43,38 @@ knitr::include_graphics("mysid.tif")
 ::: {.column width="30%"}
 
 <center> __San Pablo Bay__ </center>
-```{r fig.cap= "Graph of average spring zooplankton biomass in San Pablo Bay from 1975 to 2018. Values range from 3 to 24.", echo=FALSE}
-knitr::include_graphics(file.path("..","zoop_splspring.png"))
+```{r fig.cap= "Graph of average spring zooplankton biomass in San Pablo Bay from 1975 to 2018. Values range from 5 to 25.", echo=FALSE}
+knitr::include_graphics(file.path("..","figures/zoops_splspring.png"))
 ```
 
-In 2018, San Pablo Bay chlorophyll was similar to the long-term average.
+In 2018, San Pablo Bay had much lower than average biomass, mostly calanoid copepods
 
 
 :::
 
 ::: {.column width="30%"}
 <center> __Suisun__ </center>
-```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2018. Values range from 2 to 19.", echo=FALSE}
-knitr::include_graphics(file.path("..","zoop_ssspring.png"))
+```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2018. Values range from 5 to 45 with much higher biomass before 1986.", echo=FALSE}
+knitr::include_graphics(file.path("..","figures/zoops_ssspring.png"))
 ```
 
-In 2018, Suisun Bay chlorophyll was also about average. 
+In 2018, Suisun Bay also had much lower than average total biomass.
 
 :::
 
 ::: {.column width="30%"}
 
 <center> __Delta__ </center>
-```{r echo=FALSE, fig.cap= "Graph of average spring chlorophyll in the Delta from 1975 to 2018. Values range from 3.5 to 29."}
-knitr::include_graphics(file.path("..","chla_dtspring.png"))
+```{r echo=FALSE, fig.cap= "Graph of average spring zooplankton biomass in the Delta from 1975 to 2018. Values range from 3.5 to 39."}
+knitr::include_graphics(file.path("..","figures/zoops_dtspring.png"))
 ```
 
-In 2018, the Delta had lower clorophyll than average.
+In 2018, the Delta also had much lower than average total biomass. 
 
 :::
 
 ::::::
+
+```{block, type='disclaimer'}
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. 
+```

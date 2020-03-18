@@ -194,14 +194,14 @@ plotall = function(quart, analyte, data, report_year) {
   
   #save them together and seperately
   ggsave(tmps, file=paste(analyte, "_panel_", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=27.9,height=6.8,
-         path = paste("./", season_names[quart], "_report", sep = ""))
+         path = paste("./", season_names[quart], "_report/figures", sep = ""))
   
   ggsave(spl, file=paste(analyte, "_spl", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
-         path = paste("./", season_names[quart], "_report", sep = ""))
+         path = paste("./", season_names[quart], "_report/figures", sep = ""))
   ggsave(ss, file=paste(analyte, "_ss", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
-         path = paste("./", season_names[quart], "_report", sep = ""))
+         path = paste("./", season_names[quart], "_report/figures", sep = ""))
   ggsave(dt, file=paste(analyte, "_dt", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
-         path = paste("./", season_names[quart], "_report", sep = ""))
+         path = paste("./", season_names[quart], "_report/figures", sep = ""))
   
 }
 
