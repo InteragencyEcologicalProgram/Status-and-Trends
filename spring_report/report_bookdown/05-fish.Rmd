@@ -32,7 +32,7 @@ knitr::include_graphics(file.path("figures/fsd-splittail-adult-45cm-small.jpg"))
 
 
 ```{r fig.cap= "Graph of average Sacramento Splittail catch per unit effort from 1998 to 2018. Values range from 4 to 80.", echo=FALSE}
-knitr::include_graphics(file.path("..","figures/yolo_splittail.png"))
+knitr::include_graphics(file.path("figures/yolo_splittail.png"))
 ```
 
 2018 was lower than the long-term average.
@@ -47,7 +47,7 @@ knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
 ```
 
 ```{r fig.cap= "Graph of average adult chinook returns from 1966 to 2018. Values range from 1000 to 250000.", echo=FALSE}
-knitr::include_graphics(file.path("..","figures/SpringRun_1966.png"))
+knitr::include_graphics(file.path("figures/SpringRun_1966.png"))
 ```
 
 In 2018, adult Chinook returns were lower than average
@@ -64,7 +64,7 @@ knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.
 ```
 
 ```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 1995 to 2018. Values range from 0.2 to 6."}
-knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_allyears.png"))
+knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_allyears.png"))
 ```
 
 In 2018, juvenile winter-run salmon survival was about average.

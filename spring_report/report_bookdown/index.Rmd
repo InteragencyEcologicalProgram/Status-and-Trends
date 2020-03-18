@@ -16,7 +16,7 @@ description: "This report shows trends in water quality, plankton, and fish acro
 :::::: {.columns}
 ::: {.column width="20%"}
 ```{r fig.height=8, echo=FALSE, fig.cap="IEP logo"}
-knitr::include_graphics(file.path("..","figures","IEP_logo_updated.png"))
+knitr::include_graphics(file.path("figures","IEP_logo_updated.png"))
 ```
 :::
 
@@ -46,13 +46,13 @@ surveys for March through May of 2018.
 :::::: {.columns-nocenter}
 ::: {.column width="50%"}
 ```{r echo=FALSE}
-knitr::include_graphics(file.path("..","figures","map.png"))
+knitr::include_graphics(file.path("figures","map.png"))
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r echo=FALSE}
-knitr::include_graphics(file.path("..","figures","spring_outflow_update.png"))
+knitr::include_graphics(file.path("figures","spring_outflow_update.png"))
 ```
 
 - Freshwater flow influences water quality, plankton, and fish populations.
