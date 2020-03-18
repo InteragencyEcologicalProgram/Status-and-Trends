@@ -282,26 +282,86 @@ zoops = function(reg, quart, data) {
   bpl<-ggplot(dat, aes(x = qyear, y = bpue_mg, fill = taxon)) + 
     geom_area(position = 'stack')+
     theme_smr()+
+    theme(legend.position=c(0.5, 1.1), 
+          legend.background=element_rect(fill=NULL, color=NULL), plot.margin = margin(1, 0.6, 0.1, 0.4, unit = "cm"))+
     scale_x_continuous("Year", limits=c(1966,2018))  +
+    
+    #add long-term average line
     geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
-    scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids"),values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
+    
+    #format the colors and legend
+    scale_fill_manual(name = NULL,labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids"),
+                      values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7),
+                      guide=guide_legend(keyheight=0.5, title=NULL, direction="horizontal", 
+                                         label.position="right", label.theme = element_text(size = 7)))+
     scale_y_continuous(expression(paste("Zooplankton Biomass (mg C/m"^" 3", ")")), 
                        limits=c(0,max(zmeans$bpue_mg)))
-    
-  if(reg != "spl") {
-    bpl = bpl + theme(legend.position="none")
+ 
+  # teh san pablo bay graph needs annotation for date of first collection,
+  #and it will be the one with the legend on top
+  if(reg == "spl") {
+    bpl = bpl + 
+      annotate("text", x = 1966, y = 10, 
+               label = "Data were not \n collected until 1998", hjust = "left", size = 1.9)
   
   ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
          dpi=300, units="cm",width=9.3,height=7.5,
-         path = paste("./", season_names[quart],"_report", sep = ""))
-  } else ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
-                       dpi=300, units="cm",width=9.3,height=6.9,
-                       path = paste("./", season_names[quart],"_report", sep = ""))
+         path = paste("./", season_names[quart],"_report/figures", sep = ""))
   
+  } else if(quart == "Q1") {
+    
+    #winter graphs also need annotatino for date of first clloection
+    bpl = bpl +  theme(legend.position = "none") +
+      annotate("text", x = 1966, y = 10, 
+               label = "Data were not \n collected until 1995", hjust = "left", size = 1.9)
+
+    
+    ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
+                       dpi=300, units="cm",width=9.3,height=7.5,
+                       path = paste("./", season_names[quart],"_report/figures", sep = ""))
+  } else {
+    bpl = bpl +  theme(legend.position = "none")
+    ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
+           dpi=300, units="cm",width=9.3,height=7.5,
+           path = paste("./", season_names[quart],"_report/figures", sep = ""))
+  }
   bpl
 
 }
 
+#filter to the report year 
+zmeans = filter(zmeans, qyear <= 2018)
+
+
+#winter zoops plot
+zoops("spl", "Q1", zmeans)
+zoops("ss", "Q1", zmeans)
+zoops("dt", "Q1", zmeans)
+
+#spring zoops plot
+
+zoops("spl", "Q2", zmeans)
+zoops("ss", "Q2", zmeans)
+zoops("dt", "Q2", zmeans)
+
+
+#summer zoops plot
+
+zoops("spl", "Q3", zmeans)
+zoops("ss", "Q3", zmeans)
+zoops("dt", "Q3", zmeans)
+
+#fall zoopsplot
+zoops("spl", "Q4", zmeans)
+zoops("ss", "Q4", zmeans)
+zoops("dt", "Q4", zmeans)
+
+
+
+
+
+
+#############################################################################
 
 #Let's try one that puts all the regions together
 
@@ -397,31 +457,3 @@ ggsave(fall, file="zoops_panel_fall.png",
 #####################################################################################
 #this is the old version that grobs them together, but i need to do something about the legend.
 
-
-#winter zoops plot
-zoopsw<-plot_grid(zoops("spl", "Q1", zmeans),
-                 zoops("ss", "Q1", zmeans), 
-                 zoops("dt", "Q1", zmeans),
-                 ncol = 3, nrow = 1, align="v")
-
-
-#spring zoops plot
-zoopsf<-plot_grid(zoops("spl", "Q2", zmeans),
-                 zoops("ss", "Q2", zmeans),
-                 zoops("spl", "Q2", zmeans),
-                 ncol = 3, nrow = 1, align="v")
-zoopsf
-
-
-#summer chla plot
-zoopss<-plot_grid(zoops("spl", "Q3", zmeans),
-                 zoops("ss", "Q3", zmeans),
-                 zoops("spl", "Q3", zmeans),
-                 ncol = 3, nrow = 1, align="v")
-
-#fall chlae plot
-zoopsf<-plot_grid(zoops("spl", "Q4", zmeans),
-                 zoops("ss", "Q4", zmeans),
-                 zoops("spl", "Q4", zmeans),
-                 ncol = 3, nrow = 1, align="v")
-zoopsf
