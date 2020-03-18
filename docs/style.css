@@ -1,0 +1,38 @@
+p.caption {
+  /* color: white; */
+	/* font-size: xx-small; */
+	font-size: 0px;
+  /* margin-top: 10px; */
+  margin: 0px;
+	visibility: hidden;
+}
+<<<<<<< HEAD
+=======
+
+p.disclaimer {
+	font-size: 12px;
+}
+
+>>>>>>> master
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+/* div.TwoColumn {
+	display:inline-block;
+	width: 50%;
+}
+ */
+.columns {
+	display: flex;
+	text-align: center;
+}
+.columns-nocenter {
+	display: flex;
+} 
