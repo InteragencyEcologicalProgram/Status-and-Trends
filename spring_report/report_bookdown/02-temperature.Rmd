@@ -40,7 +40,7 @@ knitr::include_graphics("figures/thermometer.png")
 
 <center> __San Pablo Bay__ </center>
 ```{r fig.cap= "Graph of average spring water temperature in San Pablo Bay from 1975 to 2018. Values range from 13 to 18.", echo=FALSE}
-knitr::include_graphics(file.path("..","figures/temp_splspring.png"))
+knitr::include_graphics(file.path("figures/temp_splspring.png"))
 ```
 
 In 2018, San Pablo Bay temperatures were similar to the long-term average.
@@ -51,7 +51,7 @@ In 2018, San Pablo Bay temperatures were similar to the long-term average.
 ::: {.column width="30%"}
 <center> __Suisun__ </center>
 ```{r fig.cap= "Graph of average spring water temperature in Suisun from 1975 to 2018. Values range from 13 to 18.", echo=FALSE}
-knitr::include_graphics(file.path("..","figures/temp_ssspring.png"))
+knitr::include_graphics(file.path("figures/temp_ssspring.png"))
 ```
 
 In 2018, Suisun Bay was similar to the long-term average. 
@@ -62,7 +62,7 @@ In 2018, Suisun Bay was similar to the long-term average.
 
 <center> __Delta__ </center>
 ```{r echo=FALSE, fig.cap= "Graph of average spring water temperature in the Delta from 1975 to 2018. Values range from 13 to 18."}
-knitr::include_graphics(file.path("..","figures/temp_dtspring.png"))
+knitr::include_graphics(file.path("figures/temp_dtspring.png"))
 ```
 
 In 2018, the Delta was slightly cooler than average.
