@@ -94,7 +94,7 @@ ppercl$type = factor(ppercl$type, levels=c('fav_perc','sav_perc'))
 
 
 #stacked bar plot of percent coverage
-(pperc<-ggplot(ppercl,aes(x=year, y=perc,fill=type))
+(pperc<-ggplot(data=ppercl,aes(x=year, y=perc,fill=type))
    #specifies the independent and dependent variables as well as groupings
     +geom_bar(position = "stack", stat = "identity",colour="grey25")
  #specifies that this is a stacked bar plot
@@ -104,22 +104,28 @@ ppercl$type = factor(ppercl$type, levels=c('fav_perc','sav_perc'))
  #y-axis label
  +scale_y_continuous(labels= function(x) paste0(x, "%"))
  #adds a percent sign after each y axis tick label number
- +scale_fill_manual(name = "",labels=c("Floating","Submerged"),values=repcols)
- #customizes names in legend key and specifies the custom color palette
+ +scale_fill_manual(name = "",labels=c("Floating","Submerged"),values=repcols, guide = guide_legend(keyheight = 0.5))
+ #customizes names in legend key, specifies the custom color palette, and sets height of elements in legend
  +lt_avg_line(mean(vtot$perc))
  #adds horizontal line to plot to indicate long term average for data
  +std_x_axis_rec_years(2018, x_scale_type= "discrete")
  #implements standardized x-axis range of years
- +missing_data_symb(ppercl,year,2018, symb_size = 2.2)
+ +missing_data_symb(ppercl,year,2018, symb_size = 2)
  #adds symbols anywhere there is missing data
   +std_x_axis_label("annual")
- )
+ #adds "Year" as x-axis label
+ +theme(
+   legend.box.spacing = unit(0, units = "cm")
+   ,plot.margin = margin(t=0,r=0,b=0,l=0)
+   )
+ #reduces white space between legend and top of plot
+  )
 
 
 #print plot
 
 #path to location to put plot
-plot_path<-"C:/Repositories/Status-and-Trends/summer_report"
+plot_path<-"C:/Repositories/Status-and-Trends/summer_report/figures"
 
 ggsave(
   plot=pperc,
@@ -127,9 +133,11 @@ ggsave(
   dpi=300,
   units="cm",
   width=9.3,
-  height=6.8,
+  #height=6.8,
+  height=7.2,
   path = plot_path 
   )
+#standard plot height is 6.8 cm; Rosie is using 7.5 cm in her plots I think to accommodate the legend
 
 
 #stacked bar plot of acres: FAV and SAV
