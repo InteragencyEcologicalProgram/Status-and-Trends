@@ -1,3 +1,8 @@
+--- 
+pagetitle: "Water Temperature"
+---
+
+
 # Water Temperature {#water-temperature}
 
 ### Interagency Ecological Program Spring Season report
