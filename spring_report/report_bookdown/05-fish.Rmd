@@ -20,8 +20,9 @@
 ::: {.column width="30%"}
 
 <center> __Sacramento Splittail__ </center>
-```{r fig.cap= "picture of a sacramento splittail", echo=FALSE}
-knitr::include_graphics(file.path("..","figures/splittail.png"))
+```{r fig.cap= "picture of a sacramento splittail", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-splittail-adult-45cm-small.jpg"))
+
 ```
 
 
@@ -35,6 +36,11 @@ knitr::include_graphics(file.path("..","figures/yolo_splittail.png"))
 
 ::: {.column width="30%"}
 <center> __Adult Spring-Run Chinook__ </center>
+```{r fig.cap= "picture of an adults chinook salmon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
+
+```
+
 ```{r fig.cap= "Graph of average adult chinook returns from 1966 to 2018. Values range from 1000 to 250000.", echo=FALSE}
 knitr::include_graphics(file.path("..","figures/SpringRun_1966.png"))
 ```
@@ -47,6 +53,11 @@ In 2018, adult Chinook returns were lower than average
 ::: {.column width="30%"}
 
 <center> __Juvenile Winter-Run Chinook__ </center>
+```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+
+```
+
 ```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 1995 to 2018. Values range from 0.2 to 6."}
 knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_allyears.png"))
 ```
