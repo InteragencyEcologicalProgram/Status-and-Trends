@@ -1,3 +1,7 @@
+--- 
+pagetitle: "Secchi Depth"
+---
+
 # Secchi Depth {#secchi}
 
 ### Interagency Ecological Program Spring Season report
