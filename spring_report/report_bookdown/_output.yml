@@ -1,5 +1,6 @@
 bookdown::gitbook:
   css: style.css
+  output_dir: "docs"
   number_sections:  FALSE
   config:
     toc:
