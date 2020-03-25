@@ -5,6 +5,8 @@
 ## The main files are probably too large to store on GitHub, so filter now and 
 ## save smaller csv files.
 
+library(tidyverse)
+
 projectRoot <- "."
 dataRoot <- file.path(projectRoot,"data")
 thisDataRoot <- file.path(dataRoot,"DJFMP")
@@ -50,19 +52,17 @@ seineDf <- seineDfRaw %>%
 	dplyr::ungroup() %>% 
 	as.data.frame(.)
 
+seineDf$Month <- lubridate::month(seineDf$SampleDate)
+seineDf$Year <- lubridate::year(seineDf$SampleDate)
+
 unique(seineDf$MethodCode)
 unique(seineDf$GearConditionCode)
 
 ## Exclude DJFMP's region 1, which is north of Sacramento:
 seineDf <- subset(seineDf, RegionCode != 1)
 
-## Keep only the months for the spring report:
-seineDf$Month <- lubridate::month(seineDf$SampleDate)
-seineDf <- subset(seineDf, Month %in% 3:5)
-
-## Maybe keep 1995+ as a lazy way of dealing with sampling site inconsistencies:
-seineDf$Year <- lubridate::year(seineDf$SampleDate)
-seineDf <- subset(seineDf, Year >= 1995)
+# # ## Maybe keep 1995+ as a lazy way of dealing with sampling site inconsistencies:
+# # seineDf <- subset(seineDf, Year >= 1995)
 
 ## Fill in missing volumes with an overall average:
 unique(seineDf$Volume)
@@ -75,7 +75,15 @@ seineDf <- dplyr::left_join(
 	by="StationCode"
 )
 
-write.csv(seineDf, file.path(thisDataRoot,"springReportData_DJ_seine.csv"), row.names=FALSE)
+## Define spring data:
+seineDf_spring <- subset(seineDf, Month %in% 3:5)
+write.csv(seineDf_spring, file.path(thisDataRoot,"springReportData_DJ_seine.csv"), 
+          row.names=FALSE)
+
+## Define summer data:
+seineDf_summer <- subset(seineDf, Month %in% 6:8)
+write.csv(seineDf_summer, file.path(thisDataRoot,"summerReportData_DJ_seine.csv"), 
+          row.names=FALSE)
 
 
 ##########################################################################
@@ -98,24 +106,28 @@ chippsDf <- allTrawlRaw %>%
 	dplyr::ungroup() %>% 
 	as.data.frame(.)
 
+chippsDf$Month <- lubridate::month(chippsDf$SampleDate)
+chippsDf$Year <- lubridate::year(chippsDf$SampleDate)
+
 unique(chippsDf$MethodCode)
 unique(chippsDf$Location)
 	
-## Keep only the months for the spring report:
-chippsDf$Month <- lubridate::month(chippsDf$SampleDate)
-chippsDf <- subset(chippsDf, Month %in% 3:5)
-
-## Maybe keep 1995+ for consistency with seine figure:
-chippsDf$Year <- lubridate::year(chippsDf$SampleDate)
-chippsDf <- subset(chippsDf, Year >= 1995)
+# # ## Maybe keep 1995+ for consistency with seine figure:
+# # chippsDf <- subset(chippsDf, Year >= 1995)
 
 ## Fill in missing volumes with an overall average:
 any(is.na(unique(chippsDf$Volume)))
 chippsDf$Volume[is.na(chippsDf$Volume)] <- mean(chippsDf$Volume, na.rm=TRUE)
 
-write.csv(chippsDf, file.path(thisDataRoot,"springReportData_DJ_Chipps.csv"), 
+## Define spring data:
+chippsDf_spring <- subset(chippsDf, Month %in% 3:5)
+write.csv(chippsDf_spring, file.path(thisDataRoot,"springReportData_DJ_Chipps.csv"), 
 					row.names=FALSE)
 
+## Define summer data:
+chippsDf_summer <- subset(chippsDf, Month %in% 6:8)
+write.csv(chippsDf_summer, file.path(thisDataRoot,"summerReportData_DJ_Chipps.csv"), 
+					row.names=FALSE)
 
 ##########################################################################
 ## Remove large files:
