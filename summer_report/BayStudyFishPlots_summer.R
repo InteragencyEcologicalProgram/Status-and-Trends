@@ -34,8 +34,8 @@ noranc <- midwater_trawl_data %>%
   select(Year:ChanShoal, TowVolume, NORANC) %>% 
   # Used Survey = 6, 7, 8 instead of month to include complete dataset
   filter(Survey >= 6 & Survey <= 8) %>% 
-  # remove data from July 2016 due to invalid tow data
-  filter(!(Year == 2016 & Survey == 7)) %>% 
+  # Remove data for years with partial surveys
+  filter(!Year %in% c(1995, 2014, 2016, 2017)) %>% 
   # Only include series 1 stations in plots
   filter(Series == 1)
 
