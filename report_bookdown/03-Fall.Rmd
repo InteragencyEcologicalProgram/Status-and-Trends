@@ -1,0 +1,507 @@
+--- 
+pagetitle: "Fall Report"
+---
+
+
+# Fall Report {#Fall}
+
+:::::: {.columns}
+::: {.column width="20%"}
+
+:::
+
+::: {.column width="0%"}
+
+:::
+
+::: {.column width="80%"}
+#### Interagency Ecological Program for the San Francisco Estuary 
+This report shows trends in water quality, plankton, and fish across multiple IEP 
+surveys for September through November of 2018.
+:::
+::::::
+
+<h2>Delta Outflow</h2>
+
+```{r echo=FALSE}
+knitr::include_graphics(file.path("figures","fall_outflow_update.png"))
+```
+
+- Freshwater flow influences water quality, plankton, and fish populations.
+- fall flow is driven primarily upstream dam releases and exports.
+- The fall of 2018 had somewhat slightly lower outflow than average.
+:::
+::::::
+
+***
+## Fall Secchi Depth 
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+### Background
+* Organisms in this ecosystem are adapted to high turbidity conditions, and reductions in turbidity can have many negative ecological effects.
+* Higher values for Secchi depth indicate lower turbidity.
+* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) by dropping a black-and-white disk in the water until it disappears.
+
+:::
+
+::: {.column width="30%"}
+```{r fig.height=10, fig.align="center", fig.cap="image of a secchi disk", echo=FALSE}
+knitr::include_graphics(file.path("figures","secchidisc.png"))
+```
+:::
+::::::
+
+
+### Secchi Depth by Region 
+
+
+:::::: {.columns}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average fall secchi depth in San Pablo Bay from 1975 to 2018. Values range from 10 to 150.", echo=FALSE}
+knitr::include_graphics(file.path("figures/secchi_splfall.png"))
+```
+
+In 2018, San Pablo bay was close to the long-term average.
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average fall secchi depth in Suisun from 1975 to 2018. Values range from 10 to 60.", echo=FALSE}
+knitr::include_graphics(file.path("figures/secchi_ssfall.png"))
+```
+
+In 2018, Suisun Bay was also close to the long-term average
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r fig.cap= "Graph of average fall secchi depth in the Delta from 1975 to 2018. Values range from 25 to 120 and have been increasing since the year 2000.", echo=FALSE}
+knitr::include_graphics(file.path("figures/secchi_dtfall.png"))
+```
+
+In 2018, the Delta was much clearer than average, the clearest fall on record.
+
+
+:::
+
+::::::
+
+
+```{block, type='disclaimer'}
+For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899. 
+```
+
+
+***
+## Fall Water Temperature 
+
+
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+## Background
+
+* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
+* Fish growth and reproduction is highest in certain temperature ranges.
+* Increasing fall temperatures may lower Delta Smelt reproduction.
+* fall temperatures are lower closer to the ocean and slightly higher in the Delta.
+
+:::
+
+::: {.column width="30%"}
+
+
+
+
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a thermometer in water", echo=FALSE}
+knitr::include_graphics("figures/thermometer.png")
+```
+:::
+::::::
+
+
+### Temperature by Region 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average fall water temperature in San Pablo Bay from 1975 to 2018. Values range from 13 to 18.", echo=FALSE}
+knitr::include_graphics(file.path("figures/temp_splfall.png"))
+```
+
+In 2018, San Pablo Bay temperatures were similar to the long-term average.
+
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average fall water temperature in Suisun from 1975 to 2018. Values range from 13 to 18.", echo=FALSE}
+knitr::include_graphics(file.path("figures/temp_ssfall.png"))
+```
+
+In 2018, Suisun Bay was similar to the long-term average. 
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r echo=FALSE, fig.cap= "Graph of average fall water temperature in the Delta from 1975 to 2018. Values range from 13 to 18."}
+knitr::include_graphics(file.path("figures/temp_dtfall.png"))
+```
+
+In 2018, the Delta was slightly cooler than average.
+
+:::
+
+::::::
+
+```{block, type='disclaimer'}
+For more information see: Jeffries, et al.. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. 
+```
+
+***
+
+## Fall Chlorophyll
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+### Background
+
+* Chlorophyll is an indicator of phytoplankton production, which is low during the fall.
+* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
+* The invasion of the clam Potamocorbula amurensis caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
+
+
+:::
+
+::: {.column width="30%"}
+
+
+
+
+```{r fig.height=10, fig.align="center", fig.cap = "picture of phytoplankton", echo=FALSE}
+knitr::include_graphics("figures/phyto.png")
+```
+:::
+::::::
+
+
+### Average Chlorophyll by Region 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average fall chlorophyll in San Pablo Bay from 1975 to 2018. Values range from 4 to 15.", echo=FALSE}
+knitr::include_graphics(file.path("figures/chla_splfall.png"))
+```
+
+In 2018, San Pablo Bay chlorophyll was similar to the long-term average.
+
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average fall chlorophyll in Suisun from 1975 to 2018. Values range from 2 to 19.", echo=FALSE}
+knitr::include_graphics(file.path("figures/chla_ssfall.png"))
+```
+
+In 2018, Suisun Bay chlorophyll was also about average. 
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r echo=FALSE, fig.cap= "Graph of average fall chlorophyll in the Delta from 1975 to 2018. Values range from 3.5 to 29."}
+knitr::include_graphics(file.path("figures/chla_dtfall.png"))
+```
+
+In 2018, the Delta had lower clorophyll than average.
+
+:::
+
+::::::
+
+
+```{block, type='disclaimer'}
+For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20. 
+```
+ 
+***
+
+## Fall Zooplankton
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+### Background
+
+
+* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling in San Pablo Bay did not begin until 1998. 
+* Zooplankton are an important food source for pelagic fish. 
+* Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
+* Biomass in fall tends to be higher than Winter, but lower than fall. 
+
+:::
+
+::: {.column width="30%"}
+
+
+
+Copepod
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+knitr::include_graphics("figures/copepod.jpg")
+```
+
+
+Mysid
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+knitr::include_graphics("figures/mysid.jpg")
+```
+
+
+:::
+::::::
+
+
+### Average Zooplankton Biomass by Region 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average fall zooplankton biomass in San Pablo Bay from 1975 to 2018. Values range from 5 to 25.", echo=FALSE}
+knitr::include_graphics(file.path("figures/zoops_splfall.png"))
+```
+
+In 2018, San Pablo Bay had much lower than average biomass, mostly calanoid copepods
+
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average fall chlorophyll in Suisun from 1975 to 2018. Values range from 5 to 45 with much higher biomass before 1986.", echo=FALSE}
+knitr::include_graphics(file.path("figures/zoops_ssfall.png"))
+```
+
+In 2018, Suisun Bay also had much lower than average total biomass.
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r echo=FALSE, fig.cap= "Graph of average fall zooplankton biomass in the Delta from 1975 to 2018. Values range from 3.5 to 39."}
+knitr::include_graphics(file.path("figures/zoops_dtfall.png"))
+```
+
+In 2018, the Delta also had much lower than average total biomass. 
+
+:::
+
+::::::
+
+```{block, type='disclaimer'}
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. 
+```
+
+***
+ 
+## Fall Fish 
+
+### Background
+
+* Splittail are a native minnow that spawn on floodplains, so have high reproduction during high flow years when floodplains are inundated with water. They are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2). 
+* fall-run Adult salmon returns return from the ocean during the fall. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
+* Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in fall, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
+
+
+::::::
+
+
+### Average fish abundance by species 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __Delta Smelt__ </center>
+```{r fig.cap= "picture of a Delta Smelt", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+
+```
+
+
+```{r fig.cap= "Graph of Delta Smelt Index from 1967 to 2018. Values range from 0 to 1600.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_DS_1966.png"))
+```
+
+2018 was lower than the longterm average.
+
+<center> __White Sturgeon__ </center>
+```{r fig.cap= "picture of a White Sturgeon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+
+```
+
+
+```{r fig.cap= "Graph of White sturgeon CPUE from 1967 to 2018. ", echo=FALSE}
+knitr::include_graphics(file.path("figures/WST_1966.png"))
+```
+
+2018 was lower than the longterm average.
+
+:::
+
+::: {.column width="30%"}
+<center> __Longfin Smelt__ </center>
+```{r fig.cap= "picture of a longfin smelt", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+
+```
+
+```{r fig.cap= "Graph of longfin smelt index from 1967 through 2018.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_LFS_1966.png"))
+```
+
+The 2018 longfin smelt index was much lower than average.
+
+<center> __American Shad__ </center>
+```{r fig.cap= "picture of an American Shad", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+
+```
+
+```{r fig.cap= "Graph of American Shad index from 1967 through 2018.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_AS_1966.png"))
+```
+
+The 2018 American Shad index was much lower than average.
+
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Young of the Year Striped Bass__ </center>
+```{r fig.cap= "picture of a striped bass", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+
+```
+
+```{r echo=FALSE, fig.cap= "Graph of age-0 striped bass index from 1967 to 2018. Values range from 40 to 20000."}
+knitr::include_graphics(file.path("figures/FMWT_sb0_1966.png"))
+```
+
+In 2018, Young-of=the-year striped bass were much less abundant than average. 
+
+<center> __Adult Fall-Run Chinook Salmon__ </center>
+```{r fig.cap= "picture of a Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+
+```
+
+```{r echo=FALSE, fig.cap= "Graph of adult fallrun chinook population estimates 1967 to 2018. Values range from 40 to 20000."}
+knitr::include_graphics(file.path("figures/FallRun_1966.png"))
+```
+
+In 2018, Fall run chinook were.... 
+
+
+:::
+
+::::::
+
+
+```{block, type='disclaimer'}
+For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+```
+***
+
+## Recent Trends: Fish 2004-2018 
+
+### Background
+
+* Delta Smelt and Longfin Smelt have been in decline since the early 2000s. The [CDFW 20mm Survey](https://wildlife.ca.gov/Conservation/Delta/20mm-Survey) was designed to sample post-larval and juvenile Delta Smelt, and samples in San Pablo, Suisun, and the Delta. 
+* Longfin Smelt frequently spawn further downstream than Delta Smelt, so the 20 mm Survey does not cover their entire range, but still provides an indication of population-level trends.
+* Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in fall, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
+
+
+
+### Average fish abundance by species 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __Delta Smelt__ </center>
+
+```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+
+```
+
+
+```{r fig.cap= "Graph of juvenile Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
+knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
+```
+
+The Delta Smelt Townet index was zero in 2018, the lowest index on record. 
+
+:::
+
+::: {.column width="30%"}
+<center> __Microcystis__ </center>
+
+
+```{r fig.cap= "Graph of microcystis abundance fron 2007 to 2018", echo=FALSE}
+#knitr::include_graphics(file.path("figures/Microcystis_fall.png"))
+```
+
+2018 had more observations of very high Microcystis than previous years. 
+
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Invasive Aquatic Vegetation__ </center>
+
+
+```{r echo=FALSE, fig.cap= "Graph of percent coverage of submerged and floating vegetation in the Delta."}
+knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
+```
+
+In 2018, aquatic vegetation was slightly lower than 2017, but higher than average.
+:::
+
+::::::
+
+
+
+
+```{block, type='disclaimer'}
+For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+```
+ 
+ 
