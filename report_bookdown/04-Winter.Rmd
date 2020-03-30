@@ -1,0 +1,458 @@
+--- 
+pagetitle: "Winter Report"
+---
+
+
+# Winter Report {#Winter}
+
+
+#### Interagency Ecological Program for the San Francisco Estuary 
+This report shows trends in water quality, plankton, and fish across multiple IEP 
+surveys for September through November of 2018.
+
+<h2>Winter Delta Outflow</h2>
+
+```{r echo=FALSE}
+knitr::include_graphics(file.path("figures","winter_outflow_update.png"))
+```
+
+- Freshwater flow influences water quality, plankton, and fish populations.
+- Winter flow is driven primarily by rainfall and upstream dam releases.
+- The winter of 2018 had lower outflow than average.
+:::
+::::::
+
+***
+## Winter Secchi Depth 
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+### Background
+* Organisms in this ecosystem are adapted to high turbidity conditions, and reductions in turbidity can have many negative ecological effects.
+* Higher values for Secchi depth indicate lower turbidity.
+* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) by dropping a black-and-white disk in the water until it disappears.
+
+:::
+
+::: {.column width="30%"}
+```{r fig.height=10, fig.align="center", fig.cap="image of a secchi disk", echo=FALSE}
+knitr::include_graphics(file.path("figures","secchidisc.png"))
+```
+:::
+::::::
+
+
+### Secchi Depth by Region 
+
+
+:::::: {.columns}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average winter secchi depth in San Pablo Bay from 1975 to 2018. Values range from 10 to 150.", echo=FALSE}
+knitr::include_graphics(file.path("figures/secchi_splwinter.png"))
+```
+
+In 2018, San Pablo bay slightly clearer than the long-term average.
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average winter secchi depth in Suisun from 1975 to 2018. Values range from 10 to 60.", echo=FALSE}
+knitr::include_graphics(file.path("figures/secchi_sswinter.png"))
+```
+
+In 2018, Suisun Bay was also slightly clearer than the long-term average
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r fig.cap= "Graph of average winter secchi depth in the Delta from 1975 to 2018. Values range from 25 to 120 and have been increasing since the year 2000.", echo=FALSE}
+knitr::include_graphics(file.path("figures/secchi_dtwinter.png"))
+```
+
+In 2018, the Delta was much clearer than average, the second clearest winter on record.
+
+
+:::
+
+::::::
+
+
+```{block, type='disclaimer'}
+For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899. 
+```
+
+
+***
+## Winter Water Temperature 
+
+
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+## Background
+
+* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
+* Productivity, fish growth, and reproduction is highest in certain temperature ranges.
+* Increasing winter temperatures may lower Delta Smelt reproduction and allow invasive aquatic plants to survive the winter.
+* Winter temperatures are lower closer to the ocean and slightly higher in the Delta.
+
+:::
+
+::: {.column width="30%"}
+
+
+
+
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a thermometer in water", echo=FALSE}
+knitr::include_graphics("figures/thermometer.png")
+```
+:::
+::::::
+
+
+### Temperature by Region 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average winter water temperature in San Pablo Bay from 1975 to 2018. Values range from 13 to 18.", echo=FALSE}
+knitr::include_graphics(file.path("figures/temp_splwinter.png"))
+```
+
+In 2018, San Pablo Bay temperatures were similar to the long-term average.
+
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average winter water temperature in Suisun from 1975 to 2018. Values range from 13 to 18.", echo=FALSE}
+knitr::include_graphics(file.path("figures/temp_sswinter.png"))
+```
+
+In 2018, Suisun Bay was similar to the long-term average. 
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r echo=FALSE, fig.cap= "Graph of average winter water temperature in the Delta from 1975 to 2018. Values range from 13 to 18."}
+knitr::include_graphics(file.path("figures/temp_dtwinter.png"))
+```
+
+In 2018, the Delta was also similar to the long-term average.
+
+:::
+
+::::::
+
+```{block, type='disclaimer'}
+For more information see: Jeffries, et al.. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. 
+```
+
+***
+
+## Winter Chlorophyll
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+### Background
+
+* Chlorophyll is an indicator of phytoplankton production, which is low during the winter.
+* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
+* The invasion of the clam *Potamocorbula amurensis* caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
+
+
+:::
+
+::: {.column width="30%"}
+
+
+
+
+```{r fig.height=10, fig.align="center", fig.cap = "picture of phytoplankton", echo=FALSE}
+knitr::include_graphics("figures/phyto.png")
+```
+:::
+::::::
+
+
+### Average Chlorophyll by Region 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average winter chlorophyll in San Pablo Bay from 1975 to 2018. Values range from 2 to 8.", echo=FALSE}
+knitr::include_graphics(file.path("figures/chla_splwinter.png"))
+```
+
+In 2018, San Pablo Bay chlorophyll was similar to the long-term average.
+
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average winter chlorophyll in Suisun from 1975 to 2018. Values range from 2 to 19.", echo=FALSE}
+knitr::include_graphics(file.path("figures/chla_sswinter.png"))
+```
+
+In 2018, Suisun Bay chlorophyll was also about average. 
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r echo=FALSE, fig.cap= "Graph of average winter chlorophyll in the Delta from 1975 to 2018. Values range from 3.5 to 29."}
+knitr::include_graphics(file.path("figures/chla_dtwinter.png"))
+```
+
+In 2018, the Delta also had about average chlorophyll.
+
+:::
+
+::::::
+
+
+```{block, type='disclaimer'}
+For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20. 
+```
+ 
+***
+
+## Winter Zooplankton
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+### Background
+
+
+* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling during the winter did not begin until 1995. 
+* Zooplankton are an important food source for pelagic fish. 
+* Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
+* Biomass in winter tends to be the lowest of the year. 
+
+:::
+
+::: {.column width="30%"}
+
+
+
+<center> Copepod </center>
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+knitr::include_graphics("figures/copepod.jpg")
+```
+
+
+<center> Mysid </center>
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+knitr::include_graphics("figures/mysid.jpg")
+```
+
+
+:::
+::::::
+
+
+### Average Zooplankton Biomass by Region 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average winter zooplankton biomass in San Pablo Bay from 1975 to 2018. Values range from 3 to 16.", echo=FALSE}
+knitr::include_graphics(file.path("figures/zoops_splwinter.png"))
+```
+
+In 2018, San Pablo Bay had much lower than average biomass, mostly calanoid copepods
+
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average winter chlorophyll in Suisun from 1995 to 2018. Values range from .5 to 5.", echo=FALSE}
+knitr::include_graphics(file.path("figures/zoops_sswinter.png"))
+```
+
+In 2018, Suisun Bay also had much lower than average total biomass.
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r echo=FALSE, fig.cap= "Graph of average winter zooplankton biomass in the Delta from 1995 to 2018. Values range from .5 to 5."}
+knitr::include_graphics(file.path("figures/zoops_dtwinter.png"))
+```
+
+In 2018, the Delta had about average total biomass. 
+
+:::
+
+::::::
+
+```{block, type='disclaimer'}
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. 
+```
+
+***
+ 
+## Winter Fish 
+
+### Background
+
+* White sturgeon support a recreational fishery. Juvenile sturgeon are sampled by in the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study) , which samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
+* Longfin Smelt are listed as Threatened under the California Endangered Species Act. Spawning adults are sampled in winter by the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study) midwater trawl. 
+* Juvenile Winter-Run Chinook Salmon are sampled by the [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers.
+
+
+::::::
+
+
+### Average fish abundance by species 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __Juvenile Sturgeon__ </center>
+```{r fig.cap= "picture of a white sturgeon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+
+```
+
+
+```{r fig.cap= "Graph of White Sturgeon Year Class Index from 1967 to 2018. Values range from 0 to 1600.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_DS_1966.png"))
+```
+
+2018 was lower than the longterm average.
+
+:::
+::: {.column width = 30%}
+
+
+<center> __Longfin Smelt__ </center>
+```{r fig.cap= "picture of a Longfin Smelt", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+
+```
+
+
+```{r fig.cap= "Graph of longfin smelt CPUE from 1980 to 2018. ", echo=FALSE}
+knitr::include_graphics(file.path("figures/WST_1966.png"))
+```
+
+2018 was lower than the longterm average.
+
+:::
+
+::: {.column width="30%"}
+<center> __Juvenile Winter-run Chinook__ </center>
+```{r fig.cap= "picture of a juvenile Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+
+```
+
+```{r fig.cap= "Graph of juvenile winter-run chinook salmon CPUE in the Chipps Island Trawl.", echo=FALSE}
+#knitr::include_graphics(file.path("figures/FMWT_LFS_1966.png"))
+```
+
+In 2018 wild Chionook Salmon survival was...
+
+:::
+
+::::::
+
+
+```{block, type='disclaimer'}
+For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+```
+***
+
+## Recent Trends: Fish 2004-2018 
+
+### Background
+
+* Delta Smelt and Longfin Smelt have been in decline since the early 2000s. The [CDFW Spring Kodiak Trawl](https://www.wildlife.ca.gov/Conservation/Delta/Spring-Kodiak-Trawl) was designed to sample spawning Delta Smelt, and samples in San Pablo, Suisun, and the Delta.
+* Longfin Smelt frequently spawn further downstream than Delta Smelt, so are better sampled by the CDFW Bay Study. The Bay Study samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
+* Juvenile Chinook pass Red Bluff Diversion Dam on the upper Sacramento as they migrate from spawning grounds to the ocean.
+
+
+
+### Average fish abundance by species 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __Delta Smelt__ </center>
+
+```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+
+```
+
+
+```{r fig.cap= "Graph of juvenile Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
+knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
+```
+
+The Delta Smelt Townet index was zero in 2018, the lowest index on record. 
+
+:::
+
+::: {.column width="30%"}
+<center> __Microcystis__ </center>
+
+
+```{r fig.cap= "Graph of microcystis abundance fron 2007 to 2018", echo=FALSE}
+#knitr::include_graphics(file.path("figures/Microcystis_winter.png"))
+```
+
+2018 had more observations of very high Microcystis than previous years. 
+
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Invasive Aquatic Vegetation__ </center>
+
+
+```{r echo=FALSE, fig.cap= "Graph of percent coverage of submerged and floating vegetation in the Delta."}
+knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
+```
+
+In 2018, aquatic vegetation was slightly lower than 2017, but higher than average.
+:::
+
+::::::
+
+
+
+
+```{block, type='disclaimer'}
+For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+```
+ 
+ 
