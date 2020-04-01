@@ -14,7 +14,7 @@
 #packages
 
 #Install the package we wrote for this project (only needs to be done once)
-devtools::install_github("InteragencyEcologicalProgram/smonitr", "v1.2.0.9000")
+#devtools::install_github("InteragencyEcologicalProgram/smonitr", "v1.2.0.9000")
 
 #load all the packages you need
 library(colorspace) #color palette
@@ -30,6 +30,10 @@ library(readxl)
 #Clark-Bumpus net survey data
 zoopcb<- read_excel("data/1972-2018CBMatrix.xlsx", sheet = "CB CPUE Matrix 1972-2018", guess_max = 100000)
 zoopcb$Date = as.Date(zoopcb$Date)
+
+#pump data
+zoopp<- read_excel("data/1972-2018Pump Matrix.xlsx", sheet =  " Pump CPUE Matrix 1972-2018", guess_max = 100000)
+zoopp$Date = as.Date(zoopp$SampleDate)
 
 #mysid net survey data
 mysid<-read.csv("./data/zoop_mysid.csv") 
@@ -71,10 +75,14 @@ unique(zoop_subw$Station)
 #combine the three data subsets
 zoop_s<-rbind(zoop_sub,zoop_subsp,zoop_subw)
 
-#reduce zooplankton count data to just needed columns
+
+
+#reduce zooplankton count data to just needed columns. Take out the cyclopoids best sampled
+#by the pump
 zoop<-subset(zoop_s,select=c("Year","Survey","Date","Station","ACARTELA","ACARTIA","DIAPTOM","EURYTEM","OTHCALAD","PDIAPFOR",
-                             "PDIAPMAR","SINOCAL","LIMNOSPP" ,"LIMNOSINE","LIMNOTET","OITHDAV","OITHSIM","OITHSPP","TORTANUS",
+                             "PDIAPMAR","SINOCAL","TORTANUS",
                              "AVERNAL","OTHCYCAD","BOSMINA","DAPHNIA","DIAPHAN","OTHCLADO")  )
+
 
 #convert zoop data frame from wide to long format
 zoopl<-gather(zoop,taxon,cpue,ACARTELA:OTHCLADO)
@@ -90,13 +98,52 @@ zoopb<-left_join(zoopl,zmass,by="taxon")
 
 #calculate biomass by sample-taxon combo
 zoopb$bpue<-zoopb$cpue*zoopb$mass_indiv_ug
-#create new column for zooplankton categories
-#calanoids: "ACARTELA","ACARTIA","DIAPTOM","EURYTEM","OTHCALAD","PDIAPFOR","PDIAPMAR","SINOCAL","TORTANUS"
-#cyclopoids: "AVERNAL","OTHCYCAD","LIMNOSINE","LIMNOSPP","LIMNOTET" , "OITHDAV" , "OITHSIM" , "OITHSPP"
-#cladocerans: "BOSMINA","DAPHNIA","DIAPHAN","OTHCLADO"
 
-#duplicate the taxon column to make a higher and lower taxon column
-zall = mutate(zoopb, taxonl = taxon)
+
+#Rotifer pump: formatting data---------___________________________________
+
+names(zoopp)
+
+#exclude unneeded rows:
+#exclude EZ stations (NZEZ2, NZEZ6)
+#exclude non-core stations (core = 0); 1 = sampled since 1972, 2 = sampled since 1974
+#exclude 1972-1973 because only subset of core stations were sampled during those years
+#exclude survey replicate 2 for the months that have those; vast majority of monthly surveys are just one replicate
+#exclude the winter months (1,2,12) initially because they have a shorter time series than the other months
+zoop_sub2<-subset(zoopp, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1973 & SurveyRep!=2 & Survey>2 & Survey<12)
+
+#create separate subset of the two san pablo stations to include in graphs (no core stations in SP)
+zoop_subsp2<-subset(zoopp, Station=="NZD41" | Station=="NZ41A")
+
+#create separate subset for winter months with its shorter time series
+zoop_subw2<-subset(zoopp, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1993 & SurveyRep!=2 & (Survey<3 | Survey>11))
+
+#combine the three data subsets
+zoop_s2<-rbind(zoop_sub2,zoop_subsp2,zoop_subw2)
+
+#reduce zooplankton data to just needed columns
+#"Year","Survey","SampleDate","Station" 
+#"LIMNOSINE"+"LIMNOSPP"+"LIMNOTET" + "OITHDAV" + "OITHSIM" + "OITHSPP" = the two cyclopoid genera best surveyed by pump
+zoop2<-subset(zoop_s2,select=c("Year","Survey","SampleDate","Station","LIMNOSINE","LIMNOSPP","LIMNOTET","OITHDAV","OITHSIM","OITHSPP"))
+
+#convert zoop data frame from wide to long format
+zoopl2<-gather(zoop2,taxon,cpue,LIMNOSINE:OITHSPP)
+
+#name columns
+names(zoopl2)[1:4]<-c("year","survey","date","station")
+
+#add in individual biomass data
+zoopb2<-left_join(zoopl2,zmass,by="taxon",type="left")
+
+#calculate biomass by sample-taxon combo
+zoopb2$bpue<-zoopb2$cpue*zoopb2$mass_indiv_ug
+
+#combine the CB and pump data sets
+names(zoopb)
+names(zoopb2)
+
+zall<-rbind(zoopb,zoopb2)
+######################################################################################
 
 #first, create vectors of strings to replace with broader category names 
 calan<-c("ACARTELA","ACARTIA","DIAPTOM","EURYTEM","OTHCALAD","PDIAPFOR","PDIAPMAR","SINOCAL","TORTANUS")
@@ -111,9 +158,17 @@ Zoopcats = data.frame(taxon = c(calan, cyclop, cladoc),
 
 zall2 = merge(zall, Zoopcats) 
 
+ggplot(zall2, aes(x = as.factor(year), y = bpue, fill = taxon))+ geom_bar(stat = "identity")
+ggplot(zall2, aes(x = as.factor(year), y = bpue, fill = cat))+ geom_bar(stat = "identity")
+ggplot(filter(zall2, cat != "clad"), aes(x = as.factor(year), y = bpue, fill = cat))+ geom_bar(stat = "identity")
+
+
 #add together biomass for all species within each of the three taxonomic groups
 zll<- group_by(zall2, year, survey, date, station, cat) %>%
   summarize(cpue = sum(cpue, na.rm = T), bpue = sum(bpue, na.rm = T))
+
+
+
 
 #mysids: formatting data---------
 
@@ -241,7 +296,7 @@ region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
 
 
 #All zoop BPUE (ug): facets of stacked line plots
-bpl<-ggplot(filter(zmeans, taxon != "mys"), aes(x = qyear, y = bpue, fill = taxon)) + 
+bpl<-ggplot(zmeans, aes(x = qyear, y = bpue, fill = taxon)) + 
     geom_area(position = 'stack')+
     theme_smr()+
     #theme(legend.position="none") + 
@@ -254,8 +309,8 @@ bpl<-ggplot(filter(zmeans, taxon != "mys"), aes(x = qyear, y = bpue, fill = taxo
 #    scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), limits=c(0,max(zmeans$bpue))))
 #NOTE: mysids overwhelm everything else because they are so much larger
 
-
-cpl<-ggplot(filter(zmeans, taxon != "mys"), aes(x = qyear, y = cpue, fill = taxon)) + 
+bpl
+cpl<-ggplot(zmeans, aes(x = qyear, y = cpue, fill = taxon)) + 
   geom_area(position = 'stack')+
   theme_smr()+
   #theme(legend.position="none") + 
