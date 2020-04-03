@@ -407,7 +407,7 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 
 <center> __Delta Smelt__ </center>
 
-```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
 
 ```
@@ -417,7 +417,7 @@ knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"
 knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
 ```
 
-The Delta Smelt Townet index was zero in 2018, the lowest index on record. 
+The Delta Smelt SKT index was zero in 2018, the lowest index on record. 
 
 :::
 
