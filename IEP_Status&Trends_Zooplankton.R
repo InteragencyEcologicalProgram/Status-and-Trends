@@ -100,7 +100,7 @@ zoopb<-left_join(zoopl,zmass,by="taxon")
 zoopb$bpue<-zoopb$cpue*zoopb$mass_indiv_ug
 
 
-#Rotifer pump: formatting data---------___________________________________
+#pump: formatting data---------___________________________________
 
 names(zoopp)
 
@@ -359,6 +359,9 @@ zoops = function(reg, quart, data) {
   ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
          dpi=300, units="cm",width=9.3,height=7.5,
          path = paste("./", season_names[quart],"_report/figures", sep = ""))
+  ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
+         dpi=300, units="cm",width=9.3,height=7.5,
+         path = "./report_bookdown/figures")
   
   } else if(quart == "Q1") {
     
@@ -371,11 +374,17 @@ zoops = function(reg, quart, data) {
     ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
                        dpi=300, units="cm",width=9.3,height=7.5,
                        path = paste("./", season_names[quart],"_report/figures", sep = ""))
+    ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
+           dpi=300, units="cm",width=9.3,height=7.5,
+           path = "./report_bookdown/figures")
   } else {
     bpl = bpl +  theme(legend.position = "none")
     ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
            dpi=300, units="cm",width=9.3,height=7.5,
            path = paste("./", season_names[quart],"_report/figures", sep = ""))
+    ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
+           dpi=300, units="cm",width=9.3,height=7.5,
+           path = "./report_bookdown/figures")
   }
   bpl
 
@@ -490,18 +499,32 @@ spring = zoops2("Q2", zmeans) +
 
 ggsave(summer, file="zoops_panel_summer.png", 
        dpi=300, units="cm",width=27.9,height=7.5,
-       path = "./summer_report")
+       path = "./summer_report/figures")
 
 ggsave(spring, file="zoops_panel_spring.png", dpi=300, units="cm",width=27.9,height=7.5,
-       path = "./spring_report")
+       path = "./spring_report/figures")
 
 ggsave(winter, file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=7.5,
-       path = "./winter_report")
+       path = "./winter_report/figures")
 
 ggsave(fall, file="zoops_panel_fall.png", 
        dpi=300, units="cm",width=27.9,height=7.5,
-       path = "./fall_report")
+       path = "./fall_report/figures")
 
+
+ggsave(summer, file="zoops_panel_summer.png", 
+       dpi=300, units="cm",width=27.9,height=7.5,
+       path = "./report_bookdown/figures")
+
+ggsave(spring, file="zoops_panel_spring.png", dpi=300, units="cm",width=27.9,height=7.5,
+       path = "./report_bookdown/figures")
+
+ggsave(winter, file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=7.5,
+       path = "./report_bookdown/figures")
+
+ggsave(fall, file="zoops_panel_fall.png", 
+       dpi=300, units="cm",width=27.9,height=7.5,
+       path = "./report_bookdown/figures")
 
 
 

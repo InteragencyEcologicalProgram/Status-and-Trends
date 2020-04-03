@@ -20,7 +20,7 @@ options(width = 120)
 
 This report is updated annually and divided into four seasonal reprots
 
-## [Spring](01-Spring.html)
+## [Spring](Spring.html)
   * Secchi Depth
   * Temperature
   * Chlorophyll
@@ -29,7 +29,7 @@ This report is updated annually and divided into four seasonal reprots
   * Recent Trends - Delta Smelt, Longfin Smelt, Salmon
   * Metadata
 
-## [Summer](02-Summer.html)
+## [Summer](Summer.html)
   * Secchi Depth
   * Temperature
   * Chlorophyll
@@ -38,7 +38,7 @@ This report is updated annually and divided into four seasonal reprots
   * Recent Trends - Delta Smelt, Microcystis, Vegetation
   * Metadata
 
-## [Fall](03-Fall.html)
+## [Fall](Fall.html)
   * Secchi Depth
   * Temperature
   * Chlorophyll
@@ -47,7 +47,7 @@ This report is updated annually and divided into four seasonal reprots
   * Recent Trends - Delta Smelt, 
   * Metadata
 
-## [Winter](04-Winter.html)
+## [Winter](Winter.html)
   * Secchi Depth
   * Temperature
   * Chlorophyll

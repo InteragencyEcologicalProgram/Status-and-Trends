@@ -5,21 +5,10 @@ pagetitle: "Fall Report"
 
 # Fall Report {#Fall}
 
-:::::: {.columns}
-::: {.column width="20%"}
-
-:::
-
-::: {.column width="0%"}
-
-:::
-
-::: {.column width="80%"}
 #### Interagency Ecological Program for the San Francisco Estuary 
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for September through November of 2018.
-:::
-::::::
+surveys for September through November of 1976-2018.
+
 
 <h2>Delta Outflow</h2>
 
@@ -30,8 +19,7 @@ knitr::include_graphics(file.path("figures","fall_outflow_update.png"))
 - Freshwater flow influences water quality, plankton, and fish populations.
 - fall flow is driven primarily upstream dam releases and exports.
 - The fall of 2018 had somewhat slightly lower outflow than average.
-:::
-::::::
+
 
 ***
 ## Fall Secchi Depth 
@@ -334,8 +322,6 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in fall, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
 
-::::::
-
 
 ### Average fish abundance by species 
 
@@ -357,18 +343,6 @@ knitr::include_graphics(file.path("figures/FMWT_DS_1966.png"))
 
 2018 was lower than the longterm average.
 
-<center> __White Sturgeon__ </center>
-```{r fig.cap= "picture of a White Sturgeon", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
-
-```
-
-
-```{r fig.cap= "Graph of White sturgeon CPUE from 1967 to 2018. ", echo=FALSE}
-knitr::include_graphics(file.path("figures/WST_1966.png"))
-```
-
-2018 was lower than the longterm average.
 
 :::
 
@@ -385,26 +359,13 @@ knitr::include_graphics(file.path("figures/FMWT_LFS_1966.png"))
 
 The 2018 longfin smelt index was much lower than average.
 
-<center> __American Shad__ </center>
-```{r fig.cap= "picture of an American Shad", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
-
-```
-
-```{r fig.cap= "Graph of American Shad index from 1967 through 2018.", echo=FALSE}
-knitr::include_graphics(file.path("figures/FMWT_AS_1966.png"))
-```
-
-The 2018 American Shad index was much lower than average.
-
-
 :::
 
 ::: {.column width="30%"}
 
 <center> __Young of the Year Striped Bass__ </center>
 ```{r fig.cap= "picture of a striped bass", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+knitr::include_graphics(file.path("figures/fsd-striped-bass-young-adult-20cm-small.jpg"))
 
 ```
 
@@ -414,9 +375,50 @@ knitr::include_graphics(file.path("figures/FMWT_sb0_1966.png"))
 
 In 2018, Young-of=the-year striped bass were much less abundant than average. 
 
+:::
+
+::::::
+
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+ 
+<center> __American Shad__ </center>
+```{r fig.cap= "picture of an American Shad", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-american-shad-small.jpg"))
+
+```
+
+```{r fig.cap= "Graph of American Shad index from 1967 through 2018.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_AS_1966.png"))
+```
+
+The 2018 American Shad index was much lower than average.
+:::
+
+
+::: {.column width="30%"}
+<center> __White Sturgeon__ </center>
+```{r fig.cap= "picture of a White Sturgeon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-white-sturgeon-adult-100cm-small.jpg"))
+
+```
+
+
+```{r fig.cap= "Graph of White sturgeon CPUE from 1967 to 2018. ", echo=FALSE}
+knitr::include_graphics(file.path("figures/WST_1966.png"))
+```
+
+2018 was lower than the longterm average.
+:::
+
+::: {.column width="30%"}
+
 <center> __Adult Fall-Run Chinook Salmon__ </center>
 ```{r fig.cap= "picture of a Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
 
 ```
 
@@ -426,9 +428,7 @@ knitr::include_graphics(file.path("figures/FallRun_1966.png"))
 
 In 2018, Fall run chinook were.... 
 
-
 :::
-
 ::::::
 
 
@@ -462,11 +462,11 @@ knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"
 ```
 
 
-```{r fig.cap= "Graph of juvenile Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
-knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
+```{r fig.cap= "Graph of Delta Smelt index from 2004-2018. Values range from 0 to 320.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_DS_2004.png"))
 ```
 
-The Delta Smelt Townet index was zero in 2018, the lowest index on record. 
+The Delta Smelt FMWT index was zero in 2018, the lowest index on record. 
 
 :::
 
@@ -474,25 +474,26 @@ The Delta Smelt Townet index was zero in 2018, the lowest index on record.
 <center> __Microcystis__ </center>
 
 
-```{r fig.cap= "Graph of microcystis abundance fron 2007 to 2018", echo=FALSE}
-#knitr::include_graphics(file.path("figures/Microcystis_fall.png"))
+```{r fig.cap= "Graph of Longfin Smelt index from 2004-2018. Values range from 5 to 2000.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_LFS_2004.png"))
 ```
 
-2018 had more observations of very high Microcystis than previous years. 
+The lonfin smelt index remained much lower than the long-term average in 2018. 
 
 
 :::
 
 ::: {.column width="30%"}
 
-<center> __Invasive Aquatic Vegetation__ </center>
+<center> __Striped Bass__ </center>
 
 
-```{r echo=FALSE, fig.cap= "Graph of percent coverage of submerged and floating vegetation in the Delta."}
-knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
+```{r echo=FALSE, fig.cap= "Graph of age-zero striped bass index in the Fall Midwater Trawl."}
+knitr::include_graphics(file.path("figures/FMWT_SB0_2004.png"))
 ```
 
-In 2018, aquatic vegetation was slightly lower than 2017, but higher than average.
+In 2018, The striped bass index was the lowest on record.
+
 :::
 
 ::::::
@@ -501,7 +502,8 @@ In 2018, aquatic vegetation was slightly lower than 2017, but higher than averag
 
 
 ```{block, type='disclaimer'}
-For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+For more information see: Nobriga, M. L, & Smith, W. E. (2020). Did a Shifting Ecological Baseline Mask the Predatory Effect of Striped Bass on Delta Smelt? San Francisco Estuary and Watershed Science, 18(1). http://dx.doi.org/10.15447/sfews.2020v18iss1art1
+
 ```
  
  
