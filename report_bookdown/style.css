@@ -30,9 +30,19 @@ pre code {
 }
  */
 .columns {
-	display: flex;
-	text-align: center;
+  columns: 3 800px;         /* number of columns and width in pixels*/
+    -webkit-columns: 3 800; /* chrome, safari */
+    -moz-columns: 3 800px;    /* firefox */
+	 display: flex;
 }
+
+.columns2 {
+ display: flex;
+}
+
 .columns-nocenter {
-	display: flex;
+  columns: 3 8800px;         /* number of columns and width in pixels*/
+    -webkit-columns: 3 800px; /* chrome, safari */
+    -moz-columns: 3 800px;    /* firefox */
+ display: flex;
 } 
