@@ -1,205 +1,205 @@
-species,year ,index
-ds,1967,408
-ds,1968,696
-ds,1969,313
-ds,1970,1673
-ds,1971,1303
-ds,1972,1265
-ds,1973,1145
-ds,1974,
-ds,1975,697
-ds,1976,359
-ds,1977,480
-ds,1978,572
-ds,1979,
-ds,1980,1654
-ds,1981,374
-ds,1982,333
-ds,1983,132
-ds,1984,182
-ds,1985,110
-ds,1986,212
-ds,1987,280
-ds,1988,174
-ds,1989,366
-ds,1990,364
-ds,1991,689
-ds,1992,156
-ds,1993,1078
-ds,1994,102
-ds,1995,899
-ds,1996,127
-ds,1997,303
-ds,1998,420
-ds,1999,864
-ds,2000,756
-ds,2001,603
-ds,2002,139
-ds,2003,210
-ds,2004,74
-ds,2005,26
-ds,2006,41
-ds,2007,28
-ds,2008,23
-ds,2009,17
-ds,2010,29
-ds,2011,343
-ds,2012,42
-ds,2013,18
-ds,2014,9
-ds,2015,7
-ds,2016,8
-ds,2017,2
-lfs,1967,81737
-lfs,1968,3279
-lfs,1969,59350
-lfs,1970,6515
-lfs,1971,15903
-lfs,1972,760
-lfs,1973,5896
-lfs,1974,
-lfs,1975,2819
-lfs,1976,658
-lfs,1977,210
-lfs,1978,6619
-lfs,1979,
-lfs,1980,31184
-lfs,1981,2202
-lfs,1982,62905
-lfs,1983,11864
-lfs,1984,7408
-lfs,1985,992
-lfs,1986,6160
-lfs,1987,1520
-lfs,1988,791
-lfs,1989,456
-lfs,1990,243
-lfs,1991,134
-lfs,1992,76
-lfs,1993,798
-lfs,1994,545
-lfs,1995,8205
-lfs,1996,1346
-lfs,1997,690
-lfs,1998,6654
-lfs,1999,5243
-lfs,2000,3437
-lfs,2001,247
-lfs,2002,707
-lfs,2003,467
-lfs,2004,191
-lfs,2005,129
-lfs,2006,1949
-lfs,2007,13
-lfs,2008,139
-lfs,2009,65
-lfs,2010,191
-lfs,2011,477
-lfs,2012,61
-lfs,2013,164
-lfs,2014,16
-lfs,2015,4
-lfs,2016,7
-lfs,2017,141
-as,1967,3422
-as,1968,758
-as,1969,3688
-as,1970,856
-as,1971,1459
-as,1972,335
-as,1973,1085
-as,1974,
-as,1975,2491
-as,1976,346
-as,1977,636
-as,1978,2364
-as,1979,
-as,1980,3916
-as,1981,1434
-as,1982,5389
-as,1983,2931
-as,1984,817
-as,1985,1598
-as,1986,1860
-as,1987,899
-as,1988,1550
-as,1989,1878
-as,1990,4316
-as,1991,2987
-as,1992,2014
-as,1993,5157
-as,1994,1334
-as,1995,6812
-as,1996,4286
-as,1997,2594
-as,1998,4140
-as,1999,715
-as,2000,764
-as,2001,765
-as,2002,1920
-as,2003,9360
-as,2004,947
-as,2005,1744
-as,2006,2313
-as,2007,553
-as,2008,271
-as,2009,624
-as,2010,683
-as,2011,894
-as,2012,415
-as,2013,309
-as,2014,278
-as,2015,79
-as,2016,313
-as,2017,3086
-sb0,1967,19677
-sb0,1968,3719
-sb0,1969,8072
-sb0,1970,8276
-sb0,1971,9475
-sb0,1972,6116
-sb0,1973,4286
-sb0,1974,
-sb0,1975,4548
-sb0,1976,1420
-sb0,1977,883
-sb0,1978,2598
-sb0,1979,
-sb0,1980,1493
-sb0,1981,4531
-sb0,1982,4466
-sb0,1983,12473
-sb0,1984,6581
-sb0,1985,1760
-sb0,1986,3943
-sb0,1987,1350
-sb0,1988,477
-sb0,1989,442
-sb0,1990,1320
-sb0,1991,944
-sb0,1992,2042
-sb0,1993,1556
-sb0,1994,1259
-sb0,1995,478
-sb0,1996,392
-sb0,1997,568
-sb0,1998,1224
-sb0,1999,541
-sb0,2000,388
-sb0,2001,731
-sb0,2002,73
-sb0,2003,111
-sb0,2004,54
-sb0,2005,121
-sb0,2006,363
-sb0,2007,82
-sb0,2008,220
-sb0,2009,70
-sb0,2010,43
-sb0,2011,272
-sb0,2012,125
-sb0,2013,69
-sb0,2014,59
-sb0,2015,52
-sb0,2016,124
-sb0,2017,470
+"Year","Species","Index"
+1967,"American Shad",3422
+1967,"Delta Smelt",408
+1967,"Longfin Smelt",81737
+1967,"Striped Bass age-0",19677
+1968,"American Shad",758
+1968,"Delta Smelt",696
+1968,"Longfin Smelt",3279
+1968,"Striped Bass age-0",3719
+1969,"American Shad",3044
+1969,"Delta Smelt",258
+1969,"Longfin Smelt",51526
+1969,"Striped Bass age-0",6760
+1970,"American Shad",855
+1970,"Delta Smelt",1673
+1970,"Longfin Smelt",6515
+1970,"Striped Bass age-0",8276
+1971,"American Shad",1459
+1971,"Delta Smelt",1303
+1971,"Longfin Smelt",15903
+1971,"Striped Bass age-0",9475
+1972,"American Shad",335
+1972,"Delta Smelt",1265
+1972,"Longfin Smelt",760
+1972,"Striped Bass age-0",6116
+1973,"American Shad",1085
+1973,"Delta Smelt",1145
+1973,"Longfin Smelt",5896
+1973,"Striped Bass age-0",4286
+1975,"American Shad",2491
+1975,"Delta Smelt",697
+1975,"Longfin Smelt",2819
+1975,"Striped Bass age-0",4548
+1976,"American Shad",346
+1976,"Delta Smelt",359
+1976,"Longfin Smelt",658
+1976,"Striped Bass age-0",4548
+1977,"American Shad",636
+1977,"Delta Smelt",480
+1977,"Longfin Smelt",210
+1977,"Striped Bass age-0",883
+1978,"American Shad",2364
+1978,"Delta Smelt",572
+1978,"Longfin Smelt",6619
+1978,"Striped Bass age-0",2598
+1980,"American Shad",3916
+1980,"Delta Smelt",1654
+1980,"Longfin Smelt",31184
+1980,"Striped Bass age-0",1493
+1981,"American Shad",1434
+1981,"Delta Smelt",374
+1981,"Longfin Smelt",2202
+1981,"Striped Bass age-0",4531
+1982,"American Shad",5389
+1982,"Delta Smelt",333
+1982,"Longfin Smelt",62905
+1982,"Striped Bass age-0",4466
+1983,"American Shad",2931
+1983,"Delta Smelt",132
+1983,"Longfin Smelt",11864
+1983,"Striped Bass age-0",12473
+1984,"American Shad",817
+1984,"Delta Smelt",182
+1984,"Longfin Smelt",7408
+1984,"Striped Bass age-0",6581
+1985,"American Shad",1597
+1985,"Delta Smelt",110
+1985,"Longfin Smelt",991
+1985,"Striped Bass age-0",1760
+1986,"American Shad",1860
+1986,"Delta Smelt",212
+1986,"Longfin Smelt",6160
+1986,"Striped Bass age-0",3943
+1987,"American Shad",899
+1987,"Delta Smelt",280
+1987,"Longfin Smelt",1520
+1987,"Striped Bass age-0",1350
+1988,"American Shad",1550
+1988,"Delta Smelt",174
+1988,"Longfin Smelt",791
+1988,"Striped Bass age-0",477
+1989,"American Shad",1878
+1989,"Delta Smelt",366
+1989,"Longfin Smelt",456
+1989,"Striped Bass age-0",442
+1990,"American Shad",4316
+1990,"Delta Smelt",364
+1990,"Longfin Smelt",243
+1990,"Striped Bass age-0",1320
+1991,"American Shad",2987
+1991,"Delta Smelt",689
+1991,"Longfin Smelt",134
+1991,"Striped Bass age-0",944
+1992,"American Shad",2014
+1992,"Delta Smelt",156
+1992,"Longfin Smelt",76
+1992,"Striped Bass age-0",2042
+1993,"American Shad",5157
+1993,"Delta Smelt",1078
+1993,"Longfin Smelt",798
+1993,"Striped Bass age-0",1556
+1994,"American Shad",1334
+1994,"Delta Smelt",102
+1994,"Longfin Smelt",545
+1994,"Striped Bass age-0",1259
+1995,"American Shad",6812
+1995,"Delta Smelt",899
+1995,"Longfin Smelt",8205
+1995,"Striped Bass age-0",478
+1996,"American Shad",4286
+1996,"Delta Smelt",127
+1996,"Longfin Smelt",1346
+1996,"Striped Bass age-0",392
+1997,"American Shad",2594
+1997,"Delta Smelt",303
+1997,"Longfin Smelt",690
+1997,"Striped Bass age-0",568
+1998,"American Shad",4140
+1998,"Delta Smelt",420
+1998,"Longfin Smelt",6654
+1998,"Striped Bass age-0",1224
+1999,"American Shad",687
+1999,"Delta Smelt",884
+1999,"Longfin Smelt",5147
+1999,"Striped Bass age-0",625
+2000,"American Shad",764
+2000,"Delta Smelt",756
+2000,"Longfin Smelt",3437
+2000,"Striped Bass age-0",388
+2001,"American Shad",765
+2001,"Delta Smelt",603
+2001,"Longfin Smelt",247
+2001,"Striped Bass age-0",731
+2002,"American Shad",1920
+2002,"Delta Smelt",139
+2002,"Longfin Smelt",707
+2002,"Striped Bass age-0",73
+2003,"American Shad",9360
+2003,"Delta Smelt",210
+2003,"Longfin Smelt",467
+2003,"Striped Bass age-0",111
+2004,"American Shad",947
+2004,"Delta Smelt",74
+2004,"Longfin Smelt",191
+2004,"Striped Bass age-0",54
+2005,"American Shad",1702
+2005,"Delta Smelt",26
+2005,"Longfin Smelt",119
+2005,"Striped Bass age-0",112
+2006,"American Shad",2313
+2006,"Delta Smelt",41
+2006,"Longfin Smelt",1949
+2006,"Striped Bass age-0",363
+2007,"American Shad",553
+2007,"Delta Smelt",28
+2007,"Longfin Smelt",13
+2007,"Striped Bass age-0",82
+2008,"American Shad",271
+2008,"Delta Smelt",23
+2008,"Longfin Smelt",139
+2008,"Striped Bass age-0",220
+2009,"American Shad",624
+2009,"Delta Smelt",17
+2009,"Longfin Smelt",65
+2009,"Striped Bass age-0",70
+2010,"American Shad",683
+2010,"Delta Smelt",29
+2010,"Longfin Smelt",191
+2010,"Striped Bass age-0",43
+2011,"American Shad",894
+2011,"Delta Smelt",343
+2011,"Longfin Smelt",477
+2011,"Striped Bass age-0",272
+2012,"American Shad",415
+2012,"Delta Smelt",42
+2012,"Longfin Smelt",61
+2012,"Striped Bass age-0",125
+2013,"American Shad",309
+2013,"Delta Smelt",18
+2013,"Longfin Smelt",164
+2013,"Striped Bass age-0",70
+2014,"American Shad",278
+2014,"Delta Smelt",9
+2014,"Longfin Smelt",16
+2014,"Striped Bass age-0",59
+2015,"American Shad",75
+2015,"Delta Smelt",7
+2015,"Longfin Smelt",5
+2015,"Striped Bass age-0",54
+2016,"American Shad",303
+2016,"Delta Smelt",8
+2016,"Longfin Smelt",6
+2016,"Striped Bass age-0",108
+2017,"American Shad",2959
+2017,"Delta Smelt",2
+2017,"Longfin Smelt",128
+2017,"Striped Bass age-0",462
+2018,"American Shad",999
+2018,"Delta Smelt",0
+2018,"Longfin Smelt",48
+2018,"Striped Bass age-0",36
+2019,"American Shad",2223
+2019,"Delta Smelt",0
+2019,"Longfin Smelt",44
+2019,"Striped Bass age-0",258
