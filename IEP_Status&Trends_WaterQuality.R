@@ -30,7 +30,7 @@ alldata = read.csv("data/WQ_discrete_1975-2018.csv", stringsAsFactors = F)
 alldata$SampleDate = as.Date(alldata$SampleDate)
 
 #EMP WQ data (1975-2018)
-alldata<- WQ_all
+#alldata<- WQ_all
   str(alldata)
 
 #GPS coordinates of all sites
