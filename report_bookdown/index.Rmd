@@ -1,0 +1,75 @@
+--- 
+title: "IEP Seasonal Monitoring Report"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: https://github.com/InteragencyEcologicalProgram/Status-and-Trends
+description: "This report shows trends in water quality, plankton, and fish across multiple IEP surveys."
+---
+
+```{r fig.height=8, echo=FALSE, fig.cap="IEP logo"}
+knitr::include_graphics(file.path("figures","IEP_logo_updated.png"))
+options(width = 120)
+```
+```
+
+# Overview
+
+This report is updated annually and divided into four seasonal reprots
+
+## [Spring](Spring.html)
+  * Secchi Depth
+  * Temperature
+  * Chlorophyll
+  * Zooplankton
+  * Fish
+  * Recent Trends - Delta Smelt, Longfin Smelt, Salmon
+  * Metadata
+
+## [Summer](Summer.html)
+  * Secchi Depth
+  * Temperature
+  * Chlorophyll
+  * Zooplankton
+  * Fish
+  * Recent Trends - Delta Smelt, Microcystis, Vegetation
+  * Metadata
+
+## [Fall](Fall.html)
+  * Secchi Depth
+  * Temperature
+  * Chlorophyll
+  * Zooplankton
+  * Fish
+  * Recent Trends - Delta Smelt, 
+  * Metadata
+
+## [Winter](Winter.html)
+  * Secchi Depth
+  * Temperature
+  * Chlorophyll
+  * Zooplankton
+  * Fish
+  * Recent Trends - Delta Smelt, 
+  * Metadata
+
+
+## Regions of the Estuary
+
+```{r echo=FALSE, fig.cap = "Map of the estuary with circles around San Pablo Bay, Suisun, and the Delta"}
+knitr::include_graphics(file.path("figures","map.png"))
+```
+
+
+
+```{block, type='disclaimer'}
+Disclaimer: While substantial efforts are made to ensure the accuracy of these data, 
+complete accuracy of data sets cannot be guaranteed. This report was developed by the 
+IEP Synthesis Team. For questions, comments, or corrections, contact 
+Rosemary Hartman – Rosemary.Hartman@water.ca.gov
+```
+
+

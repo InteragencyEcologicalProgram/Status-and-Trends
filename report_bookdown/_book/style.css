@@ -1,0 +1,48 @@
+@page {
+  size: landscape
+}
+p.caption {
+  /* color: white; */
+	/* font-size: xx-small; */
+	font-size: 0px;
+  /* margin-top: 10px; */
+  margin: 0px;
+	visibility: hidden;
+}
+
+p.disclaimer {
+	font-size: 9px;
+}
+
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+/* div.TwoColumn {
+	display:inline-block;
+	width: 50%;
+}
+ */
+.columns {
+  columns: 3 800px;         /* number of columns and width in pixels*/
+    -webkit-columns: 3 800; /* chrome, safari */
+    -moz-columns: 3 800px;    /* firefox */
+	 display: flex;
+}
+
+.columns2 {
+ display: flex;
+}
+
+.columns-nocenter {
+  columns: 3 8800px;         /* number of columns and width in pixels*/
+    -webkit-columns: 3 800px; /* chrome, safari */
+    -moz-columns: 3 800px;    /* firefox */
+ display: flex;
+} 
