@@ -334,7 +334,7 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 
 ::: {.column width=800px}
 
-<center> __Sacramento Splittail__ </center>
+<center> __Juvenile Sacramento Splittail__ </center>
 ```{r fig.cap= "picture of a sacramento splittail", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-splittail-adult-45cm-small.jpg"))
 
@@ -345,7 +345,7 @@ knitr::include_graphics(file.path("figures/fsd-splittail-adult-45cm-small.jpg"))
 knitr::include_graphics(file.path("figures/yolo_splittail.png"))
 ```
 
-2018 was lower than the long-term average.
+2018 did not have substantial Yolo Bypass flooding, and catch was in line with other similar years.
 
 :::
 
