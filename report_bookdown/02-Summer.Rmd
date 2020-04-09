@@ -5,7 +5,7 @@ pagetitle: "Summer Report"
 
 # Summer Report {#Summer}
 
-#### Interagency Ecological Program for the San Francisco Estuary 
+#### Interagency Ecological Program Summer Season report
 This report shows trends in water quality, plankton, and fish across multiple IEP 
 surveys for June through August of 2018.
 
@@ -232,8 +232,6 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 ## Summer Zooplankton
 
-#### Interagency Ecological Program summer Season report
-
 
 :::::: {.columns-nocenter}
 ::: {.column width="70%"}
@@ -314,13 +312,11 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
  
 ## Summer Fish 
 
-
 ### Background
 
 * Delta Smelt, listed as threatened by the Endangered Spices Act, have been tracked by [CDFW’s Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey) since 1959 in Suisun Bay, San Pablo Bay, and the Delta. 
 * Northern Anchovy are an important forage fish in the brackish-saline regions of the estuary. They are sampled best by [CDFW’s San Francisco Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study).
 * Sacramento Pikeminnow is a native cyprinid that is one of the few piscivorous native fish in the Delta. They are sampled by [USFWS's DJFMP](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm) beach seine surveys throughout the estuary.
-::::::
 
 ### Average fish abundance by species 
 
