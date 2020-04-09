@@ -322,62 +322,83 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 * Longfin Smelt are listed as Threatened under the California Endangered Species Act. Spawning adults are sampled in winter by the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study) midwater trawl. 
 * Juvenile Winter-Run Chinook Salmon are sampled by the [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers.
 
+### Average fish abundance by species 
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+<center> __Juvenile Sturgeon__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Longfin Smelt__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Juvenile Winter-run Chinook__ </center>
+:::
 
 ::::::
-
-
-### Average fish abundance by species 
 
 
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-
-<center> __Juvenile Sturgeon__ </center>
 ```{r fig.cap= "picture of a white sturgeon", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
-
+knitr::include_graphics(file.path("figures/fsd-white-sturgeon-adult-100cm-small.jpg"))
 ```
-
-
-```{r fig.cap= "Graph of White Sturgeon Year Class Index from 1967 to 2018. Values range from 0 to 1600.", echo=FALSE}
-knitr::include_graphics(file.path("figures/FMWT_DS_1966.png"))
-```
-
-2018 was lower than the longterm average.
-
-:::
-::: {.column width = 30%}
-
-
-<center> __Longfin Smelt__ </center>
-```{r fig.cap= "picture of a Longfin Smelt", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
-
-```
-
-
-```{r fig.cap= "Graph of longfin smelt CPUE from 1980 to 2018. ", echo=FALSE}
-knitr::include_graphics(file.path("figures/WST_1966.png"))
-```
-
-2018 was lower than the longterm average.
-
 :::
 
 ::: {.column width=800px}
-<center> __Juvenile Winter-run Chinook__ </center>
+```{r fig.cap= "picture of a Longfin Smelt", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+```
+:::
+
+::: {.column width=800px}
 ```{r fig.cap= "picture of a juvenile Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
-
 ```
+:::
 
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of White Sturgeon Year Class Index from 1967 to 2018. Values range from 0 to 1600.", echo=FALSE}
+knitr::include_graphics(file.path("figures/WST_1966.png"))
+```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of longfin smelt CPUE from 1980 to 2018. ", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_LFS_1966.png"))
+```
+:::
+
+::: {.column width=800px}
 ```{r fig.cap= "Graph of juvenile winter-run chinook salmon CPUE in the Chipps Island Trawl.", echo=FALSE}
-#knitr::include_graphics(file.path("figures/FMWT_LFS_1966.png"))
+knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_allyears.png"))
 ```
+:::
 
-In 2018 wild Chionook Salmon survival was...
+::::::
 
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+2018 was lower than the longterm average.
+:::
+
+::: {.column width=800px}
+2018 was lower than the longterm average.
+:::
+
+::: {.column width=800px}
+In 2018 wild Chinook Salmon survival was...
 :::
 
 ::::::
@@ -396,59 +417,77 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 * Longfin Smelt frequently spawn further downstream than Delta Smelt, so are better sampled by the CDFW Bay Study. The Bay Study samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
 * Juvenile Chinook pass Red Bluff Diversion Dam on the upper Sacramento as they migrate from spawning grounds to the ocean.
 
-
-
 ### Average fish abundance by species 
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+<center> __Delta Smelt__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Microcystis__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Invasive Aquatic Vegetation__ </center>
+:::
+
+::::::
 
 
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-
-<center> __Delta Smelt__ </center>
-
 ```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
-
 ```
-
-
-```{r fig.cap= "Graph of Adult Delta Smelt index from 2004-2018. Values range from 0 to 120.", echo=FALSE}
-knitr::include_graphics(file.path("figures/SKT_DSM_rec.png"))
-```
-
-The Delta Smelt SKT index was the second-lowest on record. 
-
 :::
 
 ::: {.column width=800px}
-<center> __Longfin Smelt__ </center>
-
-```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
-
-```
-
-
-```{r fig.cap= "Graph of Adults Longfin Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
-knitr::include_graphics(file.path(""))
-```
-
-Adult Lonfin Smelt abundance in 2018 was much lower than the long-term average. 
-
-
 :::
 
 ::: {.column width=800px}
+:::
 
-<center> __Juvenile Winter-Run Chinook__ </center>
+::::::
 
 
-```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook salmon passing the red bluff diversion dam."}
-knitr::include_graphics(file.path("figures/redbluff_2003.png"))
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of juvenile Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
+knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
 ```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of microcystis abundance fron 2007 to 2018", echo=FALSE}
+#knitr::include_graphics(file.path("figures/Microcystis_winter.png"))
+```
+:::
+
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap= "Graph of percent coverage of submerged and floating vegetation in the Delta."}
+knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
+```
+:::
+
+::::::
 
 
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+The Delta Smelt SKT index was zero in 2018, the lowest index on record. 
+:::
+
+::: {.column width=800px}
+2018 had more observations of very high Microcystis than previous years. 
+:::
+
+::: {.column width=800px}
+In 2018, aquatic vegetation was slightly lower than 2017, but higher than average.
 :::
 
 ::::::

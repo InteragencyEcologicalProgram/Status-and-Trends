@@ -323,52 +323,76 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-
-<center> __Sacramento Splittail__ </center>
-```{r fig.cap= "picture of a Delta Smelt", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
-
-```
-
-
-```{r fig.cap= "Graph of Delta Smelt Index from 1970 to 2018. Values range from 0 to 62.", echo=FALSE}
-knitr::include_graphics(file.path("figures/STN_DSM.png"))
-```
-
-2018 was lower than the longterm average.
-
+<center> __Delta Smelt__ </center>
 :::
 
 ::: {.column width=800px}
 <center> __Northern Anchovy__ </center>
-```{r fig.cap= "picture of a northern anchovy", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/anchovy.png"))
-
-```
-
-```{r fig.cap= "Graph of average northern anchovy CPUE from 1980 through 2017.", echo=FALSE}
-knitr::include_graphics(file.path("figures/noranc_all_years.png"))
-```
-
-Bay Study did not sample in 2018, but catch in 2017 was about average.
-
-
 :::
 
 ::: {.column width=800px}
-
 <center> __Sacramento Pikeminnow__ </center>
-```{r fig.cap= "picture of a sacramento pikeminnow", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-sacramento-pikeminnow-small.jpg"))
+:::
 
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "picture of a delta smelt", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
 ```
+:::
 
-```{r echo=FALSE, fig.cap= "Graph of sacramento pikeminnow index from 1975 to 2018. Values range from 0.2 to 6."}
+::: {.column width=800px}
+```{r fig.cap= "picture of a northern anchovy", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
+```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "picture of a sacramento pikeminnow", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+```
+:::
+
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of Delta Smelt Index from 1970 to 2018. Values range from 0 to 62.", echo=FALSE}
+knitr::include_graphics(file.path("figures/STN_DSM.png"))
+```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of average northern anchovy CPUE from 1980 through 2017.", echo=FALSE}
+knitr::include_graphics(file.path("figures/noranc_all_years.png"))
+```
+:::
+
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap= "Graph of Sacramento pikeminnow index from 1975 to 2018. Values range from 0.2 to 6."}
 knitr::include_graphics(file.path("figures/DJFMP_sacpikeminnow_summer.png"))
 ```
+:::
 
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+2018 was lower than the longterm average.
+:::
+
+::: {.column width=800px}
+Bay Study did not sample in 2018, but catch in 2017 was about average.
+:::
+
+::: {.column width=800px}
 In 2018, Pikeminnow were less abundant than average
-
 :::
 
 ::::::
@@ -389,32 +413,41 @@ For more information see: For more information, see: Hieb, K., J. Bautista, and 
 * Microcystis is a toxic cyanobacteria first found in the Delta in 1998. Microcystis presence has been documented by the [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) and the  [CDFW Summer Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey) during their water quality sampling.
 * Aquatic vegetation in the Delta has increased significantly in recent years. This vegetation is composed mostly of non-native invasive plant species and is categorized as either floating or submerged types. Coverage is estimated by [UC-Davis](http://cstars.metro.ucdavis.edu/) using remote sensing of the North and Central Delta.
 
-
 ### Average fish abundance by species 
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+<center> __Delta Smelt__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Microcystis__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Invasive Aquatic Vegetation__ </center>
+:::
+
+::::::
 
 
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-
-<center> __Delta Smelt__ </center>
-
-```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
-
 ```
-
-
-```{r fig.cap= "Graph of juvenile Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
-knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
-```
-
-The Delta Smelt Townet index was zero in 2018, the lowest index on record. 
-
 :::
 
 ::: {.column width=800px}
-<center> __Microcystis__ </center>
+:::
+
+::: {.column width=800px}
+:::
+
+::::::
+
 
 ```{r fig.cap= "picture of a beaker with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path("figures/microcystis.bmp"))
@@ -422,35 +455,44 @@ knitr::include_graphics(file.path("figures/microcystis.bmp"))
 ```
 
 
-```{r fig.cap= "Graph of microcystis abundance fron 2007 to 2018", echo=FALSE}
-knitr::include_graphics(file.path("figures/Microcystis_summer.png"))
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of juvenile Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
+knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
 ```
-
-2018 had more observations of very high Microcystis than previous years. 
-
-
 :::
 
 ::: {.column width=800px}
-
-<center> __Invasive Aquatic Vegetation__ </center>
-
-
-```{r fig.cap= "picture of a Brazillian waterweed", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/egeria.jpeg"))
-
+```{r fig.cap= "Graph of microcystis abundance fron 2007 to 2018", echo=FALSE}
+knitr::include_graphics(file.path("figures/Microcystis_summer.png"))
 ```
+:::
 
-
+::: {.column width=800px}
 ```{r echo=FALSE, fig.cap= "Graph of percent coverage of submerged and floating vegetation in the Delta."}
-knitr::include_graphics(file.path(""))
+knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
 ```
-
-In 2018, aquatic vegetation was slightly lower than 2017, but higher than average.
 :::
 
 ::::::
 
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+The Delta Smelt Townet index was zero in 2018, the lowest index on record. 
+:::
+
+::: {.column width=800px}
+2018 had more observations of very high Microcystis than previous years. 
+:::
+
+::: {.column width=800px}
+In 2018, aquatic vegetation was slightly lower than 2017, but higher than average.
+:::
+
+::::::
 
 
 
