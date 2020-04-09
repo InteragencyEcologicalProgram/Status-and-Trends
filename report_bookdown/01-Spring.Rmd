@@ -320,15 +320,11 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
  
 ## Spring Fish 
 
-:::::: {.columns-nocenter}
 ### Background
 
 * Splittail are a native minnow that spawn on floodplains, so have high reproduction during high flow years when floodplains are inundated with water. They are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2). 
 * Spring-run Adult salmon returns return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
-
-
-::::::
 
 
 ### Average fish abundance by species 
