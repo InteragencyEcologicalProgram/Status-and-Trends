@@ -380,6 +380,8 @@ knitr::include_graphics(file.path("figures/DJFMP_sacpikeminnow_summer.png"))
 ```
 :::
 
+::::::
+
 
 :::::: {.columns-nocenter}
 
@@ -441,18 +443,15 @@ knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"
 :::
 
 ::: {.column width=800px}
+```{r fig.cap= "picture of a beaker with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/microcystis.bmp"))
+```
 :::
 
 ::: {.column width=800px}
 :::
 
 ::::::
-
-
-```{r fig.cap= "picture of a beaker with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/microcystis.bmp"))
-
-```
 
 
 :::::: {.columns-nocenter}

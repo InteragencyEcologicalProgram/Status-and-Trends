@@ -520,7 +520,7 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
 ```
 :::
