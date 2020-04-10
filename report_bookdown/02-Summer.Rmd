@@ -31,7 +31,7 @@ knitr::include_graphics(file.path("figures","summer_outflow_update.png"))
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 ```{r fig.height=10, fig.align="center", fig.cap="image of a secchi disk", echo=FALSE}
 knitr::include_graphics(file.path("figures","secchidisc.png"))
 ```
@@ -99,9 +99,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::
 
-::: {.column width=800px}
-
-
+::: {.column width=200px}
 
 
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a thermometer in water", echo=FALSE}
@@ -171,7 +169,7 @@ For more information see: Jeffries, et al.. 2016. Effects of high temperatures o
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 
 
 
@@ -245,7 +243,7 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 
 
 
@@ -347,13 +345,13 @@ knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a northern anchovy", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
+knitr::include_graphics(file.path("figures/anchovy.png"))
 ```
 :::
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a sacramento pikeminnow", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+knitr::include_graphics(file.path("figures/fsd-sacramento-pikeminnow-small.jpg"))
 ```
 :::
 
@@ -415,7 +413,7 @@ For more information see: For more information, see: Hieb, K., J. Bautista, and 
 * Microcystis is a toxic cyanobacteria first found in the Delta in 1998. Microcystis presence has been documented by the [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) and the  [CDFW Summer Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey) during their water quality sampling.
 * Aquatic vegetation in the Delta has increased significantly in recent years. This vegetation is composed mostly of non-native invasive plant species and is categorized as either floating or submerged types. Coverage is estimated by [UC-Davis](http://cstars.metro.ucdavis.edu/) using remote sensing of the North and Central Delta.
 
-### Average fish abundance by species 
+### Average abundance by parameter
 
 :::::: {.columns-nocenter}
 
@@ -449,6 +447,10 @@ knitr::include_graphics(file.path("figures/microcystis.bmp"))
 :::
 
 ::: {.column width=800px}
+```{r fig.cap= "picture of a beaker with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/egeria.jpeg"))
+```
+
 :::
 
 ::::::
@@ -470,7 +472,7 @@ knitr::include_graphics(file.path("figures/Microcystis_summer.png"))
 
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap= "Graph of percent coverage of submerged and floating vegetation in the Delta."}
-knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
+knitr::include_graphics(file.path("figures/veg_perc.png"))
 ```
 :::
 
