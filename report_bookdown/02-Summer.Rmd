@@ -11,7 +11,11 @@ surveys for June through August of 2018.
 
 <h2>Delta Outflow</h2>
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+
+```{r echo=FALSE, fig.cap="average summer Delta outflow",}
 knitr::include_graphics(file.path("figures","summer_outflow_update.png"))
 ```
 
@@ -40,6 +44,18 @@ knitr::include_graphics(file.path("figures","secchidisc.png"))
 
 
 ### Secchi Depth by Region 
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
 
 
 :::::: {.columns}
@@ -110,6 +126,18 @@ knitr::include_graphics("figures/thermometer.png")
 
 
 ### Temperature by Region 
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
 
 
 :::::: {.columns-nocenter}
@@ -183,6 +211,18 @@ knitr::include_graphics("figures/phyto.png")
 
 ### Average summer Chlorophyll by Region 
 
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
 
 :::::: {.columns-nocenter}
 
@@ -230,11 +270,10 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 ## Summer Zooplankton
 
+### Background
 
 :::::: {.columns-nocenter}
 ::: {.column width="70%"}
-### Background
-
 
 * Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling in San Pablo Bay did not begin until 1998. 
 * Zooplankton are an important food source for pelagic fish. 
@@ -244,8 +283,6 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 :::
 
 ::: {.column width=200px}
-
-
 
 <center> Copepod </center>
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
@@ -263,6 +300,18 @@ knitr::include_graphics("figures/mysid.jpg")
 
 
 ### Average summer Zooplankton Biomass by Region 
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
 
 
 :::::: {.columns-nocenter}
@@ -317,6 +366,20 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 * Sacramento Pikeminnow is a native cyprinid that is one of the few piscivorous native fish in the Delta. They are sampled by [USFWS's DJFMP](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm) beach seine surveys throughout the estuary.
 
 ### Average fish abundance by species 
+
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
 
 :::::: {.columns-nocenter}
 
@@ -414,6 +477,20 @@ For more information see: For more information, see: Hieb, K., J. Bautista, and 
 * Aquatic vegetation in the Delta has increased significantly in recent years. This vegetation is composed mostly of non-native invasive plant species and is categorized as either floating or submerged types. Coverage is estimated by [UC-Davis](http://cstars.metro.ucdavis.edu/) using remote sensing of the North and Central Delta.
 
 ### Average abundance by parameter
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
+
 
 :::::: {.columns-nocenter}
 
