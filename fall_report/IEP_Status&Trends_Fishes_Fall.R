@@ -119,12 +119,12 @@ ggsave(p_as, file="FMWT_AS_1966.png", dpi=300, units="cm", width=9.3, height=6.8
 
 #White Sturgeon
 #unlike FMWT, these data actually start 1968 instead of 1966
-(p_wst <- ggplot(wst, aes(x=fyear, y=AvgCPUE))+
+p_wst <- ggplot(wst, aes(x=fyear, y=AvgCPUE))+
   geom_bar(stat="identity") +
   theme_smr() +
   theme(legend.position="none") + 
    std_x_axis_label("fall")+
-  scale_y_continuous("White Sturgeon CPUE")) +
+  scale_y_continuous("White Sturgeon CPUE") +
   std_x_axis_all_years(2018) +
   missing_data_symb(wst, fyear, 2018, 2)+
   lt_avg_line(mean(wst$AvgCPUE, na.rm = T))
