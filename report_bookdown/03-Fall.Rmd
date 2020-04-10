@@ -5,7 +5,7 @@ pagetitle: "Fall Report"
 
 # Fall Report {#Fall}
 
-#### Interagency Ecological Program for the San Francisco Estuary 
+#### Interagency Ecological Program Fall Season report
 This report shows trends in water quality, plankton, and fish across multiple IEP 
 surveys for September through November of 1976-2018.
 
@@ -321,60 +321,83 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 * fall-run Adult salmon returns return from the ocean during the fall. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in fall, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
-
-
 ### Average fish abundance by species 
-
 
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-
 <center> __Delta Smelt__ </center>
-```{r fig.cap= "picture of a Delta Smelt", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
-
-```
-
-
-```{r fig.cap= "Graph of Delta Smelt Index from 1967 to 2018. Values range from 0 to 1600.", echo=FALSE}
-knitr::include_graphics(file.path("figures/FMWT_DS_1966.png"))
-```
-
-2018 was lower than the longterm average.
-
-
 :::
 
 ::: {.column width=800px}
 <center> __Longfin Smelt__ </center>
-```{r fig.cap= "picture of a longfin smelt", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
-
-```
-
-```{r fig.cap= "Graph of longfin smelt index from 1967 through 2018.", echo=FALSE}
-knitr::include_graphics(file.path("figures/FMWT_LFS_1966.png"))
-```
-
-The 2018 longfin smelt index was much lower than average.
-
 :::
 
 ::: {.column width=800px}
-
 <center> __Young of the Year Striped Bass__ </center>
+:::
+
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "picture of a Delta Smelt", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "picture of a longfin smelt", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+```
+:::
+
+::: {.column width=800px}
 ```{r fig.cap= "picture of a striped bass", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-striped-bass-young-adult-20cm-small.jpg"))
-
 ```
+:::
 
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of Delta Smelt Index from 1967 to 2018. Values range from 0 to 1600.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_DS_1966.png"))
+```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of longfin smelt index from 1967 through 2018.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_LFS_1966.png"))
+```
+:::
+
+::: {.column width=800px}
 ```{r echo=FALSE, fig.cap= "Graph of age-0 striped bass index from 1967 to 2018. Values range from 40 to 20000."}
 knitr::include_graphics(file.path("figures/FMWT_sb0_1966.png"))
 ```
+:::
 
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+2018 was lower than the longterm average.
+:::
+
+::: {.column width=800px}
+The 2018 longfin smelt index was much lower than average.
+:::
+
+::: {.column width=800px}
 In 2018, Young-of=the-year striped bass were much less abundant than average. 
-
 :::
 
 ::::::
@@ -384,52 +407,82 @@ In 2018, Young-of=the-year striped bass were much less abundant than average.
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
- 
 <center> __American Shad__ </center>
-```{r fig.cap= "picture of an American Shad", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-american-shad-small.jpg"))
-
-```
-
-```{r fig.cap= "Graph of American Shad index from 1967 through 2018.", echo=FALSE}
-knitr::include_graphics(file.path("figures/FMWT_AS_1966.png"))
-```
-
-The 2018 American Shad index was much lower than average.
 :::
-
 
 ::: {.column width=800px}
 <center> __White Sturgeon__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Adult Fall-Run Chinook Salmon__ </center>
+:::
+
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "picture of an American Shad", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-american-shad-small.jpg"))
+```
+:::
+
+::: {.column width=800px}
 ```{r fig.cap= "picture of a White Sturgeon", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-white-sturgeon-adult-100cm-small.jpg"))
-
 ```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "picture of a Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
+```
+:::
+
+::::::
 
 
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of American Shad index from 1967 through 2018.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_AS_1966.png"))
+```
+:::
+
+::: {.column width=800px}
 ```{r fig.cap= "Graph of White sturgeon CPUE from 1967 to 2018. ", echo=FALSE}
 knitr::include_graphics(file.path("figures/WST_1966.png"))
 ```
+:::
 
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap= "Graph of adult fallrun chinook population estimates 1967 to 2018. Values range from 40 to 20000."}
+knitr::include_graphics(file.path("figures/FallRun_1966.png"))
+```
+:::
+
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+The 2018 American Shad index was much lower than average.
+:::
+
+::: {.column width=800px}
 2018 was lower than the longterm average.
 :::
 
 ::: {.column width=800px}
-
-<center> __Adult Fall-Run Chinook Salmon__ </center>
-```{r fig.cap= "picture of a Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
-
-```
-
-```{r echo=FALSE, fig.cap= "Graph of adult fallrun chinook population estimates 1967 to 2018. Values range from 40 to 20000."}
-knitr::include_graphics(file.path("figures/FallRun_1966.png"))
-```
-
 In 2018, Fall run chinook were.... 
-
 :::
+
 ::::::
+
 
 
 ```{block, type='disclaimer'}
@@ -445,59 +498,80 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 * Longfin Smelt frequently spawn further downstream than Delta Smelt, so the 20 mm Survey does not cover their entire range, but still provides an indication of population-level trends.
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in fall, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
-
-
 ### Average fish abundance by species 
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+<center> __Delta Smelt__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Microcystis__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Striped Bass__ </center>
+:::
+
+::::::
 
 
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-
-<center> __Delta Smelt__ </center>
-
-```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
-
 ```
-
-
-```{r fig.cap= "Graph of Delta Smelt index from 2004-2018. Values range from 0 to 320.", echo=FALSE}
-knitr::include_graphics(file.path("figures/FMWT_DS_2004.png"))
-```
-
-The Delta Smelt FMWT index was zero in 2018, the lowest index on record. 
-
 :::
 
 ::: {.column width=800px}
-<center> __Microcystis__ </center>
-
-
-```{r fig.cap= "Graph of Longfin Smelt index from 2004-2018. Values range from 5 to 2000.", echo=FALSE}
-knitr::include_graphics(file.path("figures/FMWT_LFS_2004.png"))
-```
-
-The lonfin smelt index remained much lower than the long-term average in 2018. 
-
-
 :::
 
 ::: {.column width=800px}
-
-<center> __Striped Bass__ </center>
-
-
-```{r echo=FALSE, fig.cap= "Graph of age-zero striped bass index in the Fall Midwater Trawl."}
-knitr::include_graphics(file.path("figures/FMWT_SB0_2004.png"))
-```
-
-In 2018, The striped bass index was the lowest on record.
-
 :::
 
 ::::::
 
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of Delta Smelt index from 2004-2018. Values range from 0 to 320.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_DS_2004.png"))
+```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of Longfin Smelt index from 2004-2018. Values range from 5 to 2000.", echo=FALSE}
+knitr::include_graphics(file.path("figures/FMWT_LFS_2004.png"))
+```
+:::
+
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap= "Graph of age-zero striped bass index in the Fall Midwater Trawl."}
+knitr::include_graphics(file.path("figures/FMWT_SB0_2004.png"))
+```
+:::
+
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+The Delta Smelt FMWT index was zero in 2018, the lowest index on record. 
+:::
+
+::: {.column width=800px}
+The lonfin smelt index remained much lower than the long-term average in 2018. 
+:::
+
+::: {.column width=800px}
+In 2018, The striped bass index was the lowest on record.
+:::
+
+::::::
 
 
 

@@ -7,7 +7,7 @@ options(width = 120)
 # Spring Report {#Spring}
 
 
-#### Interagency Ecological Program for the San Francisco Estuary 
+#### Interagency Ecological Program Spring Season report
 This report shows trends in water quality, plankton, and fish across multiple IEP 
 surveys for March through May of 2018.
 
@@ -26,11 +26,10 @@ knitr::include_graphics(file.path("figures","spring_outflow_update.png"))
 
 ## Spring Secchi Depth 
 
-#### Interagency Ecological Program Spring Season report
-
-
 :::::: {.columns2}
+
 ::: {.column width=700px}
+
 ### Background
 * Organisms in this ecosystem are adapted to high turbidity conditions, and reductions in turbidity can have many negative ecological effects.
 * Higher values for Secchi depth indicate lower turbidity.
@@ -43,6 +42,7 @@ knitr::include_graphics(file.path("figures","spring_outflow_update.png"))
 knitr::include_graphics(file.path("figures","secchidisc.png"))
 ```
 :::
+
 ::::::
 
 
@@ -96,6 +96,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 ## Spring Water Temperature 
 
 :::::: {.columns-nocenter}
+
 ::: {.column width=800px}
 ## Background
 
@@ -167,6 +168,7 @@ For more information see: Jeffries, et al.. 2016. Effects of high temperatures o
 ## Spring Chlorophyll
 
 :::::: {.columns-nocenter}
+
 ::: {.column width="70%"}
 ### Background
 
@@ -239,6 +241,7 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 ## Zooplankton
 
 :::::: {.columns-nocenter}
+
 ::: {.column width="70%"}
 ### Background
 
@@ -323,62 +326,83 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 * Spring-run Adult salmon returns return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
+### Average fish abundance by species 
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+<center> __Sacramento Splittail__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Adult Spring-Run Chinook__ </center>
+:::
+
+::: {.column width=800px}
+<center> __Juvenile Winter-Run Chinook__ </center>
+:::
 
 ::::::
-
-
-### Average fish abundance by species 
 
 
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-
-<center> __Juvenile Sacramento Splittail__ </center>
 ```{r fig.cap= "picture of a sacramento splittail", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-splittail-adult-45cm-small.jpg"))
-
 ```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "picture of an adults chinook salmon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
+```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+```
+:::
+
+::::::
 
 
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
 ```{r fig.cap= "Graph of average Sacramento Splittail catch per unit effort from 1998 to 2018. Values range from 4 to 80.", echo=FALSE}
 knitr::include_graphics(file.path("figures/yolo_splittail.png"))
 ```
-
-2018 did not have substantial Yolo Bypass flooding, and catch was in line with other similar years.
-
 :::
 
 ::: {.column width=800px}
-<center> __Adult Spring-Run Chinook__ </center>
-```{r fig.cap= "picture of an adults chinook salmon", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
-
-```
-
 ```{r fig.cap= "Graph of average adult chinook returns from 1966 to 2018. Values range from 1000 to 250000.", echo=FALSE}
 knitr::include_graphics(file.path("figures/SpringRun_1966.png"))
 ```
-
-In 2018, adult Chinook returns were lower than average
-
-
 :::
 
 ::: {.column width=800px}
-
-<center> __Juvenile Winter-Run Chinook__ </center>
-```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
-
-```
-
 ```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 1995 to 2018. Values range from 0.2 to 6."}
 knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_allyears.png"))
 ```
+:::
 
-In 2018, juvenile winter-run salmon survival was about average.
+::::::
 
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+2018 was lower than the long-term average.
+:::
+
+::: {.column width=800px}
+In 2018, adult Chinook returns were lower than average
+:::
+
+::: {.column width=800px}
+2018 did not have substantial Yolo Bypass flooding, and catch was in line with other similar years.
 :::
 
 ::::::
@@ -398,71 +422,86 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 * Longfin Smelt frequently spawn further downstream than Delta Smelt, so the 20 mm Survey does not cover their entire range, but still provides an indication of population-level trends.
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
-
-
 ### Average fish abundance by species 
-
 
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-
 <center> __Delta Smelt__ </center>
-
-```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
-
-```
-
-
-```{r fig.cap= "Graph of post-larval Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
-knitr::include_graphics(file.path("figures/20mm_DSM_recent.png"))
-```
-
-The Delta Smelt 20mm index was zero in 2018, the lowest index on record. 
-
-:::
-
-::: {.column width=800px"}
-<center> __Longfin smelt__ </center>
-
-```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
-
-```
-
-
-
-```{r fig.cap= "Graph of post-larval longfin smelt index from 2004-2018. Values range from 4 to 206.", echo=FALSE}
-knitr::include_graphics(file.path("figures/20mm_LFS_recent.png"))
-```
-
-Adult Longfin smelt abundance in 2018 was much lower than the long-term average.
-
-
-
 :::
 
 ::: {.column width=800px}
+<center> __Longfin smelt__ </center>
+:::
 
+::: {.column width=800px}
 <center> __Juvenile Winter-Run Chinook__ </center>
-```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=.5, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
-
-```
-
-
-```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 2004 to 2018. Values range from 0.2 to 6."}
-knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
-```
-
-In 2018, juvenile winter-run salmon survival was about average.
-
 :::
 
 ::::::
 
 
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=.5, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+```
+:::
+
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of post-larval Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
+knitr::include_graphics(file.path("figures/20mm_DSM_recent.png"))
+```
+:::
+
+::: {.column width=800px}
+```{r fig.cap= "Graph of post-larval longfin smelt index from 2004-2018. Values range from 4 to 206.", echo=FALSE}
+knitr::include_graphics(file.path("figures/20mm_LFS_recent.png"))
+```
+:::
+
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 2004 to 2018. Values range from 0.2 to 6."}
+knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
+```
+:::
+
+::::::
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width=800px}
+The Delta Smelt 20mm index was zero in 2018, the lowest index on record. 
+:::
+
+::: {.column width=800px}
+Adult Longfin smelt abundance in 2018 was much lower than the long-term average.
+:::
+
+::: {.column width=800px}
+In 2018, juvenile winter-run salmon survival was about average.
+:::
+
+::::::
 
 
 ```{block, type='disclaimer'}
