@@ -45,7 +45,7 @@ library(lubridate)
 # White sturgeon
   # Import Jason's calculated YCI dataset
   whistu.orig <- 
-    read_csv("yci_bs.csv") 
+    read_csv("data/yci_bs.csv") 
   
   # Clean and modify whistu.orig df
   whistu.clean <- whistu.orig %>% 
@@ -96,8 +96,7 @@ plot.dat <-
   mutate(data.recent = map(data.all, ~filter(.x, Year.Index >= startYearRec))) %>% 
   select(FishSpecies, Average, data.all, data.recent)
   
-# Import IEP theme for plots
-source("IEP_Plot_Theme.R")
+
 
 # Create functions for the plots
   # Base Plot
@@ -113,7 +112,7 @@ source("IEP_Plot_Theme.R")
         )
       ) +
       geom_col() +
-      theme_iep()
+      theme_smr()
     
     return(p)
   }
@@ -346,6 +345,7 @@ walk2(
   ~ggsave(
     plot = .x,
     filename = paste0(.y, ".png"),
+    path = "docs/figures/",
     dpi = 300,
     units = "cm",
     width = 9.3,

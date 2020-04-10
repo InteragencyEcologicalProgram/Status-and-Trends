@@ -76,7 +76,7 @@ MeanAll = mean(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate")$
 
 #recent trends
 meanwinter$fyear = as.factor(meanwinter$Year2)
-Red = ggplot(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate"), aes(x = Year2, y = meandaily))
+Red = ggplot(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate"), aes(x = fyear, y = meandaily))
 redtest2 = Red + geom_bar(stat = "identity") + 
   ylab("Estimated daily passage") + 
   xlab("Year (December-January)") +
@@ -90,4 +90,5 @@ redtest2
 
 #save it in the right place
 ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = "docs/figures")
+ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = "report_bookdown/figures")
 
