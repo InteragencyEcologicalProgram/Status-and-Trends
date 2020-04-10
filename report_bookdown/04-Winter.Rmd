@@ -368,13 +368,13 @@ knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.
 
 ::: {.column width=800px}
 ```{r fig.cap= "Graph of White Sturgeon Year Class Index from 1967 to 2018. Values range from 0 to 1600.", echo=FALSE}
-knitr::include_graphics(file.path("figures/WST_1966.png"))
+knitr::include_graphics(file.path("figures/whistu_plot_allYears.png"))
 ```
 :::
 
 ::: {.column width=800px}
 ```{r fig.cap= "Graph of longfin smelt CPUE from 1980 to 2018. ", echo=FALSE}
-knitr::include_graphics(file.path("figures/FMWT_LFS_1966.png"))
+knitr::include_graphics(file.path("figures/lonsme_plot_allYears.png"))
 ```
 :::
 
@@ -405,11 +405,11 @@ In 2018 wild Chinook Salmon survival was...
 
 
 ```{block, type='disclaimer'}
-For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Study Fishes Status and Trends Report for the San Francisco Estuary, 2012–2016. IEP Newsletter 31(2):3-43. 
 ```
 ***
 
-## Recent Trends: Fish 2004-2018 
+## Recent Trends: Winter Fish 2004-2018 
 
 ### Background
 
@@ -426,11 +426,11 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 :::
 
 ::: {.column width=800px}
-<center> __Microcystis__ </center>
+<center> __Longfin Smelt__ </center>
 :::
 
 ::: {.column width=800px}
-<center> __Invasive Aquatic Vegetation__ </center>
+<center> __Juvenile Winter-Run Chinook__ </center>
 :::
 
 ::::::
@@ -445,9 +445,17 @@ knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"
 :::
 
 ::: {.column width=800px}
+```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+```
+
 :::
 
 ::: {.column width=800px}
+```{r fig.cap= "picture of juvenile Chinnook Salmon", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+```
+
 :::
 
 ::::::
@@ -456,20 +464,20 @@ knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-```{r fig.cap= "Graph of juvenile Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
-knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
+```{r fig.cap= "Graph of adult Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
+knitr::include_graphics(file.path("figures/skt_dsm_fig_meanline.png"))
 ```
 :::
 
 ::: {.column width=800px}
-```{r fig.cap= "Graph of microcystis abundance fron 2007 to 2018", echo=FALSE}
-#knitr::include_graphics(file.path("figures/Microcystis_winter.png"))
+```{r fig.cap= "Graph of longfin smelt abundance fron 2004 to 2018", echo=FALSE}
+knitr::include_graphics(file.path("figures/lonsme_plot_recent.png"))
 ```
 :::
 
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap= "Graph of percent coverage of submerged and floating vegetation in the Delta."}
-knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
+knitr::include_graphics(file.path("figures/redbluff_2003.png"))
 ```
 :::
 
@@ -479,15 +487,16 @@ knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_rec
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-The Delta Smelt SKT index was zero in 2018, the lowest index on record. 
+The Delta Smelt SKT index was zero in 2018, the lowest index on record. (mean line is from 2004-2017)
 :::
 
 ::: {.column width=800px}
-2018 had more observations of very high Microcystis than previous years. 
+Adult Longfin smelt abundance in 2017 was much lower than the long-term average.
+
 :::
 
 ::: {.column width=800px}
-In 2018, aquatic vegetation was slightly lower than 2017, but higher than average.
+Juvenile winter-run Chinook Salmon had a much lower passage rate in winter of 2017-2018 than the historical average
 :::
 
 ::::::
@@ -496,7 +505,7 @@ In 2018, aquatic vegetation was slightly lower than 2017, but higher than averag
 
 
 ```{block, type='disclaimer'}
-For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+For more information see:  Tempel, T. 2019. 2018 Spring Kodiak Trawl Summary. IEP Newsletter 34(1):22-24.  
 ```
  
  
