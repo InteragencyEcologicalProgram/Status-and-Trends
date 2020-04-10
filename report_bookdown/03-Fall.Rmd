@@ -33,7 +33,7 @@ knitr::include_graphics(file.path("figures","fall_outflow_update.png"))
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 ```{r fig.height=10, fig.align="center", fig.cap="image of a secchi disk", echo=FALSE}
 knitr::include_graphics(file.path("figures","secchidisc.png"))
 ```
@@ -103,7 +103,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 
 
 
@@ -174,7 +174,7 @@ For more information see: Jeffries, et al.. 2016. Effects of high temperatures o
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 
 
 
@@ -247,17 +247,17 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 
 
 
-Copepod
+<center> Copepod </center>
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
 knitr::include_graphics("figures/copepod.jpg")
 ```
 
 
-Mysid
+<center> Mysid </center>
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
 knitr::include_graphics("figures/mysid.jpg")
 ```
@@ -317,9 +317,11 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 
 ### Background
 
-* Splittail are a native minnow that spawn on floodplains, so have high reproduction during high flow years when floodplains are inundated with water. They are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2). 
-* fall-run Adult salmon returns return from the ocean during the fall. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
-* Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in fall, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
+* The Fall Midwater Trawl began in 1967 and surveys the pelagic, or open water, fish community.  Indices for many pelagic fishes are at record lows, including Delta and Longfin Smelt which are  protected by California and/or federal Endangered Species Acts.
+* White Sturgeon is a species of concern and a popular target of recreational fishing. Catch per unit
+effort is based on trammel net surveys.
+* Fall Run Chinook Salmon, an important species for both the commercial and recreational fishery, is  also a species of concern. Population dynamics are driven by hatchery production and a suite of  environmental variables. Totals counts of both in-river and hatchery returns are shown here.
+
 
 ### Average fish abundance by species 
 
@@ -494,9 +496,9 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 
 ### Background
 
-* Delta Smelt and Longfin Smelt have been in decline since the early 2000s. The [CDFW 20mm Survey](https://wildlife.ca.gov/Conservation/Delta/20mm-Survey) was designed to sample post-larval and juvenile Delta Smelt, and samples in San Pablo, Suisun, and the Delta. 
-* Longfin Smelt frequently spawn further downstream than Delta Smelt, so the 20 mm Survey does not cover their entire range, but still provides an indication of population-level trends.
-* Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in fall, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
+* Many pelagic fishes declined sharply around 2001 in what is known as the Pelagic Organism  Decline. Some species have continued to decline over the last 15 years.
+* For Delta Smelt, 2018 marked the lowest recorded index on record (Index = 0).
+* Most other pelagic fish also had low abundance in 2018 when compared to 2017 and the long-term average.
 
 ### Average fish abundance by species 
 
@@ -526,9 +528,15 @@ knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"
 :::
 
 ::: {.column width=800px}
+```{r fig.cap= "picture of a longfin smelt", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+```
 :::
 
 ::: {.column width=800px}
+```{r fig.cap= "picture of a striped bass", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-striped-bass-young-adult-20cm-small.jpg"))
+```
 :::
 
 ::::::

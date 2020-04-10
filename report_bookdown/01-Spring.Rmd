@@ -480,7 +480,7 @@ knitr::include_graphics(file.path("figures/20mm_LFS_recent.png"))
 
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 2004 to 2018. Values range from 0.2 to 6."}
-knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
+knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_recyears.png"))
 ```
 :::
 
