@@ -12,6 +12,11 @@ surveys for September through November of 1976-2018.
 
 <h2>Delta Outflow</h2>
 
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+
+
 ```{r echo=FALSE}
 knitr::include_graphics(file.path("figures","fall_outflow_update.png"))
 ```
@@ -42,6 +47,18 @@ knitr::include_graphics(file.path("figures","secchidisc.png"))
 
 
 ### Secchi Depth by Region 
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
 
 
 :::::: {.columns}
@@ -117,6 +134,18 @@ knitr::include_graphics("figures/thermometer.png")
 
 ### Temperature by Region 
 
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
 
 :::::: {.columns-nocenter}
 
@@ -187,6 +216,18 @@ knitr::include_graphics("figures/phyto.png")
 
 
 ### Average Chlorophyll by Region 
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
 
 
 :::::: {.columns-nocenter}
@@ -271,6 +312,19 @@ knitr::include_graphics("figures/mysid.jpg")
 
 
 :::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
+
+:::::: {.columns-nocenter}
 
 ::: {.column width=800px}
 
@@ -324,6 +378,19 @@ effort is based on trammel net surveys.
 
 
 ### Average fish abundance by species 
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
 
 :::::: {.columns-nocenter}
 
@@ -501,6 +568,19 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 * Most other pelagic fish also had low abundance in 2018 when compared to 2017 and the long-term average.
 
 ### Average fish abundance by species 
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
 
 :::::: {.columns-nocenter}
 

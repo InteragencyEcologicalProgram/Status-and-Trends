@@ -45,6 +45,18 @@ knitr::include_graphics(file.path("figures","secchidisc.png"))
 ### Secchi Depth by Region 
 
 
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
 :::::: {.columns}
 
 ::: {.column width=800px}
@@ -120,6 +132,18 @@ knitr::include_graphics("figures/thermometer.png")
 
 
 :::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
+:::::: {.columns-nocenter}
 
 ::: {.column width=800px}
 
@@ -189,6 +213,18 @@ knitr::include_graphics("figures/phyto.png")
 
 ### Average Chlorophyll by Region 
 
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
 
 :::::: {.columns-nocenter}
 
@@ -272,6 +308,18 @@ knitr::include_graphics("figures/mysid.jpg")
 
 
 :::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
+
+:::::: {.columns-nocenter}
 
 ::: {.column width=800px}
 
@@ -323,6 +371,19 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 * Juvenile Winter-Run Chinook Salmon are sampled by the [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers.
 
 ### Average fish abundance by species 
+
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
 
 :::::: {.columns-nocenter}
 
@@ -418,6 +479,19 @@ For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Stu
 * Juvenile Chinook pass Red Bluff Diversion Dam on the upper Sacramento as they migrate from spawning grounds to the ocean.
 
 ### Average fish abundance by species 
+
+
+:::::: {.columns-nocenter}
+::: {.column width=800px}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path("figures","mline.png"))
+```
+:::
+::: {.column width=800px}
+:::
+::: {.column width=800px}
+:::
+::::::
 
 :::::: {.columns-nocenter}
 
