@@ -345,7 +345,7 @@ knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a northern anchovy", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/anchovy.png"))
+knitr::include_graphics(file.path("figures/anchovy.jpg"))
 ```
 :::
 
