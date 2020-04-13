@@ -19,13 +19,16 @@ report_year <- 2018
 sharepoint_path <- normalizePath(
   file.path(
     Sys.getenv("USERPROFILE"),
-    "California Department of Water Resources/DWR - Seasonal monitoring report - Documents/Data"
+    "California Department of Water Resources/IEP Synthesis Projects - Documents/Data"
   )
 )  
 
 # Import fish data
 load(file = paste0(sharepoint_path, "/BayStudyFish.RData"))
 
+
+#if that didin't work
+load(file = "data/BayStudyFish.RData")
 
 # 2. Clean Data and Calculate CPUE ----------------------------------------
 
@@ -128,13 +131,23 @@ noranc_plot_rec <- noranc_cpue %>%
   # Plot for all years
   ggsave(
     plot = noranc_plot_all,
-    filename = "noranc_all_years.png",
+    filename = "docs/figures/noranc_all_years.png",
     dpi = 300,
     units = "cm",
     width = 9.3,
     height = 6.8
   )
 
+  ggsave(
+    plot = noranc_plot_all,
+    filename = "report_bookdown/figures/noranc_all_years.png",
+    dpi = 300,
+    units = "cm",
+    width = 9.3,
+    height = 6.8
+  )
+  
+  
   # Plot for recent years
   ggsave(
     plot = noranc_plot_rec,

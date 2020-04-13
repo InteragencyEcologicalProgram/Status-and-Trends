@@ -11,3 +11,5 @@ mline = ggplot() +
   annotate("text", label = "Long-term Average", x = 1.1, y = 0, hjust = 0)+
   theme(axis.text = element_blank(), axis.title = element_blank(), 
         panel.background = element_rect(fill = "white"), axis.ticks=element_blank())
+
+ggsave("mline.png", mline, dpi=300, units="cm", width=9.3, height=1)
