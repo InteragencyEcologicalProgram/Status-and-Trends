@@ -447,15 +447,15 @@ knitr::include_graphics(file.path("figures/DJFMP_sacpikeminnow_summer.png"))
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-2018 was lower than the longterm average.
+Delta Smelt catch in 2018 was much lower than the longterm average.
 :::
 
 ::: {.column width=800px}
-Bay Study did not sample in 2018, but catch in 2017 was about average.
+Bay Study has not been able to complete their survyes in recent years, but the most recent complete survey was about average.
 :::
 
 ::: {.column width=800px}
-In 2018, Pikeminnow were less abundant than average
+In 2018, Pikeminnow were less abundant than average.
 :::
 
 ::::::
