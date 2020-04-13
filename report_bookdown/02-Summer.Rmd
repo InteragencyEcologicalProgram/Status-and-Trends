@@ -5,9 +5,10 @@ pagetitle: "Summer Report"
 
 # Summer Report {#Summer}
 
-#### Interagency Ecological Program Summer Season report
+#### Interagency Ecological Program Summer Season Report
+
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for June through August of 2018.
+surveys for June through August from 1966 to 2018.
 
 <h2>Delta Outflow</h2>
 
@@ -43,7 +44,7 @@ knitr::include_graphics(file.path("figures","secchidisc.png"))
 ::::::
 
 
-### Secchi Depth by Region 
+### Average Secchi Depth by Region 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
@@ -106,7 +107,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::::: {.columns-nocenter}
 ::: {.column width="70%"}
-## Background
+### Background
 
 * Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
 * Fish growth and reproduction is highest in certain temperature ranges.
@@ -125,7 +126,7 @@ knitr::include_graphics("figures/thermometer.png")
 ::::::
 
 
-### Temperature by Region 
+### Average Temperature by Region 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -192,7 +193,7 @@ For more information see: Jeffries, et al.. 2016. Effects of high temperatures o
 
 * Chlorophyll is an indicator of phytoplankton production, which is low during the summer.
 * Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
-* The invasion of the clam Potamocorbula amurensis caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
+* The invasion of the clam *Potamocorbula amurensis* caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
 
 
 :::
@@ -209,7 +210,7 @@ knitr::include_graphics("figures/phyto.png")
 ::::::
 
 
-### Average summer Chlorophyll by Region 
+### Average Chlorophyll by Region 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -278,7 +279,7 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 * Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling in San Pablo Bay did not begin until 1998. 
 * Zooplankton are an important food source for pelagic fish. 
 * Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
-* Biomass in summer tends to be higher than Winter, but lower than Summer. 
+* Biomass in summer tends to be the highest of the year, particularly for the calanoid copepod *Pseudodiaptomous forbesi*. 
 
 :::
 
@@ -299,7 +300,7 @@ knitr::include_graphics("figures/mysid.jpg")
 ::::::
 
 
-### Average summer Zooplankton Biomass by Region 
+### Average Zooplankton Biomass by Region 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -365,7 +366,7 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 * Northern Anchovy are an important forage fish in the brackish-saline regions of the estuary. They are sampled best by [CDFW’s San Francisco Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study).
 * Sacramento Pikeminnow is a native cyprinid that is one of the few piscivorous native fish in the Delta. They are sampled by [USFWS's DJFMP](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm) beach seine surveys throughout the estuary.
 
-### Average fish abundance by species 
+### Average Fish Abundance by Species 
 
 
 :::::: {.columns-nocenter}
@@ -375,6 +376,11 @@ knitr::include_graphics(file.path("figures","mline.png"))
 ```
 :::
 ::: {.column width=800px}
+
+
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path("figures","mpoint.png"))
+```
 :::
 ::: {.column width=800px}
 :::
@@ -476,7 +482,7 @@ For more information see: For more information, see: Hieb, K., J. Bautista, and 
 * Microcystis is a toxic cyanobacteria first found in the Delta in 1998. Microcystis presence has been documented by the [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) and the  [CDFW Summer Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey) during their water quality sampling.
 * Aquatic vegetation in the Delta has increased significantly in recent years. This vegetation is composed mostly of non-native invasive plant species and is categorized as either floating or submerged types. Coverage is estimated by [UC-Davis](http://cstars.metro.ucdavis.edu/) using remote sensing of the North and Central Delta.
 
-### Average abundance by parameter
+### Average Abundance by Parameter
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -485,6 +491,11 @@ knitr::include_graphics(file.path("figures","mline.png"))
 ```
 :::
 ::: {.column width=800px}
+
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path("figures","mpoint.png"))
+```
+
 :::
 ::: {.column width=800px}
 :::

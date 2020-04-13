@@ -5,9 +5,10 @@ pagetitle: "Fall Report"
 
 # Fall Report {#Fall}
 
-#### Interagency Ecological Program Fall Season report
+#### Interagency Ecological Program Fall Season Report
+
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for September through November of 1976-2018.
+surveys for September through November from 1966 to 2018.
 
 
 <h2>Delta Outflow</h2>
@@ -22,7 +23,7 @@ knitr::include_graphics(file.path("figures","fall_outflow_update.png"))
 ```
 
 - Freshwater flow influences water quality, plankton, and fish populations.
-- fall flow is driven primarily upstream dam releases and exports.
+- Fall flow is driven primarily upstream dam releases and exports.
 - The fall of 2018 had somewhat slightly lower outflow than average.
 
 
@@ -46,7 +47,7 @@ knitr::include_graphics(file.path("figures","secchidisc.png"))
 ::::::
 
 
-### Secchi Depth by Region 
+### Average Secchi Depth by Region 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -111,12 +112,12 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::::: {.columns-nocenter}
 ::: {.column width="70%"}
-## Background
+### Background
 
 * Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
 * Fish growth and reproduction is highest in certain temperature ranges.
 * Increasing fall temperatures may lower Delta Smelt reproduction.
-* fall temperatures are lower closer to the ocean and slightly higher in the Delta.
+* Fall temperatures are lower closer to the ocean and slightly higher in the Delta.
 
 :::
 
@@ -132,7 +133,7 @@ knitr::include_graphics("figures/thermometer.png")
 ::::::
 
 
-### Temperature by Region 
+### Average Temperature by Region 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -198,7 +199,7 @@ For more information see: Jeffries, et al.. 2016. Effects of high temperatures o
 
 * Chlorophyll is an indicator of phytoplankton production, which is low during the fall.
 * Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
-* The invasion of the clam Potamocorbula amurensis caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
+* The invasion of the clam *Potamocorbula amurensis* caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
 
 
 :::
@@ -284,7 +285,7 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 * Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling in San Pablo Bay did not begin until 1998. 
 * Zooplankton are an important food source for pelagic fish. 
 * Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
-* Biomass in fall tends to be higher than Winter, but lower than fall. 
+* Biomass in fall tends to be higher than winter, but lower than summer. 
 
 :::
 
@@ -377,7 +378,7 @@ effort is based on trammel net surveys.
 * Fall Run Chinook Salmon, an important species for both the commercial and recreational fishery, is  also a species of concern. Population dynamics are driven by hatchery production and a suite of  environmental variables. Totals counts of both in-river and hatchery returns are shown here.
 
 
-### Average fish abundance by species 
+### Average Fish Abundance by Species 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -386,6 +387,10 @@ knitr::include_graphics(file.path("figures","mline.png"))
 ```
 :::
 ::: {.column width=800px}
+
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path("figures","mpoint.png"))
+```
 :::
 ::: {.column width=800px}
 :::
@@ -567,7 +572,7 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 * For Delta Smelt, 2018 marked the lowest recorded index on record (Index = 0).
 * Most other pelagic fish also had low abundance in 2018 when compared to 2017 and the long-term average.
 
-### Average fish abundance by species 
+### Average Fish Abundance by Species 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -576,6 +581,10 @@ knitr::include_graphics(file.path("figures","mline.png"))
 ```
 :::
 ::: {.column width=800px}
+
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path("figures","mpoint.png"))
+```
 :::
 ::: {.column width=800px}
 :::
@@ -652,11 +661,11 @@ The Delta Smelt FMWT index was zero in 2018, the lowest index on record.
 :::
 
 ::: {.column width=800px}
-The lonfin smelt index remained much lower than the long-term average in 2018. 
+The Longfin Smelt index remained much lower than the long-term average in 2018. 
 :::
 
 ::: {.column width=800px}
-In 2018, The striped bass index was the lowest on record.
+In 2018, The Striped Bass index was the lowest on record.
 :::
 
 ::::::
