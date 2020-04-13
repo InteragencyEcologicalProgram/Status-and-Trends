@@ -7,9 +7,9 @@ options(width = 120)
 # Spring Report {#Spring}
 
 
-#### Interagency Ecological Program Spring Season report
+#### Interagency Ecological Program Spring Season Report
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for March through May of 2018.
+surveys for March through May from 1966 to 2018.
 
 
 <h2>Delta Outflow</h2>
@@ -25,7 +25,7 @@ knitr::include_graphics(file.path("figures","spring_outflow_update.png"))
 
 - Freshwater flow influences water quality, plankton, and fish populations.
 - Spring flow is driven primarily by rainfall, snowmelt, and upstream dam releases.
-- The spring of 2018 had somewhat slightly lower outflow than average.
+- The spring of 2018 had slightly lower outflow than average.
 
 
 ***
@@ -52,7 +52,7 @@ knitr::include_graphics(file.path("figures","secchidisc.png"))
 ::::::
 
 
-### Secchi Depth by Region 
+### Average Secchi Depth by Region 
 
 
 :::::: {.columns-nocenter}
@@ -116,7 +116,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-## Background
+### Background
 
 * Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
 * Fish growth and reproduction is highest in certain temperature ranges.
@@ -125,7 +125,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 
 
 
@@ -137,7 +137,7 @@ knitr::include_graphics("figures/thermometer.png")
 ::::::
 
 
-### Temperature by Region 
+### Average Temperature by Region 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
@@ -202,7 +202,7 @@ For more information see: Jeffries, et al.. 2016. Effects of high temperatures o
 
 * Chlorophyll is an indicator of phytoplankton production, which is low during the Spring.
 * Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
-* The invasion of the clam Potamocorbula amurensis caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
+* The invasion of the clam *Potamocorbula amurensis* caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
 
 
 :::
@@ -219,7 +219,7 @@ knitr::include_graphics("figures/phyto.png")
 ::::::
 
 
-### Average Spring Chlorophyll by Region 
+### Average Chlorophyll by Region 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -276,7 +276,7 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
  
 ***
 
-## Zooplankton
+## Spring Zooplankton
 
 :::::: {.columns-nocenter}
 
@@ -311,7 +311,7 @@ knitr::include_graphics("figures/mysid.jpg")
 ::::::
 
 
-### Average Spring Zooplankton Biomass by Region 
+### Average Zooplankton Biomass by Region 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -375,7 +375,7 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 * Spring-run Adult salmon returns return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
-### Average fish abundance by species 
+### Average Fish Abundance by Species 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -455,7 +455,7 @@ knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_allyears
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-2018 was lower than the long-term average.
+2018 did not have substantial Yolo Bypass flooding, and catch was in line with other similar years.
 :::
 
 ::: {.column width=800px}
@@ -463,9 +463,8 @@ In 2018, adult Chinook returns were lower than average
 :::
 
 ::: {.column width=800px}
-2018 did not have substantial Yolo Bypass flooding, and catch was in line with other similar years.
+In 2018, juvenile Chinook catch was slightly lower than average.
 :::
-
 ::::::
 
 
@@ -475,7 +474,7 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 
 ***
 
-## Recent Trends: Fish 2004-2018 {#fishrecent}
+## Recent Trends: Fish 2004-2018 
 
 ### Background
 
@@ -483,7 +482,7 @@ For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Sch
 * Longfin Smelt frequently spawn further downstream than Delta Smelt, so the 20 mm Survey does not cover their entire range, but still provides an indication of population-level trends.
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
-### Average fish abundance by species 
+### Average Fish Abundance by Species 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}

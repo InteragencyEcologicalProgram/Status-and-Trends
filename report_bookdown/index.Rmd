@@ -10,14 +10,16 @@ github-repo: https://github.com/InteragencyEcologicalProgram/Status-and-Trends
 description: "This report shows trends in water quality, plankton, and fish across multiple IEP surveys."
 ---
 
+# Contents
+
 ```{r fig.height=8, echo=FALSE, fig.cap="IEP logo"}
 knitr::include_graphics(file.path("figures","IEP_logo_updated.png"))
 options(width = 120)
 ```
 
-# Overview
 
-This report is updated annually and divided into four seasonal reports.
+ Long-term ecological surveys have been a core function of the Interagency Ecological Program (IEP) since the program’s inception in the 1970s. The IEP Seasonal Monitoring Report presents the full time series for selected water quality, plankton, and fisheries surveys conducted by IEP in a single graphical report.  The report is generated on a quarterly basis, with different set of ecosystem variables and surveys highlighted in each season. The report is developed by IEP scientists (including leads for monitoring surveys and the IEP Lead Scientist) and is reviewed by the IEP Science Management Team and Coordinators before online publication. 
+
 
 <h2>[Spring](Spring.html)</h2>
   * Secchi Depth
@@ -43,7 +45,7 @@ This report is updated annually and divided into four seasonal reports.
   * Chlorophyll
   * Zooplankton
   * Fish
-  * Recent Trends - Delta Smelt
+  * Recent Trends - Delta Smelt, Longfin Smelt, Striped Bass
   * Metadata
 
 <h2>[Winter](Winter.html)</h2>
@@ -52,17 +54,8 @@ This report is updated annually and divided into four seasonal reports.
   * Chlorophyll
   * Zooplankton
   * Fish
-  * Recent Trends - Delta Smelt
+  * Recent Trends - Delta Smelt, Longfin Smelt, Juvenile Chinook Salmon
   * Metadata
-
-
-<h2>Regions of the Estuary</h2>
-
-```{r echo=FALSE, fig.cap = "Map of the estuary with circles around San Pablo Bay, Suisun, and the Delta"}
-knitr::include_graphics(file.path("figures","map.png"))
-```
-
-
 
 ```{block, type='disclaimer'}
 Disclaimer: While substantial efforts are made to ensure the accuracy of these data, 

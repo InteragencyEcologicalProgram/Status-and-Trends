@@ -6,9 +6,9 @@ pagetitle: "Winter Report"
 # Winter Report {#Winter}
 
 
-#### Interagency Ecological Program Winter Season report
+#### Interagency Ecological Program Winter Season Report
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for September through November of 2018.
+surveys for September through November of 1966 to 2018.
 
 <h2>Winter Delta Outflow</h2>
 
@@ -19,8 +19,6 @@ knitr::include_graphics(file.path("figures","winter_outflow_update.png"))
 - Freshwater flow influences water quality, plankton, and fish populations.
 - Winter flow is driven primarily by rainfall and upstream dam releases.
 - The winter of 2018 had lower outflow than average.
-:::
-::::::
 
 ***
 ## Winter Secchi Depth 
@@ -34,7 +32,7 @@ knitr::include_graphics(file.path("figures","winter_outflow_update.png"))
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 ```{r fig.height=10, fig.align="center", fig.cap="image of a secchi disk", echo=FALSE}
 knitr::include_graphics(file.path("figures","secchidisc.png"))
 ```
@@ -42,7 +40,7 @@ knitr::include_graphics(file.path("figures","secchidisc.png"))
 ::::::
 
 
-### Secchi Depth by Region 
+### Average Secchi Depth by Region 
 
 
 :::::: {.columns-nocenter}
@@ -107,7 +105,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::::: {.columns-nocenter}
 ::: {.column width="70%"}
-## Background
+### Background
 
 * Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
 * Productivity, fish growth, and reproduction is highest in certain temperature ranges.
@@ -116,7 +114,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 
 
 
@@ -128,7 +126,7 @@ knitr::include_graphics("figures/thermometer.png")
 ::::::
 
 
-### Temperature by Region 
+### Average Temperature by Region 
 
 
 :::::: {.columns-nocenter}
@@ -199,7 +197,7 @@ For more information see: Jeffries, et al.. 2016. Effects of high temperatures o
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 
 
 
@@ -284,7 +282,7 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 :::
 
-::: {.column width=800px}
+::: {.column width=200px}
 
 
 
@@ -370,7 +368,7 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 * Longfin Smelt are listed as Threatened under the California Endangered Species Act. Spawning adults are sampled in winter by the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study) midwater trawl. 
 * Juvenile Winter-Run Chinook Salmon are sampled by the [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers.
 
-### Average fish abundance by species 
+### Average Fish Abundance by Species 
 
 
 :::::: {.columns-nocenter}
@@ -478,7 +476,7 @@ For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Stu
 * Longfin Smelt frequently spawn further downstream than Delta Smelt, so are better sampled by the CDFW Bay Study. The Bay Study samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
 * Juvenile Chinook pass Red Bluff Diversion Dam on the upper Sacramento as they migrate from spawning grounds to the ocean.
 
-### Average fish abundance by species 
+### Average Fish Abundance by Species 
 
 
 :::::: {.columns-nocenter}
@@ -488,6 +486,11 @@ knitr::include_graphics(file.path("figures","mline.png"))
 ```
 :::
 ::: {.column width=800px}
+
+
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path("figures","mpoint.png"))
+```
 :::
 ::: {.column width=800px}
 :::
