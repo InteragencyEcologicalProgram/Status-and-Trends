@@ -5,7 +5,7 @@ pagename: Metadata
 
 # Metadata {#metadata}
 
-### Interagency Ecological Program Seasonal Monitoring Report, Spring 2018 
+### Interagency Ecological Program Seasonal Monitoring Report
 
 * Version: 1.0
 * Last Updated: 2020-04-13

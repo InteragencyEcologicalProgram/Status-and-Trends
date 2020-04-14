@@ -25,7 +25,7 @@ knitr::include_graphics(file.path("figures","summer_outflow_update.png"))
 - The summer of 2018 had somewhat slightly lower outflow than average.
 
 ***
-## Summper Secchi Depth 
+## Summer Secchi Depth 
 
 :::::: {.columns-nocenter}
 ::: {.column width="70%"}
@@ -256,7 +256,7 @@ In 2018, Suisun Bay chlorophyll was also about average.
 knitr::include_graphics(file.path("figures/chla_dtsummer.png"))
 ```
 
-In 2018, the Delta had lower clorophyll than average.
+In 2018, the Delta had lower chlorophyll than average.
 
 :::
 
@@ -457,7 +457,7 @@ Delta Smelt catch in 2018 was much lower than the longterm average.
 :::
 
 ::: {.column width=800px}
-Bay Study has not been able to complete their survyes in recent years, but the most recent complete survey was about average.
+Bay Study has not been able to complete their surveys in recent years, but the most recent complete survey was about average.
 :::
 
 ::: {.column width=800px}
