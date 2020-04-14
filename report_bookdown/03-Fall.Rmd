@@ -262,7 +262,7 @@ In 2018, Suisun Bay chlorophyll was also about average.
 knitr::include_graphics(file.path("figures/chla_dtfall.png"))
 ```
 
-In 2018, the Delta had lower clorophyll than average.
+In 2018, the Delta had lower chlorophyll than average.
 
 :::
 
@@ -471,7 +471,7 @@ The 2018 longfin smelt index was much lower than average.
 :::
 
 ::: {.column width=800px}
-In 2018, Young-of=the-year striped bass were much less abundant than average. 
+In 2018, Young-of-the-year striped bass were much less abundant than average. 
 :::
 
 ::::::
@@ -598,7 +598,7 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 :::
 
 ::: {.column width=800px}
-<center> __Microcystis__ </center>
+<center> __Longfin Smelt__ </center>
 :::
 
 ::: {.column width=800px}

@@ -263,7 +263,7 @@ In 2018, Suisun Bay chlorophyll was also about average.
 knitr::include_graphics(file.path("figures/chla_dtspring.png"))
 ```
 
-In 2018, the Delta had lower clorophyll than average.
+In 2018, the Delta had lower chlorophyll than average.
 
 :::
 
