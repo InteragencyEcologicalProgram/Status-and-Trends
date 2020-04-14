@@ -73,7 +73,7 @@ flows = function(quart, data) {
   #  geom_hline(aes(yintercept = mean(out)/1000), size = 0.9, color = "red", linetype = "dashed")+
     std_x_axis_all_years(2018, x_scale_type = "cont") + 
     std_x_axis_label(season_names[quart])+
-    scale_y_continuous(expression(paste("Net Delta Outflow (Ft "^"3"," / s x 1,000)"))) +
+    scale_y_continuous(expression(paste("Net Delta Outflow (1,000 Ft "^"3"," / s)"))) +
     theme_smr()
   p
 }
