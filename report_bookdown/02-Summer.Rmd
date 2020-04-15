@@ -71,6 +71,11 @@ knitr::include_graphics(file.path("figures/secchi_splsummer.png"))
 In 2018, San Pablo bay was close to the long-term average.
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -80,6 +85,11 @@ knitr::include_graphics(file.path("figures/secchi_sssummer.png"))
 
 In 2018, Suisun Bay was also close to the long-term average
 
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -98,7 +108,7 @@ In 2018, the Delta was much clearer than average, the clearest summer on record.
 
 
 ```{block, type='disclaimer'}
-For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899. 
+For more information see: [Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899.](https://link.springer.com/article/10.1007/s12237-011-9382-x) 
 ```
 
 
@@ -154,6 +164,12 @@ In 2018, San Pablo Bay temperatures were similar to the long-term average.
 
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -164,6 +180,12 @@ knitr::include_graphics(file.path("figures/temp_sssummer.png"))
 In 2018, Suisun Bay was similar to the long-term average. 
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 
@@ -238,6 +260,11 @@ In 2018, San Pablo Bay chlorophyll was similar to the long-term average.
 
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -247,6 +274,11 @@ knitr::include_graphics(file.path("figures/chla_sssummer.png"))
 
 In 2018, Suisun Bay chlorophyll was also about average. 
 
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -328,6 +360,12 @@ In 2018, San Pablo Bay had much lower than average biomass, mostly calanoid cope
 
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -337,6 +375,11 @@ knitr::include_graphics(file.path("figures/zoops_sssummer.png"))
 
 In 2018, Suisun Bay also had much lower than average total biomass.
 
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -411,11 +454,22 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
 ```
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a northern anchovy", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/anchovy.jpg"))
 ```
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -434,11 +488,21 @@ knitr::include_graphics(file.path("figures/fsd-sacramento-pikeminnow-small.jpg")
 knitr::include_graphics(file.path("figures/STN_DSM.png"))
 ```
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 ```{r fig.cap= "Graph of average northern anchovy CPUE from 1980 through 2017.", echo=FALSE}
 knitr::include_graphics(file.path("figures/noranc_all_years.png"))
 ```
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -455,10 +519,22 @@ knitr::include_graphics(file.path("figures/DJFMP_sacpikeminnow_summer.png"))
 ::: {.column width=800px}
 Delta Smelt catch in 2018 was much lower than the longterm average.
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 Bay Study has not been able to complete their surveys in recent years, but the most recent complete survey was about average.
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 In 2018, Pikeminnow were less abundant than average.
@@ -527,12 +603,24 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
 ```
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a beaker with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path("figures/microcystis.bmp"))
 ```
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a beaker with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
@@ -551,12 +639,24 @@ knitr::include_graphics(file.path("figures/egeria.jpeg"))
 knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
 ```
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 ```{r fig.cap= "Graph of microcystis abundance fron 2007 to 2018", echo=FALSE}
 knitr::include_graphics(file.path("figures/Microcystis_summer.png"))
 ```
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap= "Graph of percent coverage of submerged and floating vegetation in the Delta."}
@@ -572,10 +672,22 @@ knitr::include_graphics(file.path("figures/veg_perc.png"))
 ::: {.column width=800px}
 The Delta Smelt Townet index was zero in 2018, the lowest index on record. 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 2018 had more observations of very high Microcystis than previous years. 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
 
 ::: {.column width=800px}
 In 2018, aquatic vegetation was slightly lower than 2017, but higher than average.

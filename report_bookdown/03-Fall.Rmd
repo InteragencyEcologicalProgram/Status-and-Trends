@@ -74,6 +74,11 @@ knitr::include_graphics(file.path("figures/secchi_splfall.png"))
 In 2018, San Pablo bay was close to the long-term average.
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -83,6 +88,11 @@ knitr::include_graphics(file.path("figures/secchi_ssfall.png"))
 
 In 2018, Suisun Bay was slightly higher than the long-term average
 
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -101,7 +111,7 @@ In 2018, the Delta was much clearer than average, continuing a trend of clearing
 
 
 ```{block, type='disclaimer'}
-For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899. 
+For more information see: [Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899.](https://link.springer.com/article/10.1007/s12237-011-9382-x) 
 ```
 
 
@@ -161,6 +171,11 @@ In 2018, San Pablo Bay temperatures were similar to the long-term average.
 
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -171,7 +186,11 @@ knitr::include_graphics(file.path("figures/temp_ssfall.png"))
 In 2018, Suisun Bay was similar to the long-term average. 
 
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 
 <center> __Delta__ </center>
@@ -244,6 +263,11 @@ In 2018, San Pablo Bay chlorophyll was similar to the long-term average.
 
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -253,6 +277,11 @@ knitr::include_graphics(file.path("figures/chla_ssfall.png"))
 
 In 2018, Suisun Bay chlorophyll was also about average. 
 
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -338,6 +367,11 @@ In 2018, San Pablo Bay had lower than average biomass, mostly cyclopoid copepods
 
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -347,6 +381,11 @@ knitr::include_graphics(file.path("figures/zoops_ssfall.png"))
 
 In 2018, Suisun Bay had slighly higher than average total biomass, also mostly cyclopoid copepods.
 
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -402,11 +441,19 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 ::: {.column width=800px}
 <center> __Delta Smelt__ </center>
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 <center> __Longfin Smelt__ </center>
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 <center> __Young of the Year Striped Bass__ </center>
 :::
@@ -421,11 +468,21 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
 ```
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a longfin smelt", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
 ```
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -444,11 +501,21 @@ knitr::include_graphics(file.path("figures/fsd-striped-bass-young-adult-20cm-sma
 knitr::include_graphics(file.path("figures/FMWT_DS_1966.png"))
 ```
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 ```{r fig.cap= "Graph of longfin smelt index from 1967 through 2018.", echo=FALSE}
 knitr::include_graphics(file.path("figures/FMWT_LFS_1966.png"))
 ```
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -465,11 +532,19 @@ knitr::include_graphics(file.path("figures/FMWT_sb0_1966.png"))
 ::: {.column width=800px}
 2018 was lower than the longterm average.
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 The 2018 longfin smelt index was much lower than average.
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 In 2018, Young-of-the-year striped bass were much less abundant than average. 
 :::
@@ -483,11 +558,19 @@ In 2018, Young-of-the-year striped bass were much less abundant than average.
 ::: {.column width=800px}
 <center> __American Shad__ </center>
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 <center> __White Sturgeon__ </center>
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 <center> __Adult Fall-Run Chinook Salmon__ </center>
 :::
@@ -502,13 +585,21 @@ In 2018, Young-of-the-year striped bass were much less abundant than average.
 knitr::include_graphics(file.path("figures/fsd-american-shad-small.jpg"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a White Sturgeon", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-white-sturgeon-adult-100cm-small.jpg"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
@@ -525,13 +616,21 @@ knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
 knitr::include_graphics(file.path("figures/FMWT_AS_1966.png"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "Graph of White sturgeon CPUE from 1967 to 2018. ", echo=FALSE}
 knitr::include_graphics(file.path("figures/WST_1966.png"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap= "Graph of adult fallrun chinook population estimates 1967 to 2018. Values range from 40 to 20000."}
 knitr::include_graphics(file.path("figures/FallRun_1966.png"))
@@ -546,9 +645,19 @@ knitr::include_graphics(file.path("figures/FallRun_1966.png"))
 ::: {.column width=800px}
 The 2018 American Shad index was much lower than average.
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 2018 was lower than the longterm average.
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
