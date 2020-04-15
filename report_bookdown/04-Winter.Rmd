@@ -67,6 +67,11 @@ knitr::include_graphics(file.path("figures/secchi_splwinter.png"))
 In 2018, San Pablo bay slightly clearer than the long-term average.
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -76,6 +81,11 @@ knitr::include_graphics(file.path("figures/secchi_sswinter.png"))
 
 In 2018, Suisun Bay was also slightly clearer than the long-term average
 
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -94,7 +104,7 @@ In 2018, the Delta was much clearer than average, the second clearest winter on 
 
 
 ```{block, type='disclaimer'}
-For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899. 
+For more information see: [Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899.](https://link.springer.com/article/10.1007/s12237-011-9382-x) 
 ```
 
 
@@ -154,7 +164,11 @@ In 2018, San Pablo Bay temperatures were similar to the long-term average.
 
 
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 <center> __Suisun__ </center>
 ```{r fig.cap= "Graph of average winter water temperature in Suisun from 1975 to 2018. Values range from 13 to 18.", echo=FALSE}
@@ -163,6 +177,11 @@ knitr::include_graphics(file.path("figures/temp_sswinter.png"))
 
 In 2018, Suisun Bay was similar to the long-term average. 
 
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -237,6 +256,11 @@ In 2018, San Pablo Bay chlorophyll was similar to the long-term average.
 
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -247,7 +271,11 @@ knitr::include_graphics(file.path("figures/chla_sswinter.png"))
 In 2018, Suisun Bay chlorophyll was also about average. 
 
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 
 <center> __Delta__ </center>
@@ -330,6 +358,11 @@ In 2018, San Pablo Bay had much lower than average biomass, mostly calanoid cope
 
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -339,6 +372,11 @@ knitr::include_graphics(file.path("figures/zoops_sswinter.png"))
 
 In 2018, Suisun Bay also had much lower than average total biomass.
 
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -388,9 +426,19 @@ knitr::include_graphics(file.path("figures","mline.png"))
 ::: {.column width=800px}
 <center> __Juvenile Sturgeon__ </center>
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Longfin Smelt__ </center>
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -407,13 +455,22 @@ knitr::include_graphics(file.path("figures","mline.png"))
 knitr::include_graphics(file.path("figures/fsd-white-sturgeon-adult-100cm-small.jpg"))
 ```
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a Longfin Smelt", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a juvenile Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
@@ -430,13 +487,21 @@ knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.
 knitr::include_graphics(file.path("figures/whistu_plot_allYears.png"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "Graph of longfin smelt CPUE from 1980 to 2018. ", echo=FALSE}
 knitr::include_graphics(file.path("figures/lonsme_plot_allYears.png"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "Graph of juvenile winter-run chinook salmon CPUE in the Chipps Island Trawl.", echo=FALSE}
 knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_allyears.png"))
@@ -449,15 +514,23 @@ knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_allyears
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-2018 was lower than the longterm average.
+Bay study did not sample in winter of 2018, but the most recent year with a complete survey (2017) was much higher than average.
 :::
-
-::: {.column width=800px}
-2018 was lower than the longterm average.
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
-
 ::: {.column width=800px}
-In 2018 wild Chinook Salmon survival was...
+2018 was much lower than the longterm average.
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width=800px}
+In 2018 wild Chinook Salmon survival was about average.
 :::
 
 ::::::

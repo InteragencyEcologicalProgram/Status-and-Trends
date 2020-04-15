@@ -79,6 +79,11 @@ knitr::include_graphics(file.path("figures/secchi_splspring.png"))
 In 2018, San Pablo bay was close to the long-term average.
 
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Suisun__ </center>
@@ -88,6 +93,11 @@ knitr::include_graphics(file.path("figures/secchi_ssspring.png"))
 
 In 2018, Suisun Bay was also close to the long-term average
 
+:::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
 :::
 
 ::: {.column width=800px}
@@ -106,7 +116,7 @@ In 2018, the Delta was much clearer than average, the clearest Spring on record.
 
 
 ```{block, type='disclaimer'}
-For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899. 
+[Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899.](https://link.springer.com/article/10.1007/s12237-011-9382-x) 
 ```
 
 
@@ -163,7 +173,11 @@ In 2018, San Pablo Bay temperatures were similar to the long-term average.
 
 
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 <center> __Suisun__ </center>
 ```{r fig.cap= "Graph of average spring water temperature in Suisun from 1975 to 2018. Values range from 13 to 18.", echo=FALSE}
@@ -173,7 +187,11 @@ knitr::include_graphics(file.path("figures/temp_ssspring.png"))
 In 2018, Suisun Bay was similar to the long-term average. 
 
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 
 <center> __Delta__ </center>
@@ -245,7 +263,11 @@ In 2018, San Pablo Bay chlorophyll was similar to the long-term average.
 
 
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 <center> __Suisun__ </center>
 ```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2018. Values range from 2 to 19.", echo=FALSE}
@@ -255,7 +277,11 @@ knitr::include_graphics(file.path("figures/chla_ssspring.png"))
 In 2018, Suisun Bay chlorophyll was also about average. 
 
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 
 <center> __Delta__ </center>
@@ -338,7 +364,11 @@ In 2018, San Pablo Bay had much lower than average biomass, mostly calanoid cope
 
 
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 <center> __Suisun__ </center>
 ```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2018. Values range from 5 to 45 with much higher biomass before 1986.", echo=FALSE}
@@ -348,7 +378,11 @@ knitr::include_graphics(file.path("figures/zoops_ssspring.png"))
 In 2018, Suisun Bay also had much lower than average total biomass.
 
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 
 <center> __Delta__ </center>
@@ -394,15 +428,28 @@ knitr::include_graphics(file.path("figures","mline.png"))
 ::: {.column width=800px}
 <center> __Juvenile Sacramento Splittail__ </center>
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Adult Spring-Run Chinook__ </center>
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 <center> __Juvenile Winter-Run Chinook__ </center>
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::::::
 
 
@@ -413,13 +460,21 @@ knitr::include_graphics(file.path("figures","mline.png"))
 knitr::include_graphics(file.path("figures/fsd-splittail-adult-45cm-small.jpg"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of an adults chinook salmon", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
@@ -436,13 +491,21 @@ knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.
 knitr::include_graphics(file.path("figures/yolo_splittail.png"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "Graph of average adult chinook returns from 1966 to 2018. Values range from 1000 to 250000.", echo=FALSE}
 knitr::include_graphics(file.path("figures/SpringRun_1966.png"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 1995 to 2018. Values range from 0.2 to 6."}
 knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_allyears.png"))
@@ -457,11 +520,19 @@ knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_allyears
 ::: {.column width=800px}
 2018 did not have substantial Yolo Bypass flooding, and catch was in line with other similar years.
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 In 2018, adult Chinook returns were lower than average
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 In 2018, juvenile Chinook catch was slightly lower than average.
 :::
@@ -501,11 +572,20 @@ knitr::include_graphics(file.path("figures","mline.png"))
 ::: {.column width=800px}
 <center> __Delta Smelt__ </center>
 :::
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 
 ::: {.column width=800px}
 <center> __Longfin smelt__ </center>
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 <center> __Juvenile Winter-Run Chinook__ </center>
 :::
@@ -520,13 +600,21 @@ knitr::include_graphics(file.path("figures","mline.png"))
 knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=.5, echo=FALSE}
 knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
@@ -543,13 +631,21 @@ knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.
 knitr::include_graphics(file.path("figures/20mm_DSM_recent.png"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r fig.cap= "Graph of post-larval longfin smelt index from 2004-2018. Values range from 4 to 206.", echo=FALSE}
 knitr::include_graphics(file.path("figures/20mm_LFS_recent.png"))
 ```
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 2004 to 2018. Values range from 0.2 to 6."}
 knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_recyears.png"))
@@ -564,11 +660,19 @@ knitr::include_graphics(file.path("figures/DJFMP_chinook_winterByLength_recyears
 ::: {.column width=800px}
 The Delta Smelt 20mm index was zero in 2018, the lowest index on record. 
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 Adult Longfin smelt abundance in 2018 was much lower than the long-term average.
 :::
-
+::: {.column width=40px}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
 ::: {.column width=800px}
 In 2018, juvenile winter-run salmon survival was about average.
 :::
