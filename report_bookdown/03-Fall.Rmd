@@ -81,7 +81,7 @@ In 2018, San Pablo bay was close to the long-term average.
 knitr::include_graphics(file.path("figures/secchi_ssfall.png"))
 ```
 
-In 2018, Suisun Bay was also close to the long-term average
+In 2018, Suisun Bay was slightly higher than the long-term average
 
 :::
 
@@ -92,7 +92,7 @@ In 2018, Suisun Bay was also close to the long-term average
 knitr::include_graphics(file.path("figures/secchi_dtfall.png"))
 ```
 
-In 2018, the Delta was much clearer than average, the clearest fall on record.
+In 2018, the Delta was much clearer than average, continuing a trend of clearing water.
 
 
 :::
@@ -334,7 +334,7 @@ knitr::include_graphics(file.path("figures","mline.png"))
 knitr::include_graphics(file.path("figures/zoops_splfall.png"))
 ```
 
-In 2018, San Pablo Bay had much lower than average biomass, mostly calanoid copepods
+In 2018, San Pablo Bay had lower than average biomass, mostly cyclopoid copepods
 
 
 :::
@@ -345,7 +345,7 @@ In 2018, San Pablo Bay had much lower than average biomass, mostly calanoid cope
 knitr::include_graphics(file.path("figures/zoops_ssfall.png"))
 ```
 
-In 2018, Suisun Bay also had much lower than average total biomass.
+In 2018, Suisun Bay had slighly higher than average total biomass, also mostly cyclopoid copepods.
 
 :::
 
@@ -356,14 +356,14 @@ In 2018, Suisun Bay also had much lower than average total biomass.
 knitr::include_graphics(file.path("figures/zoops_dtfall.png"))
 ```
 
-In 2018, the Delta also had much lower than average total biomass. 
+In 2018, the Delta had slightly higher than average total biomass. 
 
 :::
 
 ::::::
 
 ```{block, type='disclaimer'}
-For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. 
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32.  Available on request: iepnewsletter@water.ca.gov
 ```
 
 ***
@@ -552,7 +552,7 @@ The 2018 American Shad index was much lower than average.
 :::
 
 ::: {.column width=800px}
-In 2018, Fall run chinook were.... 
+In 2018, Fall Run Chinook returns were lower than average.
 :::
 
 ::::::
@@ -560,11 +560,11 @@ In 2018, Fall run chinook were....
 
 
 ```{block, type='disclaimer'}
-For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36.  Available on request: iepnewsletter@water.ca.gov
 ```
 ***
 
-## Recent Trends: Fish 2004-2018 
+## Recent Trends: Fall Fish 2004-2018 
 
 ### Background
 
@@ -673,7 +673,7 @@ In 2018, The Striped Bass index was the lowest on record.
 
 
 ```{block, type='disclaimer'}
-For more information see: Nobriga, M. L, & Smith, W. E. (2020). Did a Shifting Ecological Baseline Mask the Predatory Effect of Striped Bass on Delta Smelt? San Francisco Estuary and Watershed Science, 18(1). http://dx.doi.org/10.15447/sfews.2020v18iss1art1
+For more information see: [Nobriga, M. L, & Smith, W. E. (2020). Did a Shifting Ecological Baseline Mask the Predatory Effect of Striped Bass on Delta Smelt? San Francisco Estuary and Watershed Science, 18(1).](http://dx.doi.org/10.15447/sfews.2020v18iss1art1) http://dx.doi.org/10.15447/sfews.2020v18iss1art1
 
 ```
  

@@ -263,7 +263,7 @@ In 2018, the Delta also had about average chlorophyll.
 
 
 ```{block, type='disclaimer'}
-For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20. 
+For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20. Available on request: iepnewsletter@water.ca.gov
 ```
  
 ***
@@ -355,7 +355,7 @@ In 2018, the Delta had about average total biomass.
 ::::::
 
 ```{block, type='disclaimer'}
-For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. 
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. Available on request: iepnewsletter@water.ca.gov
 ```
 
 ***
@@ -464,7 +464,7 @@ In 2018 wild Chinook Salmon survival was...
 
 
 ```{block, type='disclaimer'}
-For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Study Fishes Status and Trends Report for the San Francisco Estuary, 2012–2016. IEP Newsletter 31(2):3-43. 
+For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Study Fishes Status and Trends Report for the San Francisco Estuary, 2012–2016. IEP Newsletter 31(2):3-43. Available on request: iepnewsletter@water.ca.gov
 ```
 ***
 
@@ -582,7 +582,7 @@ Juvenile winter-run Chinook Salmon had a much lower passage rate in winter of 20
 
 
 ```{block, type='disclaimer'}
-For more information see:  Tempel, T. 2019. 2018 Spring Kodiak Trawl Summary. IEP Newsletter 34(1):22-24.  
+For more information see:  Tempel, T. 2019. 2018 Spring Kodiak Trawl Summary. IEP Newsletter 34(1):22-24.  Available on request: iepnewsletter@water.ca.gov
 ```
  
  

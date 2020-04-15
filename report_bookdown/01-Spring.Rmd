@@ -363,7 +363,7 @@ In 2018, the Delta also had much lower than average total biomass.
 ::::::
 
 ```{block, type='disclaimer'}
-For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. 
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. Available on request: iepnewsletter@water.ca.gov
 ```
  ***
  
@@ -371,8 +371,8 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 
 ### Background
 
-* Splittail are a native minnow that spawn on floodplains, so have high reproduction during high flow years when floodplains are inundated with water. They are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2). 
-* Spring-run Adult salmon returns return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
+* Splittail are a native minnow that spawn on floodplains, so have high reproduction during high flow years when floodplains are inundated with water. Juvenile splittail are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2)'s rotory screw trap. 
+* Spring-run Adult salmon return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
 ### Average Fish Abundance by Species 
@@ -392,7 +392,7 @@ knitr::include_graphics(file.path("figures","mline.png"))
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-<center> __Sacramento Splittail__ </center>
+<center> __Juvenile Sacramento Splittail__ </center>
 :::
 
 ::: {.column width=800px}
@@ -469,12 +469,12 @@ In 2018, juvenile Chinook catch was slightly lower than average.
 
 
 ```{block, type='disclaimer'}
-For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. Available on request: iepnewsletter@water.ca.gov
 ```
 
 ***
 
-## Recent Trends: Fish 2004-2018 
+## Recent Trends: Spring Fish 2004-2018 
 
 ### Background
 
@@ -577,7 +577,7 @@ In 2018, juvenile winter-run salmon survival was about average.
 
 
 ```{block, type='disclaimer'}
-For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. Available on request: iepnewsletter@water.ca.gov
 ```
  
  
