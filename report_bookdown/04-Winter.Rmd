@@ -354,7 +354,7 @@ knitr::include_graphics(file.path("figures","mline.png"))
 knitr::include_graphics(file.path("figures/zoops_splwinter.png"))
 ```
 
-In 2018, San Pablo Bay had much lower than average biomass, mostly calanoid copepods
+In 2018, San Pablo Bay had lower than average biomass, mostly calanoid copepods
 
 
 :::
@@ -370,7 +370,7 @@ a column separator -->
 knitr::include_graphics(file.path("figures/zoops_sswinter.png"))
 ```
 
-In 2018, Suisun Bay also had much lower than average total biomass.
+In 2018, Suisun Bay had slightly higher than average total biomass, mostly cyclopoid copepods.
 
 :::
 ::: {.column width=40px}
