@@ -179,7 +179,7 @@ In 2018, the Delta was slightly cooler than average.
 ::::::
 
 ```{block, type='disclaimer'}
-For more information see: Jeffries, et al.. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. 
+For more information see: Jeffries, et al. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. 
 ```
 
 ***
@@ -264,7 +264,7 @@ In 2018, the Delta had lower chlorophyll than average.
 
 
 ```{block, type='disclaimer'}
-For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20. 
+For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20.  Available on request: iepnewsletter@water.ca.gov
 ```
  
 ***
@@ -353,7 +353,7 @@ In 2018, the Delta also had much lower than average total biomass.
 ::::::
 
 ```{block, type='disclaimer'}
-For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. 
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32.  Available on request: iepnewsletter@water.ca.gov
 ```
  
 ***
@@ -362,7 +362,7 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 
 ### Background
 
-* Delta Smelt, listed as threatened by the Endangered Spices Act, have been tracked by [CDFW’s Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey) since 1959 in Suisun Bay, San Pablo Bay, and the Delta. 
+* Delta Smelt, listed as threatened by the Endangered Species Act, have been tracked by [CDFW’s Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey) since 1959 in Suisun Bay, San Pablo Bay, and the Delta. 
 * Northern Anchovy are an important forage fish in the brackish-saline regions of the estuary. They are sampled best by [CDFW’s San Francisco Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study).
 * Sacramento Pikeminnow is a native cyprinid that is one of the few piscivorous native fish in the Delta. They are sampled by [USFWS's DJFMP](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm) beach seine surveys throughout the estuary.
 
@@ -468,7 +468,7 @@ In 2018, Pikeminnow were less abundant than average.
 
 
 ```{block, type='disclaimer'}
-For more information see: For more information, see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Study Fishes Status and Trends Report for the San Francisco Estuary, 2012–2016. IEP Newsletter 31(2):3-43. 
+For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Study Fishes Status and Trends Report for the San Francisco Estuary, 2012–2016. IEP Newsletter 31(2):3-43. Available on request: iepnewsletter@water.ca.gov
 
 ```
 
@@ -586,7 +586,7 @@ In 2018, aquatic vegetation was slightly lower than 2017, but higher than averag
 
 
 ```{block, type='disclaimer'}
-For more information see: For more information, Ta et al. 2017. Invasive aquatic vegetation management in the Sacramento–San Joaquin River Delta: status and recommendations. San Francisco Estuary and Watershed Science 15(4)
+For more information see: [Ta et al. 2017. Invasive aquatic vegetation management in the Sacramento–San Joaquin River Delta: status and recommendations. San Francisco Estuary and Watershed Science 15(4)](https://escholarship.org/uc/item/828355w6)
 
 ```
  
