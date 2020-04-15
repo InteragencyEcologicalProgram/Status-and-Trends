@@ -86,6 +86,10 @@ mean(vtot$perc) #29.6
 (vtot$perc[length(vtot$perc)]-mean(vtot$perc))/mean(vtot$perc)*100 #31.75676
 #In 2018, the percentage of water area occupied by aquatic vegetation in the Delta was 32% higher than the long-term mean
 
+(abs(vtot$perc[length(vtot$perc)]-mean(vtot$perc)))/sd(vtot$perc) #0.7902043
+#2018 value is 0.79 SD from mean
+
+
 #stack bar colors
 repcols<-c("sav_perc" = "#556B2F",
            "fav_perc" = "#88BA33")
