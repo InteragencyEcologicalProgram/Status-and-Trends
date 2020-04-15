@@ -73,12 +73,13 @@ flows = function(quart, data) {
   #  geom_hline(aes(yintercept = mean(out)/1000), size = 0.9, color = "red", linetype = "dashed")+
     std_x_axis_all_years(2018, x_scale_type = "cont") + 
     std_x_axis_label(season_names[quart])+
-    scale_y_continuous(expression(paste("Net Delta Outflow (1,000 Ft "^"3"," / s)"))) +
+    scale_y_continuous(limits = c(0, max(data$out/1000)), name =expression(paste("Net Delta Outflow (1,000 Ft "^"3"," / s)"))) +
     theme_smr()
   p
 }
 
 flows(quart = "Q1",data = dmean)
+flows(quart = "Q3",data = dmean)
 
 reportyear = 2018
 dmean = filter(dmean, qyear < 2019)
@@ -91,17 +92,17 @@ ggsave(flows(quart = "Q1",data = dmean),
 ggsave(flows(quart = "Q2",data = dmean), 
        file="spring_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = "report_bookdown/figures")
+       path = "report_bookdown/figures", "docs/figures")
 
 ggsave(flows(quart = "Q3",data = dmean), 
        file="summer_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = "report_bookdown/figures")
+       path = "report_bookdown/figures", "docs/figures")
 
 ggsave(flows(quart = "Q4",data = dmean), 
        file="fall_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = c("./fall_report/figures", "report_bookdown/figures"))
+       path = c("./fall_report/figures", "report_bookdown/figures", "docs/figures"))
 
 ggsave(flows(quart = "Q4",data = dmean), 
        file="fall_outflow_update.png", 
