@@ -397,7 +397,7 @@ In 2018, the Delta also had much lower than average total biomass.
 ::::::
 
 ```{block, type='disclaimer'}
-For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. Available on request: iepnewsletter@water.ca.gov
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Newsletter 32(1):21-32. Available on request: iepnewsletter@water.ca.gov
 ```
  ***
  
@@ -540,7 +540,7 @@ In 2018, juvenile Chinook catch was slightly lower than average.
 
 
 ```{block, type='disclaimer'}
-For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. Available on request: iepnewsletter@water.ca.gov
+For more information see: Kwan, N., Stuart, C., Shakya, A., Jenkins, J., and Schreier, B. 2019. 2016-2017 Yolo Bypass Fisheries Monitoring Status and Trends Report. Interagency Ecological Program Newsletter, 36(1): 27–35. Available on request: iepnewsletter@water.ca.gov
 ```
 
 ***
@@ -681,7 +681,7 @@ In 2018, juvenile winter-run salmon survival was about average.
 
 
 ```{block, type='disclaimer'}
-For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. Available on request: iepnewsletter@water.ca.gov
+Johnson, R., S. Windell, P. L. Brandes, J. L. Conrad, J. Ferguson, P. A. L. Goertler, B. N. Harvey, J. Heublein, J. A. Israel, D. W. Kratville, J. E. Kirsch, R. W. Perry, J. Pisciooto, W. R. Poytress, K. Reece, and B. G. Swart. 2017. Science Advancements Key to Increasing Management Value of Life Stage Monitoring Networks for Endangered Sacramento River Winter-Run Chinook Salmon in California. San Francisco Estuary and Watershed Science 15(3). https://escholarship.org/uc/item/6751j957
 ```
  
  

@@ -393,7 +393,7 @@ In 2018, the Delta had about average total biomass.
 ::::::
 
 ```{block, type='disclaimer'}
-For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. Available on request: iepnewsletter@water.ca.gov
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Newsletter 32(1):21-32. Available on request: iepnewsletter@water.ca.gov
 ```
 
 ***
