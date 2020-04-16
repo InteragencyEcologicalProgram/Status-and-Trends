@@ -78,17 +78,18 @@ ggsave(p_lfs, file="FMWT_LFS_1966.png", dpi=300, units="cm", width=9.3, height=6
 #Striped Bass
 
 #Traditional Index 1967-2017
-(p_sb0 <- ggplot(sb0, aes(x=fyear, y=Index))+
+p_sb0 <- ggplot(sb0, aes(x=fyear, y=Index))+
   geom_bar(stat="identity") +
   theme_smr() +
   theme(legend.position="none") + 
   scale_y_continuous("Striped Bass Index") +
   std_x_axis_all_years(2018) +
-  missing_data_symb(sb0, fyear, 2018, 2))+
+  missing_data_symb(sb0, fyear, 2018, 2)+
   std_x_axis_label("fall")+
   lt_avg_line(mean(sb0$Index, na.rm = T))
 ggsave(p_sb0, file="FMWT_SB0_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "Fall_report/figures")
 ggsave(p_sb0, file="FMWT_SB0_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "report_bookdown/figures")
+ggsave(p_sb0, file="FMWT_SB0_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "docs/figures")
 
 
 #ggsave(p_sb0, file="sb0_trad_fmwt_color.png", path=plot_folder,scale=2,

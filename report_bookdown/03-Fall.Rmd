@@ -402,7 +402,7 @@ In 2018, the Delta had slightly higher than average total biomass.
 ::::::
 
 ```{block, type='disclaimer'}
-For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32.  Available on request: iepnewsletter@water.ca.gov
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Newsletter 32(1):21-32.  Available on request: iepnewsletter@water.ca.gov
 ```
 
 ***
@@ -669,7 +669,7 @@ In 2018, Fall Run Chinook returns were lower than average.
 
 
 ```{block, type='disclaimer'}
-For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36.  Available on request: iepnewsletter@water.ca.gov
+For more information see: DuBois, J. and A. Danos 2017. 2017 Field Season Summary for the Sturgeon Population Study, California Department of Fish and Wildlife. Available online: https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentId=151049&inline 
 ```
 ***
 
