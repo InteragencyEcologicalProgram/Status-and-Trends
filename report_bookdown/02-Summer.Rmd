@@ -201,7 +201,7 @@ In 2018, the Delta was slightly cooler than average.
 ::::::
 
 ```{block, type='disclaimer'}
-For more information see: Jeffries, et al. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. 
+For more information see: [Jeffries, et al. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716.](https://jeb.biologists.org/content/219/11/1705.short) 
 ```
 
 ***
@@ -409,7 +409,7 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 * Northern Anchovy are an important forage fish in the brackish-saline regions of the estuary. They are sampled best by [CDFW’s San Francisco Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study).
 * Sacramento Pikeminnow is a native cyprinid that is one of the few piscivorous native fish in the Delta. They are sampled by [USFWS's DJFMP](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm) beach seine surveys throughout the estuary.
 
-### Average Fish Abundance by Species 
+### Average Fish Catch Trends by Species 
 
 
 :::::: {.columns-nocenter}
@@ -558,7 +558,7 @@ For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Stu
 * Microcystis is a toxic cyanobacteria first found in the Delta in 1998. Microcystis presence has been documented by the [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) and the  [CDFW Summer Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey) during their water quality sampling.
 * Aquatic vegetation in the Delta has increased significantly in recent years. This vegetation is composed mostly of non-native invasive plant species and is categorized as either floating or submerged types. Coverage is estimated by [UC-Davis](http://cstars.metro.ucdavis.edu/) using remote sensing of the North and Central Delta.
 
-### Average Abundance by Parameter
+### Average Trends by Parameter
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}

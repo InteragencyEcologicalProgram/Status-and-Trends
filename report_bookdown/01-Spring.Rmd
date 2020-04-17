@@ -409,7 +409,7 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Ne
 * Spring-run Adult salmon return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
-### Average Fish Abundance by Species 
+### Average Fish Catch Trends by Species 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -426,7 +426,7 @@ knitr::include_graphics(file.path("figures","mline.png"))
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-<center> __Juvenile Sacramento Splittail__ </center>
+<center> __[Juvenile Sacramento Splittail](http://calfish.ucdavis.edu/species/?uid=136&ds=698)__ </center>
 :::
 ::: {.column width=40px}
 \ 
@@ -435,7 +435,7 @@ a column separator -->
 :::
 
 ::: {.column width=800px}
-<center> __Adult Spring-Run Chinook__ </center>
+<center> __[Adult Spring-Run Chinook](http://calfish.ucdavis.edu/species/?uid=28&ds=698)__ </center>
 :::
 ::: {.column width=40px}
 \ 
@@ -443,7 +443,7 @@ a column separator -->
 a column separator -->
 :::
 ::: {.column width=800px}
-<center> __Juvenile Winter-Run Chinook__ </center>
+<center> __[Juvenile Winter-Run Chinook](http://calfish.ucdavis.edu/species/?uid=30&ds=698)__ </center>
 :::
 ::: {.column width=40px}
 \ 
@@ -553,7 +553,7 @@ For more information see: Kwan, N., Stuart, C., Shakya, A., Jenkins, J., and Sch
 * Longfin Smelt frequently spawn further downstream than Delta Smelt, so the 20 mm Survey does not cover their entire range, but still provides an indication of population-level trends.
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
-### Average Fish Abundance by Species 
+### Average Fish Catch Trends by Species 
 
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
@@ -570,7 +570,7 @@ knitr::include_graphics(file.path("figures","mline.png"))
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-<center> __Delta Smelt__ </center>
+<center> __[Delta Smelt](http://calfish.ucdavis.edu/species/?uid=47&ds=698)__ </center>
 :::
 ::: {.column width=40px}
 \ 
@@ -579,7 +579,7 @@ a column separator -->
 :::
 
 ::: {.column width=800px}
-<center> __Longfin smelt__ </center>
+<center> __[Longfin Smelt](http://calfish.ucdavis.edu/species/?uid=87&ds=698)__ </center>
 :::
 ::: {.column width=40px}
 \ 
@@ -587,7 +587,7 @@ a column separator -->
 a column separator -->
 :::
 ::: {.column width=800px}
-<center> __Juvenile Winter-Run Chinook__ </center>
+<center> __[Juvenile Winter-Run Chinook](http://calfish.ucdavis.edu/species/?uid=30&ds=698)__ </center>
 :::
 
 ::::::
@@ -666,7 +666,7 @@ The Delta Smelt 20mm index was zero in 2018, the lowest index on record.
 a column separator -->
 :::
 ::: {.column width=800px}
-Adult Longfin smelt abundance in 2018 was much lower than the long-term average.
+Adult Longfin smelt catch in 2018 was much lower than the long-term average.
 :::
 ::: {.column width=40px}
 \ 
