@@ -198,7 +198,7 @@ In 2018, the Delta was also similar to the long-term average.
 ::::::
 
 ```{block, type='disclaimer'}
-For more information see: Jeffries, et al.. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. 
+For more information see: [Jeffries, et al. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716.](https://jeb.biologists.org/content/219/11/1705.short) 
 ```
 
 ***
@@ -406,7 +406,7 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Ne
 * Longfin Smelt are listed as Threatened under the California Endangered Species Act. Spawning adults are sampled in winter by the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study) midwater trawl. 
 * Juvenile Winter-Run Chinook Salmon are sampled by the [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers.
 
-### Average Fish Abundance by Species 
+### Average Fish Catch Trends by Species 
 
 
 :::::: {.columns-nocenter}
@@ -424,7 +424,7 @@ knitr::include_graphics(file.path("figures","mline.png"))
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-<center> __Juvenile Sturgeon__ </center>
+<center> __[Juvenile Sturgeon](http://calfish.ucdavis.edu/species/?uid=182&ds=698)__ </center>
 :::
 ::: {.column width=40px}
 \ 
@@ -433,7 +433,7 @@ a column separator -->
 :::
 
 ::: {.column width=800px}
-<center> __Longfin Smelt__ </center>
+<center> __[Longfin Smelt](http://calfish.ucdavis.edu/species/?uid=87&ds=698)__ </center>
 :::
 ::: {.column width=40px}
 \ 
@@ -442,7 +442,7 @@ a column separator -->
 :::
 
 ::: {.column width=800px}
-<center> __Juvenile Winter-run Chinook__ </center>
+<center> __[Juvenile Winter-run Chinook](http://calfish.ucdavis.edu/species/?uid=30&ds=698)__ </center>
 :::
 
 ::::::
@@ -549,7 +549,7 @@ For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Stu
 * Longfin Smelt frequently spawn further downstream than Delta Smelt, so are better sampled by the CDFW Bay Study. The Bay Study samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
 * Juvenile Chinook pass Red Bluff Diversion Dam on the upper Sacramento as they migrate from spawning grounds to the ocean.
 
-### Average Fish Abundance by Species 
+### Average Fish Catch Trends by Species 
 
 
 :::::: {.columns-nocenter}
@@ -572,15 +572,15 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-<center> __Delta Smelt__ </center>
+<center> __[Delta Smelt](http://calfish.ucdavis.edu/species/?uid=47&ds=698)__ </center>
 :::
 
 ::: {.column width=800px}
-<center> __Longfin Smelt__ </center>
+<center> __[Longfin Smelt](http://calfish.ucdavis.edu/species/?uid=87&ds=698)__ </center>
 :::
 
 ::: {.column width=800px}
-<center> __Juvenile Winter-Run Chinook__ </center>
+<center> __[Juvenile Winter-Run Chinook](http://calfish.ucdavis.edu/species/?uid=30&ds=698)__ </center>
 :::
 
 ::::::
@@ -637,16 +637,16 @@ knitr::include_graphics(file.path("figures/redbluff_2003.png"))
 :::::: {.columns-nocenter}
 
 ::: {.column width=800px}
-The Delta Smelt SKT index was zero in 2018, the lowest index on record. (mean line is from 2004-2017)
+The Delta Smelt SKT index was zero in 2018, the lowest index on record. (mean line is from 2004-2018)
 :::
 
 ::: {.column width=800px}
-Adult Longfin smelt abundance in 2017 was much lower than the long-term average.
+Adult Longfin smelt catch in 2018 was much lower than the long-term average.
 
 :::
 
 ::: {.column width=800px}
-Juvenile winter-run Chinook Salmon had a much lower passage rate in winter of 2017-2018 than the historical average
+Juvenile winter-run Chinook Salmon had a much lower passage rate than the historical average
 :::
 
 ::::::
