@@ -319,12 +319,12 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 <center> Copepod </center>
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
-knitr::include_graphics("figures/copepod.jpg")
+knitr::include_graphics("figures/acartia.png")
 ```
 
 <center> Mysid </center>
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
-knitr::include_graphics("figures/mysid.jpg")
+knitr::include_graphics("figures/mysid.png")
 ```
 
 
@@ -451,7 +451,7 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a delta smelt", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+knitr::include_graphics(file.path("figures/deltasmelt.png"))
 ```
 :::
 ::: {.column width=40px}
@@ -463,7 +463,7 @@ a column separator -->
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a northern anchovy", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/anchovy.jpg"))
+knitr::include_graphics(file.path("figures/anchovy.png"))
 ```
 :::
 ::: {.column width=40px}
@@ -474,7 +474,7 @@ a column separator -->
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a sacramento pikeminnow", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-sacramento-pikeminnow-small.jpg"))
+knitr::include_graphics(file.path("figures/sacramento_pikeminnow.png"))
 ```
 :::
 
@@ -600,7 +600,7 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+knitr::include_graphics(file.path("figures/deltasmelt.png"))
 ```
 :::
 ::: {.column width=40px}
