@@ -457,7 +457,7 @@ a column separator -->
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a sacramento splittail", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-splittail-adult-45cm-small.jpg"))
+knitr::include_graphics(file.path("figures/splittail_adult.png"))
 ```
 :::
 ::: {.column width=40px}
@@ -467,7 +467,7 @@ a column separator -->
 :::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of an adults chinook salmon", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
+knitr::include_graphics(file.path("figures/chinook_salmon.png"))
 ```
 :::
 ::: {.column width=40px}
@@ -477,7 +477,7 @@ a column separator -->
 :::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+knitr::include_graphics(file.path("figures/chinook_salmon_smolt.png"))
 ```
 :::
 
@@ -607,7 +607,7 @@ a column separator -->
 :::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+knitr::include_graphics(file.path("figures/longfin_smelt_adult.png"))
 ```
 :::
 ::: {.column width=40px}
@@ -617,7 +617,7 @@ a column separator -->
 :::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=.5, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+knitr::include_graphics(file.path("figures/chinook_salmon_smolt.png"))
 ```
 :::
 

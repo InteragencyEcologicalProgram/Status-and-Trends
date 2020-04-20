@@ -476,7 +476,7 @@ a column separator -->
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a longfin smelt", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+knitr::include_graphics(file.path("figures/longfin_smelt_adult.png"))
 ```
 :::
 ::: {.column width=40px}
@@ -487,7 +487,7 @@ a column separator -->
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a striped bass", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-striped-bass-young-adult-20cm-small.jpg"))
+knitr::include_graphics(file.path("figures/striped_bass_young_adult.png"))
 ```
 :::
 
@@ -582,7 +582,7 @@ a column separator -->
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of an American Shad", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-american-shad-small.jpg"))
+knitr::include_graphics(file.path("figures/american_shad.png"))
 ```
 :::
 ::: {.column width=40px}
@@ -592,7 +592,7 @@ a column separator -->
 :::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a White Sturgeon", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-white-sturgeon-adult-100cm-small.jpg"))
+knitr::include_graphics(file.path("figures/white_sturgeon_adult.png"))
 ```
 :::
 ::: {.column width=40px}
@@ -602,7 +602,7 @@ a column separator -->
 :::
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-chinook-salmon-small.jpg"))
+knitr::include_graphics(file.path("figures/chinook_salmon.png"))
 ```
 :::
 
@@ -727,13 +727,13 @@ knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a longfin smelt", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+knitr::include_graphics(file.path("figures/longfin_smelt_adult.png"))
 ```
 :::
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a striped bass", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-striped-bass-young-adult-20cm-small.jpg"))
+knitr::include_graphics(file.path("figures/striped_bass_young_adult.png"))
 ```
 :::
 
