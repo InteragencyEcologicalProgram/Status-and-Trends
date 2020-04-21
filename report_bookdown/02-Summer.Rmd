@@ -456,8 +456,7 @@ knitr::include_graphics(file.path("figures/delta_smelt.png"))
 :::
 ::: {.column width=40px}
 \ 
-<!-- an empty Div (with a white space), serving as
-a column separator -->
+
 :::
 
 
