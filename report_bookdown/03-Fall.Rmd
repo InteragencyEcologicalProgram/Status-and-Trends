@@ -465,7 +465,7 @@ a column separator -->
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of a Delta Smelt", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+knitr::include_graphics(file.path("figures/delta_smelt.png"))
 ```
 :::
 ::: {.column width=40px}
@@ -721,7 +721,7 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 
 ::: {.column width=800px}
 ```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+knitr::include_graphics(file.path("figures/delta_smelt.png"))
 ```
 :::
 
