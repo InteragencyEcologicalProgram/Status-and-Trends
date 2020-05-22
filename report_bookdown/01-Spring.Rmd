@@ -1,5 +1,6 @@
 --- 
-pagetitle: "Spring"
+output: pdf_document
+pagetitle: Spring
 ---
 ```{r echo = F}
 options(width = 120)
@@ -131,7 +132,7 @@ In 2018, the Delta was much clearer than average, the clearest Spring on record.
 * Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
 * Fish growth and reproduction is highest in certain temperature ranges.
 * Increasing Spring temperatures may lower Delta Smelt reproduction.
-* Spring temperatures are lower closer to the ocean and slightly higher in the Delta.
+* Temperatures tend to be similar between regions in the spring.
 
 :::
 

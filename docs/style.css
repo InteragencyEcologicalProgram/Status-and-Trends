@@ -41,8 +41,8 @@ pre code {
 }
 
 .columns-nocenter {
+  columns: 3 8800px;         /* number of columns and width in pixels*/
     -webkit-columns: 3 800px; /* chrome, safari */
     -moz-columns: 3 800px;    /* firefox */
-    columns: 3 8800px; /* number of columns and width in pixels*/
  display: flex;
 } 
