@@ -33,10 +33,10 @@ var modal = (function() {
 				'width': modalWidth
 			});
 
-			// var bookBodyWidth = $bookBody.width();
 			$content.css({
 				'width': modalWidth || 'auto',
-				'background-color': 'white'
+				'background-color': 'white',
+				'overflow': 'auto'
 			});
 
 			$content.empty().append(panel.content);
@@ -53,16 +53,53 @@ var modal = (function() {
 }());
 
 (function() {
-	var $panels = $('.panel');
+	var $panel_grids = $('.panel-grid');
 	
-	$panels.each(function() {
-		// Make a copy so the original does not get removed from the page:
-		var $panelCopy = $(this).clone();
-		// Remove the expand class on the copy just in case:
-		$panelCopy.find('.expand').removeClass('expand');	
+	$panel_grids.each(function() {
+		var $thisCopy = $(this).clone();
+		$thisCopy.find('.expand').removeClass('expand');
+		$thisCopy.find('.column800').removeClass('column800');
+
+		// Column 1:
+		var $panel_1_copy = $thisCopy.find('.col-1');
+		$panel_1_copy.find('a').replaceWith($panel_1_copy.find('a').text());
+
+		$(this).find('.col-1').find('.expand').on('click', function() {
+			modal.open({content: $panel_1_copy});
+		});
 		
-		$(this).find('.expand').on('click', function() {
-			modal.open({content: $panelCopy});
+		// Column 2:
+		var $panel_2_copy = $thisCopy.find('.col-2');
+		$panel_2_copy.find('a').replaceWith($panel_2_copy.find('a').text());
+
+		$(this).find('.col-2').find('.expand').on('click', function() {
+			modal.open({content: $panel_2_copy});
+		});
+		
+		// Column 3:
+		var $panel_3_copy = $thisCopy.find('.col-3');
+		$panel_3_copy.find('a').replaceWith($panel_3_copy.find('a').text());
+
+		$(this).find('.col-3').find('.expand').on('click', function() {
+			modal.open({content: $panel_3_copy});
 		});
 	});
+
 }());
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// (function() {
+	// var $panels = $('.panel');
+	
+	// $panels.each(function() {
+		// // Make a copy so the original does not get removed from the page:
+		// var $panelCopy = $(this).clone();
+		// // Remove the expand class on the copy just in case:
+		// $panelCopy.find('.expand').removeClass('expand');	
+		
+		// $(this).find('.expand').on('click', function() {
+			// modal.open({content: $panelCopy});
+		// });
+	// });
+// }());
