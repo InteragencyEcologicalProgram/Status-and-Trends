@@ -3,6 +3,7 @@ report_year <- 2018
 
 library(smonitr)
 library(ggplot2)
+library(dplyr)
 
 projectRoot <- "."
 reportRoot <- file.path(projectRoot,"summer_report")
@@ -24,7 +25,7 @@ dsmIndexDf <- subset(dsmIndexDf_raw, Year <= report_year)
 ## Delta Smelt:
 
 dsmIndexDf$fyear = as.factor(dsmIndexDf$Year)
-dsmIndexDf = filter(dsmIndexDf, !is.na(Index))
+dsmIndexDf = dplyr::filter(dsmIndexDf, !is.na(Index))
 dsm_fig <- ggplot(dsmIndexDf, aes(x=fyear, y=Index))+
   geom_bar(stat="identity") +
   theme_smr() +
@@ -43,7 +44,10 @@ ggsave(dsm_fig, file=file.path(figRoot,"STN_DSM.png"), dpi=300, units="cm",
 
 dsm_fig2 <- ggplot(dsmIndexDf, aes(x=fyear, y=Index))+
   geom_bar(stat="identity") +
-  theme_smr() +
+  theme_smr() + 
+	# Update theme_smr's plot margins so this plot better matches the Microcystis 
+	# and aquatic vegetation plots:
+	theme(plot.margin = unit(c(0.25+0.7, 0.6, 0.1, 0.4), units = "cm")) + 
   theme(legend.position="none") + 
   scale_y_continuous(expression(paste("Index"))) + 
   lt_avg_line(lt_avg=mean(dsmIndexDf$Index, na.rm=TRUE)) + 
@@ -53,5 +57,6 @@ dsm_fig2 <- ggplot(dsmIndexDf, aes(x=fyear, y=Index))+
 
 dsm_fig2
 ggsave(dsm_fig2, file=file.path(figRoot,"STN_DSM_rec.png"), dpi=300, units="cm", 
-       width=9.3, height=6.8)
+       width=9.3, height=7.5)
+       # width=9.3, height=6.8)
 
