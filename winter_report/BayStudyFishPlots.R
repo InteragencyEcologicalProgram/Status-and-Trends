@@ -143,41 +143,10 @@ plot_fish_data <- function(df, f_spec = c("lonsme", "whistu"), lt_avg, plot_type
   }
   
   # Add descriptive text to the plots for all years
-<<<<<<< HEAD
-  f_PlotAddText <- function(p, FSpec) {
-    
-    # Define text size
-    textSize <- 1.5
-    
-    # Create df's for text comments on plots
-    lonsmeText.h <- tibble(
-      Year.Index = 1964,
-      yValue = 1,
-      label = "Data were not collected\nuntil 1980"
-    )
-    
-    lonsmeText.v <- tibble(
-      Year.Index = c(1983),
-      yValue = c(27),
-      label = c(
-        "Ave CPUE was 88 in 1982"
-      )
-    )
-    
-    whistuText <- tibble(
-      Year.Index = 1964,
-      yValue = 20,
-      label = "Data were not collected\nuntil 1980"
-    )
-    
-    # Add text to lonsme plots
-    if (FSpec == "lonsme") {
-=======
+
   textSize <- 1.5
-  
   if (plot_type == "all") {
     if (f_spec == "lonsme") {
->>>>>>> bf83e48d8f971f0d729f4792b55b53143c5a061e
       p <- p +
         geom_text(
           data = lonsmeText.h,
@@ -219,27 +188,12 @@ plot_fish_data <- function(df, f_spec = c("lonsme", "whistu"), lt_avg, plot_type
     }
   }
   
-<<<<<<< HEAD
-  # Final plotting function
-  f_PlotFinal <- function(df, FSpec, Avg, PlotType) {
-    
-    pFinal <- f_PlotBase(df) %>% 
-      f_columns(FSpec) %>%
-      f_PlotLtAvg(Avg) %>% 
-      f_PlotModAxis(FSpec, PlotType) %>% 
-      f_PlotAxisLab(FSpec) %>% 
-      f_PlotAddText(FSpec) %>%
-      missing_data_symb(Year.Index, 2018, 1)
-    
-    return(pFinal)
-  }
-=======
+
   # add horizontal line for long-term average CPUE - at the end to put line on top of bars
   p <- p + lt_avg_line(lt_avg)
   
   return(p)
 }
->>>>>>> bf83e48d8f971f0d729f4792b55b53143c5a061e
 
 # Combine df's for each species into a nested dataframe for more efficient plotting
 fish.plots <- 
@@ -252,17 +206,10 @@ fish.plots <-
   select(FishSpecies, Average, data) %>% 
   # Create plots
   mutate(
-<<<<<<< HEAD
-    plot_allYears = pmap( 
-      list(data.all, FishSpecies, Average),
-      f_PlotFinal, 
-      PlotType = "All"
-=======
     plot_allYears = pmap(
       list(data, FishSpecies, Average),
       plot_fish_data, 
       plot_type = "all"
->>>>>>> bf83e48d8f971f0d729f4792b55b53143c5a061e
     ),
     plot_recent = pmap(
       list(data, FishSpecies, Average),
