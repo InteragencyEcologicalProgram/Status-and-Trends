@@ -29,7 +29,7 @@ dsmIndexDf2 = select(twentymillindex, c("Year":"Volume", "Delta_Smelt", "Station
 
 #Combine station CPUE and log-transfor
 dsmIndexDf = group_by(dsmIndexDf2, Year, Survey, Station) %>%
-  summarize(logCPUE = log((sum(CPUE)+1), base =10))
+  summarize(logCPUE = log((mean(CPUE)+1), base =10))
 
 #The index is calculated based on different surveys for each year, 
 #depending on when the lengths reach a certain piont
