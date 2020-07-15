@@ -2,24 +2,28 @@
 # Bay Study
 # Create plots for longfin smelt and sturgeon 
 
+# Load packages
 library(tidyverse)
 library(readxl)
 library(lubridate)
+library(smonitr)
 
-# Define defaults
-  # Start year for plots- all years
-  startYearAll <- 1966
-  # Start year for plots- recent trends
-  startYearRec <- 2003
-  # End year for x-axis limit
-  endYear <- 2020
+# Define report year
+report_year <- 2017
+
+# 1. Import Data ----------------------------------------------------------
 
 # Longfin smelt
-  # Import Dataset
-  lonsme.orig <- 
-    read_excel(path = "data/Bay Study_MWT_1980-2018_FishMatrix.xlsx") 
-  
-  # Clean and modify longfin.orig df
+lonsme.orig <- read_excel(path = "data/Bay Study_MWT_1980-2018_FishMatrix.xlsx") 
+
+# White sturgeon - Jason's calculated YCI dataset
+whistu.orig <- read_csv("data/yci_bs.csv") 
+
+
+# 2. Clean Data and Calculate CPUE ----------------------------------------
+
+# Longfin smelt
+  # Clean and modify data
   lonsme.clean <- lonsme.orig %>% 
     select(Year:ChanShoal, TowVolume, LONSMEAge1) %>% 
     mutate(
@@ -34,227 +38,115 @@ library(lubridate)
     filter(Survey %in% c(1, 2, 12)) %>% 
     # Don't include years 1979 and 2018
     filter(!Year.Index %in% c(1979, 2018))
-
+  
   # Calculate CPUE values & average them for each year
   lonsme.cpue <- lonsme.clean %>% 
     mutate(CPUE = (LONSMEAge1/TowVolume) * 10000) %>% 
     group_by(Year.Index) %>% 
     summarize(y.val = mean(CPUE)) %>% 
-    ungroup()
+    ungroup() %>% 
+    mutate(FishSpecies = "lonsme")
 
 # White sturgeon
-  # Import Jason's calculated YCI dataset
-  whistu.orig <- 
-    read_csv("data/yci_bs.csv") 
-  
-  # Clean and modify whistu.orig df
+  # Clean and modify data and average YCI for each year
   whistu.clean <- whistu.orig %>% 
     filter(Year != 2018) %>% 
     select(Year, WYCI) %>% 
     rename(
       Year.Index = Year,
       y.val = WYCI
-    )
+    ) %>% 
+    mutate(FishSpecies = "whistu")
+
   
+# 3. Set up options for plots ---------------------------------------------
+
 # Create a tibble of long-term averages of either CPUE or WYCI
 lt.avg <- tibble(
   FishSpecies = c("lonsme", "whistu"),
   Average = c(mean(lonsme.cpue$y.val), mean(whistu.clean$y.val))
 )
-
-# Create placeholder data to add to datasets so that the x-axes of the plots start at 1966
-yearsBefore <- tibble(
-  Year.Index = seq(1966, 1979, 1),
-  y.val = 0
-)
-
-# Create placeholder for missing longfin smelt data in 1994
-yearsMiss.lonsme <- tibble(
-  Year.Index = 1994,
-  y.val = 0
-)
-
-# Combine df's for each species into a nested dataframe for more efficient plotting
-plot.dat <- 
-  list(
-    lonsme = lonsme.cpue,
-    whistu = whistu.clean
-  ) %>% 
-  # Add placeholder data
-  map(~bind_rows(yearsBefore, .x)) %>% 
-  map_at("LongfinSmelt", ~bind_rows(.x, yearsMiss.lonsme)) %>% 
-  # Consolidate data into on df with id as FishSpecies
-  bind_rows(.id = "FishSpecies") %>% 
-  # Make Year.Index variable a factor for plot order
-  # mutate(Year.Index = factor(Year.Index, levels = yearFactor)) %>% 
-  group_nest(FishSpecies) %>% 
-  # Add long-term averages to df
-  left_join(lt.avg) %>% 
-  # Rename data variable
-  rename(data.all = data) %>% 
-  # Create a new data variable for just recent trends data
-  mutate(data.recent = map(data.all, ~filter(.x, Year.Index >= startYearRec))) %>% 
-  select(FishSpecies, Average, data.all, data.recent)
   
+# Create dataframes for text comments on plots
+lonsmeText.h <- tibble(
+  Year.Index = as.factor(1966),
+  yValue = 1,
+  label = "Data were not collected\nuntil 1980"
+)
+
+lonsmeText.v <- tibble(
+  Year.Index = as.factor(1983),
+  yValue = 27,
+  label = "Ave CPUE was 88 in 1982"
+)
+
+whistuText <- tibble(
+  Year.Index = as.factor(1966),
+  yValue = 20,
+  label = "Data were not collected\nuntil 1980"
+)
 
 
-# Create functions for the plots
-  # Base Plot
-  f_PlotBase <- function(df) {
-    
-    # Create base plot p
-    p <- 
-      ggplot(
-        data = df,
-        aes(
-          x = Year.Index,
-          y = y.val
-        )
-      ) +
-      geom_col() +
-      theme_smr()
-    
-    return(p)
-  }
+# 4. Create Plots ---------------------------------------------------------  
 
-  #Different colors based on fish species  
-  f_columns <- function(p, FSpec) {
-    
-    p <- p +
-      geom_col(aes(fill = FSpec)) +
-      scale_fill_manual(values = c("lonsme" = "#664F2B", "whistu" = "#748D83")) +
-      guides(fill = F)
-    
-    return(p)
-  }
-
-  # Add a dashed line for long term average
-  f_PlotLtAvg <- function(p, Avg) {
-    
-    p <- p +
-      geom_hline(
-        yintercept = Avg, 
-        color = "red",
-        linetype = "dashed", 
-        size = 0.9
+# Create function for the plots
+plot_fish_data <- function(df, f_spec = c("lonsme", "whistu"), lt_avg, plot_type = c("all", "recent")) {
+  
+  f_spec <- match.arg(f_spec, c("lonsme", "whistu"))
+  plot_type <- match.arg(plot_type, c("all", "recent"))
+  
+  # Create base plot
+  p <- 
+    ggplot(
+      data = df,
+      aes(
+        x = Year.Index,
+        y = y.val
       )
-    
-    return(p)
+    ) +
+    # apply custom theme
+    theme_smr() +
+    # add markers for missing data
+    missing_data_symb(df, Year.Index, report_year, 0.9)
+  
+  # Add different options based on f_spec argument
+  if (f_spec == "lonsme") {
+    p <- p +
+      #custom color for barplot
+      geom_col(fill = "#664F2B") +
+      # add labels for axes
+      std_x_axis_label("winter") +
+      ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")")))
+  } else {
+    p <- p +
+      #custom color for barplot
+      geom_col(fill = "#748D83") +
+      # add labels for axes
+      xlab("Year") +
+      ylab("Year Class Index")
   }
   
-  # Set axis breaks and limits
-  f_PlotModAxis <- function(p, FSpec, PlotType) {
-    
-    # define x-axis breaks
-    yearBreaksAll <- seq(1970, endYear, 10)
-    yearBreaksRec <- seq(2005, endYear, 5)
-    
-    # define y-axis limits
-    all.lonsme <- 40
-    all.whistu <- 720
-    rec.lonsme <- 8
-    rec.whistu <- 300
-    
-    # Plots for all years
-    if (PlotType == "All") {
-      # Set x-axis breaks
-      p <- p + scale_x_continuous(breaks = yearBreaksAll)
-      
-      # Set axis limits- lonsme
-      if (FSpec == "lonsme") {
-        p <- p +
-          coord_cartesian(
-            xlim = c(startYearAll, endYear),
-            ylim = c(0, all.lonsme)
-          )
-        
-        # Set axis limits- whistu
-      } else if (FSpec == "whistu") {
-        p <- p +
-          coord_cartesian(
-            xlim = c(startYearAll, endYear),
-            ylim = c(0, all.whistu)
-          )
-      }
-      
-      # Plots for Recent years
-    } else if (PlotType == "Recent") {
-      # Set x-axis breaks
-      p <- p + scale_x_continuous(breaks = yearBreaksRec)
-      
-      # Set axis limits- lonsme
-      if (FSpec == "lonsme") {
-        p <- p +
-          coord_cartesian(
-            xlim = c(startYearRec, endYear),
-            ylim = c(0, rec.lonsme)
-          )
-        
-        # Set axis limits- whistu
-      } else if (FSpec == "whistu") {
-        p <- p +
-          coord_cartesian(
-            xlim = c(startYearRec, endYear),
-            ylim = c(0, rec.whistu)
-          )
-      }
-    }
-    
-    return(p)
+  # Standardize the x-axis limits and breaks for plots based on plot_type argument
+  if (plot_type == "all") {
+    p <- p + std_x_axis_all_years(report_year, "discrete")
+  } else {
+    p <- p + std_x_axis_rec_years(report_year, "discrete")
   }
   
-  # Add axis labels
-  f_PlotAxisLab <- function(p, FSpec) {
-    
-    # labels for lonsme plots
-    if (FSpec == "lonsme") {
-      p <- p + 
-        labs(
-          x = "Year (December - February)",
-          y = expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))
-        )
-      
-    } else if (FSpec == "whistu") {
-      p <- p +
-        labs(
-          x = "Year",
-          y = "Year Class Index"
-        )
+  # Change the y-axis limits for the lonsme plots
+  if (f_spec == "lonsme") {
+    if (plot_type == "all") {
+      p <- p + coord_cartesian(ylim = c(0, 40))
+    } else {
+      p <- p + coord_cartesian(ylim = c(0, 8))
     }
-    
-    return(p)
   }
   
   # Add descriptive text to the plots for all years
-  f_PlotAddText <- function(p, FSpec) {
-    
-    # Define text size
-    textSize <- 1.5
-    
-    # Create df's for text comments on plots
-    lonsmeText.h <- tibble(
-      Year.Index = 1964,
-      yValue = 1,
-      label = "Data were not collected\nuntil 1980"
-    )
-    
-    lonsmeText.v <- tibble(
-      Year.Index = c(1983, 1994),
-      yValue = c(27, 0),
-      label = c(
-        "Ave CPUE was 88 in 1982",
-        "No data"
-      )
-    )
-    
-    whistuText <- tibble(
-      Year.Index = 1964,
-      yValue = 20,
-      label = "Data were not collected\nuntil 1980"
-    )
-    
-    # Add text to lonsme plots
-    if (FSpec == "lonsme") {
+  textSize <- 1.5
+  
+  if (plot_type == "all") {
+    if (f_spec == "lonsme") {
       p <- p +
         geom_text(
           data = lonsmeText.h,
@@ -280,9 +172,7 @@ plot.dat <-
           size = textSize,
           angle = 90
         )
-    
-    # Add text to whistu plots 
-    } else if (FSpec == "whistu") {
+    } else {
       p <- p +
         geom_text(
           data = whistuText,
@@ -296,35 +186,34 @@ plot.dat <-
           size = textSize
         )
     }
-    
-    return(p)
   }
   
-  # Final plotting function
-  f_PlotFinal <- function(df, FSpec, Avg, PlotType) {
-    
-    pFinal <- f_PlotBase(df) %>% 
-      f_columns(FSpec) %>%
-      f_PlotLtAvg(Avg) %>% 
-      f_PlotModAxis(FSpec, PlotType) %>% 
-      f_PlotAxisLab(FSpec) %>% 
-      f_PlotAddText(FSpec) 
-    
-    return(pFinal)
-  }
+  # add horizontal line for long-term average CPUE - at the end to put line on top of bars
+  p <- p + lt_avg_line(lt_avg)
+  
+  return(p)
+}
 
-# Run final plotting function on nested df
-fish.plots <- plot.dat %>% 
+# Combine df's for each species into a nested dataframe for more efficient plotting
+fish.plots <- 
+  bind_rows(lonsme.cpue, whistu.clean) %>% 
+  # Make Year.Index variable a factor for plot order
+  mutate(Year.Index = factor(Year.Index)) %>% 
+  group_nest(FishSpecies) %>% 
+  # Add long-term averages to df
+  left_join(lt.avg) %>% 
+  select(FishSpecies, Average, data) %>% 
+  # Create plots
   mutate(
     plot_allYears = pmap(
-      list(data.all, FishSpecies, Average),
-      f_PlotFinal, 
-      PlotType = "All"
+      list(data, FishSpecies, Average),
+      plot_fish_data, 
+      plot_type = "all"
     ),
     plot_recent = pmap(
-      list(data.recent, FishSpecies, Average),
-      f_PlotFinal, 
-      PlotType = "Recent"
+      list(data, FishSpecies, Average),
+      plot_fish_data, 
+      plot_type = "recent"
     )
   )
 
