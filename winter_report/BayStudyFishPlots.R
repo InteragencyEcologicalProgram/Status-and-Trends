@@ -239,11 +239,10 @@ plot.dat <-
     )
     
     lonsmeText.v <- tibble(
-      Year.Index = c(1983, 1994),
-      yValue = c(27, 0),
+      Year.Index = c(1983),
+      yValue = c(27),
       label = c(
-        "Ave CPUE was 88 in 1982",
-        "No data"
+        "Ave CPUE was 88 in 1982"
       )
     )
     
@@ -308,7 +307,8 @@ plot.dat <-
       f_PlotLtAvg(Avg) %>% 
       f_PlotModAxis(FSpec, PlotType) %>% 
       f_PlotAxisLab(FSpec) %>% 
-      f_PlotAddText(FSpec) 
+      f_PlotAddText(FSpec) %>%
+      missing_data_symb(Year.Index, 2018, 1)
     
     return(pFinal)
   }
@@ -316,7 +316,7 @@ plot.dat <-
 # Run final plotting function on nested df
 fish.plots <- plot.dat %>% 
   mutate(
-    plot_allYears = pmap(
+    plot_allYears = pmap( 
       list(data.all, FishSpecies, Average),
       f_PlotFinal, 
       PlotType = "All"
@@ -327,6 +327,7 @@ fish.plots <- plot.dat %>%
       PlotType = "Recent"
     )
   )
+
 
 # Restructure fish.plots df for printing off plots
 fish.plots.print <- fish.plots %>% 
