@@ -1,9 +1,90 @@
 ## Data retrieval script for CDFW's 20mm Survey.
 ## Database is too large to store on GitHub, so query now and save smaller csv files.
+# As of 7/15/2020 data are now posted as .csvs on EDI, so it will be easier to query.
+
+library(smonitr)
 
 projectRoot <- "."
 dataRoot <- file.path(projectRoot,"data")
 thisDataRoot <- file.path(dataRoot,"20mm")
+
+#DOWNLOD catch data from EDI
+twentymill = get_edi_data(535, c("qry_EDI_20mm-catch_06022020.csv"), guess_max = 1000000)
+twentymill = twentymill[[1]]
+
+#import file of stations used for the index
+index_stations <- read.csv(file.path(thisDataRoot, "20mm-index-stations.csv"),
+                           stringsAsFactors=FALSE)
+
+#get rid of the data that isn't used for the index
+twentymillindex = merge(twentymill, index_stations)
+
+#replace missing volumes with average volume
+twentymillindex$Volume[which(is.na(twentymillindex$Volume))]  = mean(twentymillindex$Volume, na.rm = T)
+
+#subset Delta Smelt and calculate CPUE
+dsmIndexDf2 = select(twentymillindex, c("Year":"Volume", "Delta_Smelt", "Station")) %>%
+  mutate(CPUE = Delta_Smelt/Volume*10000)
+
+
+#Combine station CPUE and log-transfor
+dsmIndexDf = group_by(dsmIndexDf2, Year, Survey, Station) %>%
+  summarize(logCPUE = log((mean(CPUE)+1), base =10))
+
+#The index is calculated based on different surveys for each year, 
+#depending on when the lengths reach a certain piont
+dsmIndexDf$UseforIndex <- FALSE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 1995 & dsmIndexDf$Survey %in% 2:5] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 1996 & dsmIndexDf$Survey %in% 4:7] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 1997 & dsmIndexDf$Survey %in% 4:7] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 1998 & dsmIndexDf$Survey %in% 3:6] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 1999 & dsmIndexDf$Survey %in% 3:6] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2000 & dsmIndexDf$Survey %in% 5:8] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2001 & dsmIndexDf$Survey %in% 4:7] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2002 & dsmIndexDf$Survey %in% 4:7] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2003 & dsmIndexDf$Survey %in% 4:7] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2004 & dsmIndexDf$Survey %in% 3:6] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2005 & dsmIndexDf$Survey %in% 5:8] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2006 & dsmIndexDf$Survey %in% 4:7] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2007 & dsmIndexDf$Survey %in% 4:7] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2008 & dsmIndexDf$Survey %in% 4:7] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2009 & dsmIndexDf$Survey %in% 4:7] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2010 & dsmIndexDf$Survey %in% 4:7] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2011 & dsmIndexDf$Survey %in% 5:8] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2012 & dsmIndexDf$Survey %in% 5:8] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2013 & dsmIndexDf$Survey %in% 3:6] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2014 & dsmIndexDf$Survey %in% 3:6] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2015 & dsmIndexDf$Survey %in% 3:6] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2016 & dsmIndexDf$Survey %in% 2:5] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2017 & dsmIndexDf$Survey %in% 3:6] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2018 & dsmIndexDf$Survey %in% c(1,2,3,9)] <- TRUE
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2019 & dsmIndexDf$Survey %in% 3:6] <- TRUE
+
+
+#Calculate the mean of the log-transformed data per survey and calculate the 
+# geometric mean of the survey by back-transformation and sbutracting 1
+
+dsmIndex = filter(dsmIndexDf, UseforIndex == TRUE) %>%
+  group_by(Year, Survey) %>%
+  summarize(meanCPUE = mean(logCPUE), geomean = (10^(meanCPUE))-1)
+
+
+dsmIndexYear = group_by(dsmIndex, Year) %>%
+  summarize(index = sum(geomean))
+
+
+
+
+
+
+
+
+
+
+
+###################################################################################################
+#this is the old code that deals with the database.
+
 
 ## 20mm Survey url:
 surveyURL <- "ftp://ftp.dfg.ca.gov/Delta%20Smelt/20mm_New.zip"
