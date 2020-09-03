@@ -47,9 +47,9 @@ p_ds <- ggplot(ds, aes(x=fyear, y=Index))+
   theme_smr() +
 theme(legend.position="none") + 
   scale_y_continuous("Delta Smelt Index") +
-  std_x_axis_all_years(2018) +
+  std_x_axis_all_years(2019) +
   std_x_axis_label("fall")+
-  missing_data_symb(ds, fyear, 2018, 2)+
+  missing_data_symb(ds, fyear, 2019, 2)+
   lt_avg_line(mean(ds$Index, na.rm = T))
 p_ds
 ggsave(p_ds, file="FMWT_DS_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "Fall_report/figures")
@@ -65,8 +65,8 @@ p_lfs <- ggplot(lfs, aes(x=fyear, y=Index))+
     theme(legend.position="none") + 
   std_x_axis_label("fall")+
     scale_y_continuous("Longfin Smelt Index") +
-  std_x_axis_all_years(2018) +
-  missing_data_symb(lfs, fyear, 2018, 2)+
+  std_x_axis_all_years(2019) +
+  missing_data_symb(lfs, fyear, 2019, 2)+
   lt_avg_line(mean(lfs$Index, na.rm = T))
 p_lfs  
   
@@ -83,8 +83,8 @@ p_sb0 <- ggplot(sb0, aes(x=fyear, y=Index))+
   theme_smr() +
   theme(legend.position="none") + 
   scale_y_continuous("Striped Bass Index") +
-  std_x_axis_all_years(2018) +
-  missing_data_symb(sb0, fyear, 2018, 2)+
+  std_x_axis_all_years(2019) +
+  missing_data_symb(sb0, fyear, 2019, 2)+
   std_x_axis_label("fall")+
   lt_avg_line(mean(sb0$Index, na.rm = T))
 ggsave(p_sb0, file="FMWT_SB0_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "Fall_report/figures")
@@ -105,9 +105,9 @@ ggsave(p_sb0, file="FMWT_SB0_1966.png", dpi=300, units="cm", width=9.3, height=6
    theme_smr() +
    theme(legend.position="none") + 
     scale_y_continuous("American Shad Index")+
-    std_x_axis_all_years(2018) +
+    std_x_axis_all_years(2019) +
     std_x_axis_label("fall")+
-    missing_data_symb(as, fyear, 2018, 2)+
+    missing_data_symb(as, fyear, 2019, 2)+
   lt_avg_line(mean(as$Index, na.rm = T)))
 ggsave(p_as, file="FMWT_AS_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "Fall_report/figures")
 ggsave(p_as, file="FMWT_AS_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "report_bookdown/figures")
@@ -126,8 +126,8 @@ p_wst <- ggplot(wst, aes(x=fyear, y=AvgCPUE))+
   theme(legend.position="none") + 
    std_x_axis_label("fall")+
   scale_y_continuous("White Sturgeon CPUE") +
-  std_x_axis_all_years(2018) +
-  missing_data_symb(wst, fyear, 2018, 2)+
+  std_x_axis_all_years(2019) +
+  missing_data_symb(wst, fyear, 2019, 2)+
   lt_avg_line(mean(wst$AvgCPUE, na.rm = T))
 ggsave(p_wst, file="WST_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "Fall_report/figures")
 ggsave(p_wst, file="WST_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "report_bookdown/figures")
@@ -145,8 +145,8 @@ p_ds <- ggplot(ds, aes(x=fyear, y=Index))+
   theme(legend.position="none") + 
   std_x_axis_label("fall")+
   scale_y_continuous("Delta Smelt Index") +
-  std_x_axis_rec_years(2018) +
-  missing_data_symb(ds, fyear, 2018, 2)+
+  std_x_axis_rec_years(2019) +
+  missing_data_symb(ds, fyear, 2019, 2)+
   lt_avg_line(mean(ds$Index, na.rm = T))
 p_ds
 ggsave(p_ds, file="FMWT_DS_2004.png", dpi=300, units="cm", width=9.3, height=6.8, path = "Fall_report/figures")
@@ -162,8 +162,8 @@ p_lfs <- ggplot(lfs, aes(x=fyear, y=Index))+
   theme(legend.position="none") + 
   std_x_axis_label("fall")+
   scale_y_continuous("Longfin Smelt Index") +
-  std_x_axis_rec_years(2018) +
-  missing_data_symb(lfs, fyear, 2018, 2)+
+  std_x_axis_rec_years(2019) +
+  missing_data_symb(lfs, fyear, 2019, 2)+
   lt_avg_line(mean(lfs$Index, na.rm = T))
 p_lfs  
 
@@ -180,9 +180,9 @@ ggsave(p_lfs, file="FMWT_LFS_2004.png", dpi=300, units="cm", width=9.3, height=6
     theme_smr() +
     theme(legend.position="none") + 
     scale_y_continuous("Striped Bass Index") +
-    std_x_axis_rec_years(2018) +
+    std_x_axis_rec_years(2019) +
     std_x_axis_label("fall")+
-    missing_data_symb(sb0, fyear, 2018, 2))+
+    missing_data_symb(sb0, fyear, 2019, 2))+
   lt_avg_line(mean(sb0$Index, na.rm = T))
 ggsave(p_sb0, file="FMWT_SB0_2004.png", dpi=300, units="cm", width=9.3, height=6.8, path = "Fall_report/figures")
 ggsave(p_sb0, file="FMWT_SB0_2004.png", dpi=300, units="cm", width=9.3, height=6.8, path = "report_bookdown/figures")
@@ -202,8 +202,8 @@ ggsave(p_sb0, file="FMWT_SB0_2004.png", dpi=300, units="cm", width=9.3, height=6
     theme(legend.position="none") + 
     std_x_axis_label("fall")+
     scale_y_continuous("American Shad Index")+
-    std_x_axis_rec_years(2018) +
-    missing_data_symb(as, fyear, 2018, 2)+
+    std_x_axis_rec_years(2019) +
+    missing_data_symb(as, fyear, 2019, 2)+
     lt_avg_line(mean(as$Index, na.rm = T)))
 ggsave(p_as, file="FMWT_AS_2004.png", dpi=300, units="cm", width=9.3, height=6.8, path = "Fall_report/figures")
 ggsave(p_as, file="FMWT_AS_2004.png", dpi=300, units="cm", width=9.3, height=6.8, path = "report_bookdown/figures")
@@ -222,8 +222,8 @@ ggsave(p_as, file="FMWT_AS_2004.png", dpi=300, units="cm", width=9.3, height=6.8
    std_x_axis_label("fall")+
    theme(legend.position="none") + 
    scale_y_continuous("White Sturgeon CPUE")) +
-  std_x_axis_rec_years(2018) +
-  missing_data_symb(wst, fyear, 2018, 2)+
+  std_x_axis_rec_years(2019) +
+  missing_data_symb(wst, fyear, 2019, 2)+
   lt_avg_line(mean(wst$AvgCPUE, na.rm = T))
 ggsave(p_wst, file="WST_2004.png", dpi=300, units="cm", width=9.3, height=6.8, path = "Fall_report/figures")
 ggsave(p_wst, file="WST_2004.png", dpi=300, units="cm", width=9.3, height=6.8, path = "report_bookdown/figures")

@@ -5,7 +5,7 @@
 
 #Created by Nick Rasmussen
 #librally updated by Rosemary Hartman
-#last updated: 3/30/2020
+#last updated: 9/3/2020
 
 #Clark-Bumpus Net: Calanoid copepods, Cladocerans, Cyclopoids (Acanthocyclops and other cyclopoids)
 #Rotifer pump: Cyclopoids (Oithona, Limnoithona)
@@ -28,11 +28,13 @@ library(readxl)
 #import datasets----------------
 
 #Clark-Bumpus net survey data
-zoopcb<- read_excel("data/1972-2018CBMatrix.xlsx", sheet = "CB CPUE Matrix 1972-2018", guess_max = 100000)
-zoopcb$Date = as.Date(zoopcb$Date)
+zoopcb<- read_excel("data/1972-2019CBMatrix.xlsx", 
+                    sheet = "CB CPUE Matrix 1972-2019", guess_max = 100000)
+zoopcb$Date = as.Date(zoopcb$SampleDate)
+zoopcb = rename(zoopcb, Station = StationNZ)
 
 #pump data
-zoopp<- read_excel("data/1972-2018Pump Matrix.xlsx", sheet =  " Pump CPUE Matrix 1972-2018", guess_max = 100000)
+zoopp<- read_excel("data/1972-2019PumpMatrix.xlsx", sheet =  "Pump CPUE Matrix 1972-2019", guess_max = 100000)
 zoopp$Date = as.Date(zoopp$SampleDate)
 
 #mysid net survey data
@@ -51,8 +53,6 @@ mmass<-read.csv("./data/zoop_mysid_mass.csv")
 #CB net: formatting data---------
 #reduce count and biomass data to just needed elements and then use to calculate biomass
 
-names(zoopcb)
-#str(zoopcb)
 
 #exclude unneeded rows:
 #exclude EZ stations (NZEZ2, NZEZ6)
@@ -103,6 +103,7 @@ zoopb$bpue<-zoopb$cpue*zoopb$mass_indiv_ug
 #pump: formatting data---------___________________________________
 
 names(zoopp)
+zoopp = rename(zoopp, Station = StationNZ)
 
 #exclude unneeded rows:
 #exclude EZ stations (NZEZ2, NZEZ6)
@@ -220,12 +221,11 @@ names(zoop3m)<-c("year","survey","station","cpue","date","bpue")
 
 #add a taxon column so that this data frame can be combined with the others
 zoop3m$taxon<-"mys"
-zoop3m$taxon<-zoop3m$taxon
-names(zoop3m)
 
 #format date
 zoop3m$date<-as.Date(zoop3m$date,format="%m/%d/%Y")
 
+zoop3m = rbind(zoop3m, Mys2019b)
 #combine all zoop data sets
 zll = mutate(zll, taxon = cat, cat = NULL)
 mza<-bind_rows(zll,zoop3m)
@@ -300,7 +300,7 @@ bpl<-ggplot(zmeans, aes(x = qyear, y = bpue, fill = taxon)) +
     geom_area(position = 'stack')+
     theme_smr()+
     #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2018)) +
+    scale_x_continuous("Year", limits=c(1966,2019)) +
     facet_grid(quarter~region
                ,labeller = as_labeller(
                  c(region_names,season_names))) +
@@ -336,7 +336,7 @@ zoops = function(reg, quart, data) {
     theme_smr()+
     theme(legend.position=c(0.5, 1.1), 
           legend.background=element_rect(fill=NULL, color=NULL), plot.margin = margin(1, 0.6, 0.1, 0.4, unit = "cm"))+
-    scale_x_continuous("Year", limits=c(1966,2018))  +
+    scale_x_continuous("Year", limits=c(1966,2019))  +
     
     #add long-term average line
     geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
@@ -391,7 +391,7 @@ zoops = function(reg, quart, data) {
 }
 
 #filter to the report year 
-zmeans = filter(zmeans, qyear <= 2018)
+zmeans = filter(zmeans, qyear <= 2019)
 
 
 #winter zoops plot
@@ -440,7 +440,7 @@ zoops2 = function(quart, data) {
     theme(legend.position="top", legend.box.spacing = unit(0, units = "cm"), 
           strip.background = element_blank(),
           strip.text = element_blank()) + 
-    std_x_axis_all_years(2018, "cont")  +
+    std_x_axis_all_years(2019, "cont")  +
     std_x_axis_label(season_names[quart]) +
     geom_hline(data = meanB, aes(yintercept = bpueM), size = 0.9, color = "red", linetype = "dashed")+
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
@@ -455,7 +455,7 @@ zoops2 = function(quart, data) {
 }
 
 #filter to the report year and convert biomass to mg
-zmeans = filter(zmeans, qyear <= 2018)
+zmeans = filter(zmeans, qyear <= 2019)
   
 
 
