@@ -5,10 +5,6 @@ library(lubridate)
 
 #data from: http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2019&biweekly=other&wtemp=default
 
-source("winter_report/IEP_Status&Trends_util.R")
-
-
-
 #create custom plot formatting function
 theme_iep <- function(){
   theme_bw()+
@@ -29,7 +25,7 @@ theme_iep <- function(){
           legend.title=element_text(size=10))
 }
 
-redbluff = read.csv("redbluff_all.csv")
+redbluff = read.csv(file.path(data_root,"redbluff_all.csv"))
 str(redbluff)
 
 redbluff$Date = as.Date(redbluff$Date, format = "%Y-%m-%d")
@@ -84,7 +80,8 @@ theme_iep <- function(){
           legend.title=element_text(size=10))
 }
 
-ggsave(redtest, file="redbluff_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "winter_report/latex/figures")
+ggsave(redtest, file="redbluff_1966.png", dpi=300, units="cm", width=9.3, height=6.8, 
+       path = fig_root_winter)
 
 #Calculate average
 MeanAll = mean(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate")$meandaily)
@@ -103,5 +100,6 @@ redtest2 = Red + geom_bar(stat = "identity", fill = "tan4") +
 redtest2
 
 #save it in the right place
-ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = "winter_report/latex/figures")
+ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, 
+       path = fig_root_winter)
 

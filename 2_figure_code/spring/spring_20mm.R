@@ -1,27 +1,12 @@
 
-library(ggplot2)
-
-report_year <- 2018
-
-library(odbc)
-library(DBI)
 library(tidyverse)
-library(smonitr)
-
-projectRoot <- "."
-reportRoot <- file.path(projectRoot,"spring_report")
-dataRoot <- file.path(projectRoot,"data")
-thisDataRoot <- file.path(dataRoot,"20mm")
-figRoot <- file.path(reportRoot,"figures")
-
-source(file.path(projectRoot,"smonitr","R","plot_tools.R"))
 
 ##########################################################################
 ## Read in index data:
 
-dsmIndexDf_raw <- read.csv(file.path(thisDataRoot,"20mm_DSM_index.csv"),
+dsmIndexDf_raw <- read.csv(file.path(data_root,"20mm","20mm_DSM_index.csv"),
                            stringsAsFactors=FALSE)
-lfsIndexDf_raw <- read.csv(file.path(thisDataRoot,"20mm_LFS_index.csv"), 
+lfsIndexDf_raw <- read.csv(file.path(data_root,"20mm","20mm_LFS_index.csv"), 
                            stringsAsFactors=FALSE)
 
 ## Truncate the data according to the specified report year:
@@ -40,8 +25,8 @@ dsm_fig <- ggplot(dsmIndexDf, aes(x=Year, y=Index))+
   std_x_axis_all_years(rpt_yr=report_year, start_yr=min(dsmIndexDf$Year), "cont")+
   std_x_axis_label("spring")
 
-ggsave(dsm_fig, file=file.path(figRoot,"20mm_DSM.png"), dpi=300, units="cm", 
-			 width=9.3, height=6.8)
+ggsave(dsm_fig, file=file.path(fig_root_spring,"20mm_DSM.png"), 
+       dpi=300, units="cm", width=9.3, height=6.8)
 
 #recent years only
 dsmIndexDf$fyear = as.factor(dsmIndexDf$Year)
@@ -54,8 +39,8 @@ dsm_fig2 <- ggplot(dsmIndexDf, aes(x=fyear, y=Index))+
   std_x_axis_rec_years(rpt_yr=report_year, "discrete") +
   std_x_axis_label("spring")
 
-ggsave(dsm_fig2, file=file.path(figRoot,"20mm_DSM_recent.png"), dpi=300, units="cm", 
-       width=9.3, height=6.8)
+ggsave(dsm_fig2, file=file.path(fig_root_spring,"20mm_DSM_recent.png"), 
+       dpi=300, units="cm", width=9.3, height=6.8)
 
 			 
 ##########################################################################
@@ -70,12 +55,13 @@ lfs_fig <- ggplot(filter(lfsIndexDf, Year <=2018), aes(x=Year, y=Index))+
   lt_avg_line(lt_avg=mean(dsmIndexDf$Index, na.rm=TRUE)) + 
   std_x_axis_all_years(rpt_yr=report_year, start_yr=min(lfsIndexDf$Year))
 
-ggsave(lfs_fig, file=file.path(figRoot,"20mm_LFS.png"), dpi=300, units="cm", 
-			 width=9.3, height=6.8)
+ggsave(lfs_fig, file=file.path(fig_root_spring,"20mm_LFS.png"), 
+       dpi=300, units="cm", width=9.3, height=6.8)
 
 library(lubridate)
 
-dsm_fig +coord_cartesian(xlim = c(ymd_hms("2019-02-03 00:00:00"), ymd_hms("2019-02-06 00:00:00")))
+dsm_fig +coord_cartesian(xlim = c(ymd_hms("2019-02-03 00:00:00"), 
+                                  ymd_hms("2019-02-06 00:00:00")))
 
 limits =c(ymd_hms("2019-02-03 00:00:00"), ymd_hms("2019-02-06 00:00:00"))
 
@@ -90,7 +76,7 @@ lfs_fig2 <- ggplot(filter(lfsIndexDf, Year <=2018), aes(x=fyear, y=Index))+
   std_x_axis_rec_years(rpt_yr=report_year, "discrete") +
   std_x_axis_label("spring")
 
-ggsave(lfs_fig2, file=file.path(figRoot,"20mm_LFS_recent.png"), dpi=300, units="cm", 
-       width=9.3, height=6.8)
+ggsave(lfs_fig2, file=file.path(fig_root_spring,"20mm_LFS_recent.png"), 
+       dpi=300, units="cm", width=9.3, height=6.8)
 
 

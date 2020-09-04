@@ -13,11 +13,11 @@ surveys for June through August from 1966 to 2018.
 <h2>Delta Outflow</h2>
 
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path("figures","mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 ```
 
 ```{r echo=FALSE, fig.cap="average summer Delta outflow",}
-knitr::include_graphics(file.path("figures","summer_outflow_update.png"))
+knitr::include_graphics(file.path(fig_root_summer,"summer_outflow_update.png"))
 ```
 
 - Freshwater flow influences water quality, plankton, and fish populations.
@@ -38,7 +38,7 @@ knitr::include_graphics(file.path("figures","summer_outflow_update.png"))
 
 ::: {.column width=200px}
 ```{r fig.height=10, fig.align="center", fig.cap="image of a secchi disk", echo=FALSE}
-knitr::include_graphics(file.path("figures","secchidisc.png"))
+knitr::include_graphics(file.path(fig_root_static,"secchidisc.png"))
 ```
 :::
 ::::::
@@ -48,7 +48,7 @@ knitr::include_graphics(file.path("figures","secchidisc.png"))
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path("figures","mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 ```
 :::
 ::: {.column width=800px}
@@ -80,7 +80,7 @@ knitr::include_graphics(file.path("figures","mline.png"))
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
 ```{r fig.cap= "Graph of average summer secchi depth in San Pablo Bay from 1975 to 2018. Values range from 10 to 150.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/secchi_splsummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"secchi_splsummer.png"))
 ```
 :::
 ::: {.column40}
@@ -88,7 +88,7 @@ knitr::include_graphics(file.path("figures/secchi_splsummer.png"))
 :::
 ::: {.column800 class='col-2'}
 ```{r fig.cap= "Graph of average summer secchi depth in Suisun from 1975 to 2018. Values range from 10 to 60.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/secchi_sssummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"secchi_sssummer.png"))
 ```
 :::
 ::: {.column40}
@@ -96,7 +96,7 @@ knitr::include_graphics(file.path("figures/secchi_sssummer.png"))
 :::
 ::: {.column800 class='col-3'}
 ```{r fig.cap= "Graph of average summer secchi depth in the Delta from 1975 to 2018. Values range from 25 to 120 and have been increasing since the year 2000.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/secchi_dtsummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"secchi_dtsummer.png"))
 ```
 :::
 ::::
@@ -144,7 +144,7 @@ For more information see: [Schoellhamer, D. H. 2011. Sudden clearing of estuarin
 
 
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a thermometer in water", echo=FALSE}
-knitr::include_graphics("figures/thermometer.png")
+knitr::include_graphics(file.path(fig_root_static,"thermometer.png"))
 ```
 :::
 ::::::
@@ -155,7 +155,7 @@ knitr::include_graphics("figures/thermometer.png")
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path("figures","mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 ```
 :::
 ::: {.column width=800px}
@@ -187,7 +187,7 @@ knitr::include_graphics(file.path("figures","mline.png"))
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
 ```{r fig.cap= "Graph of average summer water temperature in San Pablo Bay from 1975 to 2018. Values range from 13 to 18.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/temp_splsummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"temp_splsummer.png"))
 ```
 :::
 ::: {.column40}
@@ -195,7 +195,7 @@ knitr::include_graphics(file.path("figures/temp_splsummer.png"))
 :::
 ::: {.column800 class='col-2'}
 ```{r fig.cap= "Graph of average summer water temperature in Suisun from 1975 to 2018. Values range from 13 to 18.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/temp_sssummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"temp_sssummer.png"))
 ```
 :::
 ::: {.column40}
@@ -203,7 +203,7 @@ knitr::include_graphics(file.path("figures/temp_sssummer.png"))
 :::
 ::: {.column800 class='col-3'}
 ```{r echo=FALSE, fig.cap= "Graph of average summer water temperature in the Delta from 1975 to 2018. Values range from 13 to 18.", class="expand"}
-knitr::include_graphics(file.path("figures/temp_dtsummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"temp_dtsummer.png"))
 ```
 :::
 ::::
@@ -254,7 +254,7 @@ For more information see: [Lehman, P. W., T. Kurobe, S. Lesmeister, D. Baxa, A. 
 
 
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of phytoplankton", echo=FALSE}
-knitr::include_graphics("figures/phyto.png")
+knitr::include_graphics(file.path(fig_root_static,"phyto.png"))
 ```
 :::
 ::::::
@@ -265,7 +265,7 @@ knitr::include_graphics("figures/phyto.png")
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path("figures","mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 ```
 :::
 ::: {.column width=800px}
@@ -297,7 +297,7 @@ knitr::include_graphics(file.path("figures","mline.png"))
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
 ```{r fig.cap= "Graph of average summer chlorophyll in San Pablo Bay from 1975 to 2018. Values range from 4 to 15.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/chla_splsummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"chla_splsummer.png"))
 ```
 :::
 ::: {.column40}
@@ -305,7 +305,7 @@ knitr::include_graphics(file.path("figures/chla_splsummer.png"))
 :::
 ::: {.column800 class='col-2'}
 ```{r fig.cap= "Graph of average summer chlorophyll in Suisun from 1975 to 2018. Values range from 2 to 19.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/chla_sssummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"chla_sssummer.png"))
 ```
 :::
 ::: {.column40}
@@ -313,7 +313,7 @@ knitr::include_graphics(file.path("figures/chla_sssummer.png"))
 :::
 ::: {.column800 class='col-3'}
 ```{r echo=FALSE, fig.cap= "Graph of average summer chlorophyll in the Delta from 1975 to 2018. Values range from 3.5 to 29.", class="expand"}
-knitr::include_graphics(file.path("figures/chla_dtsummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"chla_dtsummer.png"))
 ```
 :::
 ::::
@@ -362,12 +362,12 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 <center> Copepod </center>
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
-knitr::include_graphics("figures/acartia.png")
+knitr::include_graphics(file.path(fig_root_static,"acartia.png"))
 ```
 
 <center> Mysid </center>
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
-knitr::include_graphics("figures/mysid.png")
+knitr::include_graphics(file.path(fig_root_static,"mysid.png"))
 ```
 
 
@@ -380,7 +380,7 @@ knitr::include_graphics("figures/mysid.png")
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path("figures","mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 ```
 :::
 ::: {.column width=800px}
@@ -412,7 +412,7 @@ knitr::include_graphics(file.path("figures","mline.png"))
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
 ```{r fig.cap= "Graph of average summer zooplankton biomass in San Pablo Bay from 1975 to 2018. Values range from 5 to 25.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/zoops_splsummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"zoops_splsummer.png"))
 ```
 :::
 ::: {.column40}
@@ -420,7 +420,7 @@ knitr::include_graphics(file.path("figures/zoops_splsummer.png"))
 :::
 ::: {.column800 class='col-2'}
 ```{r fig.cap= "Graph of average summer chlorophyll in Suisun from 1975 to 2018. Values range from 5 to 45 with much higher biomass before 1986.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/zoops_sssummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"zoops_sssummer.png"))
 ```
 :::
 ::: {.column40}
@@ -428,7 +428,7 @@ knitr::include_graphics(file.path("figures/zoops_sssummer.png"))
 :::
 ::: {.column800 class='col-3'}
 ```{r echo=FALSE, fig.cap= "Graph of average summer zooplankton biomass in the Delta from 1975 to 2018. Values range from 3.5 to 39.", class="expand"}
-knitr::include_graphics(file.path("figures/zoops_dtsummer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"zoops_dtsummer.png"))
 ```
 :::
 ::::
@@ -473,14 +473,14 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path("figures","mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 ```
 :::
 ::: {.column width=800px}
 
 
 ```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
-knitr::include_graphics(file.path("figures","mpoint.png"))
+knitr::include_graphics(file.path(fig_root_static,"mpoint.png"))
 ```
 :::
 ::: {.column width=800px}
@@ -510,7 +510,7 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 :::: {.columns-nocenter}
 ::: {.column800}
 ```{r fig.cap="picture of a delta smelt", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/delta_smelt.png"))
+knitr::include_graphics(file.path(fig_root_static,"delta_smelt.png"))
 ```
 :::
 ::: {.column40}
@@ -518,7 +518,7 @@ knitr::include_graphics(file.path("figures/delta_smelt.png"))
 :::
 ::: {.column800}
 ```{r fig.cap="picture of a northern anchovy", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/Anchovy-1.png"))
+knitr::include_graphics(file.path(fig_root_static,"Anchovy-1.png"))
 ```
 :::
 ::: {.column40}
@@ -526,7 +526,7 @@ knitr::include_graphics(file.path("figures/Anchovy-1.png"))
 :::
 ::: {.column800}
 ```{r fig.cap="picture of a sacramento pikeminnow", fig.align='center', fig.width=1, echo=FALSE}
-knitr::include_graphics(file.path("figures/sacramento_pikeminnow.png"))
+knitr::include_graphics(file.path(fig_root_static,"sacramento_pikeminnow.png"))
 ```
 :::
 ::::
@@ -534,7 +534,7 @@ knitr::include_graphics(file.path("figures/sacramento_pikeminnow.png"))
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
 ```{r fig.cap="Graph of Delta Smelt Index from 1970 to 2018. Values range from 0 to 62.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/STN_DSM.png"))
+knitr::include_graphics(file.path(fig_root_summer,"STN_DSM.png"))
 ```
 :::
 ::: {.column40}
@@ -542,7 +542,7 @@ knitr::include_graphics(file.path("figures/STN_DSM.png"))
 :::
 ::: {.column800 class='col-2'}
 ```{r fig.cap="Graph of average northern anchovy CPUE from 1980 through 2017.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/noranc_all_years.png"))
+knitr::include_graphics(file.path(fig_root_summer,"noranc_all_years.png"))
 ```
 :::
 ::: {.column40}
@@ -550,7 +550,7 @@ knitr::include_graphics(file.path("figures/noranc_all_years.png"))
 :::
 ::: {.column800 class='col-3'}
 ```{r echo=FALSE, fig.cap="Graph of Sacramento pikeminnow index from 1975 to 2018. Values range from 0.2 to 6.", class="expand"}
-knitr::include_graphics(file.path("figures/DJFMP_sacpikeminnow_summer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"DJFMP_sacpikeminnow_summer.png"))
 ```
 :::
 ::::
@@ -595,13 +595,13 @@ For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Stu
 :::::: {.columns-nocenter}
 ::: {.column width=800px}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path("figures","mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 ```
 :::
 ::: {.column width=800px}
 
 ```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
-knitr::include_graphics(file.path("figures","mpoint.png"))
+knitr::include_graphics(file.path(fig_root_static,"mpoint.png"))
 ```
 
 :::
@@ -632,7 +632,7 @@ knitr::include_graphics(file.path("figures","mpoint.png"))
 :::: {.columns-nocenter}
 ::: {.column800}
 ```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/delta_smelt.png"))
+knitr::include_graphics(file.path(fig_root_static,"delta_smelt.png"))
 ```
 :::
 ::: {.column40}
@@ -640,7 +640,7 @@ knitr::include_graphics(file.path("figures/delta_smelt.png"))
 :::
 ::: {.column800}
 ```{r fig.cap= "picture of a beaker with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/microcystis.bmp"))
+knitr::include_graphics(file.path(fig_root_static,"microcystis.bmp"))
 ```
 :::
 ::: {.column40}
@@ -648,7 +648,7 @@ knitr::include_graphics(file.path("figures/microcystis.bmp"))
 :::
 ::: {.column800}
 ```{r fig.cap= "picture of a beaker with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path("figures/egeria.jpeg"))
+knitr::include_graphics(file.path(fig_root_static,"egeria.jpeg"))
 ```
 :::
 ::::
@@ -656,7 +656,7 @@ knitr::include_graphics(file.path("figures/egeria.jpeg"))
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
 ```{r fig.cap= "Graph of juvenile Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
+knitr::include_graphics(file.path(fig_root_summer,"STN_DSM_rec.png"))
 ```
 :::
 ::: {.column40}
@@ -664,7 +664,7 @@ knitr::include_graphics(file.path("figures/STN_DSM_rec.png"))
 :::
 ::: {.column800 class='col-2'}
 ```{r fig.cap= "Graph of microcystis abundance fron 2007 to 2018", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path("figures/Microcystis_summer.png"))
+knitr::include_graphics(file.path(fig_root_summer,"Microcystis_summer.png"))
 ```
 :::
 ::: {.column40}
@@ -672,7 +672,7 @@ knitr::include_graphics(file.path("figures/Microcystis_summer.png"))
 :::
 ::: {.column800 class='col-3'}
 ```{r echo=FALSE, fig.cap= "Graph of percent coverage of submerged and floating vegetation in the Delta.", class="expand"}
-knitr::include_graphics(file.path("figures/veg_perc.png"))
+knitr::include_graphics(file.path(fig_root_summer,"veg_perc.png"))
 ```
 :::
 ::::

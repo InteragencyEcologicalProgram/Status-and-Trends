@@ -7,9 +7,7 @@
 
 library(tidyverse)
 
-projectRoot <- "."
-dataRoot <- file.path(projectRoot,"data")
-thisDataRoot <- file.path(dataRoot,"DJFMP")
+thisDataRoot <- file.path(data_root,"DJFMP")
 
 ## EDI URLs:
 inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/244/3/71c16ead9b8ffa4da7a52da180f601f4" 

@@ -2,9 +2,7 @@
 
 library(tidyverse)
 
-projectRoot <- "."
-dataRoot <- file.path(projectRoot,"data")
-thisDataRoot <- file.path(dataRoot,"STN")
+thisDataRoot <- file.path(data_root,"STN")
 
 ## URL for STN Survey Delta Smelt index page:
 thisURL <- "http://www.dfg.ca.gov/delta/data/townet/indices.asp?species=3"

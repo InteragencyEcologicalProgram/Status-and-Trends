@@ -1,7 +1,6 @@
 #TESTING my mean line legend
 
 library(ggplot2)
-library(smonitr)
 
 mline = ggplot() + 
   annotate("segment", color = "red", linetype = "dashed", 
@@ -28,4 +27,4 @@ mpoint = ggplot() +
 
 mpoint
 
-ggsave("docs/figures/mpoint.png", mpoint, dpi=300, units="cm", width=9.3, height=1)
+ggsave(file.path(fig_root_static,"mpoint.png"), mpoint, dpi=300, units="cm", width=9.3, height=1)

@@ -45,4 +45,4 @@ DF1997_2019 = read.csv("https://data.cnra.ca.gov/dataset/06ee2016-b138-47d7-9e85
 #now I can put them all together!
 DayFlow = bind_rows(DF1929_1939, DF1940_1949, DF1950_1955, DF1956_1969, DF1970_1983, DF1984_1996, DF1997_2019)
 
-write.csv(DayFlow, "data/dayflow_all.csv")
+write.csv(DayFlow, file.path(data_root,"dayflow_all.csv"))

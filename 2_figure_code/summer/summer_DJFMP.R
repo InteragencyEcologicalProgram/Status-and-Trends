@@ -1,20 +1,11 @@
 ## Summer = June, July, August
 
-report_year <- 2018
-
-library(smonitr)
 library(tidyverse)
-
-projectRoot <- "."
-reportRoot <- file.path(projectRoot,"summer_report")
-dataRoot <- file.path(projectRoot,"data")
-thisDataRoot <- file.path(dataRoot,"DJFMP")
-figRoot <- file.path(reportRoot,"figures")
 
 ##########################################################################
 ## Read in data:
 
-seineDf_raw <- read.csv(file.path(thisDataRoot,"summerReportData_DJ_seine.csv"), 
+seineDf_raw <- read.csv(file.path(data_root,"DJFMP","summerReportData_DJ_seine.csv"), 
                         stringsAsFactors=FALSE)
 
 ## Truncate the data according to the specified report year:
@@ -86,6 +77,7 @@ sacpikeminnow_fig <- ggplot(seineIndexDf, aes(x=fyear, y=SacPikeminnowIndex)) +
            hjust = 0, size = 2)
 sacpikeminnow_fig
 
-ggsave(sacpikeminnow_fig, file=file.path(figRoot,"DJFMP_sacpikeminnow_summer.png"), 
+ggsave(sacpikeminnow_fig, 
+       file=file.path(fig_root_summer,"DJFMP_sacpikeminnow_summer.png"), 
        dpi=300, units="cm", width=9.3, height=6.8)
 

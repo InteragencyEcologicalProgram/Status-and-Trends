@@ -1,4 +1,4 @@
-# Summer 2018 Seasonal Monitoring Report
+# Summer Seasonal Monitoring Report
 # Purpose: Create plots of Northern Anchovy CPUE from the Bay Study dataset
 # Author: Dave Bosworth
 
@@ -7,10 +7,8 @@ library(tidyverse)
 library(readxl)
 library(lubridate)
 library(scales)
-library(smonitr)
 
 # Define report year
-report_year <- 2018
 
 # 1. Import Data ----------------------------------------------------------
 # Dataset is on SharePoint site for the Seasonal Monitoring Report
@@ -24,11 +22,11 @@ sharepoint_path <- normalizePath(
 )  
 
 # Import fish data
-load(file = paste0(sharepoint_path, "/BayStudyFish.RData"))
+load(file = file.path(sharepoint_path,"BayStudyFish.RData"))
 
 
 #if that didin't work
-load(file = "data/BayStudyFish.RData")
+load(file = file.path("data","BayStudyFish.RData"))
 
 
 # 2. Clean Data and Calculate CPUE ----------------------------------------
@@ -130,18 +128,18 @@ noranc_plot_rec <- noranc_cpue %>%
 
 # Print Plots
   # Plot for all years
-  ggsave(
-    plot = noranc_plot_all,
-    filename = "docs/figures/noranc_all_years.png",
-    dpi = 300,
-    units = "cm",
-    width = 9.3,
-    height = 6.8
-  )
+  # ggsave(
+    # plot = noranc_plot_all,
+    # filename = "docs/figures/noranc_all_years.png",
+    # dpi = 300,
+    # units = "cm",
+    # width = 9.3,
+    # height = 6.8
+  # )
 
   ggsave(
     plot = noranc_plot_all,
-    filename = "report_bookdown/figures/noranc_all_years.png",
+    filename = file.path(fig_root_summer,"noranc_all_years.png"),
     dpi = 300,
     units = "cm",
     width = 9.3,
@@ -152,7 +150,7 @@ noranc_plot_rec <- noranc_cpue %>%
   # Plot for recent years
   ggsave(
     plot = noranc_plot_rec,
-    filename = "noranc_rec_years.png",
+    filename = file.path(fig_root_summer,"noranc_rec_years.png"),
     dpi = 300,
     units = "cm",
     width = 9.3,

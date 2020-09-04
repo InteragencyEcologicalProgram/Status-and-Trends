@@ -1,14 +1,13 @@
 library(tidyverse)
 library(readxl)
 library(lubridate)
-require(smonitr)
 
-Stations<-read_csv("data/Master station key.csv", col_types = "ccddc")%>%
+Stations<-read_csv(file.path(data_root,"Master station key.csv"), col_types = "ccddc")%>%
   select(Source, Station, Latitude, Longitude)
 
 Micro_season <- "Summer"
 
-EMP<-read_csv("data/WQ_Discrete_1975-2018.csv")%>%
+EMP<-read_csv(file.path(data_root,"WQ_Discrete_1975-2018.csv"))%>%
   select(Date=SampleDate, Station=StationCode, Result, Parameter=AnalyteName)%>%
   filter(Parameter=="Microcystis" & !is.na(Result))%>%
   select(-Parameter)%>%
@@ -16,7 +15,7 @@ EMP<-read_csv("data/WQ_Discrete_1975-2018.csv")%>%
   mutate(Source="EMP",
          Date=as.POSIXct(Date))
 
-TNS <-read_excel("Data/STN Sample.xlsx", guess_max=10000)%>%
+TNS <-read_excel(file.path(data_root,"STN Sample.xlsx"), guess_max=10000)%>%
   select(Date=SampleDate, Station=StationCode, Microcystis)%>%
   mutate(Source="TNS")%>%
   filter(!is.na(Microcystis))
@@ -62,7 +61,7 @@ pMicro<-ggplot()+
   geom_bar(data=Micro, aes(x=fyear, y=Frequency, fill=Severity), stat="identity")+
   scale_fill_brewer(type="div", palette="RdYlBu", 
                     guide=guide_legend(keyheight=0.5, title=NULL, direction="horizontal", label.position="right", reverse=TRUE))+
-  std_x_axis_rec_years(2018, "discrete")+
+  std_x_axis_rec_years(report_year, "discrete")+
   scale_y_continuous(expand=expand_scale(0,0))+
   ylab("Relative frequency")+
   std_x_axis_label("summer")+
@@ -72,5 +71,5 @@ pMicro<-ggplot()+
   annotate("text", x = as.factor(2004), y = 0.1, label = "Data not collected \n until 2007", hjust = 0, size = 2)
 pMicro
 
-ggsave(pMicro, file="Microcystis_summer.png", dpi=300, units="cm", width=9.3, height=7.5,
-      path = "./summer_report")
+ggsave(pMicro, file=file.path(fig_root_summer,"Microcystis_summer.png"), 
+       dpi=300, units="cm", width=9.3, height=7.5)

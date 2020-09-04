@@ -12,9 +12,8 @@ library(zoo)  # yearmon and yearqtr classes
 library(tidyr) #separate one column into two
 library(lubridate) #formatting dates
 library(tidyverse)
-library(smonitr)
 
-source("data_access_scripts/data_access_dayflow.R")
+source(file.path(data_access_root,"data_access_dayflow.R"))
 alldata<-DayFlow
 #rename columns
 names(alldata)<-c("date","out")
@@ -81,30 +80,29 @@ flows = function(quart, data) {
 flows(quart = "Q1",data = dmean)
 flows(quart = "Q3",data = dmean)
 
-reportyear = 2018
 dmean = filter(dmean, qyear < 2019)
 
 ggsave(flows(quart = "Q1",data = dmean), 
        file="winter_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = "report_bookdown/figures")
+       path = fig_root_winter)
 
 ggsave(flows(quart = "Q2",data = dmean), 
        file="spring_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = "report_bookdown/figures", "docs/figures")
+       path = fig_root_spring)
 
 ggsave(flows(quart = "Q3",data = dmean), 
        file="summer_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = "report_bookdown/figures", "docs/figures")
+       path = fig_root_summer)
 
 ggsave(flows(quart = "Q4",data = dmean), 
        file="fall_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = c("./fall_report/figures", "report_bookdown/figures", "docs/figures"))
+       path = fig_root_fall)
 
 ggsave(flows(quart = "Q4",data = dmean), 
        file="fall_outflow_update.png", 
        dpi=300, units="cm", width=9.3, height=6.8,
-       path = "report_bookdown/figures")
+       path = fig_root_fall)

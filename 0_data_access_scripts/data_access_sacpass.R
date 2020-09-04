@@ -51,7 +51,7 @@ Redlong = gather(Redbluff3, key = "runname", value = "Dailypassage", -Date)
 Redlong$Dailypassage = as.numeric(Redlong$Dailypassage)
 
 #write the result
-write.csv(Redlong, "data/redbluff_all.csv", row.names = FALSE)
+write.csv(Redlong, file.path(data_root,"redbluff_all.csv"), row.names = FALSE)
 
 
 ############################################################################################################
@@ -92,4 +92,4 @@ AllAdults = left_join(Fall, Winter) %>%
   left_join(Spring)
 
 #CSV of all the adult escapement
-write.csv(AllAdults, "data/Grandtab_adultsalmon.csv", row.names = F)
+write.csv(AllAdults, file.path(data_root,"Grandtab_adultsalmon.csv"), row.names = F)

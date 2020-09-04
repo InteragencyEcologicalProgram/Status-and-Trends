@@ -1,11 +1,10 @@
 ## Data retrieval script for CDFW's SKT Survey.
 library(dplyr)
 library(RODBC)
+library(DBI)
+library(odbc)
 
-
-projectRoot <- "."
-dataRoot <- file.path(projectRoot,"data")
-thisDataRoot <- file.path(dataRoot,"SKT")
+thisDataRoot <- file.path(data_root,"SKT")
 
 ## SKT Survey url:
 surveyURL <- "ftp://ftp.wildlife.ca.gov/Delta%20Smelt/SKT.zip"
@@ -20,80 +19,82 @@ dbName <- "SKT.accdb"
 ## Retrieve SKT Survey database copy:
 
 ## Download and unzip the file:
-localZipFile <- file.path(thisDataRoot, zipFileName)
+localZipFile <- file.path(thisDataRoot,zipFileName)
 
 download.file(url=surveyURL, destfile=localZipFile)
 localDbFile <- unzip(zipfile=localZipFile, exdir=thisDataRoot)
 
 ##########################################################################
 
+# #figure out how to connect to an access database
 
-
-
-
-
-#figure out how to connect to an access database
-
-access_query_32 <- function(db_table = "qryData_RM", table_out = "data_access") {
-  library(svSocket)
+# access_query_32 <- function(db_table = "qryData_RM", table_out = "data_access") {
+  # library(svSocket)
   
-  # variables to make values uniform
-  sock_port <- 8642L
-  sock_con <- "sv_con"
-  ODBC_con <- "a32_con"
-  db_path <- "data/SKT/SKT.accdb"
+  # # variables to make values uniform
+  # sock_port <- 8642L
+  # sock_con <- "sv_con"
+  # ODBC_con <- "a32_con"
+  # db_path <- "data/SKT/SKT.accdb"
   
-  if (file.exists(db_path)) {
+  # if (file.exists(db_path)) {
     
-    # build ODBC string
-    ODBC_str <- local({
-      s <- list()
-      s$path <- paste0("DBQ=", gsub("(/|\\\\)+", "/", path.expand(db_path)))
-      s$driver <- "Driver={Microsoft Access Driver (*.mdb, *.accdb)}"
-      s$threads <- "Threads=4"
-      s$buffer <- "MaxBufferSize=4096"
-      s$timeout <- "PageTimeout=5"
-      paste(s, collapse=";")
-    })
+    # # build ODBC string
+    # ODBC_str <- local({
+      # s <- list()
+      # s$path <- paste0("DBQ=", gsub("(/|\\\\)+", "/", path.expand(db_path)))
+      # s$driver <- "Driver={Microsoft Access Driver (*.mdb, *.accdb)}"
+      # s$threads <- "Threads=4"
+      # s$buffer <- "MaxBufferSize=4096"
+      # s$timeout <- "PageTimeout=5"
+      # paste(s, collapse=";")
+    # })
     
-    # start socket server to transfer data to 32 bit session
-    startSocketServer(port=sock_port, server.name="access_query_32", local=TRUE)
+    # # start socket server to transfer data to 32 bit session
+    # startSocketServer(port=sock_port, server.name="access_query_32", local=TRUE)
     
-    # build expression to pass to 32 bit R session
-    expr <- "library(svSocket)"
-    expr <- c(expr, "library(RODBC)")
-    expr <- c(expr, sprintf("%s <- odbcDriverConnect('%s')", ODBC_con, ODBC_str))
-    expr <- c(expr, sprintf("if('%1$s' %%in%% sqlTables(%2$s)$TABLE_NAME) {%1$s <- sqlFetch(%2$s, '%1$s')} else {
-                            %1$s <- 'table %1$s not found'}", db_table, ODBC_con))
-    expr <- c(expr, sprintf("%s <- socketConnection(port=%i)", sock_con, sock_port))
-    expr <- c(expr, sprintf("evalServer(%s, %s, %s)", sock_con, table_out, db_table))
-    expr <- c(expr, "odbcCloseAll()")
-    expr <- c(expr, sprintf("close(%s)", sock_con))
-    expr <- paste(expr, collapse=";")
+    # # build expression to pass to 32 bit R session
+    # expr <- "library(svSocket)"
+    # expr <- c(expr, "library(RODBC)")
+    # expr <- c(expr, sprintf("%s <- odbcDriverConnect('%s')", ODBC_con, ODBC_str))
+    # expr <- c(expr, sprintf("if('%1$s' %%in%% sqlTables(%2$s)$TABLE_NAME) {%1$s <- sqlFetch(%2$s, '%1$s')} else {
+                            # %1$s <- 'table %1$s not found'}", db_table, ODBC_con))
+    # expr <- c(expr, sprintf("%s <- socketConnection(port=%i)", sock_con, sock_port))
+    # expr <- c(expr, sprintf("evalServer(%s, %s, %s)", sock_con, table_out, db_table))
+    # expr <- c(expr, "odbcCloseAll()")
+    # expr <- c(expr, sprintf("close(%s)", sock_con))
+    # expr <- paste(expr, collapse=";")
     
-    # launch 32 bit R session and run expressions
-    prog <- file.path(R.home(), "bin", "i386", "Rscript.exe")
-    system2(prog, args=c("-e", shQuote(expr)), stdout=NULL, wait=TRUE, invisible=TRUE)
+    # # launch 32 bit R session and run expressions
+    # prog <- file.path(R.home(), "bin", "i386", "Rscript.exe")
+    # system2(prog, args=c("-e", shQuote(expr)), stdout=NULL, wait=TRUE, invisible=TRUE)
     
-    # stop socket server
-    stopSocketServer(port=sock_port)
+    # # stop socket server
+    # stopSocketServer(port=sock_port)
     
-    # display table fields
-    message("retrieved: ", table_out, " - ", paste(colnames(get(table_out)), collapse=", "))
-  } else {
-    warning("database not found: ", db_path)
-  }
-}
-
-
+    # # display table fields
+    # message("retrieved: ", table_out, " - ", paste(colnames(get(table_out)), collapse=", "))
+  # } else {
+    # warning("database not found: ", db_path)
+  # }
+# }
+# skt_sample <- access_query_32(db_table ="skt_tblsample")
 
 
 ## Get SKT data. Using the same volume calculations as a query that Lauren Damon 
 ## sent me some years ago.
-skt_sample <- access_query_32(db_table ="skt_tblsample")
-skt_catch <- dplyr::tbl(con,"skt_tblcatch")
-skt_organism <- dplyr::tbl(con,"skt_tblorganismcodes")
-skt_stn <- dplyr::tbl(con,"skt_lktblstationsskt")
+dbString <- paste0("Driver={Microsoft Access Driver (*.mdb, *.accdb)};",
+									 "Dbq=",localDbFile)
+con <- DBI::dbConnect(drv=odbc::odbc(), .connection_string=dbString)
+DBI::dbListTables(con)
+
+skt_sample <- DBI::dbReadTable(con,"tblsample")
+skt_catch <- DBI::dbReadTable(con,"tblcatch")
+skt_organism <- DBI::dbReadTable(con,"tblorganismcodes")
+skt_stn <- DBI::dbReadTable(con,"lktblstationsskt")
+
+## Disconnect from database:
+DBI::dbDisconnect(conn=con)
 
 skt_catch <- dplyr::left_join(skt_catch, skt_organism, by="OrganismCode")
 skt_catch <- dplyr::inner_join(skt_sample, skt_catch, by="SampleRowID")
@@ -110,13 +111,12 @@ skt_catch$MeterCounts <- with(skt_catch, ifelse(MeterEnd < MeterStart,
 skt_catch$Volume_cubicm <- skt_catch$MeterCounts*0.02687*13.95
 
 
-
 catch_mat <- skt_catch %>%
   group_by(Year, Month, SurveyNumber, SampleDate, StationCode,
            SampleTimeStart, SampleTimeEnd, Volume_cubicm) %>%
-  summarize(DeltaSmelt=sum(Catch[CommonName == "delta smelt"])) %>%
-  ungroup() %>%
-  filter(Year <= 2017)
+  summarize(DeltaSmelt=sum(Catch[CommonName == "delta smelt"]),
+            .groups="keep") %>%
+  ungroup()
 
 ## Recreate SKT index (see "MEMO2015 SKT Delta Smelt Index.pdf" for instructions 
 ## on how to define the regions and calculate the index):
@@ -149,20 +149,16 @@ skt_index_df <- catch_mat_sub %>%
   summarize(Index=10000*sum(Dens)) %>%
   ungroup()
 
-
-
-
-
-
+## SKT's methods were standardized by 2004. I think that's why they don't calculate 
+## an index prior to that.
+skt_index_df$Index[skt_index_df$Year <= 2003] <- NA
+skt_index_df
 
 ##########################################################################
-## Eventually... Disconnect from database, delete database, and save csv files:
-
-DBI::dbDisconnect(conn=con)
+## Delete database and save csv file to avoid storing a copy of the database
+## on GitHub.
 
 unlink(localZipFile)
 unlink(localDbFile)
 
-write.csv(..., file.path(thisDataRoot,"....csv"), row.names=FALSE)
-
-
+write.csv(skt_index_df, file.path(thisDataRoot,"skt_dsm_index.csv"), row.names=FALSE)

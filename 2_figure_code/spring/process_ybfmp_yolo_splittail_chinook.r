@@ -1,6 +1,5 @@
 library(tidyverse)
 library(lubridate)
-library(smonitr)
 
 # load from RData file on sharepoint site
 sharepoint_path = normalizePath(
@@ -10,11 +9,6 @@ sharepoint_path = normalizePath(
   )
 )
 load(file.path(sharepoint_path, "ybfmp.RData"))
-
-# report year and output directory
-report_year = 2018
-fig.root = file.path("spring_report", "figures")
-
 
 # format catch data
 catch = ybfmp[["YBFMP_Fish_Catch_and_Water_Quality.csv"]] %>%
@@ -98,16 +92,16 @@ yolo_chinook_recent = cpue %>%
 
 
 # save plots
-ggsave(yolo_splittail_all, file = file.path(fig.root, "yolo_splittail.png"),
+ggsave(yolo_splittail_all, file = file.path(fig_root_spring, "yolo_splittail.png"),
   dpi = 300, units = "cm", width = 9.3, height = 6.8)
 
-ggsave(yolo_chinook_all, file = file.path(fig.root, "yolo_chinook.png"),
+ggsave(yolo_chinook_all, file = file.path(fig_root_spring, "yolo_chinook.png"),
   dpi = 300, units = "cm", width = 9.3, height = 6.8)
 
-ggsave(yolo_splittail_recent, file = file.path(fig.root, "yolo_splittail_recent.png"),
+ggsave(yolo_splittail_recent, file = file.path(fig_root_spring, "yolo_splittail_recent.png"),
   dpi = 300, units = "cm", width = 9.3, height = 6.8)
 
-ggsave(yolo_chinook_recent, file = file.path(fig.root, "yolo_chinook_recent.png"),
+ggsave(yolo_chinook_recent, file = file.path(fig_root_spring, "yolo_chinook_recent.png"),
   dpi = 300, units = "cm", width = 9.3, height = 6.8)
 
 

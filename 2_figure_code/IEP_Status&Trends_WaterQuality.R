@@ -21,12 +21,11 @@ library(dplyr) #count()
 library(tidyverse)
 library(cowplot) #grid_plot()
 library(lubridate)
-library(smonitr)
 
 
-source("data_access_scripts/WQ_data_download.R")
+source(file.path(data_access_root,"WQ_data_download.R"))
 #or skip this if you've updated it recently and just do
-alldata = read.csv("data/WQ_discrete_1975-2018.csv", stringsAsFactors = F)
+alldata = read.csv(file.path(data_root,"WQ_discrete_1975-2018.csv"), stringsAsFactors = F)
 alldata$SampleDate = as.Date(alldata$SampleDate)
 
 #EMP WQ data (1975-2018)
@@ -34,7 +33,7 @@ alldata$SampleDate = as.Date(alldata$SampleDate)
   str(alldata)
 
 #GPS coordinates of all sites
-siteloc<-read.csv("./data/wq_stations.csv") 
+siteloc<-read.csv(file.path(data_root,"wq_stations.csv")) 
 siteloc = mutate(siteloc, StationCode = site)
 
 #format date column so R recognizes it as such
@@ -196,15 +195,19 @@ plotall = function(quart, analyte, data, report_year) {
                   ncol = 3, nrow = 1, align="v")
   
   #save them together and seperately
-  ggsave(tmps, file=paste(analyte, "_panel_", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=27.9,height=6.8,
-         path = paste("./", season_names[quart], "_report/figures", sep = ""))
+  ggsave(tmps, file=paste(analyte, "_panel_", season_names[quart], ".png", sep = ""), 
+         dpi=300, units="cm",width=27.9,height=6.8,
+         path = file.path(fig_root, season_names[quart]))
   
-  ggsave(spl, file=paste(analyte, "_spl", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
-         path = paste("./", season_names[quart], "_report/figures", sep = ""))
-  ggsave(ss, file=paste(analyte, "_ss", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
-         path = paste("./", season_names[quart], "_report/figures", sep = ""))
-  ggsave(dt, file=paste(analyte, "_dt", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
-         path = paste("./", season_names[quart], "_report/figures", sep = ""))
+  ggsave(spl, file=paste(analyte, "_spl", season_names[quart], ".png", sep = ""), 
+         dpi=300, units="cm",width=9.3,height=6.8,
+         path = file.path(fig_root, season_names[quart]))
+  ggsave(ss, file=paste(analyte, "_ss", season_names[quart], ".png", sep = ""), 
+         dpi=300, units="cm",width=9.3,height=6.8,
+         path = file.path(fig_root, season_names[quart]))
+  ggsave(dt, file=paste(analyte, "_dt", season_names[quart], ".png", sep = ""), 
+         dpi=300, units="cm",width=9.3,height=6.8,
+         path = file.path(fig_root, season_names[quart]))
   
 }
 

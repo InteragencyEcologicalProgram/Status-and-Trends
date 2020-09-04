@@ -1,21 +1,11 @@
 
-report_year <- 2018
-
-library(smonitr)
 library(ggplot2)
 library(dplyr)
 
-projectRoot <- "."
-reportRoot <- file.path(projectRoot,"summer_report")
-dataRoot <- file.path(projectRoot,"data")
-thisDataRoot <- file.path(dataRoot,"STN")
-figRoot <- file.path(reportRoot,"figures")
-
-localFile <- file.path(thisDataRoot,"STN_DSM_indices.csv")
-
 ##########################################################################
 
-dsmIndexDf_raw <- read.csv(localFile, stringsAsFactors=FALSE)
+dsmIndexDf_raw <- read.csv(file.path(data_root,"STN","STN_DSM_indices.csv"), 
+                           stringsAsFactors=FALSE)
 dsmIndexDf_raw
 
 ## Truncate the data according to the specified report year:
@@ -37,7 +27,7 @@ dsm_fig <- ggplot(dsmIndexDf, aes(x=fyear, y=Index))+
   missing_data_symb(dsmIndexDf, yr_var = fyear, rpt_yr = report_year, symb_size = 1)
 
 dsm_fig
-ggsave(dsm_fig, file=file.path(figRoot,"STN_DSM.png"), dpi=300, units="cm", 
+ggsave(dsm_fig, file=file.path(fig_root_summer,"STN_DSM.png"), dpi=300, units="cm", 
 			 width=9.3, height=6.8)
 
 ##recent years:
@@ -56,7 +46,6 @@ dsm_fig2 <- ggplot(dsmIndexDf, aes(x=fyear, y=Index))+
   missing_data_symb(dsmIndexDf, yr_var = fyear, rpt_yr = report_year, symb_size = 1)
 
 dsm_fig2
-ggsave(dsm_fig2, file=file.path(figRoot,"STN_DSM_rec.png"), dpi=300, units="cm", 
-       width=9.3, height=7.5)
-       # width=9.3, height=6.8)
+ggsave(dsm_fig2, file=file.path(fig_root_summer,"STN_DSM_rec.png"), 
+       dpi=300, units="cm", width=9.3, height=7.5)   # width=9.3, height=6.8)
 

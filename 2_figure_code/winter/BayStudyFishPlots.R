@@ -6,18 +6,15 @@
 library(tidyverse)
 library(readxl)
 library(lubridate)
-library(smonitr)
 
-# Define report year
-report_year <- 2017
 
 # 1. Import Data ----------------------------------------------------------
 
 # Longfin smelt
-lonsme.orig <- read_excel(path = "data/Bay Study_MWT_1980-2018_FishMatrix.xlsx") 
+lonsme.orig <- read_excel(path = file.path(data_root,"Bay Study_MWT_1980-2018_FishMatrix.xlsx")) 
 
 # White sturgeon - Jason's calculated YCI dataset
-whistu.orig <- read_csv("data/yci_bs.csv") 
+whistu.orig <- read_csv(file.path(data_root,"yci_bs.csv")) 
 
 
 # 2. Clean Data and Calculate CPUE ----------------------------------------

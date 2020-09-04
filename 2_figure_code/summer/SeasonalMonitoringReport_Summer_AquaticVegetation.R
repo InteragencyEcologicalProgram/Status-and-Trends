@@ -15,7 +15,7 @@ library(scales) #modifying y axis to include '%'
 
 #install and load most up to date version of 'smonitr' from GitHub
 #remotes::install_github("InteragencyEcologicalProgram/smonitr")
-library(smonitr) #standardizes formatting of plots
+#library(smonitr) #standardizes formatting of plots
 
 
 # 1. Import Data ----------------------------------------------------------
@@ -112,9 +112,9 @@ ppercl$type = factor(ppercl$type, levels=c('fav_perc','sav_perc'))
  #customizes names in legend key, specifies the custom color palette, and sets height of elements in legend
  +lt_avg_line(mean(vtot$perc))
  #adds horizontal line to plot to indicate long term average for data
- +std_x_axis_rec_years(2018, x_scale_type= "discrete")
+ +std_x_axis_rec_years(report_year, x_scale_type= "discrete")
  #implements standardized x-axis range of years
- +missing_data_symb(ppercl,year,2018, symb_size = 2)
+ +missing_data_symb(ppercl,year,report_year, symb_size = 2)
  #adds symbols anywhere there is missing data
   +std_x_axis_label("annual")
  #adds "Year" as x-axis label
@@ -129,7 +129,8 @@ ppercl$type = factor(ppercl$type, levels=c('fav_perc','sav_perc'))
 #print plot
 
 #path to location to put plot
-plot_path<-"C:/Repositories/Status-and-Trends/summer_report/figures"
+#plot_path<-"C:/Repositories/Status-and-Trends/summer_report/figures"
+#plot_path <- fig_root_summer
 
 ggsave(
   plot=pperc,
@@ -139,7 +140,7 @@ ggsave(
   width=9.3,
   #height=6.8,
   height=7.2,
-  path = plot_path 
+  path = fig_root_summer 
   )
 #standard plot height is 6.8 cm; Rosie is using 7.5 cm in her plots I think to accommodate the legend
 

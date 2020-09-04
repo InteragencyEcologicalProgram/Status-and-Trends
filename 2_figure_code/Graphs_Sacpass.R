@@ -1,9 +1,9 @@
 #plot spring-run adult salmon
 
 library(tidyverse)
-library(smonitr)
-source("data_access_scripts/data_access_sacpass.R")
 
+
+source(file.path(data_access_root,"data_access_sacpass.R"))
 
 #Spring run salmon
 Spring$fyear = as.factor(Spring$Year)
@@ -17,7 +17,8 @@ p_spch <- ggplot(filter(Spring, Year <= 2018), aes(x=fyear, y=sprinrun))+
   lt_avg_line(mean(Spring$sprinrun))
 p_spch
 
-ggsave(p_spch, file="SpringRun_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "spring_report/figures")
+ggsave(p_spch, file="SpringRun_1966.png", dpi=300, units="cm", width=9.3, height=6.8, 
+       path = fig_root_spring)
 
 
 #Fall run salmon
@@ -32,12 +33,13 @@ p_frch <- ggplot(Fall, aes(x=fyear, y=FallRun))+
   lt_avg_line(mean(Fall$FallRun))
 p_frch
 
-ggsave(p_frch, file="FallRun_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "Fall_report/figures")
+ggsave(p_frch, file="FallRun_1966.png", dpi=300, units="cm", width=9.3, height=6.8, 
+       path = fig_root_fall)
 
 
 #Red Bluff
 
-redbluff = read.csv("data/redbluff_all.csv")
+redbluff = read.csv(file.path(data_root,"redbluff_all.csv"))
 str(redbluff)
 
 redbluff$Date = as.Date(redbluff$Date, format = "%Y-%m-%d")
@@ -68,7 +70,8 @@ redtest = Red + geom_bar(stat = "identity") + ylab("Estimated daily passage") + 
 
 redtest
 
-ggsave(redtest, file="redbluff_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = "docs/figures")
+ggsave(redtest, file="redbluff_1966.png", dpi=300, units="cm", width=9.3, height=6.8, 
+       path = fig_root_winter)
 
 #Calculate average
 MeanAll = mean(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate")$meandaily)
@@ -89,6 +92,8 @@ redtest2 = Red + geom_bar(stat = "identity") +
 redtest2
 
 #save it in the right place
-ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = "docs/figures")
-ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = "report_bookdown/figures")
+ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, 
+       path = fig_root_winter)
+# ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, 
+#        path = "report_bookdown/figures")
 

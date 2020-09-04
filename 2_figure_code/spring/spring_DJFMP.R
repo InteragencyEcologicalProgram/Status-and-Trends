@@ -2,25 +2,13 @@
 ## See a copy of the document "#22 Metadata (Updated May 30, 2019).doc" for reference.
 
 library(tidyverse)
-library(smonitr)
-
-report_year <- 2018
-
-projectRoot <- "."
-reportRoot <- file.path(projectRoot,"spring_report")
-dataRoot <- file.path(projectRoot,"data")
-thisDataRoot <- file.path(dataRoot,"DJFMP")
-figRoot <- file.path(reportRoot,"figures")
-
-source(file.path(projectRoot,"smonitr","R","plot_tools.R"))
-
 
 ##########################################################################
 ## Read in data:
 
-seineDf_raw <- read.csv(file.path(thisDataRoot,"springReportData_DJ_seine.csv"), 
+seineDf_raw <- read.csv(file.path(data_root,"DJFMP","springReportData_DJ_seine.csv"), 
                         stringsAsFactors=FALSE)
-chippsDf_raw <- read.csv(file.path(thisDataRoot,"springReportData_DJ_Chipps.csv"), 
+chippsDf_raw <- read.csv(file.path(data_root,"DJFMP","springReportData_DJ_Chipps.csv"), 
                          stringsAsFactors=FALSE)
 
 ## Truncate the data according to the specified report year:
@@ -30,7 +18,7 @@ chippsDf <- subset(chippsDf_raw, Year <= report_year)
 ##########################################################################
 ## Beach Seine: Splittail and Sacramento Pikeminnow
 
-## These region designations came from Nick's code:														
+## These region designations came from Nick's code:
 seineDf$customRegion <- ""
 seineDf$customRegion[seineDf$longitude_location < -122.216] <- "San Pablo Bay"
 seineDf$customRegion[seineDf$longitude_location > -122.216 & 
@@ -86,27 +74,23 @@ splittail_fig <- ggplot(seineIndexDf, aes(x=fyear, y=SplittailIndex)) +
   std_x_axis_label("spring")+
   annotate("text", x = as.factor(1970), y = 0.2, label = "Data not collected until 1995", hjust = 0, size = 2)
 
-ggsave(splittail_fig, file=file.path(figRoot,"DJFMP_splittail.png"), dpi=300, units="cm", 
-			 width=9.3, height=6.8)
+ggsave(splittail_fig, file=file.path(fig_root_spring,"DJFMP_splittail.png"), 
+       dpi=300, units="cm", width=9.3, height=6.8)
 
 
-sacpikeminnow_fig <- ggplot(seineIndexDf, aes(x=fyear, y=SacPikeminnowIndex)) +
-  geom_bar(stat="identity") +
-  theme_smr() +
-  theme(legend.position="none") + 
-  scale_y_continuous(expression(paste("Sacramento Pikeminnow Index"))) + 
-  lt_avg_line(lt_avg=mean(seineIndexDf$SacPikeminnowIndex, na.rm=TRUE)) + 
-  std_x_axis_all_years(rpt_yr=report_year, "discrete")+
-  std_x_axis_label("summer")+
-  annotate("text", x = as.factor(1970), y = 0.2, label = "Data not collected until 1995", hjust = 0, size = 2)
-sacpikeminnow_fig
+# sacpikeminnow_fig <- ggplot(seineIndexDf, aes(x=fyear, y=SacPikeminnowIndex)) +
+  # geom_bar(stat="identity") +
+  # theme_smr() +
+  # theme(legend.position="none") + 
+  # scale_y_continuous(expression(paste("Sacramento Pikeminnow Index"))) + 
+  # lt_avg_line(lt_avg=mean(seineIndexDf$SacPikeminnowIndex, na.rm=TRUE)) + 
+  # std_x_axis_all_years(rpt_yr=report_year, "discrete")+
+  # std_x_axis_label("spring")+
+  # annotate("text", x = as.factor(1970), y = 0.2, label = "Data not collected until 1995", hjust = 0, size = 2)
+# sacpikeminnow_fig
 
-ggsave(sacpikeminnow_fig, file=file.path(figRoot,"DJFMP_sacpikeminnow.png"), dpi=300, 
-			 units="cm", width=9.3, height=6.8)
-
-
-
-
+# ggsave(sacpikeminnow_fig, file=file.path(fig_root_spring,"DJFMP_sacpikeminnow.png"), 
+       # dpi=300, units="cm", width=9.3, height=6.8)
 
 
 ##########################################################################
@@ -156,7 +140,7 @@ chinook_winterByLength_fig <- ggplot(chippsIndexDf,
   std_x_axis_label("spring")
 
 ggsave(chinook_winterByLength_fig, 
-			 file=file.path(figRoot,"DJFMP_chinook_winterByLength_allyears.png"), 
+			 file=file.path(fig_root_spring,"DJFMP_chinook_winterByLength_allyears.png"), 
 			 dpi=300, units="cm", width=9.3, height=6.8)
 
 ## Figures:
@@ -172,5 +156,7 @@ chinook_winterByLength_fig <- ggplot(chippsIndexDf,
              col="red", linetype="dashed", size=0.9)
 
 ggsave(chinook_winterByLength_fig, 
-       file=file.path(figRoot,"DJFMP_chinook_winterByLength_recyears.png"), 
+       file=file.path(fig_root_spring,"DJFMP_chinook_winterByLength_recyears.png"), 
        dpi=300, units="cm", width=9.3, height=6.8)
+
+			 

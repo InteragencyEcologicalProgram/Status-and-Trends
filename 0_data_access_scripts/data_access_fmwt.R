@@ -4,7 +4,7 @@ library(readxl)
 library(tidyverse)
 
 #upload the station lookup table to help calculate the index
-stas = read.csv("data/FMWTstations.csv")
+stas = read.csv(file.path(data_root,"FMWTstations.csv"))
 stas$Station = as.character(stas$Station)
 
 #Now donload the data. It's an excel file in a zipped foler
@@ -52,4 +52,4 @@ fmwt$Index[which(fmwt$Year==1976 & fmwt$Species=="Striped Bass age-0")] = 4548
 fmwt$Index[which(fmwt$Year==1976 & fmwt$Species=="American Shad")] = 346
 
 
-write.csv(fmwt, "data/fmwt.csv", row.names = F)
+write.csv(fmwt, file.path(data_root,"fmwt.csv"), row.names = F)

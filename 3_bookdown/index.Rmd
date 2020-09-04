@@ -13,7 +13,7 @@ description: "This report shows trends in water quality, plankton, and fish acro
 # Contents
 
 ```{r fig.height=8, echo=FALSE, fig.cap="IEP logo"}
-knitr::include_graphics(file.path("figures","IEP_logo_updated.png"))
+knitr::include_graphics(file.path(fig_root_static,"IEP_logo_updated.png"))
 options(width = 120)
 #http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/#style-your-image-environment-with-css
 knitr::knit_hooks$set(class=function(before, options, envir) {
