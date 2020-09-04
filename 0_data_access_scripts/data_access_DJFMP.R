@@ -46,7 +46,8 @@ seineDf <- seineDfRaw %>%
 	dplyr::group_by(Location, RegionCode, StationCode, SampleDate, SampleTime,
 									MethodCode, GearConditionCode, TowNumber, Volume, CommonName, 
 									RaceByLength) %>% 
-	dplyr::summarize(Catch = sum(Count)) %>%
+	dplyr::summarize(Catch = sum(Count),
+	                 .groups="keep") %>%
 	dplyr::ungroup() %>% 
 	as.data.frame(.)
 
@@ -100,7 +101,8 @@ chippsDf <- allTrawlRaw %>%
 	dplyr::group_by(Location, RegionCode, StationCode, SampleDate, SampleTime,
 									MethodCode, GearConditionCode, TowNumber, Volume, CommonName, 
 									RaceByLength) %>% 
-	dplyr::summarize(Catch = sum(Count)) %>%
+	dplyr::summarize(Catch = sum(Count),
+	                 .groups="keep") %>%
 	dplyr::ungroup() %>% 
 	as.data.frame(.)
 

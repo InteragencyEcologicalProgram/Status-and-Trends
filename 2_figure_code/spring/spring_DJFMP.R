@@ -63,7 +63,8 @@ seineIndexDf
 
 #turn year into a factor so the standardized scale works
 seineIndexDf = mutate(seineIndexDf, fyear = as.factor(Year))
-
+seineIndexDf <- subset(seineIndexDf, Year >= 1995)
+  
 splittail_fig <- ggplot(seineIndexDf, aes(x=fyear, y=SplittailIndex)) +
   geom_bar(stat="identity") +
   theme_smr() +
@@ -72,7 +73,8 @@ splittail_fig <- ggplot(seineIndexDf, aes(x=fyear, y=SplittailIndex)) +
   lt_avg_line(lt_avg=mean(seineIndexDf$SplittailIndex, na.rm=TRUE)) + 
   std_x_axis_all_years(rpt_yr=report_year, "discrete")+
   std_x_axis_label("spring")+
-  annotate("text", x = as.factor(1970), y = 0.2, label = "Data not collected until 1995", hjust = 0, size = 2)
+  annotate("text", x = as.factor(1970), y = 0.2, 
+           label = "Data collected intermittently before 1995", hjust = 0, size = 2)
 
 ggsave(splittail_fig, file=file.path(fig_root_spring,"DJFMP_splittail.png"), 
        dpi=300, units="cm", width=9.3, height=6.8)

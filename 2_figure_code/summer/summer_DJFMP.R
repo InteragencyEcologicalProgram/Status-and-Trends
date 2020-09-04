@@ -43,14 +43,16 @@ lapply(split(seineDfWide$StationCode, seineDfWide$Year), unique)
 seine_CPUE_YM <- seineDfWide %>%
 	dplyr::group_by(Year, Month) %>%
 	dplyr::summarize(SplittailCPUE_YM = sum(splittail/Volume),
-									 SacPikeminnowCPUE_YM = sum(Sacramento_pikeminnow/Volume)) %>% 
+									 SacPikeminnowCPUE_YM = sum(Sacramento_pikeminnow/Volume),
+									 .groups="keep") %>% 
 	as.data.frame(.)
 seine_CPUE_YM
 
 seineIndexDf <- seine_CPUE_YM %>%
 	dplyr::group_by(Year) %>%
 	dplyr::summarize(SplittailIndex = mean(SplittailCPUE_YM), 
-									 SacPikeminnowIndex = mean(SacPikeminnowCPUE_YM)) %>% 
+									 SacPikeminnowIndex = mean(SacPikeminnowCPUE_YM),
+									 .groups="keep") %>% 
 	as.data.frame(.)
 seineIndexDf
 
