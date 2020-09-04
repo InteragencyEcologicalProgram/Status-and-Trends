@@ -140,13 +140,16 @@ catch_mat_sub <- catch_mat %>%
 ## Calculate the index:
 skt_index_df <- catch_mat_sub %>%
   group_by(Year, SurveyNumber, Region, StationCode) %>%
-  summarize(Dens=sum(DeltaSmelt)/sum(Volume_cubicm)) %>%
+  summarize(Dens=sum(DeltaSmelt)/sum(Volume_cubicm), 
+            .groups="keep") %>%
   ungroup() %>%
   group_by(Year, SurveyNumber, Region) %>%
-  summarize(Dens=mean(Dens)) %>%
+  summarize(Dens=mean(Dens), 
+            .groups="keep") %>%
   ungroup() %>%
   group_by(Year) %>%
-  summarize(Index=10000*sum(Dens)) %>%
+  summarize(Index=10000*sum(Dens), 
+            .groups="keep") %>%
   ungroup()
 
 ## SKT's methods were standardized by 2004. I think that's why they don't calculate 
