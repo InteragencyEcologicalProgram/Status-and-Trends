@@ -15,10 +15,11 @@ ftp_url <- "ftp://ftp.wildlife.ca.gov"
 ftp_dir_path <- "BayStudy/CatchMatrices"
 zip_name <- "FishMatrices"
 file_names <- c("MWT", "OT")
-sheet_names <- c("MWT_Catch_Matrix", "OT_Catch_Matrix")
 
-zip_f <- get_ftp_data(ftp_url, ftp_dir_path, zip_name, download_file)
-zip_extract_f <- extract_files(zip_f[[1]], file_names, exdir = tempdir())
+zip_f <- get_ftp_data(ftp_url, ftp_dir_path, zip_name, download_file)[[1]]
+zip_extract_f <- extract_files(zip_f, file_names, exdir = tempdir())
+
+sheet_names <- map_chr(zip_extract_f, ~choose_files(excel_sheets(.x), "Matrix"))
 
 bs_fish_data <-
   map2(zip_extract_f, sheet_names, .f = read_excel) %>%
