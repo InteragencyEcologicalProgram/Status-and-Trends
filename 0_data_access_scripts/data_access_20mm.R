@@ -1,14 +1,13 @@
 ## Data retrieval script for CDFW's 20mm Survey.
 ## Database is too large to store on GitHub, so query now and save smaller csv files.
-# As of 7/15/2020 data are now posted as .csvs on EDI, so it will be easier to query.
-
-library(tidyverse)
-
-thisDataRoot <- file.path(data_root,"20mm")
+## As of 7/15/2020 data are now posted as csv files on EDI, but there is no length data
+## so still using ftp site for now.
+## Sep 2020: In August 2020 they changed the database schema a little, so updating 
+## the query code (see 20mmNew_ReadMe_2020.pdf).
 
 ###################################################################################################
-#this is the old code that deals with the database.
 
+thisDataRoot <- file.path(data_root,"20mm")
 
 ## 20mm Survey url:
 surveyURL <- "ftp://ftp.dfg.ca.gov/Delta%20Smelt/20mm_New.zip"
@@ -47,8 +46,13 @@ tables
 # fishCodeTable <- DBI::dbReadTable(con, "FishCodes")
 # stationTable <- DBI::dbReadTable(con, "Station")
 
-index_stations <- read.csv(file.path(thisDataRoot,"20mm-index-stations.csv"),
-													 stringsAsFactors=FALSE)
+## Index stations based on CDFW memos:
+index_stations <- data.frame("Station"=c(
+  346,345,344,343,342,340,323,405,418,411,602,501,504,519,606,609,610,508,513,520,
+  801,804,703,704,706,705,707,809,812,815,901,902,906,919,910,912,914,915,918,711,
+  716)
+)
+
 
 ##########################################################################
 ## Delta Smelt
@@ -58,13 +62,25 @@ SELECT Year([SampleDate]) AS [Year], Survey.Survey, FishSample.FishCode,
 Avg(FishLength.Length) AS AvgOfLength
 FROM (((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
 Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN ((FishSample
-INNER JOIN FishLength ON FishSample.FishSampleID=FishLength.FishSampleID) INNER JOIN LabSample ON
-FishSample.LabSampleID=LabSample.LabSampleID) ON Gear.GearID=LabSample.GearID
+INNER JOIN FishLength ON FishSample.FishSampleID=FishLength.FishSampleID)) 
+ON Gear.GearID=FishSample.GearID
 WHERE (((FishLength.Length)<60))
 GROUP BY Year([SampleDate]), Survey.Survey, FishSample.FishCode
 HAVING (((FishSample.FishCode)=3))
 ORDER BY Year([SampleDate]) DESC , Survey.Survey;
 ")
+# qry_AvgDSLength <- DBI::dbGetQuery(con, "
+# SELECT Year([SampleDate]) AS [Year], Survey.Survey, FishSample.FishCode,
+# Avg(FishLength.Length) AS AvgOfLength
+# FROM (((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
+# Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN ((FishSample
+# INNER JOIN FishLength ON FishSample.FishSampleID=FishLength.FishSampleID) INNER JOIN LabSample ON
+# FishSample.LabSampleID=LabSample.LabSampleID) ON Gear.GearID=LabSample.GearID
+# WHERE (((FishLength.Length)<60))
+# GROUP BY Year([SampleDate]), Survey.Survey, FishSample.FishCode
+# HAVING (((FishSample.FishCode)=3))
+# ORDER BY Year([SampleDate]) DESC , Survey.Survey;
+# ")
 
 
 qry_MaxofTow <- DBI::dbGetQuery(con, "
@@ -89,10 +105,9 @@ ORDER BY Survey.SampleDate, Survey.Survey, Station.Station, Tow.TowNum;
 qry_TLT_DS_CPUE_02 <- DBI::dbGetQuery(con, "
 SELECT Survey.SampleDate, Station.Station, Tow.TowNum, Count(FishLength.Length) AS CountOfLength,
 FishCodes.[Common Name], FishSample.Catch, FishSample.FishCode
-FROM ((((((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
-Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN LabSample
-ON Gear.GearID=LabSample.GearID) INNER JOIN FishSample ON
-LabSample.LabSampleID=FishSample.LabSampleID) INNER JOIN FishCodes ON
+FROM (((((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
+Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN 
+FishSample ON Gear.GearID=FishSample.GearID) INNER JOIN FishCodes ON
 FishSample.FishCode=FishCodes.[Fish Code]) INNER JOIN FishLength ON
 FishSample.FishSampleID=FishLength.FishSampleID
 WHERE (((FishLength.Length)<60))
@@ -100,6 +115,20 @@ GROUP BY Survey.SampleDate, Station.Station, Tow.TowNum, FishCodes.[Common Name]
 FishSample.Catch, FishSample.FishCode
 HAVING (((FishSample.FishCode)=3));
 ")
+# qry_TLT_DS_CPUE_02 <- DBI::dbGetQuery(con, "
+# SELECT Survey.SampleDate, Station.Station, Tow.TowNum, Count(FishLength.Length) AS CountOfLength,
+# FishCodes.[Common Name], FishSample.Catch, FishSample.FishCode
+# FROM ((((((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
+# Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN LabSample
+# ON Gear.GearID=LabSample.GearID) INNER JOIN FishSample ON
+# LabSample.LabSampleID=FishSample.LabSampleID) INNER JOIN FishCodes ON
+# FishSample.FishCode=FishCodes.[Fish Code]) INNER JOIN FishLength ON
+# FishSample.FishSampleID=FishLength.FishSampleID
+# WHERE (((FishLength.Length)<60))
+# GROUP BY Survey.SampleDate, Station.Station, Tow.TowNum, FishCodes.[Common Name],
+# FishSample.Catch, FishSample.FishCode
+# HAVING (((FishSample.FishCode)=3));
+# ")
 
 
 # qry_TLT_DS_CPUE_03 <- DBI::dbGetQuery(con, '
@@ -139,7 +168,8 @@ qry_TLT_DS_CPUE_03$Year <- lubridate::year(qry_TLT_DS_CPUE_03$SampleDate)
 qry_TLT_DS_CPUE_04 <- qry_TLT_DS_CPUE_03 %>%
 	dplyr::group_by(Year, Survey, SampleDate, Station) %>%
 	dplyr::summarize(SumOfDS_Catch = sum(DS_Catch),
-									 Nt = sum(DS_Catch/VolumeOfWater * 10000))
+									 Nt = sum(DS_Catch/VolumeOfWater * 10000),
+									 .groups="keep")
 
 
 
@@ -192,7 +222,8 @@ qry_TLT_Index02 <- dplyr::inner_join(qry_TLT_Index01, qry_AvgDSLength,
 qry_TLT_Index02 <- qry_TLT_Index02 %>%
 	dplyr::group_by(Year, Survey, AvgOfLength) %>%
 	dplyr::summarize(AvgOfLog10Trans = mean(Log10Trans),
-									 Geomean = (10^(AvgOfLog10Trans))-1) %>%
+									 Geomean = (10^(AvgOfLog10Trans))-1,
+									 .groups = "keep") %>%
 	as.data.frame(.)
 
 
@@ -229,7 +260,8 @@ dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2019 & dsmIndexDf$Survey %in% 3:6] <- 
 dsmIndexDf <- dsmIndexDf %>%
 	dplyr::filter(UseforIndex) %>%
 	dplyr::group_by(Year) %>%
-	dplyr::summarize(Index=sum(Geomean)) %>%
+	dplyr::summarize(Index=sum(Geomean),
+	                 .groups="keep") %>%
 	dplyr::ungroup() %>%
 	dplyr::mutate(Index = round(Index,1)) %>%
 	as.data.frame(.)
@@ -246,8 +278,8 @@ SELECT Year([SampleDate]) AS [Year], Survey.Survey, FishSample.FishCode,
 Avg(FishLength.Length) AS AvgOfLength
 FROM (((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
 Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN ((FishSample
-INNER JOIN FishLength ON FishSample.FishSampleID=FishLength.FishSampleID) INNER JOIN LabSample ON
-FishSample.LabSampleID=LabSample.LabSampleID) ON Gear.GearID=LabSample.GearID
+INNER JOIN FishLength ON FishSample.FishSampleID=FishLength.FishSampleID)) 
+ON Gear.GearID=FishSample.GearID
 WHERE (((FishLength.Length)<60))
 GROUP BY Year([SampleDate]), Survey.Survey, FishSample.FishCode
 HAVING (((FishSample.FishCode)=2))
@@ -277,10 +309,9 @@ ORDER BY Survey.SampleDate, Survey.Survey, Station.Station, Tow.TowNum;
 qry_TLT_LS_CPUE_02 <- DBI::dbGetQuery(con, "
 SELECT Survey.SampleDate, Station.Station, Tow.TowNum, Count(FishLength.Length) AS CountOfLength,
 FishCodes.[Common Name], FishSample.Catch, FishSample.FishCode
-FROM ((((((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
-Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN LabSample
-ON Gear.GearID=LabSample.GearID) INNER JOIN FishSample ON
-LabSample.LabSampleID=FishSample.LabSampleID) INNER JOIN FishCodes ON
+FROM (((((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
+Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN 
+FishSample ON Gear.GearID=FishSample.GearID) INNER JOIN FishCodes ON
 FishSample.FishCode=FishCodes.[Fish Code]) INNER JOIN FishLength ON
 FishSample.FishSampleID=FishLength.FishSampleID
 WHERE (((FishLength.Length)<60))
@@ -309,7 +340,8 @@ qry_TLT_LS_CPUE_03$Year <- lubridate::year(qry_TLT_LS_CPUE_03$SampleDate)
 qry_TLT_LS_CPUE_04 <- qry_TLT_LS_CPUE_03 %>%
 	dplyr::group_by(Year, Survey, SampleDate, Station) %>%
 	dplyr::summarize(SumOfLS_Catch = sum(LS_Catch),
-									 Nt = sum(LS_Catch/VolumeOfWater * 10000))
+									 Nt = sum(LS_Catch/VolumeOfWater * 10000),
+									 .groups="keep")
 
 
 qry_TLT_LS_CPUE <- dplyr::inner_join(qry_TLT_LS_CPUE_04, qry_MaxofTow,
@@ -332,7 +364,8 @@ qry_TLT_Index02_LFS <- dplyr::inner_join(qry_TLT_Index01_LFS, qry_AvgLSLength,
 qry_TLT_Index02_LFS <- qry_TLT_Index02_LFS %>%
 	dplyr::group_by(Year, Survey, AvgOfLength) %>%
 	dplyr::summarize(AvgOfLog10Trans = mean(Log10Trans),
-									 Geomean = (10^(AvgOfLog10Trans))-1) %>%
+									 Geomean = (10^(AvgOfLog10Trans))-1,
+									 .groups="keep") %>%
 	as.data.frame(.)
 
 
@@ -342,7 +375,8 @@ split(lfsIndexDf, lfsIndexDf$Year)
 lfsIndexDf <- lfsIndexDf %>%
 	dplyr::filter(Survey %in% 1:4) %>%
 	dplyr::group_by(Year) %>%
-	dplyr::summarize(Index=sum(Geomean)) %>%
+	dplyr::summarize(Index=sum(Geomean),
+	                 .groups="keep") %>%
 	dplyr::ungroup() %>%
 	dplyr::mutate(Index = round(Index,1)) %>%
 	as.data.frame(.)
@@ -351,15 +385,20 @@ lfsIndexDf
 
 
 ##########################################################################
-## Disconnect from database, delete database, and save csv files:
+## Save reduced data files:
+
+write.csv(dsmIndexDf, file.path(thisDataRoot,"20mm_DSM_index.csv"), row.names=FALSE)
+write.csv(lfsIndexDf, file.path(thisDataRoot,"20mm_LFS_index.csv"), row.names=FALSE)
+
+
+##########################################################################
+## Disconnect from database and remove original files:
 
 DBI::dbDisconnect(conn=con)
 
 unlink(localZipFile)
 unlink(localDbFile)
 
-write.csv(dsmIndexDf, file.path(thisDataRoot,"20mm_DSM_index.csv"), row.names=FALSE)
-write.csv(lfsIndexDf, file.path(thisDataRoot,"20mm_LFS_index.csv"), row.names=FALSE)
 
 
 

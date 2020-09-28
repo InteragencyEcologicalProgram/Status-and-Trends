@@ -1,0 +1,72 @@
+--- 
+title: "IEP Seasonal Monitoring Report: Spring 2018"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: https://github.com/InteragencyEcologicalProgram/Status-and-Trends
+description: "This report shows trends in water quality, plankton, and fish across multiple IEP surveys for March through May of 2018."
+---
+
+
+# Overview {-}
+
+:::::: {.columns}
+::: {.column width="20%"}
+```{r fig.height=8, echo=FALSE, fig.cap="IEP logo"}
+knitr::include_graphics(file.path("figures","IEP_logo_updated.png"))
+```
+:::
+
+::: {.column width="0%"}
+
+:::
+
+::: {.column width="80%"}
+#### Interagency Ecological Program for the San Francisco Estuary  {-}
+This report shows trends in water quality, plankton, and fish across multiple IEP 
+surveys for March through May of 2018.
+:::
+::::::
+
+
+:::::: {.columns}
+::: {.column width="50%"}
+<h2>Regions of the Estuary</h2>
+:::
+
+::: {.column width="50%"}
+<h2>Delta Outflow</h2>
+:::
+::::::
+
+
+:::::: {.columns-nocenter}
+::: {.column width="50%"}
+```{r echo=FALSE}
+knitr::include_graphics(file.path("figures","map.png"))
+```
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE}
+knitr::include_graphics(file.path("figures","spring_outflow_update.png"))
+```
+
+- Freshwater flow influences water quality, plankton, and fish populations.
+- Spring flow is driven primarily by rainfall, snowmelt, and upstream dam releases.
+- The spring of 2018 had somewhat slightly lower outflow than average.
+:::
+::::::
+
+
+```{block, type='disclaimer'}
+Disclaimer: While substantial efforts are made to ensure the accuracy of these data, 
+complete accuracy of data sets cannot be guaranteed. This report was developed by the 
+IEP Synthesis Team. For questions, comments, or corrections, contact 
+Rosemary Hartman – Rosemary.Hartman@water.ca.gov
+```
+
+

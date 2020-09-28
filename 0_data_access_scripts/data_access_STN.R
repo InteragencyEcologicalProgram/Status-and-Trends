@@ -1,6 +1,6 @@
 ## Data retrieval script for CDFW's STN Survey.
 
-library(tidyverse)
+##########################################################################
 
 thisDataRoot <- file.path(data_root,"STN")
 
@@ -18,6 +18,9 @@ dsmIndexDf <- rawHTML %>%
 
 names(dsmIndexDf) <- c("Year","Index")	
 dsmIndexDf
+
+##########################################################################
+## Save data file:
 
 write.csv(x=dsmIndexDf, file=file.path(thisDataRoot,"STN_DSM_indices.csv"), 
 					row.names=FALSE)

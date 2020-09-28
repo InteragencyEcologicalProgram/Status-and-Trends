@@ -1,0 +1,85 @@
+--- 
+pagetitle: "Zooplankton"
+---
+
+
+# Zooplankton {#zooplankton}
+
+### Interagency Ecological Program Spring Season report
+
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+## Background
+
+
+* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling in San Pablo Bay did not begin until 1998. 
+* Zooplankton are an important food source for pelagic fish. 
+* Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
+* Biomass in Spring tends to be higher than Winter, but lower than Summer. 
+
+:::
+
+::: {.column width="30%"}
+
+
+
+Copepod
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+knitr::include_graphics("figures/copepod.jpg")
+```
+
+
+Mysid
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+knitr::include_graphics("figures/mysid.jpg")
+```
+
+
+:::
+::::::
+
+
+## Average Spring Zooplankton Biomass by Region 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average spring zooplankton biomass in San Pablo Bay from 1975 to 2018. Values range from 5 to 25.", echo=FALSE}
+knitr::include_graphics(file.path("figures/zoops_splspring.png"))
+```
+
+In 2018, San Pablo Bay had much lower than average biomass, mostly calanoid copepods
+
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2018. Values range from 5 to 45 with much higher biomass before 1986.", echo=FALSE}
+knitr::include_graphics(file.path("figures/zoops_ssspring.png"))
+```
+
+In 2018, Suisun Bay also had much lower than average total biomass.
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r echo=FALSE, fig.cap= "Graph of average spring zooplankton biomass in the Delta from 1975 to 2018. Values range from 3.5 to 39."}
+knitr::include_graphics(file.path("figures/zoops_dtspring.png"))
+```
+
+In 2018, the Delta also had much lower than average total biomass. 
+
+:::
+
+::::::
+
+```{block, type='disclaimer'}
+For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. 
+```

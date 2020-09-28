@@ -5,7 +5,7 @@
 ## The main files are probably too large to store on GitHub, so filter now and 
 ## save smaller csv files.
 
-library(tidyverse)
+##########################################################################
 
 thisDataRoot <- file.path(data_root,"DJFMP")
 
@@ -25,6 +25,7 @@ seineFile <- file.path(thisDataRoot,
 taxonomyFile <- file.path(thisDataRoot,"DJFMP_Fish_Taxonomy.csv")
 siteFile <- file.path(thisDataRoot,"DJFMP_Site_Locations.csv")
 
+
 ##########################################################################
 ## Retrieve data from EDI:
 
@@ -39,10 +40,15 @@ trawlDfRaw_1 <- read.csv(trawlFile1, stringsAsFactors=FALSE)
 trawlDfRaw_2 <- read.csv(trawlFile2, stringsAsFactors=FALSE)
 siteLatLong <- read.csv(siteFile, stringsAsFactors=FALSE) 
 
-##########################################################################
-## Beach Seine:
 
-seineDf <- seineDfRaw %>%
+##########################################################################
+## Create reduced data files:
+
+## Each record in the original data represents a unique 
+## sample-species-length-race-etc. Group the data to reduce size.
+
+## Beach Seine:
+seineData <- seineDfRaw %>%
 	dplyr::group_by(Location, RegionCode, StationCode, SampleDate, SampleTime,
 									MethodCode, GearConditionCode, TowNumber, Volume, CommonName, 
 									RaceByLength) %>% 
@@ -51,51 +57,19 @@ seineDf <- seineDfRaw %>%
 	dplyr::ungroup() %>% 
 	as.data.frame(.)
 
-seineDf$Month <- lubridate::month(seineDf$SampleDate)
-seineDf$Year <- lubridate::year(seineDf$SampleDate)
+unique(seineData$MethodCode)
+unique(seineData$GearConditionCode)
 
-unique(seineDf$MethodCode)
-unique(seineDf$GearConditionCode)
-
-## Exclude DJFMP's region 1, which is north of Sacramento:
-seineDf <- subset(seineDf, RegionCode != 1)
-
-# # ## Maybe keep 1995+ as a lazy way of dealing with sampling site inconsistencies:
-# # seineDf <- subset(seineDf, Year >= 1995)
-
-## Fill in missing volumes with an overall average:
-unique(seineDf$Volume)
-seineDf$Volume[is.na(seineDf$Volume)] <- mean(seineDf$Volume, na.rm=TRUE)
-
-## Add lat/long:
-seineDf <- dplyr::left_join(
-	seineDf, 
-	siteLatLong[ ,c("StationCode","latitude_location","longitude_location")],
-	by="StationCode"
-)
-
-## Define spring data:
-seineDf_spring <- subset(seineDf, Month %in% 3:5)
-write.csv(seineDf_spring, file.path(thisDataRoot,"springReportData_DJ_seine.csv"), 
-          row.names=FALSE)
-
-## Define summer data:
-seineDf_summer <- subset(seineDf, Month %in% 6:8)
-write.csv(seineDf_summer, file.path(thisDataRoot,"summerReportData_DJ_seine.csv"), 
-          row.names=FALSE)
-
-
-##########################################################################
+	
 ## Chipps Trawl:
-
 allTrawlRaw <- rbind(trawlDfRaw_1, trawlDfRaw_2)
-unique(allTrawlRaw$Location)
-unique(allTrawlRaw$MethodCode)
 
+unique(allTrawlRaw$Location)
 unique(allTrawlRaw$MethodCode)
 unique(allTrawlRaw$GearConditionCode)
 
-chippsDf <- allTrawlRaw %>%
+
+chippsData <- allTrawlRaw %>%
 	dplyr::filter(Location == "Chipps Island" & MethodCode == "MWTR" & 
 								GearConditionCode %in% 1:3) %>%
 	dplyr::group_by(Location, RegionCode, StationCode, SampleDate, SampleTime,
@@ -106,28 +80,16 @@ chippsDf <- allTrawlRaw %>%
 	dplyr::ungroup() %>% 
 	as.data.frame(.)
 
-chippsDf$Month <- lubridate::month(chippsDf$SampleDate)
-chippsDf$Year <- lubridate::year(chippsDf$SampleDate)
+unique(chippsData$MethodCode)
+unique(chippsData$Location)
 
-unique(chippsDf$MethodCode)
-unique(chippsDf$Location)
-	
-# # ## Maybe keep 1995+ for consistency with seine figure:
-# # chippsDf <- subset(chippsDf, Year >= 1995)
 
-## Fill in missing volumes with an overall average:
-any(is.na(unique(chippsDf$Volume)))
-chippsDf$Volume[is.na(chippsDf$Volume)] <- mean(chippsDf$Volume, na.rm=TRUE)
+##########################################################################
+## Save reduced data files:
 
-## Define spring data:
-chippsDf_spring <- subset(chippsDf, Month %in% 3:5)
-write.csv(chippsDf_spring, file.path(thisDataRoot,"springReportData_DJ_Chipps.csv"), 
-					row.names=FALSE)
+write.csv(seineData, file.path(thisDataRoot,"seineData.csv"), row.names=FALSE)
+write.csv(chippsData, file.path(thisDataRoot,"chippsData.csv"), row.names=FALSE)
 
-## Define summer data:
-chippsDf_summer <- subset(chippsDf, Month %in% 6:8)
-write.csv(chippsDf_summer, file.path(thisDataRoot,"summerReportData_DJ_Chipps.csv"), 
-					row.names=FALSE)
 
 ##########################################################################
 ## Remove large files:
@@ -136,5 +98,5 @@ unlink(trawlFile1)
 unlink(trawlFile2)
 unlink(seineFile)
 unlink(taxonomyFile)
-unlink(siteFile)
+# unlink(siteFile)
 

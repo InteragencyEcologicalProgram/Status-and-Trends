@@ -1,9 +1,0 @@
-Taxname,Species,SpeciesCode,Level,Preservative,Type,N,Min length,Max length,a,b,Reference
-Hyperacanthomysis longirostris,H_longirostris,Ab,Species,Formalin,Dry,200,2,9,0.0103,2.2593,CDFW unpublished
-Hyperacanthomysis longirostris,H_longirostris,Ab,Species,Ethanol,Wet,50,3.3,9.5,0.00002869,2.59949607,CDFW unpublished 2020
-Hyperacanthomysis longirostris,H_longirostris,Ab,Species,Formalin,Wet,100,2.9,11,0.0000035,3.46332039,CDFW unpublished 2020
-Neomysis mercedis,A_hwanhaiensis,Ah,Species,Formalin,Dry,700,2,16,0.0012,3.2533,
-Neomysis mercedis,D_holmquistae,Dh,Species,Formalin,Dry,700,2,16,0.0012,3.2533,
-Neomysis mercedis,N_kadiakensis,Nk,Species,Formalin,Dry,700,2,16,0.0012,3.2533,CDFW unpublished
-Neomysis mercedis,N_mercedis,Nm,Species,Formalin,Dry,700,2,16,0.0012,3.2533,CDFW unpublished
-Unidentified,Unidentified_mysid,Unid,Species,Formalin,Dry,700,2,16,0.0012,3.2533,

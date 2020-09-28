@@ -1,8 +1,11 @@
 ## Data retrieval script for CDFW's SKT Survey.
+
 library(dplyr)
 library(RODBC)
 library(DBI)
 library(odbc)
+
+##########################################################################
 
 thisDataRoot <- file.path(data_root,"SKT")
 
@@ -25,6 +28,53 @@ download.file(url=surveyURL, destfile=localZipFile)
 localDbFile <- unzip(zipfile=localZipFile, exdir=thisDataRoot)
 
 ##########################################################################
+## Retrieve SKT data:
+
+## Using the same volume calculations as a query that Lauren Damon sent me 
+## some years ago.
+dbString <- paste0("Driver={Microsoft Access Driver (*.mdb, *.accdb)};",
+									 "Dbq=",localDbFile)
+con <- DBI::dbConnect(drv=odbc::odbc(), .connection_string=dbString)
+DBI::dbListTables(con)
+
+skt_sample <- DBI::dbReadTable(con,"tblsample")
+skt_catch <- DBI::dbReadTable(con,"tblcatch")
+skt_organism <- DBI::dbReadTable(con,"tblorganismcodes")
+skt_stn <- DBI::dbReadTable(con,"lktblstationsskt")
+
+## Disconnect from database:
+DBI::dbDisconnect(conn=con)
+
+sktData <- dplyr::left_join(skt_catch, skt_organism, by="OrganismCode")
+sktData <- dplyr::inner_join(skt_sample, sktData, by="SampleRowID")
+
+
+##########################################################################
+## Save reduced data files:
+
+write.csv(sktData, file.path(thisDataRoot,"sktData.csv"), row.names=FALSE)
+
+
+##########################################################################
+## Remove original files:
+
+unlink(localZipFile)
+unlink(localDbFile)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # #figure out how to connect to an access database
 
@@ -79,89 +129,3 @@ localDbFile <- unzip(zipfile=localZipFile, exdir=thisDataRoot)
   # }
 # }
 # skt_sample <- access_query_32(db_table ="skt_tblsample")
-
-
-## Get SKT data. Using the same volume calculations as a query that Lauren Damon 
-## sent me some years ago.
-dbString <- paste0("Driver={Microsoft Access Driver (*.mdb, *.accdb)};",
-									 "Dbq=",localDbFile)
-con <- DBI::dbConnect(drv=odbc::odbc(), .connection_string=dbString)
-DBI::dbListTables(con)
-
-skt_sample <- DBI::dbReadTable(con,"tblsample")
-skt_catch <- DBI::dbReadTable(con,"tblcatch")
-skt_organism <- DBI::dbReadTable(con,"tblorganismcodes")
-skt_stn <- DBI::dbReadTable(con,"lktblstationsskt")
-
-## Disconnect from database:
-DBI::dbDisconnect(conn=con)
-
-skt_catch <- dplyr::left_join(skt_catch, skt_organism, by="OrganismCode")
-skt_catch <- dplyr::inner_join(skt_sample, skt_catch, by="SampleRowID")
-
-skt_catch <- data.frame(skt_catch)
-skt_catch$SampleDate <- as.Date(as.character(skt_catch$SampleDate))
-skt_catch$SampleTimeStart <- as.character(skt_catch$SampleTimeStart)
-skt_catch$SampleTimeEnd <- as.character(skt_catch$SampleTimeEnd)
-skt_catch$Month <- lubridate::month(skt_catch$SampleDate)
-skt_catch$Year <- lubridate::year(skt_catch$SampleDate)
-skt_catch$MeterCounts <- with(skt_catch, ifelse(MeterEnd < MeterStart, 
-                                                ((1000000-MeterStart) + MeterEnd), 
-                                                (MeterEnd - MeterStart)))
-skt_catch$Volume_cubicm <- skt_catch$MeterCounts*0.02687*13.95
-
-
-catch_mat <- skt_catch %>%
-  group_by(Year, Month, SurveyNumber, SampleDate, StationCode,
-           SampleTimeStart, SampleTimeEnd, Volume_cubicm) %>%
-  summarize(DeltaSmelt=sum(Catch[CommonName == "delta smelt"]),
-            .groups="keep") %>%
-  ungroup()
-
-## Recreate SKT index (see "MEMO2015 SKT Delta Smelt Index.pdf" for instructions 
-## on how to define the regions and calculate the index):
-region_map <- list("Confluence and West"=c("340","405","411","418","501","504","508",
-                                           "513","519","520","602","606","609","610",
-                                           "801"),
-                   "Sacramento River System"=c("704","706","707","711","712","713",
-                                               "715","716","724"),
-                   "San Joaquin River System"=c("804","809","812","815","902","906",
-                                                "910","912","914","915","919","920",
-                                                "921","922","923"))
-region_map_inverse <- gsub("[0-9]+","",names(unlist(region_map)))
-names(region_map_inverse) <- unlist(region_map)
-
-## Keep the same surveys and use the same regions as CDFW:
-catch_mat_sub <- catch_mat %>%
-  filter(as.character(StationCode) %in% names(region_map_inverse) & 
-           SurveyNumber %in% 1:4) %>%
-  mutate(Region=region_map_inverse[as.character(StationCode)])
-
-## Calculate the index:
-skt_index_df <- catch_mat_sub %>%
-  group_by(Year, SurveyNumber, Region, StationCode) %>%
-  summarize(Dens=sum(DeltaSmelt)/sum(Volume_cubicm), 
-            .groups="keep") %>%
-  ungroup() %>%
-  group_by(Year, SurveyNumber, Region) %>%
-  summarize(Dens=mean(Dens), 
-            .groups="keep") %>%
-  ungroup() %>%
-  group_by(Year) %>%
-  summarize(Index=10000*sum(Dens), 
-            .groups="keep") %>%
-  ungroup()
-
-## SKT's methods were standardized by 2004. I think that's why they don't calculate 
-## an index prior to that.
-skt_index_df$Index[skt_index_df$Year <= 2003] <- NA
-skt_index_df
-
-##########################################################################
-## Delete database and save csv file to avoid storing a copy of the database
-## on GitHub.
-
-unlink(localZipFile)
-unlink(localDbFile)
-
-write.csv(skt_index_df, file.path(thisDataRoot,"skt_dsm_index.csv"), row.names=FALSE)

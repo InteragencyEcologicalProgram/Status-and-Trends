@@ -1,0 +1,77 @@
+--- 
+pagetitle: "Water Temperature"
+---
+
+
+# Water Temperature {#water-temperature}
+
+### Interagency Ecological Program Spring Season report
+
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+## Background
+
+* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
+* Fish growth and reproduction is highest in certain temperature ranges.
+* Increasing Spring temperatures may lower Delta Smelt reproduction.
+* Spring temperatures are lower closer to the ocean and slightly higher in the Delta.
+
+:::
+
+::: {.column width="30%"}
+
+
+
+
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a thermometer in water", echo=FALSE}
+knitr::include_graphics("figures/thermometer.png")
+```
+:::
+::::::
+
+
+## Temperature by Region 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average spring water temperature in San Pablo Bay from 1975 to 2018. Values range from 13 to 18.", echo=FALSE}
+knitr::include_graphics(file.path("figures/temp_splspring.png"))
+```
+
+In 2018, San Pablo Bay temperatures were similar to the long-term average.
+
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average spring water temperature in Suisun from 1975 to 2018. Values range from 13 to 18.", echo=FALSE}
+knitr::include_graphics(file.path("figures/temp_ssspring.png"))
+```
+
+In 2018, Suisun Bay was similar to the long-term average. 
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r echo=FALSE, fig.cap= "Graph of average spring water temperature in the Delta from 1975 to 2018. Values range from 13 to 18."}
+knitr::include_graphics(file.path("figures/temp_dtspring.png"))
+```
+
+In 2018, the Delta was slightly cooler than average.
+
+:::
+
+::::::
+
+```{block, type='disclaimer'}
+For more information see: Jeffries, et al.. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. 
+```
+ 
