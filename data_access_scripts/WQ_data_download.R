@@ -12,12 +12,11 @@ library(smonitr)
 #read in all the excel files. It's 10 years at a time
 #And field data and lab data are seperate.
 
-EMPField = get_baydeltalive_data("00c870b6fdc0e30d0f92d719984cfb44",
-                                 "application/vnd.ms-excel", "Field_Data_[0-9]{4}-[0-9]{4}x*",
+EMP = get_baydeltalive_data("00c870b6fdc0e30d0f92d719984cfb44",
+                                 "application/vnd.ms-excel", 
+                                 c("Field_Data_[0-9]{4}-[0-9]{4}x*","Lab_Data_[0-9]{4}-[0-9]{4}x*"),
                                  parse_remote_excel, guess_max = 100000L)
 
-#Error in .f(.x[[i]], ...) : 
-#  https://emp.baydeltalive.com/assets/00c870b6fdc0e30d0f92d719984cfb44/application/vnd.ms-excel/Field_Data_1975-1987x.xlsx does not appear to be a valid Excel file.
 
 url <- "https://emp.baydeltalive.com/assets/00c870b6fdc0e30d0f92d719984cfb44/application/vnd.ms-excel/Lab_Data_1985-1995x.xlsx"
 destfile <- "Lab_Data_1985_1995x.xlsx"
@@ -88,13 +87,13 @@ Field = pivot_longer(Field_Data_2000_2018x[,c(1:12, 27:29, 32)],
 names(Field) = c("StationCode", "SampleDate", "AnalyteName", "Result")
 
 #Bind all the data files together.
-FieldData = rbind(Field_Data_1975_1987x, Field_Data_1988_2006x[,-17]) %>%
+FieldData = rbind(EMP$`Field_Data_1975-1987x`, EMP$`Field_Data_1988-2006x`[,-17]) %>%
   filter(SampleDate < "2000-01-01", Matrix == "Water") %>%
   select(SampleDate, StationCode, Result, AnalyteName)
 
 FieldData2 = rbind(Field, FieldData)
 
-LabData = rbind(Lab_Data_1975_1984x, Lab_Data_1985_1995x, Lab_Data_1996_2012x) %>%
+LabData = rbind(EMP$`Lab_Data_1975-1984x`, EMP$`Lab_Data_1985-1995x`, EMP$`Lab_Data_1996-2012x`) %>%
   select(SampleDate, StationCode, Result, ConstituentName)
 LabData = rename(LabData, AnalyteName = ConstituentName)
 
