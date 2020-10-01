@@ -141,7 +141,7 @@ allplots = function(data, param, reportyear){
     geom_line(colour="black")+geom_point(colour="black") +
     geom_hline(data = filter(wqsum2, AnalyteName == param),
                aes(yintercept = value), size = 0.9, color = "red", linetype = "dashed")+
-    theme_smr() + facet_grid(quarter~region,
+    smr_theme() + facet_grid(quarter~region,
                              labeller = as_labeller(
                                c(region_names,season_names))) +
     theme(legend.position="none") + 
