@@ -95,6 +95,9 @@ tot$region<-factor(ifelse(tot$long < -122.216, "spl",
                            ifelse(tot$long > -121.829, "dt",NA))) )
 
 
+foo = group_by(tot, region, year) %>%
+  summarize(stas = length(unique(StationCode)))
+
 #generate means by region, year, quarter, and AnalyteName
 wqsum<-aggregate(value~region+qyear+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
 wqsum$AnalyteName<-as.factor(wqsum$AnalyteName)

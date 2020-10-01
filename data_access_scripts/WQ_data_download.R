@@ -5,6 +5,7 @@ library(curl)
 library(tidyverse)
 library(readr)
 library(readxl)
+library(lubridate)
 
 
 #read in all the excel files. It's 10 years at a time
@@ -106,3 +107,5 @@ WQ_all = rbind(LabData, FieldData2)
 #save the result
 write.csv(WQ_all, "./data/WQ_Discrete_1975-2018.csv", row.names = F)
 
+
+            

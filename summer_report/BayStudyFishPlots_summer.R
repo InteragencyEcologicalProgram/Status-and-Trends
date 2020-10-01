@@ -30,6 +30,7 @@ load(file = paste0(sharepoint_path, "/BayStudyFish.RData"))
 #if that didin't work
 load(file = "data/BayStudyFish.RData")
 
+
 # 2. Clean Data and Calculate CPUE ----------------------------------------
 
 # Clean and modify midwater_trawl_data df
@@ -63,7 +64,7 @@ noranc_text_h <- tibble(
   label = "Data were not\ncollected until 1980"
 )
 
-# 3. Create Plots ---------------------------------------------------------
+# 4. Create Plots ---------------------------------------------------------
 
 # Plot for all years
 noranc_plot_all <- noranc_cpue %>% 
