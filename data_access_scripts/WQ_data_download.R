@@ -6,10 +6,18 @@ library(tidyverse)
 library(readr)
 library(readxl)
 library(lubridate)
+library(smonitr)
 
 
 #read in all the excel files. It's 10 years at a time
 #And field data and lab data are seperate.
+
+EMPField = get_baydeltalive_data("00c870b6fdc0e30d0f92d719984cfb44",
+                                 "application/vnd.ms-excel", "Field_Data_[0-9]{4}-[0-9]{4}x*",
+                                 parse_remote_excel, guess_max = 100000L)
+
+#Error in .f(.x[[i]], ...) : 
+#  https://emp.baydeltalive.com/assets/00c870b6fdc0e30d0f92d719984cfb44/application/vnd.ms-excel/Field_Data_1975-1987x.xlsx does not appear to be a valid Excel file.
 
 url <- "https://emp.baydeltalive.com/assets/00c870b6fdc0e30d0f92d719984cfb44/application/vnd.ms-excel/Lab_Data_1985-1995x.xlsx"
 destfile <- "Lab_Data_1985_1995x.xlsx"
@@ -60,27 +68,15 @@ Field_Data_1988_2006x <- read_excel(destfile,
                                                   "text", "text", "text", "text", "text", 
                                                   "text"))
 
-url <- "https://emp.baydeltalive.com/assets/e106ca2a359a122e74e33ef183a0fb4a/text/csv/SACSJ_delta_water_quality_2000_2018.csv"
-destfile <- "Field_Data_2000_2018x.csv"
-curl_download(url, destfile)
+#The 2000-2018 data is all on EDI
+Field_Data_2000_2018x = get_edi_data(458, "Water quality data from the California Bay-Delta watershed", guess_max = 1000000) 
 
+Field_Data_2000_2018x = Field_Data_2000_2018x$`Water quality data from the California Bay-Delta watershed`
 
 #Teh 2000-2018 data is in a totally different format, which is
 #annoying. They are working on updating the data and moving it
 #all to EDI, but they are starting with the most recent data
 #and moving backwards. 
-
-Field_Data_2000_2018x <- read_csv("Field_Data_2000_2018x.csv", 
-                                  col_types = cols(Chla = col_number(), DissAmmonia = col_number(),
-                                                   DOBottom = col_number(), DON = col_character(), 
-                                                   DOSurface = col_number(), Date = col_date(format = "%m/%d/%y"), 
-                                                   Depth = col_number(), FluorescenceSurface = col_number(), 
-                                                   Microcystis = col_number(), NorthLat = col_number(), 
-                                                   Pheophytin = col_number(), SampleDescription = col_character(), 
-                                                   Secchi = col_number(), Time = col_time(format = "%H:%M"), 
-                                                   TurbidityBottom = col_number(), TurbiditySurface = col_number(), 
-                                                   WTBottom = col_number(), WestLong = col_number(), 
-                                                   pHBottom = col_number()))
 
 #Switch the field data from wide to long.
 

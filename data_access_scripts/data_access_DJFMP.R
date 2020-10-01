@@ -6,10 +6,19 @@
 ## save smaller csv files.
 
 library(tidyverse)
+library(smonitr)
 
 projectRoot <- "."
 dataRoot <- file.path(projectRoot,"data")
 thisDataRoot <- file.path(dataRoot,"DJFMP")
+
+#Test the new get_edi_data function
+DJFMP = get_edi_data(244, fnames = c("1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv",
+                     "2002-2019_DJFMP_trawl_fish_and_water_quality_data.csv",
+                     "1976-2019_DJFMP_beach_seine_fish_and_water_quality_data.csv",
+                     "DJFMP_Fish_Taxonomy.csv",
+                     "DJFMP_Site_Locations.csv" ), guess_max = 100000)
+#bleh
 
 ## EDI URLs:
 inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/244/3/71c16ead9b8ffa4da7a52da180f601f4" 
