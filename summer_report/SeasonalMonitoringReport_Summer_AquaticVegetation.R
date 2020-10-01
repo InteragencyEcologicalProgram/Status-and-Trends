@@ -1,5 +1,5 @@
 #Seasonal Monitoring Report
-#Summer 2018
+#Summer 2019
 
 #Purpose: Create plot of invasive aquatic vegetation coverage through time
 #Data represent North + Central Delta only
@@ -52,39 +52,25 @@ percl<-gather(perc,type,perc,sav_perc:fav_perc,factor_key=T)
 #excludes WH and WP data
 ppercl<-subset(percl,type=="sav_perc" | type=="fav_perc")
 
-#year needs to be a factor in order for some of 'smonitr' plotting functions to work
-ppercl$year<-as.factor(ppercl$year)
 
-#create subset with acres 
-#alist<-c("year","sav_acres", "wp_acres",  "wh_acres",  "fav_acres")
-#acr<-veg[,alist]
-
-#convert data frame from wide to long
-#acrl<-gather(acr,type,acres,sav_acres:fav_acres,factor_key=T)
-
-#create subset that is just total SAV & FAV
-#excludes WH and WP data
-#sacrl<-subset(acrl,type=="sav_acres" | type=="fav_acres")
-
-#create subset that is just SAV, WH, and WP
-#excludes summarized FAV column
-#spp<-subset(acrl,type!="fav_acres")
-
-
-#3. Set up options for plots------------------------------
+#3. Set up options for plot------------------------------
 
 #calcuate mean for total veg % coverage (SAV + FAV) across all years
 #then plot this as a horizontal red dashed line
 
-#first sum FAV and SAV within each year
+#sum FAV and SAV within each year
 vtot<-setNames(aggregate(x=ppercl$perc,by=list(ppercl$year),FUN=sum), c("year","perc"))
-str(vtot)
+#str(vtot)
+
 #calculate mean
-mean(vtot$perc) #29.6
+mean(vtot$perc) #29.975
 
 #calculate percent change between long-term mean and most recent year
-(vtot$perc[length(vtot$perc)]-mean(vtot$perc))/mean(vtot$perc)*100 #31.75676
-#In 2018, the percentage of water area occupied by aquatic vegetation in the Delta was 32% higher than the long-term mean
+(vtot$perc[length(vtot$perc)]-mean(vtot$perc))/mean(vtot$perc)*100 #8.757298
+#In 2019, the percentage of water area occupied by aquatic vegetation in the Delta was 9% higher than the long-term mean
+
+(abs(vtot$perc[length(vtot$perc)]-mean(vtot$perc)))/sd(vtot$perc) #0.2372518
+#2019 value is 0.24 SD from mean
 
 #stack bar colors
 repcols<-c("sav_perc" = "#556B2F",
@@ -94,37 +80,34 @@ repcols<-c("sav_perc" = "#556B2F",
 ppercl$type = factor(ppercl$type, levels=c('fav_perc','sav_perc'))
 
 
-#4. Create plots---------------------------------------------
-
+#4. Create and export plot---------------------------------------------
 
 #stacked bar plot of percent coverage
 (pperc<-ggplot(data=ppercl,aes(x=year, y=perc,fill=type))
    #specifies the independent and dependent variables as well as groupings
     +geom_bar(position = "stack", stat = "identity",colour="grey25")
  #specifies that this is a stacked bar plot
-  +theme_smr()
+  +smr_theme()
  #implements standardized plot formatting
  +ylab("Water area occupied")  
  #y-axis label
- +scale_y_continuous(labels= function(x) paste0(x, "%"))
+  +smr_y_axis(labels= function(x) paste0(x, "%"))
  #adds a percent sign after each y axis tick label number
- +scale_fill_manual(name = "",labels=c("Floating","Submerged"),values=repcols, guide = guide_legend(keyheight = 0.5))
+ +scale_fill_manual(name = "",labels=c("Floating","Submerged")
+                    ,values=repcols, guide = guide_legend(keyheight = 0.5))
  #customizes names in legend key, specifies the custom color palette, and sets height of elements in legend
- +lt_avg_line(mean(vtot$perc))
+  +geom_hline(yintercept=mean(vtot$perc), color = "red", linetype="dashed", size=0.9)
  #adds horizontal line to plot to indicate long term average for data
- +std_x_axis_rec_years(2018, x_scale_type= "discrete")
+ +smr_x_axis(2019, type = "recent", season="annual")
  #implements standardized x-axis range of years
- +missing_data_symb(ppercl,year,2018, symb_size = 2)
- #adds symbols anywhere there is missing data
-  +std_x_axis_label("annual")
- #adds "Year" as x-axis label
- +theme(
-   legend.box.spacing = unit(0, units = "cm")
-   ,plot.margin = margin(t=0,r=0,b=0,l=0)
-   )
+  +stat_missing(size=2, nudge_y=1.25)
+  #adds symbols for missing data, sets point size, and nudge the symbol a little above x-axis
+  +theme(
+  legend.box.spacing = unit(0, units = "cm")
+  ,plot.margin = margin(t=0,r=0,b=0,l=0)
+  )
  #reduces white space between legend and top of plot
   )
-
 
 #print plot
 
@@ -141,16 +124,4 @@ ggsave(
   height=7.2,
   path = plot_path 
   )
-#standard plot height is 6.8 cm; Rosie is using 7.5 cm in her plots I think to accommodate the legend
-
-
-#stacked bar plot of acres: FAV and SAV
-
-#(pacr<-ggplot(sacrl,aes(x=year, y=acres))+
-#  geom_col(aes(fill=type))+theme_iep()
-#  )
-
-
-
-
-
+#standard plot height is 6.8 cm; Sam is using 7.5 cm in her plots I think to accommodate the legend
