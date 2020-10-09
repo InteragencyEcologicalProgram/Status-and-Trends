@@ -172,9 +172,9 @@ WQplot = function(reg, quart, analyte, data, reportyear) {
   p_sec <- ggplot(dat, aes(x=qyear, y= value))+
     geom_line(colour="black", size = 0.9)+geom_point(colour="black", size = 1.6) +
     geom_hline(aes(yintercept = mean(value)), size = 0.9, color = "red", linetype = "dashed")+
-    theme_smr() + 
+    smr_theme() + 
     theme(legend.position="none") + 
-    std_x_axis_all_years(2018, "cont")+
+    smr_x_axis(2018, "all", season = )+
     scale_y_continuous(AnalyteName_labs[analyte] , limits=lims)+
     std_x_axis_label(season_names[quart])
     
