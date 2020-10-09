@@ -1,0 +1,6 @@
+Package: placeholder
+Type: Book
+Title: Spring Reprot 2018.
+Version: 0.0.1
+Imports: bookdown
+Remotes: rstudio/bookdown
