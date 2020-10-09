@@ -1,0 +1,78 @@
+--- 
+pagetitle: "Chlorophyll-a"
+---
+
+
+# Chlorophyll {#chlorophyll}
+
+### Interagency Ecological Program Spring Season report
+
+
+:::::: {.columns-nocenter}
+::: {.column width="70%"}
+## Background
+
+* Chlorophyll is an indicator of phytoplankton production, which is low during the Spring.
+* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
+* The invasion of the clam Potamocorbula amurensis caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
+
+
+:::
+
+::: {.column width="30%"}
+
+
+
+
+```{r fig.height=10, fig.align="center", fig.cap = "picture of phytoplankton", echo=FALSE}
+knitr::include_graphics("figures/phyto.png")
+```
+:::
+::::::
+
+
+## Average Spring Chlorophyll by Region 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __San Pablo Bay__ </center>
+```{r fig.cap= "Graph of average spring chlorophyll in San Pablo Bay from 1975 to 2018. Values range from 4 to 15.", echo=FALSE}
+knitr::include_graphics(file.path("figures/chla_splspring.png"))
+```
+
+In 2018, San Pablo Bay chlorophyll was similar to the long-term average.
+
+
+:::
+
+::: {.column width="30%"}
+<center> __Suisun__ </center>
+```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2018. Values range from 2 to 19.", echo=FALSE}
+knitr::include_graphics(file.path("figures/chla_ssspring.png"))
+```
+
+In 2018, Suisun Bay chlorophyll was also about average. 
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Delta__ </center>
+```{r echo=FALSE, fig.cap= "Graph of average spring chlorophyll in the Delta from 1975 to 2018. Values range from 3.5 to 29."}
+knitr::include_graphics(file.path("figures/chla_dtspring.png"))
+```
+
+In 2018, the Delta had lower clorophyll than average.
+
+:::
+
+::::::
+
+
+```{block, type='disclaimer'}
+For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20. 
+```
+ 

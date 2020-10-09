@@ -1,0 +1,86 @@
+--- 
+pagetitle: "Recent FIsh Trends"
+---
+
+
+# Recent Trends: Fish 2004-2018 {#fishrecent}
+
+### Interagency Ecological Program Spring Season report
+
+## Background
+
+* Delta Smelt and Longfin Smelt have been in decline since the early 2000s. The [CDFW 20mm Survey](https://wildlife.ca.gov/Conservation/Delta/20mm-Survey) was designed to sample post-larval and juvenile Delta Smelt, and samples in San Pablo, Suisun, and the Delta. 
+* Longfin Smelt frequently spawn further downstream than Delta Smelt, so the 20 mm Survey does not cover their entire range, but still provides an indication of population-level trends.
+* Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
+
+
+
+## Average fish abundance by species 
+
+
+:::::: {.columns-nocenter}
+
+::: {.column width="30%"}
+
+<center> __Delta Smelt__ </center>
+
+```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-delta-smelt-adult-60mm-small.jpg"))
+
+```
+
+
+```{r fig.cap= "Graph of post-larval Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE}
+knitr::include_graphics(file.path("figures/20mm_DSM_recent.png"))
+```
+
+The Delta Smelt 20mm index was zero in 2018, the lowest index on record. 
+
+:::
+
+::: {.column width="30%"}
+<center> __Longfin smelt__ </center>
+
+```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-longfin-smelt-adult-75mm-small.jpg"))
+
+```
+
+
+
+```{r fig.cap= "Graph of post-larval longfin smelt index from 2004-2018. Values range from 4 to 206.", echo=FALSE}
+knitr::include_graphics(file.path("figures/20mm_LFS_recent.png"))
+```
+
+Adult Longfin smelt abundance in 2018 was much lower than the long-term average.
+
+
+
+:::
+
+::: {.column width="30%"}
+
+<center> __Juvenile Winter-Run Chinook__ </center>
+```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=1, echo=FALSE}
+knitr::include_graphics(file.path("figures/fsd-chinook-salmon-smolt-stage-small.jpg"))
+
+```
+
+
+```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 2004 to 2018. Values range from 0.2 to 6."}
+knitr::include_graphics(file.path("..","figures/DJFMP_chinook_winterByLength_recyears.png"))
+```
+
+In 2018, juvenile winter-run salmon survival was about average.
+
+:::
+
+::::::
+
+
+
+
+```{block, type='disclaimer'}
+For more information see: Kwan, N., J. Jenkins, C. Stuart, A. Shakya, and B. Schreier. 2019. 2011-2016 Yolo Bypass Fisheries Monitoring Status and Trends Report. IEP Newsletter 36(1):27-36. 
+```
+ 
