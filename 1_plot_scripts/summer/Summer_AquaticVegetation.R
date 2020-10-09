@@ -8,6 +8,7 @@
 #Data acquired from Shruti Khanna (CDFW)
 
 #Author: Nick Rasmussen 
+#Updated: October 2, 2020
 
 #required packages
 library(scales) #modifying y axis to include '%'
@@ -95,12 +96,12 @@ ppercl$type = factor(ppercl$type, levels=c('fav_perc','sav_perc'))
  +scale_fill_manual(name = "",labels=c("Floating","Submerged")
                     ,values=repcols, guide = guide_legend(keyheight = 0.5))
  #customizes names in legend key, specifies the custom color palette, and sets height of elements in legend
-  +geom_hline(yintercept=mean(vtot$perc), color = "red", linetype="dashed", size=0.9)
+ +stat_lt_avg(aes(y = perc), data = vtot, inherit.aes = F)
  #adds horizontal line to plot to indicate long term average for data
  +smr_x_axis(2019, type = "recent", season="annual")
  #implements standardized x-axis range of years
-  +stat_missing(size=2, nudge_y=1.25)
-  #adds symbols for missing data, sets point size, and nudge the symbol a little above x-axis
+  +stat_missing(size=2, nudge_y=max(vtot$perc)*0.02)
+  #adds symbols for missing data, customizes symbol size, and nudged the symbol a little above x-axis (2% of y-axis range)
   +theme(
   legend.box.spacing = unit(0, units = "cm")
   ,plot.margin = margin(t=0,r=0,b=0,l=0)
