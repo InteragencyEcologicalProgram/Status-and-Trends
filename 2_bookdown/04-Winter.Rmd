@@ -546,7 +546,7 @@ knitr::include_graphics(file.path(fig_root_winter,"lonsme_plot_allYears.png"))
 :::
 ::: {.column800 class='col-3'}
 ```{r fig.cap= "Graph of juvenile winter-run chinook salmon CPUE in the Chipps Island Trawl.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_winter,"DJFMP_chinook_winterByLength_allyears.png"))
+knitr::include_graphics(file.path(fig_root_winter,"DJFMP_chinook_winterByLength_allyears_WN.png"))
 ```
 :::
 ::::

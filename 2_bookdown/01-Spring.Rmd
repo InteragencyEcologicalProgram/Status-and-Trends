@@ -560,7 +560,7 @@ knitr::include_graphics(file.path(fig_root_spring,"SpringRun_1966.png"))
 :::
 ::: {.column800 class='col-3'}
 ```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 1995 to 2018. Values range from 0.2 to 6.", class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_allyears.png"))
+knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_allyears_SP.png"))
 ```
 :::
 ::::
@@ -676,7 +676,7 @@ knitr::include_graphics(file.path(fig_root_spring,"20mm_LFS_recent.png"))
 :::
 ::: {.column800 class='col-3'}
 ```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 2004 to 2018. Values range from 0.2 to 6.", class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_recyears.png"))
+knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_recyears_SP.png"))
 ```
 :::
 ::::
@@ -695,7 +695,7 @@ knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2018, juvenile winter-run salmon survival was about average.</center>
+<center>In 2018, juvenile winter-run salmon catch was about average.</center>
 :::
 ::::
 
