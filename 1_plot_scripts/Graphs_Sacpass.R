@@ -4,30 +4,28 @@ source(file.path(data_access_root,"data_access_sacpass.R"))
 
 
 #Spring run salmon
-Spring$fyear = as.factor(Spring$Year)
-p_spch <- ggplot(filter(Spring, Year <= 2018), aes(x=fyear, y=sprinrun))+
+
+p_spch <- ggplot(Spring, aes(x=Year, y=sprinrun))+
     geom_bar(stat="identity") +
-    theme_smr() +
+    smr_theme() +
     theme(legend.position="none") + 
-    scale_y_continuous("Spring Run Chinook Adult Returns",limits=c(0, max(Spring$sprinrun))) +
-    std_x_axis_all_years(2018, "discrete") +
-  std_x_axis_label("spring")+
-  lt_avg_line(mean(Spring$sprinrun))
+    smr_y_axis(name = "Spring Run Chinook Adult Returns") +
+    smr_x_axis(report_year, type = "all", season = "spring") +
+  stat_lt_avg(aes(y = sprinrun))
 p_spch
 
 ggsave(p_spch, file="SpringRun_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = fig_root_spring)
 
 
 #Fall run salmon
-Fall$fyear = as.factor(Fall$Year)
-p_frch <- ggplot(Fall, aes(x=fyear, y=FallRun))+
+p_frch <- ggplot(Fall, aes(x=Year, y=FallRun))+
   geom_bar(stat="identity") +
-  theme_smr() +
+  smr_theme() +
   theme(legend.position="none") + 
-  scale_y_continuous("Fall Run Chinook Adult Returns",limits=c(0, max(Fall$FallRun))) +
-  std_x_axis_all_years(2018, "discrete") +
-  std_x_axis_label("fall")+
-  lt_avg_line(mean(Fall$FallRun))
+  smr_y_axis(name = "Fall Run Chinook Adult Returns") +
+  smr_x_axis(report_year, type = "all", season = "fall") +
+  stat_lt_avg(aes(y = FallRun))
+
 p_frch
 
 ggsave(p_frch, file="FallRun_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = fig_root_fall)
@@ -36,7 +34,6 @@ ggsave(p_frch, file="FallRun_1966.png", dpi=300, units="cm", width=9.3, height=6
 #Red Bluff
 
 redbluff = read.csv(file.path(data_root,"redbluff_all.csv"))
-str(redbluff)
 
 redbluff$Date = as.Date(redbluff$Date, format = "%Y-%m-%d")
 
@@ -51,42 +48,20 @@ RedWinter = filter(redbluff, Month == 12 | Month == 1 | Month == 2)
 RedWinter$Year2 = year(RedWinter$Date)
 RedWinter$Year2[which(RedWinter$Month== 1 | RedWinter$Month == 2)] = year(RedWinter$Date[which(RedWinter$Month== 1 | RedWinter$Month == 2)])-1
 
-RedWinter = filter(RedWinter, Year2 < 2018)
-
 #calculate mean passage
 meanwinter = group_by(RedWinter, Year2, runname) %>% summarize(meandaily = mean(Dailypassage, na.rm = T))
 
 
 #We just wanted winter run for the winter report
 Red = ggplot(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate"), aes(x = Year2, y = meandaily))
-redtest = Red + geom_bar(stat = "identity") + ylab("Estimated daily passage") + xlab("Year (December-January)") +
-  coord_cartesian(ylim = c(0, 4300))+
-  std_x_axis_all_years(2018)+
-  theme_smr() + annotate("text", label = ("Data were not collected until 2004"), x = 1980, y = 100, size = 2.5)
-
+redtest = Red + geom_bar(stat = "identity") + 
+ smr_y_axis(name = "Estimated daily passage") + 
+ smr_x_axis(report_year, type = "recent", season = "winter")+
+  smr_theme()+
+  stat_lt_avg(aes(y = meandaily))
 redtest
 
-ggsave(redtest, file="redbluff_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = fig_root_winter)
-
-#Calculate average
-MeanAll = mean(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate")$meandaily)
-
-
-#recent trends
-meanwinter$fyear = as.factor(meanwinter$Year2)
-Red = ggplot(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate"), aes(x = fyear, y = meandaily))
-redtest2 = Red + geom_bar(stat = "identity") + 
-  ylab("Estimated daily passage") + 
-  xlab("Year (December-January)") +
-  coord_cartesian(ylim = c(0, 4300))+
-  std_x_axis_rec_years(2018)+
-  std_x_axis_label("winter")+
-  geom_hline(aes(yintercept = MeanAll), linetype  = "dashed", col = "red", size = 0.9) +
-  theme_smr()
-
-redtest2
-
 #save it in the right place
-ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = fig_root_winter)
+ggsave(redtest, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = fig_root_winter)
 # ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = "report_bookdown/figures")
 
