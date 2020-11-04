@@ -5,7 +5,7 @@
 
 #Created by Nick Rasmussen
 #edited by Rosemary Hartman
-#last updated: 11/6/2019
+#last updated: 11/3/2020
 
 #geographic regions 
 #San Pablo: West of Carquinez straight
@@ -20,12 +20,13 @@ library(tidyr) #separate one column into two
 library(dplyr) #count()
 library(cowplot) #grid_plot()
 library(lubridate)
+library(smonitr)
 
 
 source(file.path(data_access_root,"WQ_data_download.R"))
 #or skip this if you've updated it recently and just do
-alldata = read.csv(file.path(data_root,"WQ_discrete_1975-2018.csv"), stringsAsFactors = F)
-alldata$SampleDate = as.Date(alldata$SampleDate)
+alldata = read.csv(file.path(data_root,"WQ_discrete_1975-2019.csv"), stringsAsFactors = F)
+alldata$Date = mdy(alldata$Date)
 
 #EMP WQ data (1975-2018)
 #alldata<- WQ_all
@@ -33,44 +34,10 @@ alldata$SampleDate = as.Date(alldata$SampleDate)
 
 #GPS coordinates of all sites
 siteloc<-read.csv(file.path(data_root,"wq_stations.csv")) 
-siteloc = mutate(siteloc, StationCode = site)
-
-#format date column so R recognizes it as such
-alldata$date<-as.POSIXct(alldata$SampleDate, format="%Y-%m-%d %H:%M:%S")
-#looks like it figured out that I wanted the time removed
-
-#convert value to numeric
-#this didn't happen automatically because of the text for values below detection limit
-alldata$value<-as.numeric(as.character(alldata$Result))
-#cases where value is below detection limit (ie, < R.L.) become NAs
-
-
-#reduce AnalyteName list to just those of interest: 
-#Field Water Temperature, Chlorophyll a, Field Secchi Depth, microcystis, Specific conductance
-
-alldat<-filter(alldata, AnalyteName %in% c( "Temperature" , "Secchi",  "Microcystis","SpCndSurface",
-                                            "WTSurface",
-                                         "Temperature" , "Secchi Depth", "Chlorophyll a", "Chla"))
-
-
-
-#rename AnalyteNames with simpler names
-params = data.frame(AnalyteName = c("Temperature" , "Secchi",  "Microcystis","SpCndSurface",
-                                    "WTSurface",
-                                    "Temperature" , "Secchi Depth", "Chlorophyll a", "Chla"),
-paramsshort = c("temp", "secchi","Microcystis","cond", "temp", "temp" , "secchi", "chla", "chla"))
-
-alldat = left_join(alldat, params, by = "AnalyteName") %>%
-  mutate(AnalyteName = paramsshort) %>%
-  mutate(paramsshort = NULL)
-
+siteloc = mutate(siteloc, Station = site)
 
 #add lat and long to alldat
-salldat<-left_join(alldat, siteloc)
-
-#look at combination of site and id and look at how many cases there are of each combo
-sites2<-table(salldat$id, salldat$StationCode)
-#there is a lot of variation in the number of observations per combo which is reasonable
+salldat<-left_join(alldata, siteloc)
 
 #remove rows in which site is NA (ie, those that weren't in the file with lat and long)
 tot<-salldat[!is.na(salldat$lat),]
@@ -78,7 +45,7 @@ tot<-salldat[!is.na(salldat$lat),]
 
 #create a month, year, and season column
 #the "+ 1/12" makes sure that December ends up as the first month of Q1 instead of Jan
-tot<- mutate(tot, month = month(tot$date), year = year(tot$date),
+tot<- mutate(tot, month = month(tot$Date), year = year(tot$Date),
              ym = as.yearmon(paste(month, year), "%m %Y"),
              yq = as.yearqtr(ym + 1/12), yq2 = yq) %>% 
   separate(yq2, c('qyear', 'quarter'), sep=" ")
@@ -92,33 +59,25 @@ tot$region<-factor(ifelse(tot$long < -122.216, "spl",
                     ifelse(tot$long > -122.216 & tot$long < -121.829, "ss",
                            ifelse(tot$long > -121.829, "dt",NA))) )
 
-
-foo = group_by(tot, region, year) %>%
-  summarize(stas = length(unique(StationCode)))
-
 #generate means by region, year, quarter, and AnalyteName
-wqsum<-aggregate(value~region+qyear+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
+wqsum<-aggregate(Result~region+qyear+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
 wqsum$AnalyteName<-as.factor(wqsum$AnalyteName)
 str(wqsum)
 
 
 #generate means by region, quarter, and AnalyteName
-wqsum2<-aggregate(value~region+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
+wqsum2<-aggregate(Result~region+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
 wqsum2$AnalyteName<-as.factor(wqsum2$AnalyteName)
 str(wqsum2)
 
 
 #create custom plot formatting function
-#source("winter_report/IEP_Status&Trends_util.R")
 
 #set up facet labels
 season_names<-c('Q1'="winter",'Q2'="spring",'Q3'="summer",'Q4'="fall")
 region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
-AnalyteName_labs = c("chlf" = "Chlorophyll Fluoresence (RFU)", 
-                   "chla" = "Chlorophyll-a (ug/L)",
+AnalyteName_labs = c( "chla" = "Chlorophyll-a (ug/L)",
                    "temp" = "Temperature (C)",
-                   "ammonia" = "Ammonium (mg/L)",
-                   "nit" = "Dissolved Nitrate + Nitrite (mg/L)",
                    "secchi" = "Secchi Depth (cm)")
 
 #set order of seasons and regions for plotting
@@ -135,16 +94,16 @@ wqsum$qyear<-as.integer(wqsum$qyear)
 
 allplots = function(data, param, reportyear){
   dat = filter(data, AnalyteName == param, qyear <= reportyear)
-  p <- ggplot(dat, aes(x=qyear, y=value))+
+  p <- ggplot(dat, aes(x=qyear, y=Result))+
     geom_line(colour="black")+geom_point(colour="black") +
     geom_hline(data = filter(wqsum2, AnalyteName == param),
-               aes(yintercept = value), size = 0.9, color = "red", linetype = "dashed")+
+               aes(yintercept = Result), size = 0.9, color = "red", linetype = "dashed")+
     smr_theme() + facet_grid(quarter~region,
                              labeller = as_labeller(
                                c(region_names,season_names))) +
     theme(legend.position="none") + 
-    scale_y_continuous(name = AnalyteName_labs[param],limits=c(0, max(dat$value)))+
-    scale_x_continuous("Year", limits=c(1966,2018))
+    scale_y_continuous(name = AnalyteName_labs[param],limits=c(0, max(dat$Result)))+
+    smr_x_axis(reportyear, type = "all", season = season_names[quarter])
   return(p)
 }
 
@@ -164,22 +123,21 @@ WQplot = function(reg, quart, analyte, data, reportyear) {
   
   #set up limits for plot based on the max and min for all years and regions
   dat2 = filter(data, AnalyteName == analyte)
-  lims = c(min(dat2$value), max(dat2$value))
+  lims = c(min(dat2$Result), max(dat2$Result))
     
     #make the plot
-  p_sec <- ggplot(dat, aes(x=qyear, y= value))+
+  p_sec <- ggplot(dat, aes(x=qyear, y= Result))+
     geom_line(colour="black", size = 0.9)+geom_point(colour="black", size = 1.6) +
-    geom_hline(aes(yintercept = mean(value)), size = 0.9, color = "red", linetype = "dashed")+
+    geom_hline(aes(yintercept = mean(Result)), size = 0.9, color = "red", linetype = "dashed")+
     smr_theme() + 
     theme(legend.position="none") + 
-    smr_x_axis(2018, "all", season = )+
-    scale_y_continuous(AnalyteName_labs[analyte] , limits=lims)+
-    std_x_axis_label(season_names[quart])
+    smr_x_axis(reportyear, type = "all", season = season_names[quart])+
+    scale_y_continuous(AnalyteName_labs[analyte] , limits=lims)
     
    return(p_sec)
   }
   
- 
+WQplot("dt","Q1", "chla", wqsum, report_year) 
 
 #function to plot all graphs for a particular season and analyte seperately
 plotall = function(quart, analyte, data, report_year) {
@@ -215,6 +173,6 @@ plotallseason = function(analyte, data, report_year){
 }
 
 #crank out the plots
-plotallseason("temp", wqsum, 2018)
-plotallseason("secchi", wqsum, 2018)
-plotallseason("chla", wqsum, 2018)
+plotallseason("temp", wqsum, report_year)
+plotallseason("secchi", wqsum, report_year)
+plotallseason("chla", wqsum, report_year)
