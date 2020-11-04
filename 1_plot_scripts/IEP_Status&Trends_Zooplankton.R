@@ -5,7 +5,7 @@
 
 #Created by Nick Rasmussen
 #librally updated by Rosemary Hartman
-#last updated: 9/3/2020
+#last updated: 11/4/2020
 
 #Clark-Bumpus Net: Calanoid copepods, Cladocerans, Cyclopoids (Acanthocyclops and other cyclopoids)
 #Rotifer pump: Cyclopoids (Oithona, Limnoithona)
@@ -24,19 +24,13 @@ library(lubridate)
 library(readxl)
 
 #import datasets----------------
+source("0_data_access_scripts/data_access_zoops.R")
+source("1_plot_scripts/mysid biomass.R")
 
-#Clark-Bumpus net survey data
-zoopcb<- read_excel(file.path(data_root,"1972-2019CBMatrix.xlsx"), 
-                    sheet = "CB CPUE Matrix 1972-2019", guess_max = 100000)
-zoopcb$Date = as.Date(zoopcb$SampleDate)
-zoopcb = rename(zoopcb, Station = StationNZ)
-
-#pump data
-zoopp<- read_excel(file.path(data_root,"1972-2019PumpMatrix.xlsx"), sheet =  "Pump CPUE Matrix 1972-2019", guess_max = 100000)
-zoopp$Date = as.Date(zoopp$SampleDate)
-
-#mysid net survey data
+#mysid net survey data through 2018
 mysid<-read.csv(file.path(data_root,"zoop_mysid.csv")) 
+mysid$SampleDate = mdy(mysid$SampleDate)
+
 
 #details of sampling station locations
 station<-read.csv(file.path(data_root,"zoop_stations.csv")) 
@@ -209,6 +203,7 @@ mmass$bpue<-mmass$bpue*1000
 
 #reduce bpue data set to just needed columns
 zoop3b<-subset(mmass,select=c("Year","Survey","Station", "Date","bpue"))
+zoop3b$Date = mdy(zoop3b$Date)
 
 #combine cpue and bpue data sets
 str(zoop3)
@@ -220,9 +215,7 @@ names(zoop3m)<-c("year","survey","station","cpue","date","bpue")
 #add a taxon column so that this data frame can be combined with the others
 zoop3m$taxon<-"mys"
 
-#format date
-zoop3m$date<-as.Date(zoop3m$date,format="%m/%d/%Y")
-
+#add in the 2019 biomass data.
 zoop3m = rbind(zoop3m, Mys2019b)
 #combine all zoop data sets
 zll = mutate(zll, taxon = cat, cat = NULL)
@@ -296,9 +289,9 @@ region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
 #All zoop BPUE (ug): facets of stacked line plots
 bpl<-ggplot(zmeans, aes(x = qyear, y = bpue, fill = taxon)) + 
     geom_area(position = 'stack')+
-    theme_smr()+
+    smr_theme()+
     #theme(legend.position="none") + 
-    scale_x_continuous("Year", limits=c(1966,2019)) +
+   smr_x_axis(report_year, type = "all", season = "spring") +
     facet_grid(quarter~region
                ,labeller = as_labeller(
                  c(region_names,season_names))) +
@@ -310,7 +303,7 @@ bpl<-ggplot(zmeans, aes(x = qyear, y = bpue, fill = taxon)) +
 bpl
 cpl<-ggplot(zmeans, aes(x = qyear, y = cpue, fill = taxon)) + 
   geom_area(position = 'stack')+
-  theme_smr()+
+  smr_theme()+
   #theme(legend.position="none") + 
   scale_x_continuous("Year", limits=c(1966,2018)) +
   facet_grid(quarter~region
@@ -331,10 +324,10 @@ zoops = function(reg, quart, data) {
   #make a plot
   bpl<-ggplot(dat, aes(x = qyear, y = bpue_mg, fill = taxon)) + 
     geom_area(position = 'stack')+
-    theme_smr()+
+   smr_theme()+
     theme(legend.position=c(0.5, 1.1), 
           legend.background=element_rect(fill=NULL, color=NULL), plot.margin = margin(1, 0.6, 0.1, 0.4, unit = "cm"))+
-    scale_x_continuous("Year", limits=c(1966,2019))  +
+    scale_x_continuous("Year", limits=c(1966,report_year))  +
     
     #add long-term average line
     geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
@@ -372,9 +365,7 @@ zoops = function(reg, quart, data) {
     ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
                        dpi=300, units="cm",width=9.3,height=7.5,
                        path = file.path(fig_root,season_names[quart]))
-    # ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
-           # dpi=300, units="cm",width=9.3,height=7.5,
-           # path = "./report_bookdown/figures")
+
   } else {
     bpl = bpl +  theme(legend.position = "none")
     ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
@@ -389,7 +380,7 @@ zoops = function(reg, quart, data) {
 }
 
 #filter to the report year 
-zmeans = filter(zmeans, qyear <= 2019)
+zmeans = filter(zmeans, qyear <= report_year)
 
 
 #winter zoops plot
@@ -434,12 +425,11 @@ zoops2 = function(quart, data) {
   #make a plot
   bpl<-ggplot(dat, aes(x = qyear, y = bpue_mg, fill = taxon)) + 
     geom_area(position = 'stack')+
-    theme_smr()+ facet_wrap(~region) +
+    smr_theme()+ facet_wrap(~region) +
     theme(legend.position="top", legend.box.spacing = unit(0, units = "cm"), 
           strip.background = element_blank(),
           strip.text = element_blank()) + 
-    std_x_axis_all_years(2019, "cont")  +
-    std_x_axis_label(season_names[quart]) +
+    smr_x_axis(report_year, type  = "all", season = season_names[quart])  +
     geom_hline(data = meanB, aes(yintercept = bpueM), size = 0.9, color = "red", linetype = "dashed")+
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
                       ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
@@ -508,74 +498,4 @@ ggsave(winter, file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,hei
 ggsave(fall, file="zoops_panel_fall.png", 
        dpi=300, units="cm",width=27.9,height=7.5,
        path = fig_root_fall)
-
-
-# ggsave(summer, file="zoops_panel_summer.png", 
-       # dpi=300, units="cm",width=27.9,height=7.5,
-       # path = "./report_bookdown/figures")
-
-# ggsave(spring, file="zoops_panel_spring.png", dpi=300, units="cm",width=27.9,height=7.5,
-       # path = "./report_bookdown/figures")
-
-# ggsave(winter, file="zoops_panel_winter.png", dpi=300, units="cm",width=27.9,height=7.5,
-       # path = "./report_bookdown/figures")
-
-# ggsave(fall, file="zoops_panel_fall.png", 
-       # dpi=300, units="cm",width=27.9,height=7.5,
-       # path = "./report_bookdown/figures")
-
-
-
-
-#####################################################################################
-#this is the old version that grobs them together, but i need to do something about the legend.
-
-
-bpl<-ggplot(filter(zmeans, taxon != "mys", quarter == "Q4"), aes(x = qyear, y = bpue_mg, fill = taxon)) + 
-  geom_area(position = 'stack')+
-  theme_smr()+ facet_wrap(~region) +
-  theme(legend.position="top", legend.box.spacing = unit(0, units = "cm"), 
-        strip.background = element_blank(),
-        strip.text = element_blank()) + 
-  std_x_axis_all_years(2018, "cont")  +
-#  std_x_axis_label(season_names["") +
-#  geom_hline(data = meanB, aes(yintercept = bpueM), size = 0.9, color = "red", linetype = "dashed")+
-  #scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-           #         ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))+
-  scale_y_continuous(expression(paste("Zooplankton Biomass (mg C/m"^" 3", ")")), 
-                     limits=c(0,max(zmeans$bpue_mg)))
-bpl
-
-
-
-bpl<-ggplot(filter(zmeans, quarter == "Q3", taxon != "mys"), aes(x = qyear, y = cpue, fill = taxon)) + 
-  geom_area(position = 'stack')+
-  theme_smr()+ facet_wrap(~region) +
-  theme(legend.position="top", legend.box.spacing = unit(0, units = "cm"), 
-        strip.background = element_blank(),
-        strip.text = element_blank()) + 
-  std_x_axis_all_years(2018, "cont") +
-  #  std_x_axis_label(season_names["") +
-  #  geom_hline(data = meanB, aes(yintercept = bpueM), size = 0.9, color = "red", linetype = "dashed")+
-  scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-           ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))#+
- # scale_y_continuous(expression(paste("Zooplankton Biomass (mg C/m"^" 3", ")")), 
-  #                   limits=c(0,max(zmeans$bpue_mg)))
-bpl
-
-
-bpl2<-ggplot(filter(zmeans, quarter == "Q3", taxon != "mys"), aes(x = qyear, y = bpue, fill = taxon)) + 
-  geom_area(position = 'stack')+
-  theme_smr()+ facet_wrap(~region) +
-  theme(legend.position="top", legend.box.spacing = unit(0, units = "cm"), 
-        strip.background = element_blank(),
-        strip.text = element_blank()) + 
-  std_x_axis_all_years(2018, "cont")  +
-  std_x_axis_label(season_names["Q3"]) +
-#  geom_hline(data = meanB, aes(yintercept = bpueM), size = 0.9, color = "red", linetype = "dashed")+
-scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-         ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7)) #+
-# scale_y_continuous(expression(paste("Zooplankton Biomass (mg C/m"^" 3", ")")), 
-#                   limits=c(0,max(zmeans$bpue_mg)))
-bpl2
 
