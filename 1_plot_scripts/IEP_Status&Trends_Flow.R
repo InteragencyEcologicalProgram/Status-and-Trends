@@ -4,13 +4,14 @@
 #Net Delta Outflow
 
 #Created by Nick Rasmussen
-#last updated: 1/17/2020 by Rosemary Hartman
+#last updated: 11/3/2020 by Rosemary Hartman
 
 #packages
 library(ggplot2) #plots
 library(zoo)  # yearmon and yearqtr classes
 library(tidyr) #separate one column into two
 library(lubridate) #formatting dates
+library(smonitr)
 
 source(file.path(data_access_root,"data_access_dayflow.R"))
 alldata<-DayFlow
@@ -20,10 +21,6 @@ names(alldata)<-c("date","out")
 #reformat date
 #alldata$date<-mdy(alldata$date) #format date
 
-#look at range of values for flow
-range(alldata$out) #-37433 629494
-range(alldata$date) #"1929-10-01" "2019-09-30"
-
 #create a month column, year, and quarter (putting december in first month of Q1)
 alldata = mutate(alldata, month = month(date),
                  year = year(date),
@@ -32,10 +29,6 @@ alldata = mutate(alldata, month = month(date),
                  separate(yq2, c('qyear', 'quarter'), sep=" ") %>%
   mutate(qyear = as.integer(qyear), quarter = factor(quarter))
 
-
-
-#count data points by quarter
-table(alldata$quarter)
 
 #generate means by year and season
 dmean<-aggregate(out~qyear+quarter,data=alldata,FUN=mean,na.rm=T)
@@ -67,20 +60,17 @@ flows = function(quart, data) {
   p = ggplot(dat, aes(x=qyear, y=out/1000)) +
     geom_line()+
     geom_point(colour="black") +
-    lt_avg_line(mean(dat$out)/1000)+
+    stat_lt_avg(aes(y = out/1000))+
   #  geom_hline(aes(yintercept = mean(out)/1000), size = 0.9, color = "red", linetype = "dashed")+
-    std_x_axis_all_years(2018, x_scale_type = "cont") + 
-    std_x_axis_label(season_names[quart])+
+    smr_x_axis(report_year, type = "all", season = season_names[quart]) + 
     scale_y_continuous(limits = c(0, max(data$out/1000)), name =expression(paste("Net Delta Outflow (1,000 Ft "^"3"," / s)"))) +
-    theme_smr()
+    smr_theme()
   p
 }
 
 flows(quart = "Q1",data = dmean)
 flows(quart = "Q3",data = dmean)
 
-reportyear = 2018
-dmean = filter(dmean, qyear < 2019)
 
 ggsave(flows(quart = "Q1",data = dmean), 
        file="winter_outflow_update.png", 
