@@ -10,7 +10,7 @@ library(grid)
 
 # Define global variables -----------------------------------------------------------
 
-report_year <- 2018
+report_year <- 2019
 
 root <- getwd()
 data_access_root <- file.path(root,"0_data_access_scripts")

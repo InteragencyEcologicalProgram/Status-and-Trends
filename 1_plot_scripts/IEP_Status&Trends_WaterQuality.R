@@ -28,7 +28,7 @@ source(file.path(data_access_root,"WQ_data_download.R"))
 alldata = read.csv(file.path(data_root,"WQ_discrete_1975-2019.csv"), stringsAsFactors = F)
 alldata$Date = mdy(alldata$Date)
 
-#EMP WQ data (1975-2018)
+#EMP WQ data (1975-2019)
 #alldata<- WQ_all
   str(alldata)
 

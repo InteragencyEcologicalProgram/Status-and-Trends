@@ -15,10 +15,10 @@ EMP = EMP$SACSJ_delta_water_quality_1975_2019.csv
 
 #Switch the field data from wide to long.
 
-EMP2 = select(EMP, Station, Date, Chla, WTSurface, Secchi) %>%
+EMP2 = select(EMP, Station, Date, Chla, WTSurface, Secchi, Microcystis) %>%
   mutate(Chla = as.numeric(Chla)) %>%
   rename(chla = Chla, temp = WTSurface, secchi = Secchi) %>%
-  pivot_longer(cols = c(chla, temp, secchi), names_to = "AnalyteName", values_to = "Result") 
+  pivot_longer(cols = c(chla, temp, secchi, Microcystis), names_to = "AnalyteName", values_to = "Result") 
 
 
 
