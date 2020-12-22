@@ -43,7 +43,7 @@ fig_root_winter <- file.path(fig_root,"winter")
 
 # Process and plot ------------------------------------------------------------------
 
-# source(file.path(plot_root,"fall","IEP_Status&Trends_Fishes_Fall.R"))
+#source(file.path(plot_root,"fall","IEP_Status&Trends_Fishes_Fall.R"))
 # 
 # source(file.path(plot_root,"spring","process_ybfmp_yolo_splittail_chinook.r"))
 # source(file.path(plot_root,"spring","spring_20mm.R"))
@@ -53,18 +53,17 @@ fig_root_winter <- file.path(fig_root,"winter")
 # source(file.path(plot_root,"summer","IEP_Status&Trends_Microcystis.R"))
 # source(file.path(plot_root,"summer","Summer_AquaticVegetation.R"))
 # source(file.path(plot_root,"summer","summer_DJFMP.R"))
-# source(file.path(plot_root,"summer","summer_STN.R"))
+#source(file.path(plot_root,"summer","summer_STN.R"))
 # 
 # source(file.path(plot_root,"winter","BayStudyFishPlots.R"))
-# source(file.path(plot_root,"winter","IEP_Status&Trends_Redbluff.R"))
 # source(file.path(plot_root,"winter","winter_DJFMP.R"))
 # source(file.path(plot_root,"winter","winter_SKT.R"))
 # 
-# source(file.path(plot_root,"Graphs_Sacpass.R"))
-# source(file.path(plot_root,"IEP_Status&Trends_Flow.R"))
-# source(file.path(plot_root,"IEP_Status&Trends_WaterQuality.R"))
-# source(file.path(plot_root,"IEP_Status&Trends_Zooplankton.R"))
-# source(file.path(plot_root,"mline.R"))
+ source(file.path(plot_root,"Graphs_Sacpass.R"))
+ source(file.path(plot_root,"IEP_Status&Trends_Flow.R"))
+ source(file.path(plot_root,"IEP_Status&Trends_WaterQuality.R"))
+ source(file.path(plot_root,"IEP_Status&Trends_Zooplankton.R"))
+ source(file.path(plot_root,"mline.R"))
   
 
 # Bookdown --------------------------------------------------------------------------

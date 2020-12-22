@@ -13,13 +13,13 @@ library(tidyr) #separate one column into two
 library(lubridate) #formatting dates
 library(smonitr)
 
-source(file.path(data_access_root,"data_access_dayflow.R"))
-alldata<-DayFlow
+#source(file.path(data_access_root,"data_access_dayflow.R"))
+alldata = read.csv(file.path(data_root,"dayflow_all.csv"))
 #rename columns
 names(alldata)<-c("date","out")
 
 #reformat date
-#alldata$date<-mdy(alldata$date) #format date
+alldata$date<-ymd(alldata$date) #format date
 
 #create a month column, year, and quarter (putting december in first month of Q1)
 alldata = mutate(alldata, month = month(date),

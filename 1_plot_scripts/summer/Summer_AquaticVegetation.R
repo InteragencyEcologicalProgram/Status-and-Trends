@@ -32,7 +32,8 @@ sharepoint_path <- normalizePath(
 )  
 
 # Import vegetation data
-veg<-read.csv(file = paste0(sharepoint_path, "/AquaticVegetation_North+CentralDelta.csv"))
+#veg<-read.csv(file = paste0(sharepoint_path, "/AquaticVegetation_North+CentralDelta.csv"))
+veg<-read.csv(file = paste0(data_root, "/AquaticVegetation_North+CentralDelta.csv"))
 
 #examine data frame
 str(veg) #looks fine

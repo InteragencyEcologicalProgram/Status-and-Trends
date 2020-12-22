@@ -24,5 +24,5 @@ zoopp<- get_ftp_data(ftp_address = "ftp://ftp.wildlife.ca.gov",
                      guess_max = 100000L)
 zoopp = zoopp$`1972-2019PumpMatrix.xlsx`
 zoopp$Date = as.Date(zoopp$SampleDate)
-
+save(zoopp, zoopcb, file = file.path(data_root,"Zoops.RData"))
 

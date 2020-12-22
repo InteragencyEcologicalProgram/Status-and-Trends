@@ -2,12 +2,10 @@
 
 ##########################################################################
 ## Read in data:
+load("seineData.RData")
 
-thisDataRoot <- file.path(data_root,"DJFMP")
-
-seineData <- read.csv(file.path(thisDataRoot,"seineData.csv"), stringsAsFactors=FALSE)
-siteLatLong <- read.csv(file.path(thisDataRoot,"DJFMP_Site_Locations.csv",
-												stringsAsFactors=FALSE)
+#seineData <- read.csv(file.path(thisDataRoot,"seineData.csv"), stringsAsFactors=FALSE)
+#siteLatLong <- read.csv(file.path(thisDataRoot,"DJFMP_Site_Locations.csv"))
 
 
 ##########################################################################
@@ -25,16 +23,16 @@ seineData$Year_f <- as.factor(seineData$Year)
 ## Add lat/long:
 seineData <- dplyr::left_join(
 	seineData, 
-	siteLatLong[ ,c("StationCode","latitude_location","longitude_location")],
+	siteLatLong[ ,c("StationCode","Latitude_location","Longitude_location")],
 	by="StationCode"
 )
 
 ## These region designations came from Nick's code:
 seineData$customRegion <- ""
-seineData$customRegion[seineData$longitude_location < -122.216] <- "San Pablo Bay"
-seineData$customRegion[seineData$longitude_location > -122.216 & 
-											 seineData$longitude_location < -121.829] <- "Suisun"
-seineData$customRegion[seineData$longitude_location > -121.829] <- "The Delta"
+seineData$customRegion[seineData$Longitude_location < -122.216] <- "San Pablo Bay"
+seineData$customRegion[seineData$Longitude_location > -122.216 & 
+											 seineData$Longitude_location < -121.829] <- "Suisun"
+seineData$customRegion[seineData$Longitude_location > -121.829] <- "The Delta"
 unique(seineData$customRegion)
 
 ## Create wide data frame:
@@ -62,13 +60,13 @@ seineWide_summer <- subset(seineWide_summer, RegionCode != 1)
 
 ## Calculate indices:
 seineIndexDf <- seineWide_summer %>%
-	dplyr::group_by(Year_f, Month) %>%
+	dplyr::group_by(Year, Month) %>%
 	dplyr::summarize(
 		SacPikeminnow_CPUE_YM=sum(Sacramento_pikeminnow/Volume),
 		.groups="keep"
 	) %>% 
 	dplyr::ungroup() %>%
-	dplyr::group_by(Year_f) %>%
+	dplyr::group_by(Year) %>%
 	dplyr::summarize(
 		SacPikeminnowIndex=mean(SacPikeminnow_CPUE_YM),
 		.groups="keep"
@@ -82,16 +80,14 @@ seineIndexDf
 ## Figures:
 
 sacpikeminnow_fig <- ggplot(seineIndexDf) + 
-  geom_bar(aes(x=Year_f, y=SacPikeminnowIndex), stat="identity") +
-  theme_smr() +
+  geom_bar(aes(x=Year, y=SacPikeminnowIndex), stat="identity") +
+  smr_theme() +
   theme(legend.position="none") + 
   scale_y_continuous("Sacramento Pikeminnow Index") + 
-  std_x_axis_all_years(rpt_yr=report_year, "discrete")+
-  std_x_axis_label("summer") + 
-  missing_data_symb(yr_var=Year_f, rpt_yr=report_year, symb_size=1) + 
-  annotate("text", x=as.factor(1968), y=0.5, label="Data not\ncollected\nuntil 1976", 
+  smr_x_axis(report_year, type = "all", season = "summer")+
+  annotate("text", x=1968, y=0.5, label="Data not\ncollected\nuntil 1976", 
            hjust=0, size=2) + 
-  lt_avg_line(lt_avg=mean(seineIndexDf$SacPikeminnowIndex, na.rm=TRUE))
+  stat_lt_avg(aes(y = SacPikeminnowIndex))
 sacpikeminnow_fig
 
 ggsave(sacpikeminnow_fig, 

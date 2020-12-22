@@ -7,38 +7,18 @@
 
 ##########################################################################
 
-thisDataRoot <- file.path(data_root,"DJFMP")
 
-## EDI URLs:
-inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/244/3/71c16ead9b8ffa4da7a52da180f601f4" 
-inUrl2  <- "https://pasta.lternet.edu/package/data/eml/edi/244/3/93cb0e8ec9fa92adc7aba9499b3ea6d7" 
-inUrl3  <- "https://pasta.lternet.edu/package/data/eml/edi/244/3/64863836c6dc4f40f621f21cc03d1164" 
-inUrl4  <- "https://pasta.lternet.edu/package/data/eml/edi/244/3/17c9974d9b7b0125c146a887f3c64bd8" 
-inUrl5  <- "https://pasta.lternet.edu/package/data/eml/edi/244/3/99a038d691f27cd306ff93fdcbc03b77" 
+DJFMP = get_edi_data(244, c("1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv", 
+                            "2002-2019_DJFMP_trawl_fish_and_water_quality_data.csv",
+                            "1976-2019_DJFMP_beach_seine_fish_and_water_quality_data.csv",
+                            "DJFMP_Fish_Taxonomy.csv",
+                            "DJFMP_Site_Locations.csv"), guess_max = 1000000  )
 
-trawlFile1 <- file.path(thisDataRoot,
-												"1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv")
-trawlFile2 <- file.path(thisDataRoot,
-												"2002-2018_DJFMP_trawl_fish_and_water_quality_data.csv")
-seineFile <- file.path(thisDataRoot,
-											 "1976-2018_DJFMP_beach_seine_fish_and_water_quality_data.csv")
-taxonomyFile <- file.path(thisDataRoot,"DJFMP_Fish_Taxonomy.csv")
-siteFile <- file.path(thisDataRoot,"DJFMP_Site_Locations.csv")
-
-
-##########################################################################
-## Retrieve data from EDI:
-
-download.file(url=inUrl1, destfile=trawlFile1)
-download.file(url=inUrl2, destfile=trawlFile2)
-download.file(url=inUrl3, destfile=seineFile)
-download.file(url=inUrl4, destfile=taxonomyFile)
-download.file(url=inUrl5, destfile=siteFile)
-
-seineDfRaw <- read.csv(seineFile, stringsAsFactors=FALSE)
-trawlDfRaw_1 <- read.csv(trawlFile1, stringsAsFactors=FALSE)
-trawlDfRaw_2 <- read.csv(trawlFile2, stringsAsFactors=FALSE)
-siteLatLong <- read.csv(siteFile, stringsAsFactors=FALSE) 
+trawlDfRaw_1<- DJFMP[["1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv"]]
+trawlDfRaw_2<- DJFMP[["2002-2019_DJFMP_trawl_fish_and_water_quality_data.csv"]]
+seineDfRaw <- DJFMP[["1976-2019_DJFMP_beach_seine_fish_and_water_quality_data.csv"]]
+taxonomyFile <- DJFMP[["DJFMP_Fish_Taxonomy.csv"]]
+siteLatLong <- DJFMP[["DJFMP_Site_Locations.csv"]]
 
 
 ##########################################################################
@@ -86,17 +66,19 @@ unique(chippsData$Location)
 
 ##########################################################################
 ## Save reduced data files:
+save(seineData, siteLatLong, file = file.path(data_root,"seineData.RData"))
+save(chippsData, file = file.path(data_root,"chippsData.RData"))
 
-write.csv(seineData, file.path(thisDataRoot,"seineData.csv"), row.names=FALSE)
-write.csv(chippsData, file.path(thisDataRoot,"chippsData.csv"), row.names=FALSE)
+#write.csv(seineData, file.path(thisDataRoot,"seineData.csv"), row.names=FALSE)
+#write.csv(chippsData, file.path(thisDataRoot,"chippsData.csv"), row.names=FALSE)
 
 
 ##########################################################################
 ## Remove large files:
 
-unlink(trawlFile1)
-unlink(trawlFile2)
-unlink(seineFile)
-unlink(taxonomyFile)
+#unlink(trawlFile1)
+#unlink(trawlFile2)
+#unlink(seineFile)
+#unlink(taxonomyFile)
 # unlink(siteFile)
 

@@ -4,10 +4,10 @@
 ##########################################################################
 ## Read in data:
 
-thisDataRoot <- file.path(data_root,"DJFMP")
+#thisDataRoot <- file.path(data_root,"DJFMP")
 
-chippsData <- read.csv(file.path(thisDataRoot,"chippsData.csv"), stringsAsFactors=FALSE)
-
+#chippsData <- read.csv(file.path(thisDataRoot,"chippsData.csv"), stringsAsFactors=FALSE)
+load(file.path(data_root,"chippsData.RData"))
 
 ##########################################################################
 ## Chipps Trawl: Winterrun Chinook

@@ -24,12 +24,9 @@ library(lubridate)
 library(readxl)
 
 #import datasets----------------
-source("0_data_access_scripts/data_access_zoops.R")
-source("1_plot_scripts/mysid biomass.R")
+#source("0_data_access_scripts/data_access_zoops.R")
+#source("1_plot_scripts/mysid biomass.R")
 
-#mysid net survey data through 2018
-mysid<-read.csv(file.path(data_root,"zoop_mysid.csv")) 
-mysid$SampleDate = mdy(mysid$SampleDate)
 
 
 #details of sampling station locations
@@ -37,9 +34,8 @@ station<-read.csv(file.path(data_root,"zoop_stations.csv"))
 
 #carbon mass for individual zooplankton taxa (cladocerans, copepods)
 zmass<-read.csv(file.path(data_root,"zoop_individual_mass.csv")) 
-
-#mysid shrimp biomass for all samples collected 
-mmass<-read.csv(file.path(data_root,"zoop_mysid_mass.csv"))
+load(file.path(data_root, "Zoops.RData"))
+load(file.path(data_root, "mysidbiomass.RData"))
 
 
 #CB net: formatting data---------
@@ -143,6 +139,7 @@ calan<-c("ACARTELA","ACARTIA","DIAPTOM","EURYTEM","OTHCALAD","PDIAPFOR","PDIAPMA
 cyclop<-c("AVERNAL","OTHCYCAD","LIMNOSINE","LIMNOSPP","LIMNOTET" , "OITHDAV" , "OITHSIM" , "OITHSPP")
 cladoc<-c("BOSMINA","DAPHNIA","DIAPHAN","OTHCLADO")
 
+
 Zoopcats = data.frame(taxon = c(calan, cyclop, cladoc), 
                       cat = c(rep("cala", length(calan)), 
                               rep("cycl", length(cyclop)), 
@@ -150,10 +147,6 @@ Zoopcats = data.frame(taxon = c(calan, cyclop, cladoc),
 
 
 zall2 = merge(zall, Zoopcats) 
-
-ggplot(zall2, aes(x = as.factor(year), y = bpue, fill = taxon))+ geom_bar(stat = "identity")
-ggplot(zall2, aes(x = as.factor(year), y = bpue, fill = cat))+ geom_bar(stat = "identity")
-ggplot(filter(zall2, cat != "clad"), aes(x = as.factor(year), y = bpue, fill = cat))+ geom_bar(stat = "identity")
 
 
 #add together biomass for all species within each of the three taxonomic groups
@@ -165,61 +158,14 @@ zll<- group_by(zall2, year, survey, date, station, cat) %>%
 
 #mysids: formatting data---------
 
-#start with cpue data
-names(mysid)
-
-#exclude unneeded rows:
-#exclude EZ stations (NZEZ2, NZEZ6)
-#exclude non-core stations, called 'Index' instead of core (core = 0); 1 = sampled since 1972, 2 = sampled since 1974
-#exclude 1972-1973 because only subset of core stations were sampled during those years
-#exclude survey replicate 2 for the months that have those; vast majority of monthly surveys are just one replicate
-#exclude the winter months (1,2,12) initially because they have a shorter time series than the other months
-zoop_sub3<-subset(mysid, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1973 & SurveyRep!=2 & Survey>2 & Survey<12)
-
-#create separate subset of the two san pablo stations to include in graphs (no core stations in SP)
-zoop_subsp3<-subset(mysid, Station=="NZD41" | Station=="NZ41A")
-
-#create separate subset for winter months with its shorter time series
-zoop_subw3<-subset(mysid, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1993 & SurveyRep!=2 & (Survey<3 | Survey>11))
-
-#combine the three data subsets
-zoop_s3<-rbind(zoop_sub3,zoop_subsp3,zoop_subw3)
-
-#create column that adds up counts of all mysid species
-zoop_s3$cpue<-rowSums(zoop_s3[17:24], na.rm = T)
-
-#reduce zooplankton data to just needed columns
-#"Year","Survey","Date","Station", "cpue"
-zoop3<-subset(zoop_s3,select=c("Year","Survey","SampleDate","Station","cpue"))
-zoop3 = mutate(zoop3, Date = SampleDate, SampleDate = NULL)
-
 #next format the bpue dataset
 
-#add up bpue across species
-mmass$bpue_mg<-rowSums(mmass[20:27])
-
 #create column with bpue in micrograms instead of milligrams because rest of zoop is in micrograms
-mmass$bpue<-mmass$bpue*1000
+mysids$bpue<-mysids$bpue*1000
 
-#reduce bpue data set to just needed columns
-zoop3b<-subset(mmass,select=c("Year","Survey","Station", "Date","bpue"))
-zoop3b$Date = mdy(zoop3b$Date)
-
-#combine cpue and bpue data sets
-str(zoop3)
-str(zoop3b)
-zoop3m<-left_join(zoop3,zoop3b,by=c("Year","Survey","Date","Station"))
-
-names(zoop3m)<-c("year","survey","station","cpue","date","bpue")
-
-#add a taxon column so that this data frame can be combined with the others
-zoop3m$taxon<-"mys"
-
-#add in the 2019 biomass data.
-zoop3m = rbind(zoop3m, Mys2019b)
 #combine all zoop data sets
 zll = mutate(zll, taxon = cat, cat = NULL)
-mza<-bind_rows(zll,zoop3m)
+mza<-bind_rows(zll,mysids)
 
 #Stations: formatting data---------
 
@@ -301,18 +247,7 @@ bpl<-ggplot(zmeans, aes(x = qyear, y = bpue, fill = taxon)) +
 #NOTE: mysids overwhelm everything else because they are so much larger
 
 bpl
-cpl<-ggplot(zmeans, aes(x = qyear, y = cpue, fill = taxon)) + 
-  geom_area(position = 'stack')+
-  smr_theme()+
-  #theme(legend.position="none") + 
-  scale_x_continuous("Year", limits=c(1966,2018)) +
-  facet_grid(quarter~region
-             ,labeller = as_labeller(
-               c(region_names,season_names))) +
-  scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
-                    ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))#+
-#    scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), limits=c(0,max(zmeans$bpue))))
-cpl
+
 
 zoops = function(reg, quart, data) {
   dat = filter(data, quarter == quart, region == reg)
@@ -443,7 +378,7 @@ zoops2 = function(quart, data) {
 }
 
 #filter to the report year and convert biomass to mg
-zmeans = filter(zmeans, qyear <= 2019)
+zmeans = filter(zmeans, qyear <= report_year)
   
 
 
