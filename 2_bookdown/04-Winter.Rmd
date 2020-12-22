@@ -7,8 +7,7 @@ pagetitle: "Winter Report"
 
 
 #### Interagency Ecological Program Winter Season Report
-This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for September through November of 1966 to 2018.
+This report shows trends in water quality, plankton, and fish across multiple IEP surveys for December through February of 1966 to 2019. The winter of 2019 includes December of 2018, January and February of 2019.
 
 <h2>Winter Delta Outflow</h2>
 
@@ -18,7 +17,7 @@ knitr::include_graphics(file.path(fig_root_winter,"winter_outflow_update.png"))
 
 - Freshwater flow influences water quality, plankton, and fish populations.
 - Winter flow is driven primarily by rainfall and upstream dam releases.
-- The winter of 2018 had lower outflow than average.
+- The winter of 2019 had about average outflow.
 
 ***
 ## Winter Secchi Depth 
@@ -77,7 +76,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average winter secchi depth in San Pablo Bay from 1975 to 2018. Values range from 10 to 150.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average winter secchi depth in San Pablo Bay from 1975 to 2019. Values range from 10 to 150.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"secchi_splwinter.png"))
 ```
 :::
@@ -85,7 +84,7 @@ knitr::include_graphics(file.path(fig_root_winter,"secchi_splwinter.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average winter secchi depth in Suisun from 1975 to 2018. Values range from 10 to 60.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average winter secchi depth in Suisun from 1975 to 2019. Values range from 10 to 60.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"secchi_sswinter.png"))
 ```
 :::
@@ -93,7 +92,7 @@ knitr::include_graphics(file.path(fig_root_winter,"secchi_sswinter.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r fig.cap= "Graph of average winter secchi depth in the Delta from 1975 to 2018. Values range from 25 to 120 and have been increasing since the year 2000.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average winter secchi depth in the Delta from 1975 to 2019. Values range from 25 to 120 and have been increasing since the year 2000.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"secchi_dtwinter.png"))
 ```
 :::
@@ -101,19 +100,19 @@ knitr::include_graphics(file.path(fig_root_winter,"secchi_dtwinter.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2018, San Pablo bay slightly clearer than the long-term average.</center>
+<center>In 2019, San Pablo bay secchi was close to the long-term average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2018, Suisun Bay was also slightly clearer than the long-term average.</center>
+<center>In 2019, Suisun Bay was also close to the long-term average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2018, the Delta was much clearer than average, the second clearest winter on record.</center>
+<center>In 2019, the Delta was clearer than average.</center>
 :::
 ::::
 
@@ -189,7 +188,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average winter water temperature in San Pablo Bay from 1975 to 2018. Values range from 13 to 18.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average winter water temperature in San Pablo Bay from 1975 to 2019. Values range from 13 to 18.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"temp_splwinter.png"))
 ```
 :::
@@ -197,7 +196,7 @@ knitr::include_graphics(file.path(fig_root_winter,"temp_splwinter.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average winter water temperature in Suisun from 1975 to 2018. Values range from 13 to 18.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average winter water temperature in Suisun from 1975 to 2019. Values range from 13 to 18.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"temp_sswinter.png"))
 ```
 :::
@@ -205,7 +204,7 @@ knitr::include_graphics(file.path(fig_root_winter,"temp_sswinter.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average winter water temperature in the Delta from 1975 to 2018. Values range from 13 to 18.", class="expand"}
+```{r echo=FALSE, fig.cap= "Graph of average winter water temperature in the Delta from 1975 to 2019. Values range from 13 to 18.", class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"temp_dtwinter.png"))
 ```
 :::
@@ -213,19 +212,19 @@ knitr::include_graphics(file.path(fig_root_winter,"temp_dtwinter.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2018, San Pablo Bay temperatures were similar to the long-term average.</center>
+<center>In 2019, San Pablo Bay temperatures were similar to the long-term average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2018, Suisun Bay was similar to the long-term average.</center>
+<center>In 2019, Suisun Bay was similar to the long-term average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2018, the Delta was also similar to the long-term average.</center>
+<center>In 2019, the Delta was also similar to the long-term average.</center>
 :::
 ::::
 
@@ -293,7 +292,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average winter chlorophyll in San Pablo Bay from 1975 to 2018. Values range from 2 to 8.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average winter chlorophyll in San Pablo Bay from 1975 to 2019. Values range from 2 to 8.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"chla_splwinter.png"))
 ```
 :::
@@ -301,7 +300,7 @@ knitr::include_graphics(file.path(fig_root_winter,"chla_splwinter.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average winter chlorophyll in Suisun from 1975 to 2018. Values range from 2 to 19.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average winter chlorophyll in Suisun from 1975 to 2019. Values range from 2 to 19.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"chla_sswinter.png"))
 ```
 :::
@@ -309,7 +308,7 @@ knitr::include_graphics(file.path(fig_root_winter,"chla_sswinter.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average winter chlorophyll in the Delta from 1975 to 2018. Values range from 3.5 to 29.", class="expand"}
+```{r echo=FALSE, fig.cap= "Graph of average winter chlorophyll in the Delta from 1975 to 2019. Values range from 3.5 to 29.", class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"chla_dtwinter.png"))
 ```
 :::
@@ -317,19 +316,19 @@ knitr::include_graphics(file.path(fig_root_winter,"chla_dtwinter.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2018, San Pablo Bay chlorophyll was similar to the long-term average.</center>
+<center>In 2019, San Pablo Bay chlorophyll was similar to the long-term average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2018, Suisun Bay chlorophyll was also about average.</center>
+<center>In 2019, Suisun Bay chlorophyll was also about average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2018, the Delta also had about average chlorophyll.</center>
+<center>In 2019, the Delta also had about average chlorophyll.</center>
 :::
 ::::
 
@@ -412,7 +411,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average winter zooplankton biomass in San Pablo Bay from 1975 to 2018. Values range from 3 to 16.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average winter zooplankton biomass in San Pablo Bay from 1975 to 2019. Values range from 3 to 16.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"zoops_splwinter.png"))
 ```
 :::
@@ -420,7 +419,7 @@ knitr::include_graphics(file.path(fig_root_winter,"zoops_splwinter.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average winter chlorophyll in Suisun from 1995 to 2018. Values range from .5 to 5.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average winter chlorophyll in Suisun from 1995 to 2019. Values range from .5 to 5.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"zoops_sswinter.png"))
 ```
 :::
@@ -428,7 +427,7 @@ knitr::include_graphics(file.path(fig_root_winter,"zoops_sswinter.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average winter zooplankton biomass in the Delta from 1995 to 2018. Values range from .5 to 5.", class="expand"}
+```{r echo=FALSE, fig.cap= "Graph of average winter zooplankton biomass in the Delta from 1995 to 2019. Values range from .5 to 5.", class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"zoops_dtwinter.png"))
 ```
 :::
@@ -436,19 +435,19 @@ knitr::include_graphics(file.path(fig_root_winter,"zoops_dtwinter.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2018, San Pablo Bay had lower than average biomass, mostly calanoid copepods.</center>
+<center>In 2019, San Pablo Bay had lower than average biomass, mostly calanoid copepods.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2018, Suisun Bay had slightly higher than average total biomass, mostly cyclopoid copepods.</center>
+<center>In 2019, Suisun Bay had slightly higher than average total biomass, mostly cyclopoid copepods.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2018, the Delta had about average total biomass.</center>
+<center>In 2019, the Delta had about average total biomass.</center>
 :::
 ::::
 
@@ -529,7 +528,7 @@ knitr::include_graphics(file.path(fig_root_static,"chinook_salmon_smolt.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of White Sturgeon Year Class Index from 1967 to 2018. Values range from 0 to 1600.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of White Sturgeon Year Class Index from 1967 to 2019. Values range from 0 to 1600.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"whistu_plot_allYears.png"))
 ```
 :::
@@ -537,7 +536,7 @@ knitr::include_graphics(file.path(fig_root_winter,"whistu_plot_allYears.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of longfin smelt CPUE from 1980 to 2018. ", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of longfin smelt CPUE from 1980 to 2019. ", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"lonsme_plot_allYears.png"))
 ```
 :::
@@ -553,19 +552,19 @@ knitr::include_graphics(file.path(fig_root_winter,"DJFMP_chinook_winterByLength_
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>Bay study did not sample in winter of 2018, but the most recent year with a complete survey (2017) was much higher than average.</center>
+<center>Bay Study data from 2019 is not complete, but the most recent year with a complete survey (2017) was much higher than average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>2018 catch was much lower than the longterm average.</center>
+<center>Bay Study data from 2019 is not complete, but the most recent year with a complete survey (2017) was much lower than average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2018 wild Chinook Salmon catch was about average.</center>
+<center>In 2019 wild Chinook Salmon catch was lower than average.</center>
 :::
 ::::
 
@@ -576,7 +575,7 @@ For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Stu
 ```
 ***
 
-## Recent Trends: Winter Fish 2004-2018 
+## Recent Trends: Winter Fish 2004-2019 
 
 ### Background
 
@@ -650,15 +649,15 @@ knitr::include_graphics(file.path(fig_root_static,"chinook_salmon_smolt.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of adult Delta Smelt index from 2004-2018. Values range from 0 to 15.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_winter,"skt_dsm_fig.png"))
+```{r fig.cap= "Graph of adult Delta Smelt index from 2004-2019. Values range from 0 to 15.", echo=FALSE, class="expand"}
+knitr::include_graphics(file.path(fig_root_winter,"SKT_dsm_recyears.png"))
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of longfin smelt abundance fron 2004 to 2018", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of longfin smelt abundance fron 2004 to 2019", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_winter,"lonsme_plot_recent.png"))
 ```
 :::
@@ -674,19 +673,19 @@ knitr::include_graphics(file.path(fig_root_winter,"redbluff_2003.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>The Delta Smelt SKT index was zero in 2018, the lowest index on record. (mean line is from 2004-2018)</center>
+<center>The Delta Smelt SKT index in 2019 was the lowest index on record. (mean line is from 2004-2019)</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>Adult Longfin smelt catch in 2018 was much lower than the long-term average.</center>
+<center>Bay Study data is not complete for 2019, but the last complete survey found abundance to be much lower than the long-term average</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>Juvenile winter-run Chinook Salmon had a much lower passage rate than the historical average.</center>
+<center>Juvenile winter-run Chinook Salmon had a much higher passage rate than the historical average.</center>
 :::
 ::::
 
