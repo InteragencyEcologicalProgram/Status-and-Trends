@@ -12,15 +12,15 @@ library(scales)
 # Dataset is on SharePoint site for the Seasonal Monitoring Report
 
 # Define path on SharePoint site for data
-sharepoint_path <- normalizePath(
-  file.path(
-    Sys.getenv("USERPROFILE"),
-    "California Department of Water Resources/IEP Synthesis Projects - Documents/Data"
-  )
-)  
+#sharepoint_path <- normalizePath(
+#  file.path(
+#    Sys.getenv("USERPROFILE"),
+#    "California Department of Water Resources/IEP Synthesis Projects - Documents/Data"
+#  )
+#)  
 
 # Import fish data
-load(file = file.path(sharepoint_path, "BayStudyFish.RData"))
+#load(file = file.path(sharepoint_path, "BayStudyFish.RData"))
 
 
 #if that didin't work
@@ -44,8 +44,7 @@ noranc_cpue <- noranc %>%
   mutate(cpue = (NORANC/TowVolume) * 10000) %>% 
   group_by(Year) %>% 
   summarize(ave_cpue = mean(cpue)) %>% 
-  ungroup() %>% 
-  mutate(Year = factor(Year))
+  ungroup() 
 
 
 # 3. Set up options for plots ---------------------------------------------
@@ -55,7 +54,7 @@ lt_avg_cpue <- mean(noranc_cpue$ave_cpue)
 
 # Create dataframes for text comments on plots
 noranc_text_h <- tibble(
-  Year = as.factor(1966),
+  Year = 1966,
   yValue = 40,
   label = "Data were not\ncollected until 1980"
 )
@@ -72,21 +71,17 @@ noranc_plot_all <- noranc_cpue %>%
   ) +
   geom_col() +
   # apply custom theme
-  theme_smr() +
+  smr_theme() +
   # customize axis labels
   ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))) +
-  std_x_axis_label("summer") +
   # define y-axis breaks and add thousanths comma
-  scale_y_continuous(
-    breaks = seq(0, 1500, by = 250),
-    labels = label_comma()
-  ) +
+smr_y_axis()+
   # add horizontal line for long-term average CPUE
-  lt_avg_line(lt_avg_cpue) +
+  stat_lt_avg()+
   # standardize x-axis
-  std_x_axis_all_years(report_year, "discrete") +
+  smr_x_axis(report_year, type = "all", season = "summer")+
   # add markers for missing data
-  missing_data_symb(noranc_cpue, Year, report_year, 0.9) +
+ stat_missing() +
   # add horizontal text to plot
   geom_text(
     data = noranc_text_h,
@@ -110,18 +105,15 @@ noranc_plot_rec <- noranc_cpue %>%
   ) +
   geom_col() +
   # apply custom theme
-  theme_smr() +
+  smr_theme() +
   # customize axis labels
   ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))) +
-  std_x_axis_label("summer") +
+  smr_x_axis(report_year, type = "recent", season = "summer")+
   # custom y-axis breaks
   scale_y_continuous(breaks = seq(0, 700, by = 100)) +
   # add horizontal line for long-term average CPUE
-  lt_avg_line(lt_avg_cpue) +
-  # standardize x-axis
-  std_x_axis_rec_years(report_year, "discrete") +
-  # add markers for missing data
-  missing_data_symb(noranc_cpue, Year, report_year, 2.5)
+  stat_lt_avg()+
+  stat_missing()
 
 
 # Print Plots

@@ -1,13 +1,15 @@
 library(lubridate)
 
 # load from RData file on sharepoint site
-sharepoint_path = normalizePath(
-  file.path(
-    Sys.getenv("USERPROFILE"),
-    "California Department of Water Resources/DWR - Seasonal monitoring report - Documents/Data"
-  )
-)
-load(file.path(sharepoint_path, "ybfmp.RData"))
+#sharepoint_path = normalizePath(
+#  file.path(
+#    Sys.getenv("USERPROFILE"),
+#    "California Department of Water Resources/DWR - Seasonal monitoring report - Documents/Data"
+#  )
+#)
+#load(file.path(sharepoint_path, "ybfmp.RData"))
+
+load(file.path(data_root, "ybfmp.RData"))
 
 # format catch data
 catch = ybfmp[["YBFMP_Fish_Catch_and_Water_Quality.csv"]] %>%
@@ -46,10 +48,11 @@ cpue = catch %>%
 yolo_splittail_all = cpue %>%
   filter(CommonName == "Splittail") %>% {
     ggplot(., aes(x = Year, y = CPUE)) +
-    theme_smr() +
-    geom_col(fill = "black") +
-    lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
-    std_x_axis_all_years(rpt_yr = report_year) +
+    smr_theme() +
+    geom_col() +
+      smr_x_axis(report_year, type = "all", season = "fall") +
+      stat_missing()+
+      stat_lt_avg()+
     scale_y_continuous("Fish catch per thousand hours",
       labels = scales::label_number(scale = 1000))
   }
@@ -57,12 +60,13 @@ yolo_splittail_all = cpue %>%
 yolo_chinook_all = cpue %>%
   filter(CommonName == "Chinook Salmon") %>% {
     ggplot(., aes(x = Year, y = CPUE)) +
-    theme_smr() +
-    geom_col(fill = "black") +
-    lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
-    std_x_axis_all_years(rpt_yr = report_year) +
-    scale_y_continuous("Fish catch per thousand hours",
-      labels = scales::label_number(scale = 1000))
+      smr_theme() +
+      geom_col() +
+      smr_x_axis(report_year, type = "all", season = "spring") +
+      stat_missing()+
+      stat_lt_avg()+
+      scale_y_continuous("Fish catch per thousand hours",
+                         labels = scales::label_number(scale = 1000))
   }
 
 
@@ -70,21 +74,23 @@ yolo_chinook_all = cpue %>%
 yolo_splittail_recent = cpue %>%
   filter(CommonName == "Splittail") %>% {
     ggplot(., aes(x = Year, y = CPUE)) +
-    theme_smr() +
-    geom_col(fill = "black") +
-    lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
-    std_x_axis_rec_years(rpt_yr = report_year) +
-    scale_y_continuous("Fish catch per thousand hours",
-      labels = scales::label_number(scale = 1000))
+      smr_theme() +
+      geom_col() +
+      smr_x_axis(report_year, type = "recent", season = "spring") +
+      stat_missing()+
+      stat_lt_avg()+
+      scale_y_continuous("Fish catch per thousand hours",
+                         labels = scales::label_number(scale = 1000))
   }
 
 yolo_chinook_recent = cpue %>%
   filter(CommonName == "Chinook Salmon") %>% {
     ggplot(., aes(x = Year, y = CPUE)) +
-    theme_smr() +
-    geom_col(fill = "black") +
-    lt_avg_line(lt_avg = mean(.$CPUE, na.rm = TRUE)) +
-    std_x_axis_rec_years(rpt_yr = report_year) +
+    smr_theme() +
+      geom_col() +
+      smr_x_axis(report_year, type = "recent", season = "spring") +
+      stat_missing()+
+      stat_lt_avg()+
     scale_y_continuous("Fish catch per thousand hours",
       labels = scales::label_number(scale = 1000))
   }

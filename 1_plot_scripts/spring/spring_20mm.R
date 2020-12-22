@@ -53,27 +53,25 @@ lfs_lt_avg <- mean(lfsIndexDf$Index, na.rm=TRUE)
 	 
 			 
 ## Recent years:
-dsm_recyears_fig <- ggplot(dsmIndexDf)+
-  geom_bar(aes(x=Year_f, y=Index), stat="identity") +
-  theme_smr() + 
+dsm_recyears_fig <- ggplot(dsmIndexDf, aes(x=Year, y=Index))+
+  geom_bar(stat="identity") +
+  smr_theme() + 
   theme(legend.position="none") + 
   scale_y_continuous("Index") + 
-  xlab("Year") + 
-  std_x_axis_rec_years(rpt_yr=report_year, "discrete") +
-  lt_avg_line(lt_avg=dsm_lt_avg)
+  smr_x_axis(report_year, type = "recent", season = "spring")+
+  stat_lt_avg()
 
 ggsave(dsm_recyears_fig, file=file.path(fig_root_spring,"20mm_DSM_recent.png"), 
        dpi=300, units="cm", width=9.3, height=6.8)
 
 
-lfs_recyears_fig <- ggplot(lfsIndexDf)+
-  geom_bar(aes(x=Year_f, y=Index), stat="identity") +
-  theme_smr() + 
+lfs_recyears_fig <- ggplot(lfsIndexDf, aes(x=Year, y=Index))+
+  geom_bar(stat="identity") +
+  smr_theme() + 
   theme(legend.position="none") + 
   scale_y_continuous("Index") + 
-  xlab("Year") + 
-  std_x_axis_rec_years(rpt_yr=report_year, "discrete") +
-  lt_avg_line(lt_avg=lfs_lt_avg)
+  smr_x_axis(report_year, type = "recent", season = "spring")+
+  stat_lt_avg()
 
 ggsave(lfs_recyears_fig, file=file.path(fig_root_spring,"20mm_LFS_recent.png"), 
        dpi=300, units="cm", width=9.3, height=6.8)

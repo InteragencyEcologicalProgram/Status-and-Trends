@@ -70,7 +70,7 @@ chinook_winterByLength_allYears_fig <- ggplot(chippsIndexDf) +
   smr_x_axis(report_year, "all", "spring")+ 
   smr_y_axis() + 
   ylab(use_ylab)+
-  stat_lt_avg(aes(y = chippsIndexDf$chinook_winterByLengthIndex))
+  stat_lt_avg(aes(y = chinook_winterByLengthIndex))
 
 ggsave(chinook_winterByLength_allYears_fig, 
 			 file=file.path(fig_root_spring,"DJFMP_chinook_winterByLength_allyears_SP.png"), 
