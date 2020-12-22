@@ -23,7 +23,7 @@ library(lubridate)
 library(smonitr)
 
 
-source(file.path(data_access_root,"WQ_data_download.R"))
+#source(file.path(data_access_root,"WQ_data_download.R"))
 #or skip this if you've updated it recently and just do
 alldata = read.csv(file.path(data_root,"WQ_discrete_1975-2019.csv"), stringsAsFactors = F)
 alldata$Date = mdy(alldata$Date)
@@ -92,25 +92,25 @@ wqsum$qyear<-as.integer(wqsum$qyear)
  
 #Create facet of plots for each AnalyteName showing all combinations of region and season
 
-allplots = function(data, param, reportyear){
-  dat = filter(data, AnalyteName == param, qyear <= reportyear)
-  p <- ggplot(dat, aes(x=qyear, y=Result))+
-    geom_line(colour="black")+geom_point(colour="black") +
-    geom_hline(data = filter(wqsum2, AnalyteName == param),
-               aes(yintercept = Result), size = 0.9, color = "red", linetype = "dashed")+
-    smr_theme() + facet_grid(quarter~region,
-                             labeller = as_labeller(
-                               c(region_names,season_names))) +
-    theme(legend.position="none") + 
-    scale_y_continuous(name = AnalyteName_labs[param],limits=c(0, max(dat$Result)))+
-    smr_x_axis(reportyear, type = "all", season = season_names[quarter])
-  return(p)
-}
+#allplots = function(data, param, reportyear){
+#  dat = filter(data, AnalyteName == param, qyear <= reportyear)
+#  p <- ggplot(dat, aes(x=qyear, y=Result))+
+#    geom_line(colour="black")+geom_point(colour="black") +
+#    geom_hline(data = filter(wqsum2, AnalyteName == param),
+#               aes(yintercept = Result), size = 0.9, color = "red", linetype = "dashed")+
+#    smr_theme() + facet_grid(quarter~region,
+#                             labeller = as_labeller(
+#                               c(region_names,season_names))) +
+#    theme(legend.position="none") + 
+#    scale_y_continuous(name = AnalyteName_labs[param],limits=c(0, max(dat$Result)))+
+#    smr_x_axis(reportyear, type = "all", season = season_names[quarter])
+#  return(p)
+#}
 
-allplots(wqsum, "chla", 2018)
-allplots(wqsum, "chlf", 2018)
-allplots(wqsum, "temp", 2018)
-allplots(wqsum, "secchi", 2018)
+#allplots(wqsum, "chla", 2018)
+#allplots(wqsum, "chlf", 2018)
+#allplots(wqsum, "temp", 2018)
+#allplots(wqsum, "secchi", 2018)
 
 
 #now, for fall, make a plot for each region, season, and AnalyteName separately

@@ -40,3 +40,20 @@ Mys2019b = group_by(Mys2019,SampleDate, StationNZ) %>%
 Mys2019b = mutate(Mys2019b, survey = NA, year = year(SampleDate), taxon = "mys") %>%
   rename(date = SampleDate, station = StationNZ) %>%
   filter(!station %in% c("NZEZ2", "NZEZ6","NZEZ6SJR", "NZEZ2SJR"))
+
+#mysid net survey data through 2018
+mysid<-read.csv(file.path(data_root,"zoop_mysid.csv")) 
+mysid$SampleDate = mdy(mysid$SampleDate)
+
+#mysid shrimp biomass for all samples collected 
+mmass<-read.csv(file.path(data_root,"zoop_mysid_mass.csv"))
+
+mmass$bpue = rowSums(mmass[,20:27])
+
+mmass2 = rename(mmass, year = Year, date = Date, station = Station, survey = Survey) %>%
+  mutate(taxon = "mys", cpue = NA, date = mdy(date)) %>%
+  select("date", "station", "bpue", "survey", "year", "taxon")
+
+mysids = rbind(Mys2019b, mmass2)
+write.csv(data_root, "mysid_biomass.csv", row.names = F)
+save(mysids, file = file.path(data_root, "mysidbiomass.RData"))

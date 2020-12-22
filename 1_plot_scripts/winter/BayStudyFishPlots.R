@@ -57,27 +57,23 @@ whistu.orig <- read_csv(file.path(data_root,"yci_bs.csv"))
   
 # 3. Set up options for plots ---------------------------------------------
 
-# Create a tibble of long-term averages of either CPUE or WYCI
-lt.avg <- tibble(
-  FishSpecies = c("lonsme", "whistu"),
-  Average = c(mean(lonsme.cpue$y.val), mean(whistu.clean$y.val))
-)
+
   
 # Create dataframes for text comments on plots
 lonsmeText.h <- tibble(
-  Year.Index = as.factor(1966),
+  Year.Index = 1966,
   yValue = 1,
   label = "Data were not collected\nuntil 1980"
 )
 
 lonsmeText.v <- tibble(
-  Year.Index = as.factor(1983),
+  Year.Index = 1983,
   yValue = 27,
   label = "Ave CPUE was 88 in 1982"
 )
 
 whistuText <- tibble(
-  Year.Index = as.factor(1966),
+  Year.Index = 1966,
   yValue = 20,
   label = "Data were not collected\nuntil 1980"
 )
@@ -101,32 +97,31 @@ plot_fish_data <- function(df, f_spec = c("lonsme", "whistu"), lt_avg, plot_type
       )
     ) +
     # apply custom theme
-    theme_smr() +
+    smr_theme() +
     # add markers for missing data
-    missing_data_symb(df, Year.Index, report_year, 0.9)
+    stat_missing()+
+    stat_lt_avg()
   
   # Add different options based on f_spec argument
   if (f_spec == "lonsme") {
     p <- p +
       #custom color for barplot
       geom_col(fill = "#664F2B") +
-      # add labels for axes
-      std_x_axis_label("winter") +
+
       ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")")))
   } else {
     p <- p +
       #custom color for barplot
       geom_col(fill = "#748D83") +
       # add labels for axes
-      xlab("Year") +
       ylab("Year Class Index")
   }
   
   # Standardize the x-axis limits and breaks for plots based on plot_type argument
   if (plot_type == "all") {
-    p <- p + std_x_axis_all_years(report_year, "discrete")
+    p <- p + smr_x_axis(report_year, type = "all", season = "winter")
   } else {
-    p <- p + std_x_axis_rec_years(report_year, "discrete")
+    p <- p +  smr_x_axis(report_year, type = "recent", season = "winter")
   }
   
   # Change the y-axis limits for the lonsme plots
@@ -185,9 +180,6 @@ plot_fish_data <- function(df, f_spec = c("lonsme", "whistu"), lt_avg, plot_type
   }
   
 
-  # add horizontal line for long-term average CPUE - at the end to put line on top of bars
-  p <- p + lt_avg_line(lt_avg)
-  
   return(p)
 }
 
@@ -195,7 +187,7 @@ plot_fish_data <- function(df, f_spec = c("lonsme", "whistu"), lt_avg, plot_type
 fish.plots <- 
   bind_rows(lonsme.cpue, whistu.clean) %>% 
   # Make Year.Index variable a factor for plot order
-  mutate(Year.Index = factor(Year.Index)) %>% 
+ # mutate(Year.Index = factor(Year.Index)) %>% 
   group_nest(FishSpecies) %>% 
   # Add long-term averages to df
   left_join(lt.avg) %>% 

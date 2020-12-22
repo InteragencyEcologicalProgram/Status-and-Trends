@@ -1,7 +1,8 @@
 #plot spring-run adult salmon
 
-source(file.path(data_access_root,"data_access_sacpass.R"))
+#source(file.path(data_access_root,"data_access_sacpass.R"))
 
+load(file.path(data_root, "Grantab.RData"))
 
 #Spring run salmon
 
@@ -18,13 +19,13 @@ ggsave(p_spch, file="SpringRun_1966.png", dpi=300, units="cm", width=9.3, height
 
 
 #Fall run salmon
-p_frch <- ggplot(Fall, aes(x=Year, y=FallRun))+
+p_frch <- ggplot(Fall, aes(x=Year, y=fallrun))+
   geom_bar(stat="identity") +
   smr_theme() +
   theme(legend.position="none") + 
   smr_y_axis(name = "Fall Run Chinook Adult Returns") +
   smr_x_axis(report_year, type = "all", season = "fall") +
-  stat_lt_avg(aes(y = FallRun))
+  stat_lt_avg(aes(y = fallrun))
 
 p_frch
 
@@ -33,9 +34,8 @@ ggsave(p_frch, file="FallRun_1966.png", dpi=300, units="cm", width=9.3, height=6
 
 #Red Bluff
 
-redbluff = read.csv(file.path(data_root,"redbluff_all.csv"))
-
-redbluff$Date = as.Date(redbluff$Date, format = "%Y-%m-%d")
+#redbluff = read.csv(file.path(data_root,"redbluff_all.csv"))
+redbluff = Redlong
 
 #calculate the average
 MeanPass = group_by(redbluff, year(Date), runname) %>% summarize(meandaily = mean(Dailypassage, na.rm = T))

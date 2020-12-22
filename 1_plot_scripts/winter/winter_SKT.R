@@ -77,12 +77,12 @@ sktIndexDf
 # SKT index uses its own set of months so don't use std_x_axis_label("winter")
 
 skt_dsm_fig <- ggplot(sktIndexDf) + 
-  geom_bar(aes(x=Year_f, y=Index), stat="identity") +
-  theme_smr() +
+  geom_bar(aes(x=Year, y=Index), stat="identity") +
+  smr_theme() +
   theme(legend.position="none") + 
   ylab("Delta Smelt Index") + 
-  missing_data_symb(df=sktIndexDf, yr_var=Year_f, rpt_yr=report_year, symb_size=1) + 
-  lt_avg_line(lt_avg=mean(sktIndexDf$Index, na.rm=TRUE))
+  stat_missing(aes(x=Year, y=Index)) + 
+  stat_lt_avg(aes(y=Index))
 
 ggsave(skt_dsm_fig, file="SKT_dsm_recyears.png", path=fig_root_winter, 
        dpi=300, units="cm", width=9.3, height=6.8)
