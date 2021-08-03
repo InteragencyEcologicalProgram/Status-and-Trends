@@ -4,25 +4,16 @@ library(readxl)
 library(tidyverse)
 library(smonitr)
 
-
+zoops = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2020CBMatrix.xlsx")
+zoopscb = read_excel(zoops, guess_max = 10000, sheet = "CB CPUE Matrix 1972-2020")
 #data is stored on the CDFW FTP site
-CBzoop = get_ftp_data(ftp_address = "ftp://ftp.wildlife.ca.gov", 
-                      dir_path = "IEP_Zooplankton", 
-                    "CBMatrix", parse_remote_excel, 
-                    sheet = "CB CPUE Matrix 1972-2019",
-                    guess_max = 100000L)
-zoopcb = CBzoop$`1972-2019CBMatrix.xlsx`
 
-zoopcb$Date = as.Date(zoopcb$SampleDate)
-zoopcb = rename(zoopcb, Station = StationNZ)
+zoopscb = rename(zoopscb, Station = StationNZ)
 
 #pump data
-zoopp<- get_ftp_data(ftp_address = "ftp://ftp.wildlife.ca.gov", 
-                     dir_path = "IEP_Zooplankton", 
-                     "PumpMatrix", parse_remote_excel, 
-                     sheet = "Pump CPUE Matrix 1972-2019",
-                     guess_max = 100000L)
-zoopp = zoopp$`1972-2019PumpMatrix.xlsx`
-zoopp$Date = as.Date(zoopp$SampleDate)
+zoopps = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2020PumpMatrix.xlsx")
+zoopsp = read_excel(zoopps, guess_max = 10000, sheet = "Pump CPUE Matrix 1972-2020")
+zooppscb = rename(zoopsp, Station = StationNZ)
+
 save(zoopp, zoopcb, file = file.path(data_root,"Zoops.RData"))
 

@@ -42,6 +42,7 @@ sb0<-subset(fmwt,Species=="Striped Bass Age0")
 as<-subset(fmwt,Species=="American Shad")
  
 
+
 #Delta Smelt
 
 #Traditional Index 1967-2019

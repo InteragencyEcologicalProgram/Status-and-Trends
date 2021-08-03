@@ -8,9 +8,9 @@ library(lubridate)
 
 #all of EMP's data is now on EDI
 
-EMP = get_edi_data(458, "SACSJ_delta_water_quality_1975_2019.csv", guess_max = 1000000) 
+EMP = get_edi_data(458, "SACSJ_delta_water_quality_1975_2020.csv", guess_max = 1000000) 
 
-EMP = EMP$SACSJ_delta_water_quality_1975_2019.csv
+EMP = EMP$SACSJ_delta_water_quality_1975_2020.csv
  
 
 #Switch the field data from wide to long.

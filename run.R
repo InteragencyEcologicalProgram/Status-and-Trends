@@ -10,7 +10,7 @@ library(grid)
 
 # Define global variables -----------------------------------------------------------
 
-report_year <- 2019
+report_year <- 2020
 
 root <- getwd()
 data_access_root <- file.path(root,"0_data_access_scripts")
@@ -29,16 +29,16 @@ fig_root_winter <- file.path(fig_root,"winter")
 # Download, (reduce), save, (delete) data -------------------------------------------
 
 # source(file.path(data_access_root,"BayStudyFish_data_download.R"))
-# source(file.path(data_access_root,"data_access_20mm.R"))
+#source(file.path(data_access_root,"data_access_20mm.R"))
 # source(file.path(data_access_root,"data_access_dayflow.R"))
-# source(file.path(data_access_root,"data_access_DJFMP.R"))
+#source(file.path(data_access_root,"data_access_DJFMP.R"))
 # source(file.path(data_access_root,"data_access_fmwt.R"))
 # source(file.path(data_access_root,"data_access_sacpass.R"))
 # source(file.path(data_access_root,"data_access_SKT.R"))
 # source(file.path(data_access_root,"data_access_STN.R"))
 # source(file.path(data_access_root,"download_ybfmp.r"))
 # source(file.path(data_access_root,"data_access_zoops.R"))
-# source(file.path(data_access_root,"WQ_data_download.R"))
+#source(file.path(data_access_root,"WQ_data_download.R"))
 
 
 # Process and plot ------------------------------------------------------------------
@@ -61,7 +61,7 @@ fig_root_winter <- file.path(fig_root,"winter")
 # 
 # source(file.path(plot_root,"Graphs_Sacpass.R"))
 # source(file.path(plot_root,"IEP_Status&Trends_Flow.R"))
-# source(file.path(plot_root,"IEP_Status&Trends_WaterQuality.R"))
+#source(file.path(plot_root,"IEP_Status&Trends_WaterQuality.R"))
 # source(file.path(plot_root,"IEP_Status&Trends_Zooplankton.R"))
 # source(file.path(plot_root,"mline.R"))
   

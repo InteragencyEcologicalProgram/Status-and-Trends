@@ -15,7 +15,8 @@ p_spch <- ggplot(Spring, aes(x=Year, y=sprinrun))+
   stat_lt_avg(aes(y = sprinrun))
 p_spch
 
-ggsave(p_spch, file="SpringRun_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = fig_root_spring)
+ggsave(p_spch, file="SpringRun_1966.png", dpi=300, units="cm", width=9.3,
+       height=6.8, path = fig_root_spring)
 
 
 #Fall run salmon

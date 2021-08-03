@@ -1,6 +1,6 @@
 ## Data retrieval script for DJFMP's Beach Seine and Trawl Surveys.
 ## Some of this code is taken directly from EDI.
-## https://portal.edirepository.org/nis/mapbrowse?scope=edi&identifier=244&revision=3
+## https://portal.edirepository.org/nis/mapbrowse?scope=edi&identifier=244&revision=7
 ## 
 ## The main files are probably too large to store on GitHub, so filter now and 
 ## save smaller csv files.
@@ -9,14 +9,14 @@
 
 
 DJFMP = get_edi_data(244, c("1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv", 
-                            "2002-2019_DJFMP_trawl_fish_and_water_quality_data.csv",
-                            "1976-2019_DJFMP_beach_seine_fish_and_water_quality_data.csv",
+                            "2002-2020_DJFMP_trawl_fish_and_water_quality_data.csv",
+                            "1976-2020_DJFMP_beach_seine_fish_and_water_quality_data.csv",
                             "DJFMP_Fish_Taxonomy.csv",
                             "DJFMP_Site_Locations.csv"), guess_max = 1000000  )
 
 trawlDfRaw_1<- DJFMP[["1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv"]]
-trawlDfRaw_2<- DJFMP[["2002-2019_DJFMP_trawl_fish_and_water_quality_data.csv"]]
-seineDfRaw <- DJFMP[["1976-2019_DJFMP_beach_seine_fish_and_water_quality_data.csv"]]
+trawlDfRaw_2<- DJFMP[["2002-2020_DJFMP_trawl_fish_and_water_quality_data.csv"]]
+seineDfRaw <- DJFMP[["1976-2020_DJFMP_beach_seine_fish_and_water_quality_data.csv"]]
 taxonomyFile <- DJFMP[["DJFMP_Fish_Taxonomy.csv"]]
 siteLatLong <- DJFMP[["DJFMP_Site_Locations.csv"]]
 
