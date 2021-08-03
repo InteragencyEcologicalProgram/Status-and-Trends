@@ -22,6 +22,7 @@ library(zoo) ## yearmon and yearqtr classes
 library(cowplot)
 library(lubridate)
 library(readxl)
+library(tidyverse)
 
 #import datasets----------------
 #source("0_data_access_scripts/data_access_zoops.R")
@@ -73,7 +74,7 @@ zoop<-subset(zoop_s,select=c("Year","Survey","Date","Station","ACARTELA","ACARTI
 
 
 #convert zoop data frame from wide to long format
-zoopl<-gather(zoop,taxon,cpue,ACARTELA:OTHCLADO)
+zoopl<-pivot_longer(zoop, cols = (ACARTELA:OTHCLADO), names_to= "taxon", values_to = "cpue")
 
 #modify column headers
 names(zoopl)[1:4]<-c("year","survey","date","station")

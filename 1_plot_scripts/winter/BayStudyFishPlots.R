@@ -10,7 +10,7 @@ library(lubridate)
 # 1. Import Data ----------------------------------------------------------
 
 # Longfin smelt
-lonsme.orig <- read_excel(path = file.path(data_root,"Bay Study_MWT_1980-2018_FishMatrix.xlsx")) 
+load("data/BayStudyFish.RData")
 
 # White sturgeon - Jason's calculated YCI dataset
 whistu.orig <- read_csv(file.path(data_root,"yci_bs.csv"))
@@ -20,8 +20,8 @@ whistu.orig <- read_csv(file.path(data_root,"yci_bs.csv"))
 
 # Longfin smelt
   # Clean and modify data
-  lonsme.clean <- lonsme.orig %>% 
-    select(Year:ChanShoal, TowVolume, LONSMEAge1) %>% 
+  lonsme.clean <- midwater_trawl_data %>% 
+    select(Year:ChanShoal, TowVolume, LONSME) %>% 
     mutate(
       Month = month(Date, label = TRUE, abbr = TRUE),
       Year.Index = if_else(
@@ -37,7 +37,7 @@ whistu.orig <- read_csv(file.path(data_root,"yci_bs.csv"))
   
   # Calculate CPUE values & average them for each year
   lonsme.cpue <- lonsme.clean %>% 
-    mutate(CPUE = (LONSMEAge1/TowVolume) * 10000) %>% 
+    mutate(CPUE = (LONSME/TowVolume) * 10000) %>% 
     group_by(Year.Index) %>% 
     summarize(y.val = mean(CPUE)) %>% 
     ungroup() %>% 
@@ -135,7 +135,7 @@ plot_fish_data <- function(df, f_spec = c("lonsme", "whistu"), lt_avg, plot_type
   
   # Add descriptive text to the plots for all years
 
-  textSize <- 1.5
+  textSize <- 2
   if (plot_type == "all") {
     if (f_spec == "lonsme") {
       p <- p +
@@ -190,17 +190,17 @@ fish.plots <-
  # mutate(Year.Index = factor(Year.Index)) %>% 
   group_nest(FishSpecies) %>% 
   # Add long-term averages to df
-  left_join(lt.avg) %>% 
-  select(FishSpecies, Average, data) %>% 
+  #left_join(lt.avg) %>% 
+  select(FishSpecies, data) %>% 
   # Create plots
   mutate(
     plot_allYears = pmap(
-      list(data, FishSpecies, Average),
+      list(data, FishSpecies),
       plot_fish_data, 
       plot_type = "all"
     ),
     plot_recent = pmap(
-      list(data, FishSpecies, Average),
+      list(data, FishSpecies),
       plot_fish_data, 
       plot_type = "recent"
     )
