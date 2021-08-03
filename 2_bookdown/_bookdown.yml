@@ -3,3 +3,8 @@ language:
   ui:
     chapter_name: ""
 delete_merged_file: true
+
+output:
+  html_document:
+    includes: 
+      in_header: GA_script.html
