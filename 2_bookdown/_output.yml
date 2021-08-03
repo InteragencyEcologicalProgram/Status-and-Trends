@@ -3,6 +3,7 @@ bookdown::gitbook:
   output_dir: "report"
   number_sections:  FALSE
   includes:
+    in_header: google_analytics.html
     after_body: load-custom-js.html
   config:
     toc:
