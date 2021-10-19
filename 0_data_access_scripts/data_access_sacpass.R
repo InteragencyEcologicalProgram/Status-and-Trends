@@ -12,7 +12,7 @@ library(smonitr)
 
 
 
-urls =  "http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2019&biweekly=other&wtemp=default"
+urls =  "http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2020&biweekly=other&wtemp=default"
 
 #notes:
 #For passage estimates values: “—“ (two dashes) indicates that no sampling occurred, 
@@ -37,7 +37,7 @@ rb = function(reportyear) {
   return(redbluff)
 }
 
-redbluff = rb(2019)
+redbluff = rb(report_year)
 
 redbluff$Date = as.Date(redbluff$Date, format = "%Y-%m-%d")
 
@@ -73,10 +73,13 @@ Fall = Grandtab$Fall %>%
 #well, that was spiffy and easy
 
 Winter = get_grandtab_data(season = "Winter")
-
+Winter = Winter[[1]]
 
 AllAdults = left_join(Fall, Winter) %>%
   left_join(Spring)
+
+Latefall = get_grandtab_data(season = "Late-Fall")
+Latefall = Latefall[[1]]
 
 #CSV of all the adult escapement
 write.csv(AllAdults, file.path(data_root,"Grandtab_adultsalmon.csv"), row.names = F)

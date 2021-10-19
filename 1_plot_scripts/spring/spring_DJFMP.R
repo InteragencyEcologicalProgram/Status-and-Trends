@@ -17,6 +17,7 @@ any(is.na(unique(chippsData$Volume)))
 chippsData$Volume[is.na(chippsData$Volume)] <- mean(chippsData$Volume, na.rm=TRUE)
 
 ## Add fields:
+chippsData$SampleDate = mdy(chippsData$SampleDate)
 chippsData$Month <- lubridate::month(chippsData$SampleDate)
 chippsData$Year <- lubridate::year(chippsData$SampleDate)
 chippsData$Year_f <- as.factor(chippsData$Year)

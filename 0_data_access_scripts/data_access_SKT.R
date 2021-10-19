@@ -10,7 +10,7 @@ library(odbc)
 thisDataRoot <- file.path(data_root,"SKT")
 
 ## SKT Survey url:
-surveyURL <- "ftp://ftp.wildlife.ca.gov/Delta%20Smelt/SKT.zip"
+surveyURL <- "https://filelib.wildlife.ca.gov/Public/Delta%20Smelt/SKT.zip"
 
 ## Name of SKT Survey zip file: 
 zipFileName <- "SKT.zip"

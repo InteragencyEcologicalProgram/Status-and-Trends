@@ -8,7 +8,7 @@ pagetitle: "Summer Report"
 #### Interagency Ecological Program Summer Season Report
 
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for June through August from 1966 to 2019.
+surveys for June through August from 1966 to 2020.
 
 <h2>Delta Outflow</h2>
 
@@ -22,7 +22,7 @@ knitr::include_graphics(file.path(fig_root_summer,"summer_outflow_update.png"))
 
 - Freshwater flow influences water quality, plankton, and fish populations.
 - Summer flow is driven primarily upstream dam releases and exports.
-- The summer of 2019 had slightly higher outflow than average.
+- The summer of 2020 had slightly lower outflow than average.
 
 ***
 ## Summer Secchi Depth 
@@ -79,7 +79,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average summer secchi depth in San Pablo Bay from 1975 to 2019. Values range from 10 to 150.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average summer secchi depth in San Pablo Bay from 1975 to 2020. Values range from 10 to 150.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"secchi_splsummer.png"))
 ```
 :::
@@ -87,7 +87,7 @@ knitr::include_graphics(file.path(fig_root_summer,"secchi_splsummer.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average summer secchi depth in Suisun from 1975 to 2019. Values range from 10 to 60.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average summer secchi depth in Suisun from 1975 to 2020. Values range from 10 to 60.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"secchi_sssummer.png"))
 ```
 :::
@@ -95,7 +95,7 @@ knitr::include_graphics(file.path(fig_root_summer,"secchi_sssummer.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r fig.cap= "Graph of average summer secchi depth in the Delta from 1975 to 2019. Values range from 25 to 120 and have been increasing since the year 2000.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average summer secchi depth in the Delta from 1975 to 2020. Values range from 25 to 120 and have been increasing since the year 2000.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"secchi_dtsummer.png"))
 ```
 :::
@@ -103,19 +103,19 @@ knitr::include_graphics(file.path(fig_root_summer,"secchi_dtsummer.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2019, San Pablo bay secchi was lower than the long-term average.</center>
+<center>In 2020, San Pablo bay secchi was similar to the long-term average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2019, Suisun Bay was slightly clearer than average.</center>
+<center>In 2020, Suisun Bay was clearer than average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, the Delta was much clearer than average.</center>
+<center>In 2020, the Delta was much clearer than average.</center>
 :::
 ::::
 
@@ -186,7 +186,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average summer water temperature in San Pablo Bay from 1975 to 2019. Values range from 13 to 18.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average summer water temperature in San Pablo Bay from 1975 to 2020. Values range from 13 to 18.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"temp_splsummer.png"))
 ```
 :::
@@ -194,7 +194,7 @@ knitr::include_graphics(file.path(fig_root_summer,"temp_splsummer.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average summer water temperature in Suisun from 1975 to 2019. Values range from 13 to 18.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average summer water temperature in Suisun from 1975 to 2020. Values range from 13 to 18.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"temp_sssummer.png"))
 ```
 :::
@@ -202,7 +202,7 @@ knitr::include_graphics(file.path(fig_root_summer,"temp_sssummer.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average summer water temperature in the Delta from 1975 to 2019. Values range from 13 to 18.", class="expand"}
+```{r echo=FALSE, fig.cap= "Graph of average summer water temperature in the Delta from 1975 to 2020. Values range from 13 to 18.", class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"temp_dtsummer.png"))
 ```
 :::
@@ -210,19 +210,19 @@ knitr::include_graphics(file.path(fig_root_summer,"temp_dtsummer.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2019, San Pablo Bay temperatures were slightly higher than the long-term average.</center>
+<center>In 2020, San Pablo Bay temperatures were slightly higher than the long-term average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2019, Suisun Bay was warmer than the long-term average.</center>
+<center>In 2020, Suisun Bay was warmer than the long-term average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, the Delta was similar to the average average.</center>
+<center>In 2020, the Delta was warmer than average.</center>
 :::
 ::::
 
@@ -296,7 +296,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average summer chlorophyll in San Pablo Bay from 1975 to 2019. Values range from 4 to 15.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average summer chlorophyll in San Pablo Bay from 1975 to 2020. Values range from 4 to 15.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"chla_splsummer.png"))
 ```
 :::
@@ -304,7 +304,7 @@ knitr::include_graphics(file.path(fig_root_summer,"chla_splsummer.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average summer chlorophyll in Suisun from 1975 to 2019. Values range from 2 to 19.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average summer chlorophyll in Suisun from 1975 to 2020. Values range from 2 to 19.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"chla_sssummer.png"))
 ```
 :::
@@ -312,7 +312,7 @@ knitr::include_graphics(file.path(fig_root_summer,"chla_sssummer.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average summer chlorophyll in the Delta from 1975 to 2019. Values range from 3.5 to 29.", class="expand"}
+```{r echo=FALSE, fig.cap= "Graph of average summer chlorophyll in the Delta from 1975 to 2020. Values range from 3.5 to 29.", class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"chla_dtsummer.png"))
 ```
 :::
@@ -320,19 +320,19 @@ knitr::include_graphics(file.path(fig_root_summer,"chla_dtsummer.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2019, San Pablo Bay chlorophyll was slightly lower than the long-term average.</center>
+<center>In 2020, San Pablo Bay chlorophyll was about average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2019, Suisun Bay chlorophyll was below average.</center>
+<center>In 2020, Suisun Bay chlorophyll was below average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, the Delta had the lowest summer chlorophyll on record.</center>
+<center>In 2020, Delta chlorophyll was below average.</center>
 :::
 ::::
 
@@ -411,7 +411,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average summer zooplankton biomass in San Pablo Bay from 1975 to 2019. Values range from 5 to 25.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average summer zooplankton biomass in San Pablo Bay from 1975 to 2020. Values range from 5 to 25.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"zoops_splsummer.png"))
 ```
 :::
@@ -419,7 +419,7 @@ knitr::include_graphics(file.path(fig_root_summer,"zoops_splsummer.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average summer chlorophyll in Suisun from 1975 to 2019. Values range from 5 to 45 with much higher biomass before 1986.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average summer chlorophyll in Suisun from 1975 to 2020. Values range from 5 to 45 with much higher biomass before 1986.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"zoops_sssummer.png"))
 ```
 :::
@@ -427,7 +427,7 @@ knitr::include_graphics(file.path(fig_root_summer,"zoops_sssummer.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average summer zooplankton biomass in the Delta from 1975 to 2019. Values range from 3.5 to 39.", class="expand"}
+```{r echo=FALSE, fig.cap= "Graph of average summer zooplankton biomass in the Delta from 1975 to 2020. Values range from 3.5 to 39.", class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"zoops_dtsummer.png"))
 ```
 :::
@@ -435,19 +435,19 @@ knitr::include_graphics(file.path(fig_root_summer,"zoops_dtsummer.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2019, San Pablo Bay biomass was about average, mostly cyclopoid copepods.</center>
+<center>In 2020, San Pablo Bay biomass was about average, mostly cyclopoid copepods.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2019, Suisun Bay ad slightly higher than average total biomass, mostly mysids and cylcopoid copepdos.</center>
+<center>In 2020, Suisun Bay ad slightly higher than average total biomass, mostly mysids and cylcopoid copepdos.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, the Delta had lower than average biomass, mostly cladocerans.</center>
+<center>In 2020, the Delta had lower than average biomass, mostly cladocerans.</center>
 :::
 ::::
 
@@ -549,7 +549,7 @@ knitr::include_graphics(file.path(fig_root_summer,"noranc_all_years.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap="Graph of Sacramento pikeminnow index from 1975 to 2019. Values range from 0.2 to 6.", class="expand"}
+```{r echo=FALSE, fig.cap="Graph of Sacramento pikeminnow index from 1975 to 2020. Values range from 0.2 to 6.", class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"DJFMP_sacpikeminnow_summer.png"))
 ```
 :::
@@ -557,7 +557,7 @@ knitr::include_graphics(file.path(fig_root_summer,"DJFMP_sacpikeminnow_summer.pn
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>Delta Smelt catch in 2019 was much lower than the longterm average.</center>
+<center>Delta Smelt catch in 2020 was much lower than the longterm average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
@@ -569,7 +569,7 @@ knitr::include_graphics(file.path(fig_root_summer,"DJFMP_sacpikeminnow_summer.pn
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, Pikeminnow were more abundant than average.</center>
+<center>In 2020, Pikeminnow were less abundant than average.</center>
 :::
 ::::
 
@@ -582,7 +582,7 @@ For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Stu
 
 ***
 
-## Recent Trends: Summer 2004-2019 
+## Recent Trends: Summer 2004-2020 
 
 ### Background
 
@@ -679,13 +679,13 @@ knitr::include_graphics(file.path(fig_root_summer,"veg_perc.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>The Delta Smelt Townet index was zero in 2019, for the second year in a row.</center> 
+<center>The Delta Smelt Townet index was zero in 2020, for the third year in a row.</center> 
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>2019 had fewer observations of very high *Microcystis* than previous years.</center> 
+<center>2020 had fewer observations of very high *Microcystis* than previous years.</center> 
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
