@@ -10,7 +10,7 @@ options(width = 120)
 
 #### Interagency Ecological Program Spring Season Report
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for March through May from 1966 to 2019.
+surveys for March through May from 1966 to 2020.
 
 
 <h2>Delta Outflow</h2>
@@ -26,7 +26,7 @@ knitr::include_graphics(file.path(fig_root_spring,"spring_outflow_update.png"))
 
 - Freshwater flow influences water quality, plankton, and fish populations.
 - Spring flow is driven primarily by rainfall, snowmelt, and upstream dam releases.
-- The spring of 2019 had higher outflow than average.
+- The spring of 2020 had lower outflow than average.
 
 
 ***
@@ -90,7 +90,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average spring secchi depth in San Pablo Bay from 1975 to 2019. Values range from 10 to 150.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average spring secchi depth in San Pablo Bay from 1975 to 2020. Values range from 10 to 150.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_spring,"secchi_splspring.png"))
 ```
 :::
@@ -98,7 +98,7 @@ knitr::include_graphics(file.path(fig_root_spring,"secchi_splspring.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average spring secchi depth in Suisun from 1975 to 2019. Values range from 10 to 60.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average spring secchi depth in Suisun from 1975 to 2020. Values range from 10 to 60.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_spring,"secchi_ssspring.png"))
 ```
 :::
@@ -106,7 +106,7 @@ knitr::include_graphics(file.path(fig_root_spring,"secchi_ssspring.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r fig.cap= "Graph of average spring secchi depth in the Delta from 1975 to 2019. Values range from 25 to 120 and have been increasing since the year 2000.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average spring secchi depth in the Delta from 1975 to 2020. Values range from 25 to 170 and have been increasing since the year 2000.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_spring,"secchi_dtspring.png"))
 ```
 :::
@@ -114,19 +114,19 @@ knitr::include_graphics(file.path(fig_root_spring,"secchi_dtspring.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2019, San Pablo bay was lower than the long-term average.</center>
+<center>In 2020, San Pablo bay was close to the long-term average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2019, Suisun Bay was  close to the long-term average</center>
+<center>In 2020, Suisun Bay was  close to the long-term average</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, the Delta was clearer than average.</center>
+<center>In 2020, the Delta was clearer than average.</center>
 :::
 ::::
 
@@ -223,19 +223,19 @@ knitr::include_graphics(file.path(fig_root_spring,"temp_dtspring.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2019, San Pablo Bay temperatures were similar to the long-term average.</center>
+<center>In 2020, San Pablo Bay temperatures cooler than average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2019, Suisun Bay was similar to the long-term average.</center>
+<center>In 2020, Suisun Bay was cooler than average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, the Delta was slightly cooler than average.</center>
+<center>In 2020, the Delta was cooler than average.</center>
 :::
 ::::
 
@@ -309,7 +309,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average spring chlorophyll in San Pablo Bay from 1975 to 2019. Values range from 4 to 15.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average spring chlorophyll in San Pablo Bay from 1975 to 2020. Values range from 4 to 15.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_spring,"chla_splspring.png"))
 ```
 :::
@@ -317,7 +317,7 @@ knitr::include_graphics(file.path(fig_root_spring,"chla_splspring.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2019. Values range from 2 to 19.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2020. Values range from 2 to 19.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_spring,"chla_ssspring.png"))
 ```
 :::
@@ -325,7 +325,7 @@ knitr::include_graphics(file.path(fig_root_spring,"chla_ssspring.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average spring chlorophyll in the Delta from 1975 to 2019. Values range from 3.5 to 29.", class="expand"}
+```{r echo=FALSE, fig.cap= "Graph of average spring chlorophyll in the Delta from 1975 to 2020. Values range from 3.5 to 29.", class="expand"}
 knitr::include_graphics(file.path(fig_root_spring,"chla_dtspring.png"))
 ```
 :::
@@ -333,19 +333,19 @@ knitr::include_graphics(file.path(fig_root_spring,"chla_dtspring.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2019, San Pablo Bay chlorophyll was lower than the long-term average.</center>
+<center>In 2020, San Pablo Bay chlorophyll was lower than the long-term average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2019, Suisun Bay chlorophyll was also lower than average.</center>
+<center>In 2020, Suisun Bay chlorophyll was also lower than average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, the Delta had much lower chlorophyll than average.</center>
+<center>In 2020, the Delta had much lower chlorophyll than average.</center>
 :::
 ::::
 
@@ -428,7 +428,7 @@ knitr::include_graphics(file.path(fig_root_static,"mline.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average spring zooplankton biomass in San Pablo Bay from 1975 to 2019. Values range from 5 to 25.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average spring zooplankton biomass in San Pablo Bay from 1975 to 2020. Values range from 5 to 25.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_spring,"zoops_splspring.png"))
 ```
 :::
@@ -436,7 +436,7 @@ knitr::include_graphics(file.path(fig_root_spring,"zoops_splspring.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2019. Values range from 5 to 45 with much higher biomass before 1986.", echo=FALSE, class="expand"}
+```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2020. Values range from 5 to 45 with much higher biomass before 1986.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_spring,"zoops_ssspring.png"))
 ```
 :::
@@ -444,7 +444,7 @@ knitr::include_graphics(file.path(fig_root_spring,"zoops_ssspring.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average spring zooplankton biomass in the Delta from 1975 to 2019. Values range from 3.5 to 39.", class="expand"}
+```{r echo=FALSE, fig.cap= "Graph of average spring zooplankton biomass in the Delta from 1975 to 2020. Values range from 3.5 to 39.", class="expand"}
 knitr::include_graphics(file.path(fig_root_spring,"zoops_dtspring.png"))
 ```
 :::
@@ -452,19 +452,19 @@ knitr::include_graphics(file.path(fig_root_spring,"zoops_dtspring.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-<center>In 2019, San Pablo Bay had lower than average biomass, mostly calanoid copepods.</center>
+<center>In 2020, San Pablo Bay had lower than average biomass, mostly calanoid copepods.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2019, Suisun Bay had about average total biomass.</center>
+<center>In 2020, Suisun Bay had about average total biomass.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, the Delta had much lower than average total biomass.</center>
+<center>In 2020, the Delta had much lower than average total biomass.</center>
 :::
 ::::
 
@@ -559,7 +559,7 @@ knitr::include_graphics(file.path(fig_root_spring,"SpringRun_1966.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 1995 to 2019. Values range from 0.2 to 6.", class="expand"}
+```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 1995 to 2020. Values range from 0.2 to 6.", class="expand"}
 knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_allyears_SP.png"))
 ```
 :::
@@ -573,13 +573,13 @@ knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2019, adult Chinook returns were higher than average.</center>
+<center>In 2020, adult Chinook returns were higher than average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, juvenile Chinook catch was higher than average.</center>
+<center>In 2020, juvenile Chinook catch was higher than average.</center>
 :::
 ::::
 
@@ -591,7 +591,7 @@ For more information see: Kwan, N., Stuart, C., Shakya, A., Jenkins, J., and Sch
 
 ***
 
-## Recent Trends: Spring Fish 2004-2019 
+## Recent Trends: Spring Fish 2004-2020 
 
 ### Background
 
@@ -695,7 +695,7 @@ knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-3'}
-<center>In 2019, juvenile winter-run salmon catch was about average.</center>
+<center>In 2020, juvenile winter-run salmon catch was about average.</center>
 :::
 ::::
 
