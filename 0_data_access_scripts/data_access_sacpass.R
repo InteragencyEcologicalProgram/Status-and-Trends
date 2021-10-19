@@ -78,6 +78,9 @@ Winter = Winter[[1]]
 AllAdults = left_join(Fall, Winter) %>%
   left_join(Spring)
 
+Latefall = get_grandtab_data(season = "Late-Fall")
+Latefall = Latefall[[1]]
+
 #CSV of all the adult escapement
 write.csv(AllAdults, file.path(data_root,"Grandtab_adultsalmon.csv"), row.names = F)
 
