@@ -2,7 +2,7 @@
 
 ##########################################################################
 ## Read in data:
-load("seineData.RData")
+load("data/seineData.RData")
 
 #seineData <- read.csv(file.path(thisDataRoot,"seineData.csv"), stringsAsFactors=FALSE)
 #siteLatLong <- read.csv(file.path(thisDataRoot,"DJFMP_Site_Locations.csv"))
@@ -16,6 +16,7 @@ unique(seineData$Volume)
 seineData$Volume[is.na(seineData$Volume)] <- mean(seineData$Volume, na.rm=TRUE)
 
 ## Add fields:
+seineData$SampleDate = lubridate::mdy(seineData$SampleDate)
 seineData$Month <- lubridate::month(seineData$SampleDate)
 seineData$Year <- lubridate::year(seineData$SampleDate)
 seineData$Year_f <- as.factor(seineData$Year)

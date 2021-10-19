@@ -17,10 +17,10 @@ any(is.na(unique(chippsData$Volume)))
 chippsData$Volume[is.na(chippsData$Volume)] <- mean(chippsData$Volume, na.rm=TRUE)
 
 ## Add fields:
-chippsData$Month <- lubridate::month(chippsData$SampleDate)
-chippsData$Year <- lubridate::year(chippsData$SampleDate)
-chippsData$Year_f <- as.factor(chippsData$Year)
-
+chippsData = mutate(chippsData, SampleDate = mdy(SampleDate),
+                    Month = month(SampleDate),
+                    Year = year(SampleDate),
+                    Year_f = as.factor(Year))
 ## Create wide data frame:
 chippsData$CommonName <- sub("Chinook salmon","Chinook salmon_",chippsData$CommonName)
 chippsData$CommonName <- sub(" ","_",chippsData$CommonName)
@@ -48,7 +48,7 @@ chippsIndexDf <- chippsWide_spring %>%
   dplyr::ungroup() %>%
   dplyr::group_by(Year_f, Year) %>%
   dplyr::summarize(
-    chinook_winterByLengthIndex=mean(chinook_winterByLength_CPUE_YM) * 1000,
+    chinook_winterByLengthIndex=mean(chinook_winterByLength_CPUE_YM, na.rm = TRUE) * 1000,
     .groups="keep"
   ) %>% 
   dplyr::ungroup() %>%

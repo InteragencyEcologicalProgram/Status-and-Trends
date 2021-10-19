@@ -1,4 +1,4 @@
-# Summer 2018 Seasonal Monitoring Report
+# Summer 2019 Seasonal Monitoring Report
 # Purpose: Create plots of Northern Anchovy CPUE from the Bay Study dataset
 # Author: Dave Bosworth
 

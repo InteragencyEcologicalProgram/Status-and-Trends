@@ -11,8 +11,7 @@ conversion = read.csv("data/Mysid_bimass_conversions.csv")
 
 conversion = filter(conversion, Preservative == "Formalin", Type == "Dry")
 
-MysidMatrix <- read_excel("data/1972-2019MysidMatrix.xlsx", 
-                          sheet = "Mysid CPUE Matrix 1972-2019")
+MysidMatrix = Mysids
 
 #biomass is a * length^b
 

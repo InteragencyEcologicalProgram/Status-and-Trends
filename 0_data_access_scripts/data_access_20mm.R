@@ -10,7 +10,7 @@
 thisDataRoot <- file.path(data_root,"20mm")
 
 ## 20mm Survey url:
-surveyURL <- "ftp://ftp.dfg.ca.gov/Delta%20Smelt/20mm_New.zip"
+surveyURL <- "https://filelib.wildlife.ca.gov/Public/Delta%20Smelt/20mm_New.zip"
 
 ## Name of 20mm Survey zip file:
 zipFileName <- "20mm_New.zip"
@@ -22,10 +22,10 @@ dbName <- "20mm_New.accdb"
 ## Retrieve 20mm Survey database copy:
 
 ## Download and unzip the file:
-localZipFile <- file.path(thisDataRoot,zipFileName)
+localZipFile <- file.path(data_root,zipFileName)
 
 download.file(url=surveyURL, destfile=localZipFile)
-localDbFile <- unzip(zipfile=localZipFile, exdir=file.path(thisDataRoot))
+localDbFile <- unzip(zipfile=localZipFile, exdir=file.path(data_root))
 
 
 ##########################################################################

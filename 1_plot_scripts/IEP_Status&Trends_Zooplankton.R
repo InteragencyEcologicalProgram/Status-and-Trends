@@ -22,6 +22,7 @@ library(zoo) ## yearmon and yearqtr classes
 library(cowplot)
 library(lubridate)
 library(readxl)
+library(tidyverse)
 
 #import datasets----------------
 #source("0_data_access_scripts/data_access_zoops.R")
@@ -48,15 +49,17 @@ load(file.path(data_root, "mysidbiomass.RData"))
 #exclude 1972-1973 because only subset of core stations were sampled during those years
 #exclude survey replicate 2 for the months that have those; vast majority of monthly surveys are just one replicate
 #exclude the winter months (1,2,12) initially because they have a shorter time series than the other months
-zoop_sub<-subset(zoopcb, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1973 & SurveyRep!=2 & Survey>2 & Survey<12)
+zoop_sub<-subset(zoopscb, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & 
+                   Year>1973 & SurveyRep!=2 & Survey>2 & Survey<12)
 
 #create separate subset of the two san pablo stations to include in graphs (no core stations in SP)
-zoop_subsp<-subset(zoopcb, Station=="NZD41" | Station=="NZ41A")
+zoop_subsp<-subset(zoopscb, Station=="NZD41" | Station=="NZ41A")
 unique(zoop_subsp$SurveyRep) #only includes one sample per month
 range(zoop_subsp$Year) #starts after 1998
 
 #create separate subset for winter months with its shorter time series
-zoop_subw<-subset(zoopcb, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1993 & SurveyRep!=2 & (Survey<3 | Survey>11))
+zoop_subw<-subset(zoopscb, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1993 & 
+                    SurveyRep!=2 & (Survey<3 | Survey>11))
 
 unique(zoop_subw$Station)
 
@@ -67,13 +70,13 @@ zoop_s<-rbind(zoop_sub,zoop_subsp,zoop_subw)
 
 #reduce zooplankton count data to just needed columns. Take out the cyclopoids best sampled
 #by the pump
-zoop<-subset(zoop_s,select=c("Year","Survey","Date","Station","ACARTELA","ACARTIA","DIAPTOM","EURYTEM","OTHCALAD","PDIAPFOR",
+zoop<-subset(zoop_s,select=c("Year","Survey","SampleDate","Station","ACARTELA","ACARTIA","DIAPTOM","EURYTEM","OTHCALAD","PDIAPFOR",
                              "PDIAPMAR","SINOCAL","TORTANUS",
-                             "AVERNAL","OTHCYCAD","BOSMINA","DAPHNIA","DIAPHAN","OTHCLADO")  )
+                             "ACANTHO","OTHCYCAD","BOSMINA","DAPHNIA","DIAPHAN","OTHCLADO")  )
 
 
 #convert zoop data frame from wide to long format
-zoopl<-gather(zoop,taxon,cpue,ACARTELA:OTHCLADO)
+zoopl<-pivot_longer(zoop, cols = (ACARTELA:OTHCLADO), names_to= "taxon", values_to = "cpue")
 
 #modify column headers
 names(zoopl)[1:4]<-c("year","survey","date","station")
@@ -90,8 +93,8 @@ zoopb$bpue<-zoopb$cpue*zoopb$mass_indiv_ug
 
 #pump: formatting data---------___________________________________
 
-names(zoopp)
-zoopp = rename(zoopp, Station = StationNZ)
+names(zoopps)
+#zoopp = rename(zoopp, Station = StationNZ)
 
 #exclude unneeded rows:
 #exclude EZ stations (NZEZ2, NZEZ6)
@@ -99,13 +102,15 @@ zoopp = rename(zoopp, Station = StationNZ)
 #exclude 1972-1973 because only subset of core stations were sampled during those years
 #exclude survey replicate 2 for the months that have those; vast majority of monthly surveys are just one replicate
 #exclude the winter months (1,2,12) initially because they have a shorter time series than the other months
-zoop_sub2<-subset(zoopp, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1973 & SurveyRep!=2 & Survey>2 & Survey<12)
+zoop_sub2<-subset(zoopps, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1973 & 
+                    SurveyRep!=2 & Survey>2 & Survey<12)
 
 #create separate subset of the two san pablo stations to include in graphs (no core stations in SP)
-zoop_subsp2<-subset(zoopp, Station=="NZD41" | Station=="NZ41A")
+zoop_subsp2<-subset(zoopps, Station=="NZD41" | Station=="NZ41A")
 
 #create separate subset for winter months with its shorter time series
-zoop_subw2<-subset(zoopp, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1993 & SurveyRep!=2 & (Survey<3 | Survey>11))
+zoop_subw2<-subset(zoopps, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & Year>1993 & 
+                     SurveyRep!=2 & (Survey<3 | Survey>11))
 
 #combine the three data subsets
 zoop_s2<-rbind(zoop_sub2,zoop_subsp2,zoop_subw2)
@@ -113,7 +118,8 @@ zoop_s2<-rbind(zoop_sub2,zoop_subsp2,zoop_subw2)
 #reduce zooplankton data to just needed columns
 #"Year","Survey","SampleDate","Station" 
 #"LIMNOSINE"+"LIMNOSPP"+"LIMNOTET" + "OITHDAV" + "OITHSIM" + "OITHSPP" = the two cyclopoid genera best surveyed by pump
-zoop2<-subset(zoop_s2,select=c("Year","Survey","SampleDate","Station","LIMNOSINE","LIMNOSPP","LIMNOTET","OITHDAV","OITHSIM","OITHSPP"))
+zoop2<-subset(zoop_s2,select=c("Year","Survey","SampleDate","Station","LIMNOSINE",
+                               "LIMNOSPP","LIMNOTET","OITHDAV","OITHSIM","OITHSPP"))
 
 #convert zoop data frame from wide to long format
 zoopl2<-gather(zoop2,taxon,cpue,LIMNOSINE:OITHSPP)
@@ -136,7 +142,7 @@ zall<-rbind(zoopb,zoopb2)
 
 #first, create vectors of strings to replace with broader category names 
 calan<-c("ACARTELA","ACARTIA","DIAPTOM","EURYTEM","OTHCALAD","PDIAPFOR","PDIAPMAR","SINOCAL","TORTANUS")
-cyclop<-c("AVERNAL","OTHCYCAD","LIMNOSINE","LIMNOSPP","LIMNOTET" , "OITHDAV" , "OITHSIM" , "OITHSPP")
+cyclop<-c("ACANTHO","OTHCYCAD","LIMNOSINE","LIMNOSPP","LIMNOTET" , "OITHDAV" , "OITHSIM" , "OITHSPP")
 cladoc<-c("BOSMINA","DAPHNIA","DIAPHAN","OTHCLADO")
 
 

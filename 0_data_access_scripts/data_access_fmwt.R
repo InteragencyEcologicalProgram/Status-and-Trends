@@ -6,8 +6,7 @@ library(smonitr)
 
 
 #CDFW started just putting their indexes in a spreadsheet Much easier
-FMWT = get_ftp_data("ftp://ftp.dfg.ca.gov", "TownetFallMidwaterTrawl/FMWT%20Data", "FMWTindices.csv",
-             guess_max = 100000L)
-FMWT = FMWT$FMWTindices.csv
+FMWT = download_file("https://filelib.wildlife.ca.gov/Public/TownetFallMidwaterTrawl/FMWT%20Data/FMWTindices.csv")
+FMWT1 = read_csv(FMWT, guess_max = 10000)
 
-write.csv(FMWT, file.path(data_root,"fmwt.csv"), row.names = F)
+write.csv(FMWT1, file.path(data_root,"fmwt.csv"), row.names = F)
