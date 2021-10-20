@@ -1,15 +1,16 @@
 bookdown::gitbook:
-  css: style.css
+  css: [css/emp-book-custom.css, css/emp-style.css, css/emp-toc.css, css/slideshow.css, css/style.css]
   output_dir: "report"
   number_sections:  FALSE
   includes:
-    in_header: google_analytics.html
-    after_body: load-custom-js.html
+    in_header: html/google_analytics.html
+    after_body: html/load-custom-js.html
   config:
     toc:
       before: |
-        <li><a href="./">IEP Seasonal Monitoring Report</a></li>
+        <li class='before'><a href="index.html">IEP Seasonal Monitoring Report</a></li>
       after: |
+        <li class='after'><a href="https://github.com/InteragencyEcologicalProgram/Status-and-Trends" target="blank">View GitHub Repo</a></li>      
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 bookdown::pdf_book:
   includes:
