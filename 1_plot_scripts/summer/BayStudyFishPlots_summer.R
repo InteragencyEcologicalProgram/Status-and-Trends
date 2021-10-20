@@ -55,54 +55,51 @@ lt_avg_cpue <- mean(noranc_cpue$ave_cpue)
 # Create dataframes for text comments on plots
 noranc_text_h <- tibble(
   Year = 1966,
-  yValue = 40,
-  label = "Data were not\ncollected until 1980"
+  yValue = 350,
+  label = "Data not\ncollected\nuntil 1980"
 )
 
 # 4. Create Plots ---------------------------------------------------------
 
 # Plot for all years
-noranc_plot_all <- noranc_cpue %>% 
-  ggplot(
-    aes(
-      x = Year,
-      y = ave_cpue
-    )
-  ) +
+northern_anchovy_all_years <- noranc_cpue %>% 
+  ggplot(aes(x=Year, y=ave_cpue)) +
   geom_col() +
   # apply custom theme
-  smr_theme() +
+  smr_theme_update() + 
   # customize axis labels
-  ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))) +
+  # ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")"))) +
+  ylab("Index") +
   # define y-axis breaks and add thousanths comma
-smr_y_axis()+
+	# smr_y_axis()+
   # add horizontal line for long-term average CPUE
   stat_lt_avg()+
   # standardize x-axis
   smr_x_axis(report_year, type = "all", season = "summer")+
   # add markers for missing data
- stat_missing() +
+	stat_missing(size=2.5) + 
   # add horizontal text to plot
-  geom_text(
-    data = noranc_text_h,
-    aes(
-      x = Year,
-      y = yValue,
-      label = label
-    ),
-    inherit.aes = FALSE,
-    hjust = "left",
-    size = 1.9
-  )
+  geom_text(data=noranc_text_h, aes(x=Year, y=yValue, label=label),
+						inherit.aes=FALSE, hjust="left", size=2.7) + 
+	smr_caption(stat_name="the northern anchovy CPUE", report_year=report_year) + 
+	smr_alttext(stat_name="average northern anchovy CPUE")
+
+northern_anchovy_all_years
+
+getCaption(northern_anchovy_all_years)
+getAlttext(northern_anchovy_all_years)
+
+
+## Save figure:
+save(list="northern_anchovy_all_years", 
+		 file=file.path(fig_root_summer,"northern_anchovy_all_years.RData"))
+
+
+
 
 # Plot for recent years (15 years from report date)
 noranc_plot_rec <- noranc_cpue %>%
-  ggplot(
-    aes(
-      x = Year,
-      y = ave_cpue
-    )
-  ) +
+  ggplot(aes(x=Year, y=ave_cpue)) +
   geom_col() +
   # apply custom theme
   smr_theme() +
@@ -113,37 +110,43 @@ noranc_plot_rec <- noranc_cpue %>%
   scale_y_continuous(breaks = seq(0, 700, by = 100)) +
   # add horizontal line for long-term average CPUE
   stat_lt_avg()+
-  stat_missing()
+  stat_missing() + 
+	smr_caption(stat_name="average northern anchovy CPUE", report_year=report_year) + 
+	smr_alttext(stat_name="average northern anchovy CPUE")
+
+getCaption(noranc_plot_rec)
+getAlttext(noranc_plot_rec)
 
 
-# Print Plots
-  # Plot for all years
-  ggsave(
-    plot = noranc_plot_all,
-    filename = file.path(fig_root_summer,"noranc_all_years.png"),
-    dpi = 300,
-    units = "cm",
-    width = 9.3,
-    height = 6.8
-  )
 
-  ggsave(
-    plot = noranc_plot_all,
-    filename = file.path(fig_root_summer,"noranc_all_years.png"),
-    dpi = 300,
-    units = "cm",
-    width = 9.3,
-    height = 6.8
-  )
+# # Print Plots
+  # # Plot for all years
+  # ggsave(
+    # plot = noranc_plot_all,
+    # filename = file.path(fig_root_summer,"noranc_all_years.png"),
+    # dpi = 300,
+    # units = "cm",
+    # width = 9.3,
+    # height = 6.8
+  # )
+
+  # ggsave(
+    # plot = noranc_plot_all,
+    # filename = file.path(fig_root_summer,"noranc_all_years.png"),
+    # dpi = 300,
+    # units = "cm",
+    # width = 9.3,
+    # height = 6.8
+  # )
   
   
-  # Plot for recent years
-  ggsave(
-    plot = noranc_plot_rec,
-    filename = file.path(fig_root_summer,"noranc_rec_years.png"),
-    dpi = 300,
-    units = "cm",
-    width = 9.3,
-    height = 6.8
-  )
+  # # Plot for recent years
+  # ggsave(
+    # plot = noranc_plot_rec,
+    # filename = file.path(fig_root_summer,"noranc_rec_years.png"),
+    # dpi = 300,
+    # units = "cm",
+    # width = 9.3,
+    # height = 6.8
+  # )
 

@@ -46,68 +46,71 @@ cpue = catch %>%
 
 # full plots
 yolo_splittail_all = cpue %>%
-  filter(CommonName == "Splittail") %>% {
-    ggplot(., aes(x = Year, y = CPUE)) +
-    smr_theme() +
-    geom_col() +
+  filter(CommonName == "Splittail") %>% 
+  dplyr::mutate(CPUE_1000 = CPUE*1000) %>% {
+    ggplot(., aes(x = Year, y = CPUE_1000)) +
+    smr_theme_update() + 
+    geom_col() + 
       smr_x_axis(report_year, type = "all", season = "fall") +
-      stat_missing()+
+      stat_missing(size=2.5)+
       stat_lt_avg()+
-    scale_y_continuous("Fish catch per thousand hours",
-      labels = scales::label_number(scale = 1000))
+    scale_y_continuous("Fish catch per 1,000 hours") + 
+	smr_caption(stat_name="Splittail CPUE", report_year=report_year) + 
+	smr_alttext(stat_name="average Sacramento Splittail catch per unit effort")		
+      ##labels = scales::label_number(scale = 1000))
   }
 
 yolo_chinook_all = cpue %>%
-  filter(CommonName == "Chinook Salmon") %>% {
-    ggplot(., aes(x = Year, y = CPUE)) +
-      smr_theme() +
+  filter(CommonName == "Chinook Salmon") %>%
+	mutate(CPUE_1000 = CPUE*1000) %>% {
+    ggplot(., aes(x = Year, y = CPUE_1000)) +
+      smr_theme_update() +
       geom_col() +
       smr_x_axis(report_year, type = "all", season = "spring") +
-      stat_missing()+
+      stat_missing(size=2.5)+
       stat_lt_avg()+
-      scale_y_continuous("Fish catch per thousand hours",
-                         labels = scales::label_number(scale = 1000))
+      scale_y_continuous("Fish catch per 1,000 hours")
+                         ##labels = scales::label_number(scale = 1000))
   }
 
 
 # recent plots
 yolo_splittail_recent = cpue %>%
-  filter(CommonName == "Splittail") %>% {
-    ggplot(., aes(x = Year, y = CPUE)) +
-      smr_theme() +
+  filter(CommonName == "Splittail") %>% 
+	mutate(CPUE_1000 = CPUE*1000) %>% {
+    ggplot(., aes(x = Year, y = CPUE_1000)) +
+      smr_theme_update() +
       geom_col() +
       smr_x_axis(report_year, type = "recent", season = "spring") +
-      stat_missing()+
+      stat_missing(size=2.5)+
       stat_lt_avg()+
-      scale_y_continuous("Fish catch per thousand hours",
-                         labels = scales::label_number(scale = 1000))
+      scale_y_continuous("Fish catch per 1,000 hours")
+                         ##labels = scales::label_number(scale = 1000))
   }
 
 yolo_chinook_recent = cpue %>%
-  filter(CommonName == "Chinook Salmon") %>% {
-    ggplot(., aes(x = Year, y = CPUE)) +
-    smr_theme() +
+  filter(CommonName == "Chinook Salmon") %>% 
+	mutate(CPUE_1000 = CPUE*1000) %>% {
+    ggplot(., aes(x = Year, y = CPUE_1000)) +
+    smr_theme_update() +
       geom_col() +
       smr_x_axis(report_year, type = "recent", season = "spring") +
-      stat_missing()+
+      stat_missing(size=2.5)+
       stat_lt_avg()+
-    scale_y_continuous("Fish catch per thousand hours",
-      labels = scales::label_number(scale = 1000))
+    scale_y_continuous("Fish catch per 1,000 hours")
+      ##labels = scales::label_number(scale = 1000))
   }
 
 
 # save plots
-ggsave(yolo_splittail_all, file = file.path(fig_root_spring, "yolo_splittail.png"),
-  dpi = 300, units = "cm", width = 9.3, height = 6.8)
 
-ggsave(yolo_chinook_all, file = file.path(fig_root_spring, "yolo_chinook.png"),
-  dpi = 300, units = "cm", width = 9.3, height = 6.8)
+yolo_splittail_all
+getCaption(yolo_splittail_all)
+getAlttext(yolo_splittail_all)
 
-ggsave(yolo_splittail_recent, file = file.path(fig_root_spring, "yolo_splittail_recent.png"),
-  dpi = 300, units = "cm", width = 9.3, height = 6.8)
+save(list=c("yolo_splittail_all"), 
+		 file=file.path(fig_root_spring,"yolo_splittail.RData"))
 
-ggsave(yolo_chinook_recent, file = file.path(fig_root_spring, "yolo_chinook_recent.png"),
-  dpi = 300, units = "cm", width = 9.3, height = 6.8)
 
 
 # test comparison to average of months instead of total season

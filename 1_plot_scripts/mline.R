@@ -11,7 +11,7 @@ mline = ggplot() +
   theme(axis.text = element_blank(), axis.title = element_blank(), 
         panel.background = element_rect(fill = "white"), axis.ticks=element_blank())
 
-ggsave("mline.png", mline, dpi=300, units="cm", width=9.3, height=1)
+ggsave(file.path(fig_root_static,"mline.svg"), mline, dpi=300, units="cm", width=9.3, height=1)
 
 
 #also do a missing-data-point 
@@ -27,4 +27,4 @@ mpoint = ggplot() +
 
 mpoint
 
-ggsave(file.path(fig_root_static,"mpoint.png"), mpoint, dpi=300, units="cm", width=9.3, height=1)
+ggsave(file.path(fig_root_static,"mpoint.svg"), mpoint, dpi=300, units="cm", width=9.3, height=1)

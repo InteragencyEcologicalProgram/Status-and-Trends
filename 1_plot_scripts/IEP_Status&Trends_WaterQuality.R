@@ -117,62 +117,111 @@ wqsum$qyear<-as.integer(wqsum$qyear)
 #do this so you can patch them together as grobs (like fish data panel)
 
 #first a function
-WQplot = function(reg, quart, analyte, data, reportyear) {
+WQplot = function(reg, quart, analyte, data, reportyear, verbose=TRUE) {
   #filter the dataset based on season, analyte, and region
   dat = filter(data, quarter == quart, region ==reg, AnalyteName == analyte, qyear <= reportyear)
   
   #set up limits for plot based on the max and min for all years and regions
   dat2 = filter(data, AnalyteName == analyte)
   lims = c(min(dat2$Result), max(dat2$Result))
-    
-    #make the plot
-  p_sec <- ggplot(dat, aes(x=qyear, y= Result))+
-    geom_line(colour="black", size = 0.9)+geom_point(colour="black", size = 1.6) +
-    geom_hline(aes(yintercept = mean(Result)), size = 0.9, color = "red", linetype = "dashed")+
-    smr_theme() + 
-    theme(legend.position="none") + 
-    smr_x_axis(reportyear, type = "all", season = season_names[quart])+
-    scale_y_continuous(AnalyteName_labs[analyte] , limits=lims)
-    
-   return(p_sec)
-  }
+
+	##regPretty <- sub("Delta","the Delta",region_names[reg])
+	regPretty <- region_names[reg]
+	quartPretty <- season_names[quart]
+	analytePretty <- switch(analyte, "temp"="water temperature", 
+													"secchi"="secchi depth", "chla"="chlorophyll", "")
+													# "secchi"="secchi depth", "chla"="chlorophyll level", "")
+
+	# fmt_caption <- "average %s in %s"
+	fmt_caption <- "%s %s"
+	statNameCaption <- sprintf(fmt=fmt_caption, regPretty, analytePretty)
+
+	fmt_alttext <- "average %s %s in %s"
+	statNameAlttext <- sprintf(fmt=fmt_alttext, quartPretty, analytePretty, regPretty)
+
+
+# # "Graph of average spring secchi depth in San Pablo Bay from 1975 to 2019. Values range from 10 to 150."
+# # "Graph of average spring secchi depth in Suisun from 1975 to 2019. Values range from 10 to 60."
+# # "Graph of average spring secchi depth in the Delta from 1975 to 2019. Values range from 25 to 120 and have been increasing since the year 2000."
+# # <center>In 2019, San Pablo bay was lower than the long-term average.</center>
+# # <center>In 2019, Suisun Bay was  close to the long-term average</center>
+# # <center>In 2019, the Delta was clearer than average.</center>
+
+  #make the plot
+  p_sec <- ggplot(dat, aes(x=qyear, y=Result)) + 
+    geom_line(colour="black", size=0.9) + 
+		geom_point(colour="black", size=1.6) + 
+		stat_lt_avg() + 
+    # geom_hline(aes(yintercept=mean(Result)), size=0.9, color="red", linetype="dashed") +
+    smr_theme_update() + 
+    smr_x_axis(reportyear, type="all", season=season_names[quart]) + 
+    scale_y_continuous(AnalyteName_labs[analyte], limits=lims) + 
+		smr_caption(stat_name=statNameCaption, report_year=reportyear) + 
+		smr_alttext(stat_name=statNameAlttext)
   
+	if(verbose) {
+		print(getCaption(p_sec))
+		print(getAlttext(p_sec))
+	}
+
+  return(p_sec)
+}
+
 WQplot("dt","Q1", "chla", wqsum, report_year) 
 
-#function to plot all graphs for a particular season and analyte seperately
-plotall = function(quart, analyte, data, report_year) {
+# #function to plot all graphs for a particular season and analyte seperately
+# plotall = function(quart, analyte, data, report_year) {
+  # #plot for each region for the season
+  # spl =WQplot("spl", quart, analyte, data, report_year, verbose=FALSE)
+  # ss = WQplot("ss", quart, analyte, data, report_year, verbose=FALSE)
+  # dt = WQplot("dt", quart, analyte, data, report_year, verbose=FALSE)
   
-  #plot for each region for the season
-  spl =WQplot("spl", quart, analyte, data, report_year)
-  ss = WQplot("ss", quart, analyte, data, report_year)
-  dt = WQplot("dt", quart, analyte, data, report_year)
+  # #grob them together into a single pannel
+  # tmps <- plot_grid(spl, ss, dt, ncol = 3, nrow = 1, align="v")
+ 	
+  # # # #save them together and seperately	
+  # ggsave(tmps, file=paste(analyte, "_panel_", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=27.9,height=6.8,
+         # path = file.path(fig_root, season_names[quart]))
   
-  #grob them together into a single pannel
-  tmps<-plot_grid(spl, ss, dt,
-                  ncol = 3, nrow = 1, align="v")
-  
-  #save them together and seperately
-  ggsave(tmps, file=paste(analyte, "_panel_", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=27.9,height=6.8,
-         path = file.path(fig_root, season_names[quart]))
-  
-  ggsave(spl, file=paste(analyte, "_spl", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
-         path = file.path(fig_root, season_names[quart]))
-  ggsave(ss, file=paste(analyte, "_ss", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
-         path = file.path(fig_root, season_names[quart]))
-  ggsave(dt, file=paste(analyte, "_dt", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
-         path = file.path(fig_root, season_names[quart]))
-  
+  # ggsave(spl, file=paste(analyte, "_spl", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
+         # path = file.path(fig_root, season_names[quart]))
+  # ggsave(ss, file=paste(analyte, "_ss", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
+         # path = file.path(fig_root, season_names[quart]))
+  # ggsave(dt, file=paste(analyte, "_dt", season_names[quart], ".png", sep = ""), dpi=300, units="cm",width=9.3,height=6.8,
+         # path = file.path(fig_root, season_names[quart]))
+# }
+
+# #Now get all of them for all the seasons!
+# plotallseason = function(analyte, data, report_year){
+  # plotall("Q1", analyte, data, report_year)
+  # plotall("Q2", analyte, data, report_year)
+  # plotall("Q3", analyte, data, report_year)
+  # plotall("Q4", analyte, data, report_year)
+# }
+
+# #crank out the plots
+# plotallseason("temp", wqsum, report_year)
+# plotallseason("secchi", wqsum, report_year)
+# plotallseason("chla", wqsum, report_year)
+
+
+## Save all analyte, region, and season combinations:
+for(Q in c("Q1","Q2","Q3","Q4")) {
+	wqPlotList <- list()
+
+	for(A in c("temp","secchi","chla")) {
+		for(R in c("dt","spl","ss")) {
+			tmp <- paste(A, R, sep="_")
+			wqPlotList[[tmp]] <- WQplot(reg=R, quart=Q, analyte=A, data=wqsum, 
+																	reportyear=report_year, verbose=FALSE)
+		}
+	}
+	
+	varName <- paste0("water_quality_",season_names[Q])
+	fileName <- file.path(fig_root, season_names[Q], paste0(varName,".RData"))
+
+	assign(x=varName, value=wqPlotList)
+	save(list=varName, file=fileName)
+	print(sprintf("Saving plots in a list called %s in the file %s", varName, fileName))
 }
 
-#Now get all of them for all the seasons!
-plotallseason = function(analyte, data, report_year){
-  plotall("Q1", analyte, data, report_year)
-  plotall("Q2", analyte, data, report_year)
-  plotall("Q3", analyte, data, report_year)
-  plotall("Q4", analyte, data, report_year)
-}
-
-#crank out the plots
-plotallseason("temp", wqsum, report_year)
-plotallseason("secchi", wqsum, report_year)
-plotallseason("chla", wqsum, report_year)

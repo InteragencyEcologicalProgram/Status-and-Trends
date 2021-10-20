@@ -59,18 +59,35 @@ Micro<-bind_rows(EMP, TNS)%>%
   filter(Region%in%"Delta" & Severity!="Absent" & Year>=2004)
 
 
-pMicro<-ggplot()+
-  geom_bar(data=Micro, aes(x=Year, y=Frequency, fill=Severity), stat="identity")+
+Microcystis_summer <- ggplot(data=Micro, aes(x=Year, y=Frequency, fill=Severity)) +
+  geom_bar(stat="identity") +
   scale_fill_brewer(type="div", palette="RdYlBu", 
                     guide=guide_legend(keyheight=0.5, title=NULL, direction="horizontal", 
-                                       label.position="right", reverse=TRUE))+
-  smr_x_axis(report_year, type = "recent", season = "summer")+
-  scale_y_continuous(expand=expansion(0,0))+
-  ylab("Relative frequency")+
-  smr_theme()+
-  theme(legend.position=c(0.5, 1.1), 
-        legend.background=element_rect(fill="white", color="white"), plot.margin = margin(t=30))+
-  annotate("text", x = 2004, y = 0.1, label = "Data not collected \n until 2007", hjust = 0, size = 2)
-pMicro
+                                       label.position="right", reverse=TRUE)) +
+  smr_x_axis(report_year, type="recent", season="summer") +
+  #scale_y_continuous(expand=expansion(0,0)) +
+  ylab("Relative frequency") +
+  smr_theme_update() +
+  theme(#legend.position=c(0.15, 0.95), 
+				#legend.text=element_text(size=8), 
+				legend.key.size=unit(0.3,"cm"), 
+				legend.spacing.x=unit(0.1, 'cm'),  
+				legend.box.spacing=unit(0, units="cm"), 
+				legend.margin=margin(t=0,r=0,b=2,l=-5, unit="pt")
+			) + 
+	#guides(fill=guide_legend(nrow=2,byrow=TRUE)) + 
+  annotate("text", x=2004, y=0.1, label="Data not collected \n until 2007", 
+					 hjust=0, size=2.7) + 
+	smr_caption_manual(caption=paste("There were fewer observations of very high", 
+																	 "<em>Microsystsis</em> than in previous years.")) + 
+	smr_alttext_manual(alttext=paste0("Graph of microcystis abundance from ",
+																	 min(Micro$Year)," to ",max(Micro$Year),"."))
 
-ggsave(pMicro, file=file.path(fig_root_summer,"Microcystis_summer.png"), dpi=300, units="cm", width=9.3, height=7.5)
+Microcystis_summer
+
+getCaption(Microcystis_summer)
+getAlttext(Microcystis_summer)
+
+
+save(list="Microcystis_summer", 
+		 file=file.path(fig_root_summer,"Microcystis_summer.RData"))
