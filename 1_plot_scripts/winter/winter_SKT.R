@@ -76,14 +76,23 @@ sktIndexDf
 
 # SKT index uses its own set of months so don't use std_x_axis_label("winter")
 
-skt_dsm_fig <- ggplot(sktIndexDf) + 
-  geom_bar(aes(x=Year, y=Index), stat="identity") +
-  smr_theme() +
-  theme(legend.position="none") + 
+SKT_delta_smelt_recent <- ggplot(sktIndexDf, aes(x=Year, y=Index)) + 
+  geom_bar(stat="identity") +
+  smr_theme_update() +
   ylab("Delta Smelt Index") + 
-  stat_missing(aes(x=Year, y=Index)) + 
-  stat_lt_avg(aes(y=Index))
+  stat_missing(size=2.5) + 
+  stat_lt_avg() +
+  stat_missing() + 
+	smr_x_axis(report_year, type="recent", season="annual") + 
+	smr_caption(stat_name="the Delta Smelt index", report_year=report_year) + 
+	smr_alttext(stat_name="Delta Smelt index")
 
-ggsave(skt_dsm_fig, file="SKT_dsm_recyears.png", path=fig_root_winter, 
-       dpi=300, units="cm", width=9.3, height=6.8)
+SKT_delta_smelt_recent
+
+getCaption(SKT_delta_smelt_recent)
+getAlttext(SKT_delta_smelt_recent)
+
+
+save(list="SKT_delta_smelt_recent", 
+		 file=file.path(fig_root_winter,"SKT_delta_smelt_recent.RData"))
 

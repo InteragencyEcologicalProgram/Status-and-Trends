@@ -1,36 +1,52 @@
 #plot spring-run adult salmon
 
+library(lubridate)
+
 #source(file.path(data_access_root,"data_access_sacpass.R"))
 
 load(file.path(data_root, "Grantab.RData"))
 
 #Spring run salmon
 
-p_spch <- ggplot(Spring, aes(x=Year, y=sprinrun))+
+SpringRun_1966 <- ggplot(Spring, aes(x=Year, y=sprinrun))+
     geom_bar(stat="identity") +
-    smr_theme() +
+    smr_theme_update() +
     theme(legend.position="none") + 
-    smr_y_axis(name = "Spring Run Chinook Adult Returns") +
+    #smr_y_axis(name = "Spring Run Adult Returns") + 
+		ylab("Spring Run Adult Returns") + 
     smr_x_axis(report_year, type = "all", season = "spring") +
-  stat_lt_avg(aes(y = sprinrun))
-p_spch
+		stat_missing(aes(x=Year, y=sprinrun), size=2.5) + 
+		stat_lt_avg(aes(y = sprinrun)) + 
+		smr_caption(stat_name="adult Chinook returns", report_year=report_year) + 
+		smr_alttext(stat_name="adult Chinook returns")
 
-ggsave(p_spch, file="SpringRun_1966.png", dpi=300, units="cm", width=9.3,
-       height=6.8, path = fig_root_spring)
+SpringRun_1966
+
+getCaption(SpringRun_1966)
+getAlttext(SpringRun_1966)
+
+save(list="SpringRun_1966", file=file.path(fig_root_spring,"SpringRun_1966.RData"))
 
 
 #Fall run salmon
-p_frch <- ggplot(Fall, aes(x=Year, y=fallrun))+
+FallRun_1966 <- ggplot(Fall, aes(x=Year, y=fallrun))+
   geom_bar(stat="identity") +
-  smr_theme() +
+  smr_theme_update() +
   theme(legend.position="none") + 
-  smr_y_axis(name = "Fall Run Chinook Adult Returns") +
+  #smr_y_axis(name = "Fall Run Adult Returns") + 
+	ylab("Fall Run Adult Returns") + 
   smr_x_axis(report_year, type = "all", season = "fall") +
-  stat_lt_avg(aes(y = fallrun))
+	stat_missing(aes(x=Year, y=fallrun), size=2.5) + 
+  stat_lt_avg(aes(y = fallrun)) + 
+	smr_caption(stat_name="adult Chinook returns", report_year=report_year) + 
+	smr_alttext(stat_name="adult Chinook returns")
 
-p_frch
+FallRun_1966
 
-ggsave(p_frch, file="FallRun_1966.png", dpi=300, units="cm", width=9.3, height=6.8, path = fig_root_fall)
+getCaption(FallRun_1966)
+getAlttext(FallRun_1966)
+
+save(list="FallRun_1966", file=file.path(fig_root_fall,"FallRun_1966.RData"))
 
 
 #Red Bluff
@@ -39,30 +55,39 @@ ggsave(p_frch, file="FallRun_1966.png", dpi=300, units="cm", width=9.3, height=6
 redbluff = Redlong
 
 #calculate the average
-MeanPass = group_by(redbluff, year(Date), runname) %>% summarize(meandaily = mean(Dailypassage, na.rm = T))
+MeanPass = group_by(redbluff, lubridate::year(Date), runname) %>% summarize(meandaily = mean(Dailypassage, na.rm = T))
 
 #average passage just for winter
-redbluff$Month = month(redbluff$Date)
+redbluff$Month = lubridate::month(redbluff$Date)
 RedWinter = filter(redbluff, Month == 12 | Month == 1 | Month == 2)
 
 #lump december with jan and feb
-RedWinter$Year2 = year(RedWinter$Date)
-RedWinter$Year2[which(RedWinter$Month== 1 | RedWinter$Month == 2)] = year(RedWinter$Date[which(RedWinter$Month== 1 | RedWinter$Month == 2)])-1
+RedWinter$Year2 = lubridate::year(RedWinter$Date)
+RedWinter$Year2[which(RedWinter$Month== 1 | RedWinter$Month == 2)] = lubridate::year(RedWinter$Date[which(RedWinter$Month== 1 | RedWinter$Month == 2)])-1
 
 #calculate mean passage
 meanwinter = group_by(RedWinter, Year2, runname) %>% summarize(meandaily = mean(Dailypassage, na.rm = T))
 
 
 #We just wanted winter run for the winter report
-Red = ggplot(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate"), aes(x = Year2, y = meandaily))
-redtest = Red + geom_bar(stat = "identity") + 
- smr_y_axis(name = "Estimated daily passage") + 
- smr_x_axis(report_year, type = "recent", season = "winter")+
-  smr_theme()+
-  stat_lt_avg(aes(y = meandaily))
-redtest
+Red = ggplot(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate"), 
+							aes(x = Year2, y = meandaily))
 
-#save it in the right place
-ggsave(redtest, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = fig_root_winter)
-# ggsave(redtest2, file="redbluff_2003.png", dpi=300, units="cm", width=9.3, height=6.8, path = "report_bookdown/figures")
+redbluff_2003 = Red + geom_bar(stat = "identity") + 
+ #smr_y_axis(name = "Estimated daily passage") + 
+ ylab("Estimated daily passage") + 
+ smr_x_axis(report_year, type = "recent", season = "winter")+
+  smr_theme_update()+
+	stat_missing(aes(x=Year2, y=meandaily), size=2.5) + 
+  stat_lt_avg(aes(y = meandaily)) + 
+	smr_caption(stat_name="adult fallrun Chinook population estimates", 
+							report_year=report_year) + 
+	smr_alttext(stat_name="adult fallrun Chinook population estimates")
+
+redbluff_2003
+
+getCaption(redbluff_2003)
+getAlttext(redbluff_2003)
+
+save(list="redbluff_2003", file=file.path(fig_root_winter,"redbluff_2003.RData"))
 

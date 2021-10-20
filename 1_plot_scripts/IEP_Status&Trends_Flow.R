@@ -55,7 +55,7 @@ ezq<-ggplot(dmean, aes(x=qyear, y=out)) +geom_line()+
 
 
 #now a function to plot one season at a time
-flows = function(quart, data) {
+flows = function(quart, data, reportyear, verbose=TRUE) {
   dat = filter(data, quarter == quart) 
   p = ggplot(dat, aes(x=qyear, y=out/1000)) +
     geom_line()+
@@ -63,36 +63,59 @@ flows = function(quart, data) {
     stat_lt_avg(aes(y = out/1000))+
   #  geom_hline(aes(yintercept = mean(out)/1000), size = 0.9, color = "red", linetype = "dashed")+
     smr_x_axis(report_year, type = "all", season = season_names[quart]) + 
-    scale_y_continuous(limits = c(0, max(data$out/1000)), name =expression(paste("Net Delta Outflow (1,000 Ft "^"3"," / s)"))) +
-    smr_theme()
+    scale_y_continuous(limits = c(0, max(data$out/1000)), name =expression(paste("Delta Outflow (1,000 Ft "^"3","/s)"))) +
+    smr_theme_update() + 
+		smr_caption(stat_name="net Delta outflow", report_year=reportyear)	+ 
+		smr_alttext(stat_name="net Delta outflow")
+		
+	if(verbose) {
+		print(getCaption(p))
+		print(getAlttext(p))
+	}
+	
   p
 }
 
-flows(quart = "Q1",data = dmean)
-flows(quart = "Q3",data = dmean)
+flows(quart="Q1", data=dmean, reportyear=report_year)
+flows(quart="Q3", data=dmean, reportyear=report_year)
 
 
-ggsave(flows(quart = "Q1",data = dmean), 
-       file="winter_outflow_update.png", 
-       dpi=300, units="cm", width=9.3, height=6.8,
-       path = fig_root_winter)
+## Save all seasons:
+for(Q in c("Q1","Q2","Q3","Q4")) {
+	flowPlot <- flows(quart=Q, data=dmean, reportyear=report_year, verbose=FALSE)
+	
+	varName <- paste0("outflow_",season_names[Q])
+	fileName <- file.path(fig_root, season_names[Q], paste0(varName,".RData"))
 
-ggsave(flows(quart = "Q2",data = dmean), 
-       file="spring_outflow_update.png", 
-       dpi=300, units="cm", width=9.3, height=6.8,
-       path = fig_root_spring)
+	assign(x=varName, value=flowPlot)
+	save(list=varName, file=fileName)
+	print(sprintf("Saving plots in a list called %s in the file %s", varName, fileName))
+	cat("\n")
+}
 
-ggsave(flows(quart = "Q3",data = dmean), 
-       file="summer_outflow_update.png", 
-       dpi=300, units="cm", width=9.3, height=6.8,
-       path = fig_root_summer)
 
-ggsave(flows(quart = "Q4",data = dmean), 
-       file="fall_outflow_update.png", 
-       dpi=300, units="cm", width=9.3, height=6.8,
-       path = fig_root_fall)
 
-ggsave(flows(quart = "Q4",data = dmean), 
-       file="fall_outflow_update.png", 
-       dpi=300, units="cm", width=9.3, height=6.8,
-       path = fig_root_fall)
+# ggsave(flows(quart="Q1", data=dmean, reportyear=report_year), 
+       # file="winter_outflow_update.png", 
+       # dpi=300, units="cm", width=9.3, height=6.8,
+       # path = fig_root_winter)
+
+# ggsave(flows(quart="Q2", data=dmean, reportyear=report_year), 
+       # file="spring_outflow_update.png", 
+       # dpi=300, units="cm", width=9.3, height=6.8,
+       # path = fig_root_spring)
+
+# ggsave(flows(quart="Q3", data=dmean, reportyear=report_year), 
+       # file="summer_outflow_update.png", 
+       # dpi=300, units="cm", width=9.3, height=6.8,
+       # path = fig_root_summer)
+
+# ggsave(flows(quart="Q4", data=dmean, reportyear=report_year), 
+       # file="fall_outflow_update.png", 
+       # dpi=300, units="cm", width=9.3, height=6.8,
+       # path = fig_root_fall)
+
+# ggsave(flows(quart="Q4", data=dmean, reportyear=report_year), 
+       # file="fall_outflow_update.png", 
+       # dpi=300, units="cm", width=9.3, height=6.8,
+       # path = fig_root_fall)
