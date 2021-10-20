@@ -217,7 +217,7 @@ qry_TLT_Index01 <- qry_TLT_Index01 %>%
 # GROUP BY qry_TLT_Index01.Year, qry_TLT_Index01.[qry_TLT_DS CPUE 01].Survey,
 # qry_AvgDSLength.AvgOfLength;
 # ")
-qry_TLT_Index02 <- dplyr::inner_join(qry_TLT_Index01, qry_AvgDSLength,
+qry_TLT_Index02 <- dplyr::left_join(qry_TLT_Index01, qry_AvgDSLength,
 																		 by=c("Year","Survey"))
 qry_TLT_Index02 <- qry_TLT_Index02 %>%
 	dplyr::group_by(Year, Survey, AvgOfLength) %>%
@@ -256,6 +256,8 @@ dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2016 & dsmIndexDf$Survey %in% 2:5] <- 
 dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2017 & dsmIndexDf$Survey %in% 3:6] <- TRUE
 dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2018 & dsmIndexDf$Survey %in% c(1,2,3,9)] <- TRUE
 dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2019 & dsmIndexDf$Survey %in% 3:6] <- TRUE
+## Arbitrary for 2020?:
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2020 & dsmIndexDf$Survey %in% 3:6] <- TRUE
 
 dsmIndexDf <- dsmIndexDf %>%
 	dplyr::filter(UseforIndex) %>%
@@ -267,6 +269,7 @@ dsmIndexDf <- dsmIndexDf %>%
 	as.data.frame(.)
 
 dsmIndexDf$Index[dsmIndexDf$Year == 2018] <- NA
+dsmIndexDf$Index[dsmIndexDf$Year == 2020] <- NA
 dsmIndexDf
 
 
