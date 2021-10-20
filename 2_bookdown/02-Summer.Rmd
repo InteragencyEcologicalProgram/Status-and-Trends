@@ -533,7 +533,7 @@ knitr::include_graphics(file.path(fig_root_static,"sacramento_pikeminnow.png"))
 
 :::: {.columns-nocenter}
 ::: {.column800 class='col-1'}
-```{r fig.cap="Graph of Delta Smelt Index from 1970 to 2019. Values range from 0 to 62.", echo=FALSE, class="expand"}
+```{r fig.cap="Graph of Delta Smelt Index from 1970 to 2020. Values range from 0 to 62.", echo=FALSE, class="expand"}
 knitr::include_graphics(file.path(fig_root_summer,"STN_DSM.png"))
 ```
 :::

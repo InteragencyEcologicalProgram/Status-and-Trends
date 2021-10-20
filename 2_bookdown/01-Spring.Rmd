@@ -573,7 +573,7 @@ knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.column800 class='col-2'}
-<center>In 2020, adult Chinook returns were higher than average.</center>
+<center>In 2019, adult Chinook returns were higher than average.</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
