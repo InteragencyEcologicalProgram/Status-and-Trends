@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Metadata | Winter Report</title>
+  <title>Metadata | IEP Seasonal Monitoring Report</title>
   <meta name="description" content="This report shows trends in water quality, plankton, and fish across multiple IEP surveys." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Metadata | Winter Report" />
+  <meta property="og:title" content="Metadata | IEP Seasonal Monitoring Report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/InteragencyEcologicalProgram/Status-and-Trends" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Metadata | Winter Report" />
+  <meta name="twitter:title" content="Metadata | IEP Seasonal Monitoring Report" />
   
   <meta name="twitter:description" content="This report shows trends in water quality, plankton, and fish across multiple IEP surveys." />
   
@@ -31,8 +31,9 @@
   
 <link rel="prev" href="Winter.html"/>
 
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -64,7 +64,11 @@
 
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="css/emp-book-custom.css" type="text/css" />
+<link rel="stylesheet" href="css/emp-style.css" type="text/css" />
+<link rel="stylesheet" href="css/emp-toc.css" type="text/css" />
+<link rel="stylesheet" href="css/slideshow.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -77,130 +81,54 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">IEP Seasonal Monitoring Report</a></li>
+<li class='before'><a href="index.html">IEP Seasonal Monitoring Report</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Contents</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#index"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html"><i class="fa fa-check"></i>Spring Report</a>
 <ul>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-secchi-depth"><i class="fa fa-check"></i>Spring Secchi Depth</a>
-<ul>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#average-secchi-depth-by-region"><i class="fa fa-check"></i>Average Secchi Depth by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-water-temperature"><i class="fa fa-check"></i>Spring Water Temperature</a>
-<ul>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#average-temperature-by-region"><i class="fa fa-check"></i>Average Temperature by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-chlorophyll"><i class="fa fa-check"></i>Spring Chlorophyll</a>
-<ul>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#average-chlorophyll-by-region"><i class="fa fa-check"></i>Average Chlorophyll by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-zooplankton"><i class="fa fa-check"></i>Spring Zooplankton</a>
-<ul>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#average-zooplankton-biomass-by-region"><i class="fa fa-check"></i>Average Zooplankton Biomass by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-fish"><i class="fa fa-check"></i>Spring Fish</a>
-<ul>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#background-4"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#average-fish-catch-trends-by-species"><i class="fa fa-check"></i>Average Fish Catch Trends by Species</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#recent-trends-spring-fish-2004-2020"><i class="fa fa-check"></i>Recent Trends: Spring Fish 2004-2020</a>
-<ul>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#background-5"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#average-fish-catch-trends-by-species-1"><i class="fa fa-check"></i>Average Fish Catch Trends by Species</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-outflow"><i class="fa fa-check"></i>Delta Outflow</a></li>
+<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-secchi"><i class="fa fa-check"></i>Secchi Depth</a></li>
+<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-temp"><i class="fa fa-check"></i>Water Temperature</a></li>
+<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-chlorophyll"><i class="fa fa-check"></i>Chlorophyll</a></li>
+<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-zoop"><i class="fa fa-check"></i>Zooplankton</a></li>
+<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-fish"><i class="fa fa-check"></i>Fish</a></li>
+<li class="chapter" data-level="" data-path="Spring.html"><a href="Spring.html#spring-recent"><i class="fa fa-check"></i>Recent Trends</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html"><i class="fa fa-check"></i>Summer Report</a>
 <ul>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-secchi-depth"><i class="fa fa-check"></i>Summer Secchi Depth</a>
-<ul>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#average-secchi-depth-by-region-1"><i class="fa fa-check"></i>Average Secchi Depth by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-water-temperature"><i class="fa fa-check"></i>Summer Water Temperature</a>
-<ul>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#average-temperature-by-region-1"><i class="fa fa-check"></i>Average Temperature by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-chlorophyll"><i class="fa fa-check"></i>Summer Chlorophyll</a>
-<ul>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#average-chlorophyll-by-region-1"><i class="fa fa-check"></i>Average Chlorophyll by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-zooplankton"><i class="fa fa-check"></i>Summer Zooplankton</a>
-<ul>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#background-9"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#average-zooplankton-biomass-by-region-1"><i class="fa fa-check"></i>Average Zooplankton Biomass by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-fish"><i class="fa fa-check"></i>Summer Fish</a>
-<ul>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#background-10"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#average-fish-catch-trends-by-species-2"><i class="fa fa-check"></i>Average Fish Catch Trends by Species</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#recent-trends-summer-2004-2020"><i class="fa fa-check"></i>Recent Trends: Summer 2004-2020</a>
-<ul>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#background-11"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#average-trends-by-parameter"><i class="fa fa-check"></i>Average Trends by Parameter</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-outflow"><i class="fa fa-check"></i>Delta Outflow</a></li>
+<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-secchi"><i class="fa fa-check"></i>Secchi Depth</a></li>
+<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-temp"><i class="fa fa-check"></i>Water Temperature</a></li>
+<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-chlorophyll"><i class="fa fa-check"></i>Chlorophyll</a></li>
+<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-zoop"><i class="fa fa-check"></i>Zooplankton</a></li>
+<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-fish"><i class="fa fa-check"></i>Fish</a></li>
+<li class="chapter" data-level="" data-path="Summer.html"><a href="Summer.html#summer-recent"><i class="fa fa-check"></i>Recent Trends</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html"><i class="fa fa-check"></i>Fall Report</a>
 <ul>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-secchi-depth"><i class="fa fa-check"></i>Fall Secchi Depth</a>
-<ul>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#average-secchi-depth-by-region-2"><i class="fa fa-check"></i>Average Secchi Depth by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-water-temperature"><i class="fa fa-check"></i>Fall Water Temperature</a>
-<ul>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#average-temperature-by-region-2"><i class="fa fa-check"></i>Average Temperature by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-chlorophyll"><i class="fa fa-check"></i>Fall Chlorophyll</a>
-<ul>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#average-chlorophyll-by-region-2"><i class="fa fa-check"></i>Average Chlorophyll by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-zooplankton"><i class="fa fa-check"></i>Fall Zooplankton</a>
-<ul>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#average-zooplankton-biomass-by-region-2"><i class="fa fa-check"></i>Average Zooplankton Biomass by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-fish"><i class="fa fa-check"></i>Fall Fish</a>
-<ul>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#background-16"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#average-fish-catch-trends-by-species-3"><i class="fa fa-check"></i>Average Fish Catch Trends by Species</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#recent-trends-fall-fish-2004-2020"><i class="fa fa-check"></i>Recent Trends: Fall Fish 2004-2020</a>
-<ul>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#background-17"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#average-fish-catch-trends-by-species-4"><i class="fa fa-check"></i>Average Fish Catch Trends by Species</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-outflow"><i class="fa fa-check"></i>Delta Outflow</a></li>
+<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-secchi"><i class="fa fa-check"></i>Secchi Depth</a></li>
+<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-temp"><i class="fa fa-check"></i>Water Temperature</a></li>
+<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-chlorophyll"><i class="fa fa-check"></i>Chlorophyll</a></li>
+<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-zoop"><i class="fa fa-check"></i>Zooplankton</a></li>
+<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-fish"><i class="fa fa-check"></i>Fish</a></li>
+<li class="chapter" data-level="" data-path="Fall.html"><a href="Fall.html#fall-recent"><i class="fa fa-check"></i>Recent Trends</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html"><i class="fa fa-check"></i>Winter Report</a>
 <ul>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-secchi-depth"><i class="fa fa-check"></i>Winter Secchi Depth</a>
-<ul>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#average-secchi-depth-by-region-3"><i class="fa fa-check"></i>Average Secchi Depth by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-water-temperature"><i class="fa fa-check"></i>Winter Water Temperature</a>
-<ul>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#average-temperature-by-region-3"><i class="fa fa-check"></i>Average Temperature by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-chlorophyll"><i class="fa fa-check"></i>Winter Chlorophyll</a>
-<ul>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#average-chlorophyll-by-region-3"><i class="fa fa-check"></i>Average Chlorophyll by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-zooplankton"><i class="fa fa-check"></i>Winter Zooplankton</a>
-<ul>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#average-zooplankton-biomass-by-region-3"><i class="fa fa-check"></i>Average Zooplankton Biomass by Region</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-fish"><i class="fa fa-check"></i>Winter Fish</a>
-<ul>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#background-22"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#average-fish-catch-trends-by-species-5"><i class="fa fa-check"></i>Average Fish Catch Trends by Species</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#recent-trends-winter-fish-2004-2020"><i class="fa fa-check"></i>Recent Trends: Winter Fish 2004-2020</a>
-<ul>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#background-23"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#average-fish-catch-trends-by-species-6"><i class="fa fa-check"></i>Average Fish Catch Trends by Species</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-outflow"><i class="fa fa-check"></i>Delta Outflow</a></li>
+<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-secchi"><i class="fa fa-check"></i>Secchi Depth</a></li>
+<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-temp"><i class="fa fa-check"></i>Water Temperature</a></li>
+<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-chlorophyll"><i class="fa fa-check"></i>Chlorophyll</a></li>
+<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-zoop"><i class="fa fa-check"></i>Zooplankton</a></li>
+<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-fish"><i class="fa fa-check"></i>Fish</a></li>
+<li class="chapter" data-level="" data-path="Winter.html"><a href="Winter.html#winter-recent"><i class="fa fa-check"></i>Recent Trends</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="metadata.html"><a href="metadata.html"><i class="fa fa-check"></i>Metadata</a>
 <ul>
-<li class="chapter" data-level="" data-path="metadata.html"><a href="metadata.html#interagency-ecological-program-seasonal-monitoring-report"><i class="fa fa-check"></i>Interagency Ecological Program Seasonal Monitoring Report</a></li>
+<li class="chapter" data-level="" data-path="metadata.html"><a href="metadata.html#report-information"><i class="fa fa-check"></i>Report Information</a></li>
 <li class="chapter" data-level="" data-path="metadata.html"><a href="metadata.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="metadata.html"><a href="metadata.html#general-information"><i class="fa fa-check"></i>General Information</a>
 <ul>
@@ -230,6 +158,7 @@
 </ul></li>
 </ul></li>
 <li class="divider"></li>
+<li class='after'><a href="https://github.com/InteragencyEcologicalProgram/Status-and-Trends" target="blank">View GitHub Repo</a></li>      
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
 </ul>
@@ -251,8 +180,8 @@
             <section class="normal" id="section-">
 <div id="metadata" class="section level1">
 <h1>Metadata</h1>
-<div id="interagency-ecological-program-seasonal-monitoring-report" class="section level3">
-<h3>Interagency Ecological Program Seasonal Monitoring Report</h3>
+<div id="report-information" class="section level3">
+<h3>Report Information</h3>
 <ul>
 <li>Version: 1.1</li>
 <li>Last Updated: 2020-09-13</li>
@@ -290,10 +219,10 @@
 <div id="geographic-region-definitions" class="section level3">
 <h3>Geographic Region Definitions</h3>
 <p>Many of the data sets in the report are represented by a panel of three plots, one for each of three geographic regions: San Pablo Bay, Suisun Bay, and the Sacramento-San Joaquin Delta. This subdivision of data sets is designed to facilitate comparison among major regions that differ in a variety of characteristics. San Pablo Bay includes data collected east of Point San Pablo and west of the Carquinez Straight. Suisun Bay includes data collected east of the Carquinez Straight and west of the town of Collinsville. The Delta includes data east of Collinsville. Data sets are represented as a single graph when the data are only collected within a single region (e.g., Net Delta Outflow) and for wide-ranging organisms that frequent multiple regions (e.g., Delta Smelt).</p>
-<div class="figure"><span id="fig:unnamed-chunk-186"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-193"></span>
 <img src="figures/static/map.png" alt="Map of the estuary with circles around San Pablo Bay, Suisun, and the Delta" width="562" />
 <p class="caption">
-Figure 157: Map of the estuary with circles around San Pablo Bay, Suisun, and the Delta
+Figure 164: Map of the estuary with circles around San Pablo Bay, Suisun, and the Delta
 </p>
 </div>
 <p>Figure 1. Map of geographic regions of the Estuary.</p>
@@ -477,7 +406,7 @@ Organisms in these samples are identified and counted by taxonomists at the CDFW
 <ul>
 <li><p>Data Source: California Department of Fish and Wildlife</p></li>
 <li><p>Metric Used: Catches of age-zero Delta Smelt at each index station are weighted by a station-specific weighting factor, summed for all index stations and divided by 1000 to calculate the survey index. The annual index is calculated from the first two survey indices. This method was chosen for consistency with the index calculated by the California Department of Fish and Wildlife.</p>
-<p>The townet has two sections; the first is made of 1/2" stretch, knotted, nylon, mesh 6’ long, tapering down to an additional 2’ “fyke.” This “fyke” fits entirely within the second section, a 9’ section of woven mesh with approximately 8 holes per inch. Please see the link at right for a diagram of the townet. The entire net measures approximately 15’ in total, and is lashed directly to a fixed metal “D” frame. The “D” frame is in turn mounted on a 22 pound sled. Two 10 minute stepped oblique tows are performed at each station. At historic stations, a third tow is conducted if any fish are captured during the first two tows. STN enumerates all fishes and several invertebrate species. Fork length is measured to the nearest millimeter for all striped bass, all delta smelt, and the first 50 fish per tow for all other species.</p></li>
+<p>The townet has two sections; the first is made of 1/2” stretch, knotted, nylon, mesh 6’ long, tapering down to an additional 2’ “fyke”. This “fyke” fits entirely within the second section, a 9’ section of woven mesh with approximately 8 holes per inch. Please see the link at right for a diagram of the townet. The entire net measures approximately 15’ in total, and is lashed directly to a fixed metal “D” frame. The “D” frame is in turn mounted on a 22 pound sled. Two 10 minute stepped oblique tows are performed at each station. At historic stations, a third tow is conducted if any fish are captured during the first two tows. STN enumerates all fishes and several invertebrate species. Fork length is measured to the nearest millimeter for all striped bass, all delta smelt, and the first 50 fish per tow for all other species.</p></li>
 <li><p>Year Range: 1959-2018</p></li>
 <li><p>Note: The Summer Townet Survey was initiated in 1959, but no index was calculated 1966-1968.</p></li>
 <li><p>Stations: 31</p></li>
@@ -493,10 +422,10 @@ Organisms in these samples are identified and counted by taxonomists at the CDFW
 <li>Stations: 69</li>
 <li>Additional Information: <a href="https://wildlife.ca.gov/Conservation/Delta/Townet-Survey" class="uri">https://wildlife.ca.gov/Conservation/Delta/Townet-Survey</a> <a href="https://water.ca.gov/Programs/Environmental-Services/Water-Quality-Monitoring-And-Assessment" class="uri">https://water.ca.gov/Programs/Environmental-Services/Water-Quality-Monitoring-And-Assessment</a></li>
 </ul>
-<div class="figure"><span id="fig:unnamed-chunk-187"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-194"></span>
 <img src="figures/static/MicrocystisScale.bmp" alt="mean is represented by a dotted red line"  />
 <p class="caption">
-Figure 158: mean is represented by a dotted red line
+Figure 165: mean is represented by a dotted red line
 </p>
 </div>
 </div>
@@ -512,7 +441,7 @@ Figure 158: mean is represented by a dotted red line
 </div>
 </div>
 </div>
-<script src="modal-window.js"></script>
+<script src="js/modal-window.js"></script>
             </section>
 
           </div>
@@ -523,7 +452,6 @@ Figure 158: mean is represented by a dotted red line
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -563,6 +491,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
