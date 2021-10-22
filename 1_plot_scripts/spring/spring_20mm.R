@@ -54,7 +54,7 @@ lfs_recyears_fig <- ggplot(lfsIndexDf, aes(x=Year, y=Index)) +
   smr_x_axis(report_year, type = "recent", season = "spring") +
 	stat_missing(size=2.5) + 	
   stat_lt_avg() + 
-	smr_caption(stat_name="the Adult Longfin Smelt index", report_year=report_year) + 
+	smr_caption(stat_name="the Longfin Smelt index", report_year=report_year) + 
 	smr_alttext(stat_name="Longfin Smelt index")
 
 lfs_recyears_fig

@@ -14,7 +14,7 @@ load(file.path(fig_root_summer,"veg_perc.RData"))
 # Summer Report {#Summer}
 
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for June through August from 1966 to 2019.
+surveys for June through August from 1966 to `r report_year`.
 
 ***
 
@@ -23,7 +23,7 @@ surveys for June through August from 1966 to 2019.
 :::: {.row}
 ::: {.col-1-outflow}
 - Freshwater flow influences water quality, plankton, and fish populations.
-- Summer flow is driven primarily upstream dam releases and exports.
+- Summer flow is driven primarily by upstream dam releases and exports.
 - `r getCaption(outflow_summer)`
 :::
 
@@ -434,7 +434,7 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3}
-<center> __Delta Smelt__ </center>
+<center> __[Delta Smelt](http://calfish.ucdavis.edu/species/?uid=47&ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
@@ -548,7 +548,7 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3}
-<center> __Delta Smelt__ </center>
+<center> __[Delta Smelt](http://calfish.ucdavis.edu/species/?uid=47&ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->

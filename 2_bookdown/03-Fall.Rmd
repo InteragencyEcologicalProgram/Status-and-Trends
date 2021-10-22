@@ -11,7 +11,7 @@ load(file.path(fig_root_fall,"FallRun_1966.RData"))
 # Fall Report {#Fall}
 
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for September through November from 1966 to 2019.
+surveys for September through November from 1966 to `r report_year`.
 
 ***
 
@@ -20,7 +20,7 @@ surveys for September through November from 1966 to 2019.
 :::: {.row}
 ::: {.col-1-outflow}
 - Freshwater flow influences water quality, plankton, and fish populations.
-- Fall flow is driven primarily upstream dam releases and exports.
+- Fall flow is driven primarily by upstream dam releases and exports.
 - `r getCaption(outflow_fall)`
 :::
 
@@ -328,7 +328,7 @@ knitr::include_graphics(file.path(fig_root_static,"copepod.jpg"))
 ```
 
 <center> Mysid </center>
-```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+```{r fig.height=10, fig.align="center", fig.cap = "picture of a mysid", echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"mysid.jpg"))
 ```
 :::
@@ -410,10 +410,10 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Ne
 
 ### Background {.unlisted .unnumbered}
 
-* The Fall Midwater Trawl (FMWT) Survey began in 1967 and surveys the pelagic, or open water, fish community.  Indices for many pelagic fishes are at record lows, including Delta and Longfin Smelt which are  protected by California and/or federal Endangered Species Acts.
+* The Fall Midwater Trawl (FMWT) Survey began in 1967 and surveys the pelagic, or open water, fish community.  Indices for many pelagic fishes are at record lows, including Delta and Longfin Smelt, which are  protected by California and/or federal Endangered Species Acts.
 * White Sturgeon is a species of concern and a popular target of recreational fishing. Catch per unit
 effort is based on trammel net surveys.
-* Fall Run Chinook Salmon, an important species for both the commercial and recreational fishery, is  also a species of concern. Population dynamics are driven by hatchery production and a suite of  environmental variables. Totals counts of both in-river and hatchery returns are shown here.
+* Fall-Run Chinook Salmon, an important species for both the commercial and recreational fishery, is  also a species of concern. Population dynamics are driven by hatchery production and a suite of  environmental variables. Totals counts of both in-river and hatchery returns are shown here.
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 
@@ -432,19 +432,19 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3}
-<center> __San Pablo Bay__ </center>
+<center> __[Delta Smelt](http://calfish.ucdavis.edu/species/?uid=47&ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center> __Suisun__ </center>
+<center> __[Longfin Smelt](http://calfish.ucdavis.edu/species/?uid=87&ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center> __Delta__ </center>
+<center> __[Young of the Year Striped Bass](http://calfish.ucdavis.edu/species/?uid=160&ds=698)__ </center>
 :::
 ::::
 
@@ -512,6 +512,9 @@ getPlot(fish_fall$striped_bass0_all_years)
 ::: {.col-1of3}
 <center>`r getCaption(fish_fall$striped_bass0_all_years)`</center>
 :::
+::::
+
+:::: {.vspace}
 ::::
 
 :::: {.row}
@@ -609,8 +612,7 @@ For more information see: DuBois, J. and A. Danos 2017. 2017 Field Season Summar
 ### Background {.unlisted .unnumbered}
 
 * Many pelagic fishes declined sharply around 2001 in what is known as the Pelagic Organism  Decline. Some species have continued to decline over the last 15 years.
-* For Delta Smelt, 2019 continued with the lowest recorded index on record (Index = 0) first seen in 2018.
-* Most other pelagic fish also had slighly higher catch in 2019 when compared to 2018, but much lower than the long-term average.
+* The [Fall Midwater Trawl Survey](https://wildlife.ca.gov/Conservation/Delta/Fall-Midwater-Trawl) was designed to sample age-0 striped bass, but has provided data on many additional species, including Delta Smelt and Longfin Smelt.
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 

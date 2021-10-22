@@ -139,14 +139,6 @@ WQplot = function(reg, quart, analyte, data, reportyear, verbose=TRUE) {
 	fmt_alttext <- "average %s %s in %s"
 	statNameAlttext <- sprintf(fmt=fmt_alttext, quartPretty, analytePretty, regPretty)
 
-
-# # "Graph of average spring secchi depth in San Pablo Bay from 1975 to 2019. Values range from 10 to 150."
-# # "Graph of average spring secchi depth in Suisun from 1975 to 2019. Values range from 10 to 60."
-# # "Graph of average spring secchi depth in the Delta from 1975 to 2019. Values range from 25 to 120 and have been increasing since the year 2000."
-# # <center>In 2019, San Pablo bay was lower than the long-term average.</center>
-# # <center>In 2019, Suisun Bay was  close to the long-term average</center>
-# # <center>In 2019, the Delta was clearer than average.</center>
-
   #make the plot
   p_sec <- ggplot(dat, aes(x=qyear, y=Result)) + 
     geom_line(colour="black", size=0.9) + 

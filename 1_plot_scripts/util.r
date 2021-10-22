@@ -16,7 +16,8 @@ Caption <- ggplot2::ggproto("Caption", Stat,
   setup_params = function(data, params) {
 
 		lt_avg <- mean(data$y, na.rm=TRUE)
-
+		lt_sd <- sd(data$y, na.rm=TRUE)
+		
 		## Handle cases where current index is missing:
 		current_ind <- which(data$x == params$report_year)
 		stopifnot(length(current_ind) %in% c(0,1))
@@ -31,28 +32,17 @@ Caption <- ggplot2::ggproto("Caption", Stat,
 			}
 			caption <- sprintf(fmt=caption_fmt, lt_avg)
 		} else {
-			if(0.95*current <= lt_avg & lt_avg <= 1.05*current) {
-				qualifier <- "close to the"
+		  lowerBound <- 0.9*lt_avg
+		  upperBound <- 1.1*lt_avg
+		  if(lowerBound <= current & current <= upperBound) {
+				qualifier <- "close to"
 			} else if(current < lt_avg) {
 				qualifier <- "lower than"
 			} else if(current > lt_avg) {
 				qualifier <- "higher than"
 			}
 			
-			# if(!is.na(current) && current >= 1000) {
-				# # # caption_fmt <- "The %s was %0.0f in %d, %s the long-term average."
-				# # # caption_fmt <- "The %s in %d was %s the long-term average."
-				# caption_fmt <- "In %d, %s was %s average."
-			# } else {
-				# # # caption_fmt <- "The %s was %0.1f in %d, %s the long-term average."
-				# # # caption_fmt <- "The %s in %d was %s the long-term average."
-				# caption_fmt <- "The %s in %d was %s the long-term average."
-			# }
-			# caption <- sprintf(fmt=caption_fmt, params$stat_name, current, 
-												 # params$report_year, qualifier)
-			# caption <- sprintf(fmt=caption_fmt, params$stat_name, 
-												 # params$report_year, qualifier)
-			caption_fmt <- "In %d, %s was %s average."												 
+			caption_fmt <- "In %d, %s was %s the long-term average."												 
 			caption <- sprintf(fmt=caption_fmt, params$report_year, params$stat_name, 
 												 qualifier)												 
 		}
@@ -88,7 +78,7 @@ Alttext <- ggplot2::ggproto("Alttext", Stat,
 
 	compute_group = function(data, scales, stat_name) {
 		## Create figure alt text:
-		alttext_fmt <- "Graph of %s from %d-%d. Values range from %0.1f to %0.1f."
+		alttext_fmt <- "Graph of %s from %d to %d. Values range from %0.1f to %0.1f."
 		alttext <- sprintf(fmt=alttext_fmt, stat_name, 
 											 min(data$x, na.rm=TRUE), max(data$x, na.rm=TRUE),
 											 min(data$y, na.rm=TRUE), max(data$y, na.rm=TRUE))
@@ -188,11 +178,7 @@ getPlot <- function(p) {
 	
 	file_name <- paste0(deparse(substitute(p)), ".svg")
 	suppressWarnings(
-		# ggsave(p, file=file.path(fig_root_svg,file_name), dpi=200, units="cm", width=7, height=5)
 		ggsave(p, file=file.path(fig_root_svg,file_name), dpi=200, units="cm", width=7, height=5.5)
-		# ggsave(p, file=file.path(fig_root_svg,file_name), dpi=200, units="cm", width=7, height=5.8)
-		# ggsave(p, file=file.path(fig_root_svg,file_name), dpi=1000, units="cm", width=9, 
-					 # height=6)
 	)
 	knitr::include_graphics(file.path(fig_root_svg,file_name))
 }
@@ -202,8 +188,6 @@ getPlotLarge <- function(p) {
 	
 	file_name <- paste0(deparse(substitute(p)), ".svg")
 	suppressWarnings(
-		# ggsave(p, file=file.path(fig_root_svg,file_name), dpi=300, units="cm", width=9.3, 
-					 # height=6.8)
 		ggsave(p, file=file.path(fig_root_svg,file_name), dpi=300, units="cm", width=13, 
 					 height=8.5)
 	)

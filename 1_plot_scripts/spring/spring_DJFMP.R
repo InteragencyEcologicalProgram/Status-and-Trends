@@ -4,9 +4,6 @@
 ##########################################################################
 ## Read in data:
 
-#thisDataRoot <- file.path(data_root,"DJFMP")
-
-#chippsData <- read.csv(file.path(thisDataRoot,"chippsData.csv"), stringsAsFactors=FALSE)
 load(file.path(data_root,"chippsData.RData"))
 
 ##########################################################################
@@ -74,9 +71,9 @@ chinook_winterByLength_allYears_fig <- ggplot(chippsIndexDf,
   stat_lt_avg() + 
   annotate("text", x=1968, y=1, label="Earlier data\nomitted", 
            hjust=0, size=2.7) + 	
-	smr_caption(stat_name="the juvenile winter-run Chinook salmon index", 
+	smr_caption(stat_name="the juvenile Winter-Run Chinook Salmon index", 
 							report_year=report_year) + 
-	smr_alttext(stat_name="juvenile winter-run Chinook index")
+	smr_alttext(stat_name="juvenile Winter-Run Chinook Salmon index")
 
 chinook_winterByLength_allYears_fig
 
@@ -97,9 +94,9 @@ chinook_winterByLength_recYears_fig <- ggplot(chippsIndexDf,
   ylab(use_ylab)+
 	stat_missing(size=2.5) + 
   stat_lt_avg() + 
-	smr_caption(stat_name="the juvenile winter-run Chinook salmon index", 
+	smr_caption(stat_name="the juvenile Winter-Run Chinook Salmon index", 
 							report_year=report_year) + 
-	smr_alttext(stat_name="juvenile winter-run Chinook index")
+	smr_alttext(stat_name="juvenile Winter-Run Chinook Salmon index")
 
 chinook_winterByLength_recYears_fig
 

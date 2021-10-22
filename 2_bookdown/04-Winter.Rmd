@@ -12,7 +12,10 @@ load(file.path(fig_root_winter,"redbluff_2003.RData"))
 
 # Winter Report {#Winter}
 
-This report shows trends in water quality, plankton, and fish across multiple IEP surveys for December through February of 1966 to 2019. The winter of 2019 includes December of 2018, January and February of 2019.
+This report shows trends in water quality, plankton, and fish across multiple IEP 
+surveys for December through February of 1966 to `r report_year`. The winter of 
+`r report_year` includes December of `r report_year - 1`, and January and February of 
+`r report_year`.
 
 ***
 
@@ -411,7 +414,7 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Ne
 
 ### Background {.unlisted .unnumbered}
 
-* White sturgeon support a recreational fishery. Juvenile sturgeon are sampled by in the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study) , which samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
+* White sturgeon support a recreational fishery. Juvenile sturgeon are sampled by in the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study), which samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
 * Longfin Smelt are listed as Threatened under the California Endangered Species Act. Spawning adults are sampled in winter by the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study) midwater trawl. 
 * Juvenile Winter-Run Chinook Salmon are sampled by the [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers.
 
@@ -432,19 +435,19 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3}
-<strong><a href="http://calfish.ucdavis.edu/species/?uid=182&amp;ds=698">Juvenile Sturgeon</a></strong>
+<center> __[Juvenile Sturgeon](http://calfish.ucdavis.edu/species/?uid=182&amp;ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<strong><a href="http://calfish.ucdavis.edu/species/?uid=87&amp;ds=698">Longfin Smelt</a></strong>
+<center> __[Longfin Smelt](http://calfish.ucdavis.edu/species/?uid=87&amp;ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<strong><a href="http://calfish.ucdavis.edu/species/?uid=30&amp;ds=698">Juvenile Winter-run Chinook</a></strong>
+<center> __[Juvenile Winter-Run Chinook](http://calfish.ucdavis.edu/species/?uid=30&amp;ds=698)__ </center>
 :::
 ::::
 
@@ -525,7 +528,7 @@ For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Stu
 ### Background {.unlisted .unnumbered}
 
 * Delta Smelt and Longfin Smelt have been in decline since the early 2000s. The [CDFW Spring Kodiak Trawl](https://www.wildlife.ca.gov/Conservation/Delta/Spring-Kodiak-Trawl) was designed to sample spawning Delta Smelt, and samples in San Pablo, Suisun, and the Delta.
-* Longfin Smelt frequently spawn further downstream than Delta Smelt, so are better sampled by the CDFW Bay Study. The Bay Study samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
+* Longfin Smelt frequently spawn further downstream than Delta Smelt, so are better sampled by the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study). The Bay Study samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
 * Juvenile Chinook pass Red Bluff Diversion Dam on the upper Sacramento as they migrate from spawning grounds to the ocean.
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
