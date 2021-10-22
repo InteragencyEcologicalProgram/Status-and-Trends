@@ -62,71 +62,68 @@ whistu.orig <- read_csv(file.path(data_root,"yci_bs.csv"))
 # Create dataframes for text comments on plots
 lonsmeText.h <- tibble(
   Year.Index = 1966,
-  yValue = 1,
-  label = "Data were not collected\nuntil 1980"
+  yValue = 15,
+  label = "Data not\ncollected\nuntil 1980"
 )
 
-lonsmeText.v <- tibble(
+lonsmeText.h2 <- tibble(
   Year.Index = 1983,
-  yValue = 27,
-  label = "Ave CPUE was 88 in 1982"
+  yValue = 32,
+  label = "Index was\n93 in 1982"
 )
 
 whistuText <- tibble(
   Year.Index = 1966,
-  yValue = 20,
-  label = "Data were not collected\nuntil 1980"
+  yValue = 200,
+  label = "Data not\ncollected\nuntil 1980"
 )
 
 
 # 4. Create Plots ---------------------------------------------------------  
 
 # Create function for the plots
-plot_fish_data <- function(df, f_spec = c("lonsme", "whistu"), lt_avg, plot_type = c("all", "recent")) {
+plot_fish_data <- function(df, f_spec=c("lonsme","whistu"), lt_avg, 
+													 plot_type=c("all","recent"), verbose=TRUE) {
   
   f_spec <- match.arg(f_spec, c("lonsme", "whistu"))
   plot_type <- match.arg(plot_type, c("all", "recent"))
   
   # Create base plot
-  p <- 
-    ggplot(
-      data = df,
-      aes(
-        x = Year.Index,
-        y = y.val
-      )
-    ) +
+  p <- ggplot(data=df, aes(x=Year.Index, y=y.val)) + 
     # apply custom theme
-    smr_theme() +
+    smr_theme_update() + 
     # add markers for missing data
-    stat_missing()+
+    stat_missing(size=2.5) + 
     stat_lt_avg()
   
   # Add different options based on f_spec argument
-  if (f_spec == "lonsme") {
-    p <- p +
+  if(f_spec == "lonsme") {
+    p <- p + 
       #custom color for barplot
-      geom_col(fill = "#664F2B") +
+      geom_col() +
+      #geom_col(fill = "#664F2B") +
+      ylab("Index")
+      # ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")")))
 
-      ylab(expression(paste("Average CPUE (fish/10,000m"^{3}, ")")))
   } else {
     p <- p +
       #custom color for barplot
-      geom_col(fill = "#748D83") +
+      geom_col() +
+      #geom_col(fill = "#748D83") +
       # add labels for axes
       ylab("Year Class Index")
   }
   
   # Standardize the x-axis limits and breaks for plots based on plot_type argument
-  if (plot_type == "all") {
+  if(plot_type == "all") {
     p <- p + smr_x_axis(report_year, type = "all", season = "winter")
   } else {
-    p <- p +  smr_x_axis(report_year, type = "recent", season = "winter")
+    p <- p + smr_x_axis(report_year, type = "recent", season = "winter")
   }
   
   # Change the y-axis limits for the lonsme plots
-  if (f_spec == "lonsme") {
-    if (plot_type == "all") {
+  if(f_spec == "lonsme") {
+    if(plot_type == "all") {
       p <- p + coord_cartesian(ylim = c(0, 40))
     } else {
       p <- p + coord_cartesian(ylim = c(0, 8))
@@ -135,50 +132,40 @@ plot_fish_data <- function(df, f_spec = c("lonsme", "whistu"), lt_avg, plot_type
   
   # Add descriptive text to the plots for all years
 
-  textSize <- 2
-  if (plot_type == "all") {
-    if (f_spec == "lonsme") {
-      p <- p +
-        geom_text(
-          data = lonsmeText.h,
-          aes(
-            x = Year.Index,
-            y = yValue,
-            label = label
-          ),
-          inherit.aes = FALSE,
-          hjust = "left",
-          size = textSize
-        ) +
-        geom_text(
-          data = lonsmeText.v,
-          aes(
-            x = Year.Index,
-            y = yValue,
-            label = label
-          ),
-          inherit.aes = FALSE,
-          hjust = "left",
-          vjust = "center",
-          size = textSize,
-          angle = 90
-        )
+  textSize <- 2.7
+  if(plot_type == "all") {
+    if(f_spec == "lonsme") {
+      p <- p + 
+				geom_text(data=lonsmeText.h, aes(x=Year.Index, y=yValue, label=label),
+									inherit.aes=FALSE, hjust="left", size=textSize) +
+        geom_text(data=lonsmeText.h2, aes(x=Year.Index, y=yValue, label=label),
+									inherit.aes=FALSE, hjust="left", vjust="center", size=textSize)
+									#angle=90)
+
     } else {
-      p <- p +
-        geom_text(
-          data = whistuText,
-          aes(
-            x = Year.Index,
-            y = yValue,
-            label = label
-          ),
-          inherit.aes = FALSE,
-          hjust = "left",
-          size = textSize
-        )
+      p <- p + geom_text(data=whistuText, aes(x=Year.Index, y=yValue, label=label),
+												 inherit.aes=FALSE, hjust="left", size=textSize)
     }
   }
-  
+
+	stat_name_caption <- ""
+	stat_name_alttext <- ""
+	if(f_spec == "lonsme") {
+		stat_name_caption <- "Longfin Smelt index"
+		stat_name_alttext <- "Longfin Smelt index"
+	} else if(f_spec == "whistu") {
+		stat_name_caption <- "the white sturgeon year-class index"
+		stat_name_alttext <- "white sturgeon year-class index"
+	}
+
+	p <- p + 
+		smr_caption(stat_name=stat_name_caption, report_year=report_year) + 
+		smr_alttext(stat_name=stat_name_alttext)
+
+	if(verbose) {
+		print(getCaption(p))
+		print(getAlttext(p))
+	}
 
   return(p)
 }
@@ -217,18 +204,26 @@ fish.plots.print <- fish.plots %>%
   ) %>% 
   unite("FileName", FishSpecies, PlotType)
 
-# Export plots
-walk2(
-  fish.plots.print$Plots,
-  fish.plots.print$FileName,
-  ~ggsave(
-    plot = .x,
-    filename = paste0(.y, ".png"),
-    path = fig_root_winter,
-    dpi = 300,
-    units = "cm",
-    width = 9.3,
-    height = 6.8
-  )
-)
+
+BayStudy_fish_winter <- fish.plots.print$Plots
+names(BayStudy_fish_winter) <- fish.plots.print$FileName
+
+save(list="BayStudy_fish_winter", 
+		 file=file.path(fig_root_winter,"BayStudy_fish_winter.RData"))
+
+
+# # Export plots
+# walk2(
+  # fish.plots.print$Plots,
+  # fish.plots.print$FileName,
+  # ~ggsave(
+    # plot = .x,
+    # filename = paste0(.y, ".png"),
+    # path = fig_root_winter,
+    # dpi = 300,
+    # units = "cm",
+    # width = 9.3,
+    # height = 6.8
+  # )
+# )
 

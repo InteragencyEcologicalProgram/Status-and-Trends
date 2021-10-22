@@ -1,6 +1,5 @@
 --- 
-title: "IEP Seasonal Monitoring Report"
-site: bookdown::bookdown_site
+title: IEP Seasonal Monitoring Report
 output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -10,62 +9,62 @@ github-repo: https://github.com/InteragencyEcologicalProgram/Status-and-Trends
 description: "This report shows trends in water quality, plankton, and fish across multiple IEP surveys."
 ---
 
-# Contents
+# Overview {#index}
+
+Long-term ecological surveys have been a core function of the Interagency Ecological Program (IEP) since the program’s inception in the 1970s. The IEP Seasonal Monitoring Report presents the full time series for selected water quality, plankton, and fisheries surveys conducted by IEP in a single graphical report.  The report is generated on a quarterly basis, with different set of ecosystem variables and surveys highlighted in each season. The report is developed by IEP scientists (including leads for monitoring surveys and the IEP Lead Scientist) and is reviewed by the IEP Science Management Team and Coordinators before online publication. 
+ 
+This report was last updated in October 2021, with data through December 2020.
 
 ```{r fig.height=8, echo=FALSE, fig.cap="IEP logo"}
 knitr::include_graphics(file.path(fig_root_static,"IEP_logo_updated.png"))
-options(width = 120)
-#http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/#style-your-image-environment-with-css
-knitr::knit_hooks$set(class=function(before, options, envir) {
-  if(before){
-    sprintf("<div class = '%s'>", options$class)
-  }else{
-    "</div>"
-  }
-})
 ```
 
-
- Long-term ecological surveys have been a core function of the Interagency Ecological Program (IEP) since the program’s inception in the 1970s. The IEP Seasonal Monitoring Report presents the full time series for selected water quality, plankton, and fisheries surveys conducted by IEP in a single graphical report.  The report is generated on a quarterly basis, with different set of ecosystem variables and surveys highlighted in each season. The report is developed by IEP scientists (including leads for monitoring surveys and the IEP Lead Scientist) and is reviewed by the IEP Science Management Team and Coordinators before online publication. 
- 
- This report was last updated in October, 2021, with data through December, 2020
-
-
 <h2>[Spring](Spring.html)</h2>
+
+  * Delta Outflow
   * Secchi Depth
-  * Temperature
+  * Water Temperature
   * Chlorophyll
   * Zooplankton
   * Fish
-  * Recent Trends - Delta Smelt, Longfin Smelt, Salmon
-  * Metadata
+  * Recent Trends
 
 <h2>[Summer](Summer.html)</h2>
+
+  * Delta Outflow
   * Secchi Depth
-  * Temperature
+  * Water Temperature
   * Chlorophyll
   * Zooplankton
   * Fish
-  * Recent Trends - Delta Smelt, Microcystis, Vegetation
-  * Metadata
+  * Recent Trends
 
 <h2>[Fall](Fall.html)</h2>
+
+  * Delta Outflow
   * Secchi Depth
-  * Temperature
+  * Water Temperature
   * Chlorophyll
   * Zooplankton
   * Fish
-  * Recent Trends - Delta Smelt, Longfin Smelt, Striped Bass
-  * Metadata
+  * Recent Trends
 
 <h2>[Winter](Winter.html)</h2>
+
+  * Delta Outflow
   * Secchi Depth
-  * Temperature
+  * Water Temperature
   * Chlorophyll
   * Zooplankton
   * Fish
-  * Recent Trends - Delta Smelt, Longfin Smelt, Juvenile Chinook Salmon
-  * Metadata
+  * Recent Trends
+
+<h2>[Metadata](metadata.html)</h2>
+
+  * Report Information
+  * Overview
+  * General Information
+  * Data Sets
 
 ```{block, type='disclaimer'}
 Disclaimer: While substantial efforts are made to ensure the accuracy of these data, 

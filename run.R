@@ -6,6 +6,7 @@ library(tidyverse)
 library(bookdown)
 library(png)
 library(grid)
+library(svglite)
 
 
 # Define global variables -----------------------------------------------------------
@@ -24,6 +25,10 @@ fig_root_fall <- file.path(fig_root,"fall")
 fig_root_spring <- file.path(fig_root,"spring")
 fig_root_summer <- file.path(fig_root,"summer")
 fig_root_winter <- file.path(fig_root,"winter")
+
+fig_root_svg <- file.path(fig_root,"svg")
+
+source(file.path(plot_root,"util.R"))
 
 
 # Download, (reduce), save, (delete) data -------------------------------------------
@@ -70,7 +75,7 @@ fig_root_winter <- file.path(fig_root,"winter")
 
 ## Seems like bookdown works better if you change the working directory:
 setwd(bookdown_root)
-render_book(input="index.Rmd",  output_dir=file.path(root,"docs"))
+render_book(input="index.Rmd", output_dir=file.path(root,"docs"))
 #publish_book(account="Rosemary_Hartman", render="local")
 #render_book(input="index.Rmd", output_format="all", output_dir=file.path(root,"report"))
 setwd(root)
