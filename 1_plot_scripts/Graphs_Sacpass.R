@@ -12,13 +12,13 @@ SpringRun_1966 <- ggplot(Spring, aes(x=Year, y=sprinrun))+
     geom_bar(stat="identity") +
     smr_theme_update() +
     theme(legend.position="none") + 
-    #smr_y_axis(name = "Spring Run Adult Returns") + 
-		ylab("Spring Run Adult Returns") + 
+		ylab("Adult Spring-Run returns") + 
     smr_x_axis(report_year, type = "all", season = "spring") +
 		stat_missing(aes(x=Year, y=sprinrun), size=2.5) + 
 		stat_lt_avg(aes(y = sprinrun)) + 
-		smr_caption(stat_name="adult Chinook returns", report_year=report_year) + 
-		smr_alttext(stat_name="adult Chinook returns")
+		smr_caption(stat_name="adult Spring-Run Chinook Salmon return", 
+		            report_year=report_year) + 
+		smr_alttext(stat_name="adult Spring-Run Chinook Salmon returns")
 
 SpringRun_1966
 
@@ -33,13 +33,12 @@ FallRun_1966 <- ggplot(Fall, aes(x=Year, y=fallrun))+
   geom_bar(stat="identity") +
   smr_theme_update() +
   theme(legend.position="none") + 
-  #smr_y_axis(name = "Fall Run Adult Returns") + 
-	ylab("Fall Run Adult Returns") + 
+	ylab("Adult Fall-Run Returns") + 
   smr_x_axis(report_year, type = "all", season = "fall") +
 	stat_missing(aes(x=Year, y=fallrun), size=2.5) + 
   stat_lt_avg(aes(y = fallrun)) + 
-	smr_caption(stat_name="adult Chinook returns", report_year=report_year) + 
-	smr_alttext(stat_name="adult Chinook returns")
+	smr_caption(stat_name="adult Fall-Run Chinook Salmon return", report_year=report_year) + 
+	smr_alttext(stat_name="adult Fall-Run Chinook Salmon returns")
 
 FallRun_1966
 
@@ -80,9 +79,9 @@ redbluff_2003 = Red + geom_bar(stat = "identity") +
   smr_theme_update()+
 	stat_missing(aes(x=Year2, y=meandaily), size=2.5) + 
   stat_lt_avg(aes(y = meandaily)) + 
-	smr_caption(stat_name="adult fallrun Chinook population estimates", 
+	smr_caption(stat_name="the adult Fall-Run Chinook population estimate", 
 							report_year=report_year) + 
-	smr_alttext(stat_name="adult fallrun Chinook population estimates")
+	smr_alttext(stat_name="adult Fall-Run Chinook population estimates")
 
 redbluff_2003
 

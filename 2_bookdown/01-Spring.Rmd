@@ -11,10 +11,11 @@ load(file.path(fig_root_spring,"water_quality_spring.RData"))
 load(file.path(fig_root_spring,"zooplankton_spring.RData"))
 load(file.path(fig_root_spring,"outflow_spring.RData"))
 ```
+
 # Spring Report {#Spring}
 
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for March through May from 1966 to 2019.
+surveys for March through May from 1966 to `r report_year`.
 
 ***
 
@@ -318,7 +319,7 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 :::: {.row}
 ::: {.col-1-background}
-* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling in San Pablo Bay did not begin until 1998. 
+* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297), but sampling in San Pablo Bay did not begin until 1998. 
 * Zooplankton are an important food source for pelagic fish. 
 * Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
 * Biomass in Spring tends to be higher than Winter, but lower than Summer. 
@@ -326,12 +327,12 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 ::: {.col-2-background}
 <center> Copepod </center>
-```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+```{r fig.height=10, fig.width=6, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"copepod.jpg"))
 ```
 
 <center> Mysid </center>
-```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+```{r fig.height=10, fig.width=6, fig.align="center", fig.cap = "picture of a mysid", echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"mysid.jpg"))
 ```
 :::
@@ -413,9 +414,9 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Ne
 
 ### Background {.unlisted .unnumbered}
 
-* Splittail are a native minnow that spawn on floodplains, so have high reproduction during high flow years when floodplains are inundated with water. Juvenile splittail are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2)'s rotory screw trap. 
-* Spring-run Adult salmon return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
-* Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
+* Splittail are a native minnow that spawn on floodplains, so they have high reproduction during high flow years when floodplains are inundated with water. Juvenile splittail are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2)'s rotory screw trap. 
+* Adult Spring-Run Chinook Salmon return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
+* Juvenile Winter-Run Chinook salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 
@@ -434,19 +435,19 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3}
-<center> __San Pablo Bay__ </center>
+<center> __[Juvenile Sacramento Splittail](http://calfish.ucdavis.edu/species/?uid=136&ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center> __Suisun__ </center>
+<center> __[Adult Spring-Run Chinook](http://calfish.ucdavis.edu/species/?uid=28&ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center> __Delta__ </center>
+<center> __[Juvenile Winter-Run Chinook](http://calfish.ucdavis.edu/species/?uid=30&ds=698)__ </center>
 :::
 ::::
 
@@ -460,7 +461,7 @@ knitr::include_graphics(file.path(fig_root_static,"splittail_adult.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-```{r fig.cap= "picture of an adults chinook salmon", fig.align='center', fig.width=1, echo=FALSE}
+```{r fig.cap= "picture of an adult Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"chinook_salmon.png"))
 ```
 :::

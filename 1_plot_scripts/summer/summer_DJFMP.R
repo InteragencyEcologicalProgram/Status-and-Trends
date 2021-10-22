@@ -95,3 +95,11 @@ sacpikeminnow_fig
 
 getCaption(sacpikeminnow_fig)
 getAlttext(sacpikeminnow_fig)
+
+
+## Save plot:
+DJFMP_sacpikeminnow_summer <- sacpikeminnow_fig
+
+save(list="DJFMP_sacpikeminnow_summer", 
+     file=file.path(fig_root_summer,"DJFMP_sacpikeminnow_summer.RData"))
+

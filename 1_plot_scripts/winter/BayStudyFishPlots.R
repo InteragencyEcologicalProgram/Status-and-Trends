@@ -69,7 +69,7 @@ lonsmeText.h <- tibble(
 lonsmeText.h2 <- tibble(
   Year.Index = 1983,
   yValue = 32,
-  label = "Index was\n88 in 1982"
+  label = "Index was\n93 in 1982"
 )
 
 whistuText <- tibble(

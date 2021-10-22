@@ -10,8 +10,8 @@ bookdown::gitbook:
       before: |
         <li class='before'><a href="index.html">IEP Seasonal Monitoring Report</a></li>
       after: |
-        <li class='after'><a href="https://github.com/InteragencyEcologicalProgram/Status-and-Trends" target="blank">View GitHub Repo</a></li>      
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/InteragencyEcologicalProgram/Status-and-Trends" target="_blank">View GitHub Repo</a></li>      
+        <li><a href="https://github.com/rstudio/bookdown" target="_blank">Published with bookdown</a></li>
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
