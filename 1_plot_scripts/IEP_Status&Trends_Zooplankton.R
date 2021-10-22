@@ -255,69 +255,87 @@ bpl<-ggplot(zmeans, aes(x = qyear, y = bpue, fill = taxon)) +
 bpl
 
 
-zoops = function(reg, quart, data) {
+zoops = function(reg, quart, data, reportyear, verbose=TRUE) {
   dat = filter(data, quarter == quart, region == reg)
   
   #calculate long-term average
   sums = group_by(dat, qyear) %>% summarize(bpuetot = sum(bpue_mg))
   meanB = mean(sums$bpuetot)
-  
+
   #make a plot
-  bpl<-ggplot(dat, aes(x = qyear, y = bpue_mg, fill = taxon)) + 
-    geom_area(position = 'stack')+
-   smr_theme()+
-    theme(legend.position=c(0.5, 1.1), 
-          legend.background=element_rect(fill=NULL, color=NULL), plot.margin = margin(1, 0.6, 0.1, 0.4, unit = "cm"))+
-    scale_x_continuous("Year", limits=c(1966,report_year))  +
-    
-    #add long-term average line
-    geom_hline(aes(yintercept = meanB), size = 0.9, color = "red", linetype = "dashed")+
-    
-    #format the colors and legend
-    scale_fill_manual(name = NULL,labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids"),
+  bpl <- ggplot(dat, aes(x = qyear, y = bpue_mg, fill = taxon)) + 
+    geom_area(position = 'stack') +
+		smr_theme_update() + 
+    scale_x_continuous("Year", limits=c(1966,report_year)) + 
+		
+		# Include for caption automation functions:
+		stat_missing(aes(x=qyear, y=bpue_mg), size=NA) + 
+		
+    #add long-term average line:
+    geom_hline(aes(yintercept=meanB), size=0.9, color="red", linetype="dashed") + 
+		
+    #format the colors and legend:
+    scale_fill_manual(name=NULL, labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids"),
                       values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7),
-                      guide=guide_legend(keyheight=0.5, title=NULL, direction="horizontal", 
-                                         label.position="right", label.theme = element_text(size = 7)))+
-    scale_y_continuous(expression(paste("Zooplankton Biomass (mg C/m"^" 3", ")")), 
+                      guide=guide_legend(keyheight=0.5, title=NULL, 
+																				 direction="horizontal", 
+                                         label.position="right"#, 
+																				 #label.theme=element_text(size=4)
+																				 )) + 
+    theme(legend.position=c(0.5, 0.85), 
+					#legend.spacing.x=unit(0.1, 'cm'),  
+					legend.key.size=unit(0.4,"cm"), 
+					legend.box.spacing=unit(0, units="cm"),
+					legend.background=element_blank()) + 
+		guides(fill=guide_legend(nrow=2, byrow=TRUE)) + 																				 
+    # scale_y_continuous(expression(paste("Zooplankton Biomass (mg C/m"^"3",")")), 
+    scale_y_continuous(expression(paste("Biomass (mg C/m"^"3",")")), 
                        limits=c(0,max(zmeans$bpue_mg)))
- 
+
   # teh san pablo bay graph needs annotation for date of first collection,
   #and it will be the one with the legend on top
   if(reg == "spl") {
     bpl = bpl + 
-      annotate("text", x = 1966, y = 10, 
-               label = "Data were not \n collected until 1998", hjust = "left", size = 1.9)
-  
-  ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
-         dpi=300, units="cm",width=9.3,height=7.5,
-         path = file.path(fig_root,season_names[quart]))
-  # ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
-         # dpi=300, units="cm",width=9.3,height=7.5,
-         # path = "./report_bookdown/figures")
-  
+			annotate("text", x = 1966, y = 15, 
+							 label = "Data were not \n collected until 1998", hjust="left", size=2.7)
+	
   } else if(quart == "Q1") {
     
     #winter graphs also need annotatino for date of first clloection
-    bpl = bpl +  theme(legend.position = "none") +
-      annotate("text", x = 1966, y = 10, 
-               label = "Data were not \n collected until 1995", hjust = "left", size = 1.9)
-
-    
-    ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
-                       dpi=300, units="cm",width=9.3,height=7.5,
-                       path = file.path(fig_root,season_names[quart]))
+    bpl = bpl + 
+			theme(legend.position = "none") +
+      annotate("text", x = 1966, y = 15, 
+               label = "Data were not \n collected until 1995", hjust = "left", size=2.7)
 
   } else {
-    bpl = bpl +  theme(legend.position = "none")
-    ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
-           dpi=300, units="cm",width=9.3,height=7.5,
-           path = file.path(fig_root,season_names[quart]))
-    # ggsave(bpl, file=paste("zoops_", reg, season_names[quart], ".png", sep = ""), 
-           # dpi=300, units="cm",width=9.3,height=7.5,
-           # path = "./report_bookdown/figures")
-  }
-  bpl
+    bpl = bpl + 
+			theme(legend.position = "none")
 
+  }
+	
+	## Caption and alttext need to be the second to last and last layers:
+	regPretty <- sub("Delta","the Delta",region_names[reg])
+	quartPretty <- season_names[quart]
+	
+	fmt_caption <- "total zooplankton biomass in %s"
+	statNameCaption <- sprintf(fmt=fmt_caption, regPretty)
+
+	fmt_alttext <- "total %s zooplankton biomass in %s"
+	statNameAlttext <- sprintf(fmt=fmt_alttext, quartPretty, regPretty)
+	
+  bpl <- bpl + 
+		smr_caption(data=sums, aes(x=qyear, y=bpuetot, fill=NULL), 
+								stat_name=statNameCaption, 
+								report_year=reportyear)	+ 
+		smr_alttext(data=sums, aes(x=qyear, y=bpuetot, fill=NULL), 
+								stat_name=statNameAlttext)
+
+	if(verbose) {
+		print(getCaption(bpl))
+		print(getAlttext(bpl))
+	}
+	
+	return(bpl)
 }
 
 #filter to the report year 
@@ -325,29 +343,48 @@ zmeans = filter(zmeans, qyear <= report_year)
 
 
 #winter zoops plot
-zoops("spl", "Q1", zmeans)
-zoops("ss", "Q1", zmeans)
-zoops("dt", "Q1", zmeans)
+zoops("spl", "Q1", zmeans, reportyear=report_year)
+zoops("ss", "Q1", zmeans, reportyear=report_year)
+zoops("dt", "Q1", zmeans, reportyear=report_year)
 
 #spring zoops plot
 
-zoops("spl", "Q2", zmeans)
-zoops("ss", "Q2", zmeans)
-zoops("dt", "Q2", zmeans)
+zoops("spl", "Q2", zmeans, reportyear=report_year)
+zoops("ss", "Q2", zmeans, reportyear=report_year)
+zoops("dt", "Q2", zmeans, reportyear=report_year)
 
 
 #summer zoops plot
 
-zoops("spl", "Q3", zmeans)
-zoops("ss", "Q3", zmeans)
-zoops("dt", "Q3", zmeans)
+zoops("spl", "Q3", zmeans, reportyear=report_year)
+zoops("ss", "Q3", zmeans, reportyear=report_year)
+zoops("dt", "Q3", zmeans, reportyear=report_year)
 
 #fall zoopsplot
-zoops("spl", "Q4", zmeans)
-zoops("ss", "Q4", zmeans)
-zoops("dt", "Q4", zmeans)
+zoops("spl", "Q4", zmeans, reportyear=report_year)
+zoops("ss", "Q4", zmeans, reportyear=report_year)
+zoops("dt", "Q4", zmeans, reportyear=report_year)
 
 
+
+## Save all region and season combinations:
+for(Q in c("Q1","Q2","Q3","Q4")) {
+	zoopPlotList <- list()
+
+	for(R in c("dt","spl","ss")) {
+		tmp <- paste("zoop", R, sep="_")
+		zoopPlotList[[tmp]] <- zoops(reg=R, quart=Q, data=zmeans, 
+																 reportyear=report_year, verbose=FALSE)
+	}
+	
+	varName <- paste0("zooplankton_",season_names[Q])
+	fileName <- file.path(fig_root, season_names[Q], paste0(varName,".RData"))
+
+	assign(x=varName, value=zoopPlotList)
+	save(list=varName, file=fileName)
+	print(sprintf("Saving plots in a list called %s in the file %s", varName, fileName))
+	cat("\n")
+}
 
 
 

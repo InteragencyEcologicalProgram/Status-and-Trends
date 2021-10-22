@@ -1,355 +1,311 @@
---- 
-output: pdf_document
-pagetitle: Spring
----
+
 ```{r echo = F}
 options(width = 120)
+load(file.path(fig_root_spring,"20mm_DSM_recent.RData"))
+load(file.path(fig_root_spring,"20mm_LFS_recent.RData"))
+load(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_allyears_SP.RData"))
+load(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_recyears_SP.RData"))
+load(file.path(fig_root_spring,"yolo_splittail.RData"))
+load(file.path(fig_root_spring,"SpringRun_1966.RData"))
+load(file.path(fig_root_spring,"water_quality_spring.RData"))
+load(file.path(fig_root_spring,"zooplankton_spring.RData"))
+load(file.path(fig_root_spring,"outflow_spring.RData"))
 ```
+
 # Spring Report {#Spring}
 
-
-#### Interagency Ecological Program Spring Season Report
 This report shows trends in water quality, plankton, and fish across multiple IEP 
-surveys for March through May from 1966 to 2020.
-
-
-<h2>Delta Outflow</h2>
-
-```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path(fig_root_static,"mline.png"))
-```
-
-
-```{r echo=FALSE}
-knitr::include_graphics(file.path(fig_root_spring,"spring_outflow_update.png"))
-```
-
-- Freshwater flow influences water quality, plankton, and fish populations.
-- Spring flow is driven primarily by rainfall, snowmelt, and upstream dam releases.
-- The spring of 2020 had lower outflow than average.
-
+surveys for March through May from 1966 to `r report_year`.
 
 ***
 
-## Spring Secchi Depth 
+## Delta Outflow {#spring-outflow}
 
-:::::: {.columns2}
+:::: {.row}
+::: {.col-1-outflow}
+- Freshwater flow influences water quality, plankton, and fish populations.
+- Spring flow is driven primarily by rainfall, snowmelt, and upstream dam releases.
+- `r getCaption(outflow_spring)`
+:::
 
-::: {.column width=700px}
+::: {.col-2-outflow}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
+```
+:::{.expand} 
+```{r fig.cap=getAlttext(outflow_spring), echo=FALSE}
+getPlot(outflow_spring)
+```
+:::
+:::
+::::
 
-### Background
+***
+
+## Secchi Depth {#spring-secchi}
+
+### Background {.unlisted .unnumbered}
+
+:::: {.row}
+::: {.col-1-background}
 * Organisms in this ecosystem are adapted to high turbidity conditions, and reductions in turbidity can have many negative ecological effects.
 * Higher values for Secchi depth indicate lower turbidity.
 * Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) by dropping a black-and-white disk in the water until it disappears.
-
 :::
 
-::: {.column width=300px}
+::: {.col-2-background}
 ```{r fig.height=10, fig.align="center", fig.cap="image of a secchi disk", echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"secchidisc.png"))
 ```
 :::
+::::
 
-::::::
-
-
-### Average Secchi Depth by Region 
-
-
-:::::: {.columns-nocenter}
-::: {.column width=800px}
+### Average Secchi Depth by Region {.unlisted .unnumbered}
+ 
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path(fig_root_static,"mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
-:::
-::: {.column width=800px}
-:::
-::: {.column width=800px}
-:::
-::::::
 
-::::: {.panel-grid}
-
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
+:::: {.row}
+::: {.col-1of3}
 <center> __San Pablo Bay__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
+::: {.col-1of3}
 <center> __Suisun__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
+::: {.col-1of3}
 <center> __Delta__ </center>
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average spring secchi depth in San Pablo Bay from 1975 to 2020. Values range from 10 to 150.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"secchi_splspring.png"))
+:::: {.row}
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(water_quality_spring$secchi_spl), echo=FALSE}
+getPlot(water_quality_spring$secchi_spl)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average spring secchi depth in Suisun from 1975 to 2020. Values range from 10 to 60.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"secchi_ssspring.png"))
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(water_quality_spring$secchi_ss), echo=FALSE}
+getPlot(water_quality_spring$secchi_ss)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-```{r fig.cap= "Graph of average spring secchi depth in the Delta from 1975 to 2020. Values range from 25 to 170 and have been increasing since the year 2000.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"secchi_dtspring.png"))
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(water_quality_spring$secchi_dt), echo=FALSE}
+getPlot(water_quality_spring$secchi_dt)
 ```
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-<center>In 2020, San Pablo bay was close to the long-term average.</center>
+:::: {.row}
+::: {.col-1of3 .expand}
+<center>`r getCaption(water_quality_spring$secchi_spl)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-<center>In 2020, Suisun Bay was  close to the long-term average</center>
+::: {.col-1of3 .expand}
+<center>`r getCaption(water_quality_spring$secchi_ss)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-<center>In 2020, the Delta was clearer than average.</center>
+::: {.col-1of3 .expand}
+<center>`r getCaption(water_quality_spring$secchi_dt)`</center>
 :::
 ::::
-
-:::::
 
 ```{block, type='disclaimer'}
-[Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899.](https://link.springer.com/article/10.1007/s12237-011-9382-x) 
+For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine waters upon crossing the threshold from transport to supply regulation of sediment transport as an erodible sediment pool is depleted: San Francisco Bay, 1999. Estuaries and Coasts 34(5):885-899. https://link.springer.com/article/10.1007/s12237-011-9382-x
 ```
 
-
 ***
-## Spring Water Temperature 
 
-:::::: {.columns-nocenter}
+## Water Temperature {#spring-temp}
 
-::: {.column width=800px}
-### Background
+### Background {.unlisted .unnumbered}
 
+:::: {.row}
+::: {.col-1-background}
 * Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
 * Fish growth and reproduction is highest in certain temperature ranges.
 * Increasing Spring temperatures may lower Delta Smelt reproduction.
 * Temperatures tend to be similar between regions in the spring.
-
 :::
 
-::: {.column width=200px}
-
-
-
-
+::: {.col-2-background}
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of a thermometer in water", echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"thermometer.png"))
 ```
 :::
-::::::
+::::
 
+### Average Temperature by Region {.unlisted .unnumbered}
 
-### Average Temperature by Region 
-:::::: {.columns-nocenter}
-::: {.column width=800px}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path(fig_root_static,"mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
-:::
-::: {.column width=800px}
-:::
-::: {.column width=800px}
-:::
-::::::
 
-::::: {.panel-grid}
-
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
+:::: {.row}
+::: {.col-1of3}
 <center> __San Pablo Bay__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
+::: {.col-1of3}
 <center> __Suisun__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
+::: {.col-1of3}
 <center> __Delta__ </center>
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average spring water temperature in San Pablo Bay from 1975 to 2019. Values range from 13 to 18.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"temp_splspring.png"))
+:::: {.row}
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(water_quality_spring$temp_spl), echo=FALSE}
+getPlot(water_quality_spring$temp_spl)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average spring water temperature in Suisun from 1975 to 2019. Values range from 13 to 18.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"temp_ssspring.png"))
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(water_quality_spring$temp_ss), echo=FALSE}
+getPlot(water_quality_spring$temp_ss)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average spring water temperature in the Delta from 1975 to 2019. Values range from 13 to 18.", class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"temp_dtspring.png"))
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(water_quality_spring$temp_dt), echo=FALSE}
+getPlot(water_quality_spring$temp_dt)
 ```
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-<center>In 2020, San Pablo Bay temperatures cooler than average.</center>
+:::: {.row}
+::: {.col-1of3}
+<center>`r getCaption(water_quality_spring$temp_spl)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-<center>In 2020, Suisun Bay was cooler than average.</center>
+::: {.col-1of3}
+<center>`r getCaption(water_quality_spring$temp_ss)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-<center>In 2020, the Delta was cooler than average.</center>
+::: {.col-1of3}
+<center>`r getCaption(water_quality_spring$temp_dt)`</center>
 :::
 ::::
-
-:::::
 
 ```{block, type='disclaimer'}
-For more information see: Jeffries, et al.. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. 
+For more information see: Jeffries, et al. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. https://jeb.biologists.org/content/219/11/1705.short DOI: https://doi.org/10.1242/jeb.134528 
 ```
 
 ***
 
-## Spring Chlorophyll
+## Chlorophyll {#spring-chlorophyll}
 
-:::::: {.columns-nocenter}
+### Background {.unlisted .unnumbered}
 
-::: {.column width="70%"}
-### Background
-
+:::: {.row}
+::: {.col-1-background}
 * Chlorophyll is an indicator of phytoplankton production, which is low during the Spring.
 * Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
 * The invasion of the clam *Potamocorbula amurensis* caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
-
-
 :::
 
-::: {.column width="30%"}
-
-
-
-
+::: {.col-2-background}
 ```{r fig.height=10, fig.align="center", fig.cap = "picture of phytoplankton", echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"phyto.png"))
 ```
 :::
-::::::
+::::
 
-
-### Average Chlorophyll by Region 
-
-:::::: {.columns-nocenter}
-::: {.column width=800px}
+### Average Chlorophyll by Region {.unlisted .unnumbered}
+ 
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path(fig_root_static,"mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
-:::
-::: {.column width=800px}
-:::
-::: {.column width=800px}
-:::
-::::::
 
-::::: {.panel-grid}
-
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
+:::: {.row}
+::: {.col-1of3}
 <center> __San Pablo Bay__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
+::: {.col-1of3}
 <center> __Suisun__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
+::: {.col-1of3}
 <center> __Delta__ </center>
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average spring chlorophyll in San Pablo Bay from 1975 to 2020. Values range from 4 to 15.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"chla_splspring.png"))
+:::: {.row}
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(water_quality_spring$chla_spl), echo=FALSE}
+getPlot(water_quality_spring$chla_spl)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2020. Values range from 2 to 19.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"chla_ssspring.png"))
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(water_quality_spring$chla_ss), echo=FALSE}
+getPlot(water_quality_spring$chla_ss)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average spring chlorophyll in the Delta from 1975 to 2020. Values range from 3.5 to 29.", class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"chla_dtspring.png"))
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(water_quality_spring$chla_dt), echo=FALSE}
+getPlot(water_quality_spring$chla_dt)
 ```
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-<center>In 2020, San Pablo Bay chlorophyll was lower than the long-term average.</center>
+:::: {.row}
+::: {.col-1of3}
+<center>`r getCaption(water_quality_spring$chla_spl)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-<center>In 2020, Suisun Bay chlorophyll was also lower than average.</center>
+::: {.col-1of3}
+<center>`r getCaption(water_quality_spring$chla_ss)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-<center>In 2020, the Delta had much lower chlorophyll than average.</center>
+::: {.col-1of3}
+<center>`r getCaption(water_quality_spring$chla_dt)`</center>
 :::
 ::::
-
-:::::
 
 ```{block, type='disclaimer'}
 For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20. 
@@ -357,168 +313,146 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
  
 ***
 
-## Spring Zooplankton
+## Zooplankton {#spring-zoop}
 
-:::::: {.columns-nocenter}
+### Background {.unlisted .unnumbered}
 
-::: {.column width="70%"}
-### Background
-
-
-* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling in San Pablo Bay did not begin until 1998. 
+:::: {.row}
+::: {.col-1-background}
+* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297), but sampling in San Pablo Bay did not begin until 1998. 
 * Zooplankton are an important food source for pelagic fish. 
 * Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
 * Biomass in Spring tends to be higher than Winter, but lower than Summer. 
-
 :::
 
-::: {.column width="30%"}
-
-
-
+::: {.col-2-background}
 <center> Copepod </center>
-```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+```{r fig.height=10, fig.width=6, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"copepod.jpg"))
 ```
 
-
 <center> Mysid </center>
-```{r fig.height=10, fig.align="center", fig.cap = "picture of a copepod", echo=FALSE}
+```{r fig.height=10, fig.width=6, fig.align="center", fig.cap = "picture of a mysid", echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"mysid.jpg"))
 ```
-
-
 :::
-::::::
+::::
 
+### Average Zooplankton Biomass by Region {.unlisted .unnumbered}
 
-### Average Zooplankton Biomass by Region 
-
-:::::: {.columns-nocenter}
-::: {.column width=800px}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path(fig_root_static,"mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
-:::
-::: {.column width=800px}
-:::
-::: {.column width=800px}
-:::
-::::::
 
-::::: {.panel-grid}
-
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
+:::: {.row}
+::: {.col-1of3}
 <center> __San Pablo Bay__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
+::: {.col-1of3}
 <center> __Suisun__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
+::: {.col-1of3}
 <center> __Delta__ </center>
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average spring zooplankton biomass in San Pablo Bay from 1975 to 2020. Values range from 5 to 25.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"zoops_splspring.png"))
+:::: {.row}
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(zooplankton_spring$zoop_spl), echo=FALSE}
+getPlot(zooplankton_spring$zoop_spl)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average spring chlorophyll in Suisun from 1975 to 2020. Values range from 5 to 45 with much higher biomass before 1986.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"zoops_ssspring.png"))
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(zooplankton_spring$zoop_ss), echo=FALSE}
+getPlot(zooplankton_spring$zoop_ss)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of average spring zooplankton biomass in the Delta from 1975 to 2020. Values range from 3.5 to 39.", class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"zoops_dtspring.png"))
+::: {.col-1of3 .expand}
+```{r echo=FALSE, fig.cap=getAlttext(zooplankton_spring$zoop_dt)}
+getPlot(zooplankton_spring$zoop_dt)
 ```
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-<center>In 2020, San Pablo Bay had lower than average biomass, mostly calanoid copepods.</center>
+:::: {.row}
+::: {.col-1of3}
+<center>`r getCaption(zooplankton_spring$zoop_spl)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-<center>In 2020, Suisun Bay had about average total biomass.</center>
+::: {.col-1of3}
+<center>`r getCaption(zooplankton_spring$zoop_ss)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-<center>In 2020, the Delta had much lower than average total biomass.</center>
+::: {.col-1of3}
+<center>`r getCaption(zooplankton_spring$zoop_dt)`</center>
 :::
 ::::
-
-:::::
 
 ```{block, type='disclaimer'}
 For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Newsletter 32(1):21-32. Available on request: iepnewsletter@water.ca.gov
 ```
- ***
+
+***
  
-## Spring Fish 
+## Fish {#spring-fish} 
 
-### Background
+### Background {.unlisted .unnumbered}
 
-* Splittail are a native minnow that spawn on floodplains, so have high reproduction during high flow years when floodplains are inundated with water. Juvenile splittail are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2)'s rotory screw trap. 
-* Spring-run Adult salmon return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
-* Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
+* Splittail are a native minnow that spawn on floodplains, so they have high reproduction during high flow years when floodplains are inundated with water. Juvenile splittail are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2)'s rotory screw trap. 
+* Adult Spring-Run Chinook Salmon return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
+* Juvenile Winter-Run Chinook salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
-### Average Fish Catch Trends by Species 
+### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 
-:::::: {.columns-nocenter}
-::: {.column width=800px}
+:::: {.row}
+::: {.col-1of2}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path(fig_root_static,"mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
 :::
-::: {.column width=800px}
+::: {.col-1of2}
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
+```
 :::
-::: {.column width=800px}
-:::
-::::::
+::::
 
-::::: {.panel-grid}
-
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
+:::: {.row}
+::: {.col-1of3}
 <center> __[Juvenile Sacramento Splittail](http://calfish.ucdavis.edu/species/?uid=136&ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
+::: {.col-1of3}
 <center> __[Adult Spring-Run Chinook](http://calfish.ucdavis.edu/species/?uid=28&ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
+::: {.col-1of3}
 <center> __[Juvenile Winter-Run Chinook](http://calfish.ucdavis.edu/species/?uid=30&ds=698)__ </center>
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800}
+:::: {.row}
+::: {.col-1of3}
 ```{r fig.cap= "picture of a sacramento splittail", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"splittail_adult.png"))
 ```
@@ -526,64 +460,62 @@ knitr::include_graphics(file.path(fig_root_static,"splittail_adult.png"))
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800}
-```{r fig.cap= "picture of an adults chinook salmon", fig.align='center', fig.width=1, echo=FALSE}
+::: {.col-1of3}
+```{r fig.cap= "picture of an adult Chinook Salmon", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"chinook_salmon.png"))
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800}
+::: {.col-1of3}
 ```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=1, echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"chinook_salmon_smolt.png"))
 ```
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of average Sacramento Splittail catch per unit effort from 1998 to 2018. Values range from 4 to 80.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"yolo_splittail.png"))
+:::: {.row}
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(yolo_splittail_all), echo=FALSE}
+getPlot(yolo_splittail_all)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of average adult chinook returns from 1966 to 2019. Values range from 1000 to 250000.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"SpringRun_1966.png"))
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(SpringRun_1966), echo=FALSE}
+getPlot(SpringRun_1966)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 1995 to 2020. Values range from 0.2 to 6.", class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_allyears_SP.png"))
+::: {.col-1of3 .expand}
+```{r echo=FALSE, fig.cap=getAlttext(chinook_winterByLength_allYears_fig)}
+getPlot(chinook_winterByLength_allYears_fig)
 ```
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-<center> 2019 data have not been released yet. 2018 did not have substantial Yolo Bypass flooding, and catch was in line with other similar years.</center>
+:::: {.row}
+::: {.col-1of3}
+<center>`r getCaption(yolo_splittail_all)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-<center>In 2019, adult Chinook returns were higher than average.</center>
+::: {.col-1of3}
+<center>`r getCaption(SpringRun_1966)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-<center>In 2020, juvenile Chinook catch was higher than average.</center>
+::: {.col-1of3}
+<center>`r getCaption(chinook_winterByLength_allYears_fig)`</center>
 :::
 ::::
-
-:::::
 
 ```{block, type='disclaimer'}
 For more information see: Kwan, N., Stuart, C., Shakya, A., Jenkins, J., and Schreier, B. 2019. 2016-2017 Yolo Bypass Fisheries Monitoring Status and Trends Report. Interagency Ecological Program Newsletter, 36(1): 27–35. Available on request: iepnewsletter@water.ca.gov
@@ -591,50 +523,49 @@ For more information see: Kwan, N., Stuart, C., Shakya, A., Jenkins, J., and Sch
 
 ***
 
-## Recent Trends: Spring Fish 2004-2020 
+## Recent Trends {#spring-recent}
 
-### Background
+### Background {.unlisted .unnumbered}
 
 * Delta Smelt and Longfin Smelt have been in decline since the early 2000s. The [CDFW 20mm Survey](https://wildlife.ca.gov/Conservation/Delta/20mm-Survey) was designed to sample post-larval and juvenile Delta Smelt, and samples in San Pablo, Suisun, and the Delta. 
 * Longfin Smelt frequently spawn further downstream than Delta Smelt, so the 20 mm Survey does not cover their entire range, but still provides an indication of population-level trends.
 * Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
-### Average Fish Catch Trends by Species 
+### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 
-:::::: {.columns-nocenter}
-::: {.column width=800px}
+:::: {.row}
+::: {.col-1of2}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
-knitr::include_graphics(file.path(fig_root_static,"mline.png"))
+knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
 :::
-::: {.column width=800px}
+::: {.col-1of2}
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
+```
 :::
-::: {.column width=800px}
-:::
-::::::
+::::
 
-::::: {.panel-grid}
-
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
+:::: {.row}
+::: {.col-1of3}
 <center> __[Delta Smelt](http://calfish.ucdavis.edu/species/?uid=47&ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
+::: {.col-1of3}
 <center> __[Longfin Smelt](http://calfish.ucdavis.edu/species/?uid=87&ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
+::: {.col-1of3}
 <center> __[Juvenile Winter-Run Chinook](http://calfish.ucdavis.edu/species/?uid=30&ds=698)__ </center>
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800}
+:::: {.row}
+::: {.col-1of3}
 ```{r fig.cap= "picture of delta smelt", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"delta_smelt.png"))
 ```
@@ -642,7 +573,7 @@ knitr::include_graphics(file.path(fig_root_static,"delta_smelt.png"))
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800}
+::: {.col-1of3}
 ```{r fig.cap= "picture of longfin smelt", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"longfin_smelt_adult.png"))
 ```
@@ -650,57 +581,56 @@ knitr::include_graphics(file.path(fig_root_static,"longfin_smelt_adult.png"))
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800}
+::: {.col-1of3}
 ```{r fig.cap= "picture of a juvenile salmon", fig.align='center', fig.width=.5, echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"chinook_salmon_smolt.png"))
 ```
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-```{r fig.cap= "Graph of post-larval Delta Smelt index from 2004-2019. Values range from 0 to 15.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"20mm_DSM_recent.png"))
+:::: {.row}
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(dsm_recyears_fig), echo=FALSE}
+getPlot(dsm_recyears_fig)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-```{r fig.cap= "Graph of post-larval longfin smelt index from 2004-2019. Values range from 4 to 206.", echo=FALSE, class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"20mm_LFS_recent.png"))
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(lfs_recyears_fig), echo=FALSE}
+getPlot(lfs_recyears_fig)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-```{r echo=FALSE, fig.cap= "Graph of juvenile winter-run chinook index from 2004 to 2019. Values range from 0.2 to 6.", class="expand"}
-knitr::include_graphics(file.path(fig_root_spring,"DJFMP_chinook_winterByLength_recyears_SP.png"))
+::: {.col-1of3 .expand}
+```{r fig.cap=getAlttext(chinook_winterByLength_recYears_fig), echo=FALSE}
+getPlot(chinook_winterByLength_recYears_fig)
 ```
 :::
 ::::
 
-:::: {.columns-nocenter}
-::: {.column800 class='col-1'}
-<center>The Delta Smelt 20mm index was zero in 2019, the lowest index on record.</center>
+:::: {.row}
+::: {.col-1of3}
+<center>`r getCaption(dsm_recyears_fig)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-2'}
-<center>Adult Longfin smelt catch in 2019 was much lower than the long-term average.</center>
+::: {.col-1of3}
+<center>`r getCaption(lfs_recyears_fig)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
-::: {.column800 class='col-3'}
-<center>In 2020, juvenile winter-run salmon catch was about average.</center>
+::: {.col-1of3}
+<center>`r getCaption(chinook_winterByLength_recYears_fig)`</center>
 :::
 ::::
-
-:::::
 
 ```{block, type='disclaimer'}
-Johnson, R., S. Windell, P. L. Brandes, J. L. Conrad, J. Ferguson, P. A. L. Goertler, B. N. Harvey, J. Heublein, J. A. Israel, D. W. Kratville, J. E. Kirsch, R. W. Perry, J. Pisciooto, W. R. Poytress, K. Reece, and B. G. Swart. 2017. Science Advancements Key to Increasing Management Value of Life Stage Monitoring Networks for Endangered Sacramento River Winter-Run Chinook Salmon in California. San Francisco Estuary and Watershed Science 15(3). https://escholarship.org/uc/item/6751j957
+For more information see: Johnson, R., S. Windell, P. L. Brandes, J. L. Conrad, J. Ferguson, P. A. L. Goertler, B. N. Harvey, J. Heublein, J. A. Israel, D. W. Kratville, J. E. Kirsch, R. W. Perry, J. Pisciooto, W. R. Poytress, K. Reece, and B. G. Swart. 2017. Science Advancements Key to Increasing Management Value of Life Stage Monitoring Networks for Endangered Sacramento River Winter-Run Chinook Salmon in California. San Francisco Estuary and Watershed Science 15(3). https://escholarship.org/uc/item/6751j957
 ```
+

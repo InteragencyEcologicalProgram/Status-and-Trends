@@ -4,9 +4,6 @@
 ##########################################################################
 ## Read in data:
 
-#thisDataRoot <- file.path(data_root,"DJFMP")
-
-#chippsData <- read.csv(file.path(thisDataRoot,"chippsData.csv"), stringsAsFactors=FALSE)
 load(file.path(data_root,"chippsData.RData"))
 
 ##########################################################################
@@ -17,7 +14,7 @@ any(is.na(unique(chippsData$Volume)))
 chippsData$Volume[is.na(chippsData$Volume)] <- mean(chippsData$Volume, na.rm=TRUE)
 
 ## Add fields:
-chippsData$SampleDate = mdy(chippsData$SampleDate)
+chippsData$SampleDate = as.Date(chippsData$SampleDate, "%m/%d/%Y")
 chippsData$Month <- lubridate::month(chippsData$SampleDate)
 chippsData$Year <- lubridate::year(chippsData$SampleDate)
 chippsData$Year_f <- as.factor(chippsData$Year)
@@ -60,35 +57,53 @@ chippsIndexDf
 ##########################################################################
 ## Figures:
 
-use_ylab <- expression(paste("Chinook Salmon Index\n(Winterrun, Unmarked Fish)"))
+use_ylab <- "Index for unmarked fish"
 chinook_lt_avg <- mean(chippsIndexDf$chinook_winterByLengthIndex, na.rm=TRUE)
 
 ## All years:
-chinook_winterByLength_allYears_fig <- ggplot(chippsIndexDf) + 
-  geom_bar(aes(x=Year, y=chinook_winterByLengthIndex), stat="identity") +
-  smr_theme() +
-  theme(legend.position="none") + 
-  smr_x_axis(report_year, "all", "spring")+ 
-  smr_y_axis() + 
+chinook_winterByLength_allYears_fig <- ggplot(chippsIndexDf, 
+		aes(x=Year, y=chinook_winterByLengthIndex)) + 
+  geom_bar(stat="identity") +
+  smr_theme_update() + 
+  smr_x_axis(report_year, "all", "spring") + 
   ylab(use_ylab)+
-  stat_lt_avg(aes(y = chinook_winterByLengthIndex))
+	#stat_missing(size=2.5) + 
+  stat_lt_avg() + 
+  annotate("text", x=1968, y=1, label="Earlier data\nomitted", 
+           hjust=0, size=2.7) + 	
+	smr_caption(stat_name="the juvenile Winter-Run Chinook Salmon index", 
+							report_year=report_year) + 
+	smr_alttext(stat_name="juvenile Winter-Run Chinook Salmon index")
 
-ggsave(chinook_winterByLength_allYears_fig, 
-			 file=file.path(fig_root_spring,"DJFMP_chinook_winterByLength_allyears_SP.png"), 
-			 dpi=300, units="cm", width=9.3, height=6.8)
+chinook_winterByLength_allYears_fig
+
+getCaption(chinook_winterByLength_allYears_fig)
+getAlttext(chinook_winterByLength_allYears_fig)
+
+
+save(list=c("chinook_winterByLength_allYears_fig"), 
+		 file=file.path(fig_root_spring,"DJFMP_chinook_winterByLength_allyears_SP.RData"))
 
 
 ## Recent years:
-chinook_winterByLength_recYears_fig <- ggplot(chippsIndexDf) +
-  geom_bar(aes(x=Year, y=chinook_winterByLengthIndex), stat="identity") + 
-  smr_theme() +
-  theme(legend.position="none") + 
-  smr_x_axis(report_year, "recent", "spring")+ 
-  smr_y_axis() + 
+chinook_winterByLength_recYears_fig <- ggplot(chippsIndexDf,
+		aes(x=Year, y=chinook_winterByLengthIndex)) + 
+  geom_bar(stat="identity") + 
+  smr_theme_update() + 
+  smr_x_axis(report_year, "recent", "spring") + 
   ylab(use_ylab)+
-  stat_lt_avg(aes(y = chinook_winterByLengthIndex))
+	stat_missing(size=2.5) + 
+  stat_lt_avg() + 
+	smr_caption(stat_name="the juvenile Winter-Run Chinook Salmon index", 
+							report_year=report_year) + 
+	smr_alttext(stat_name="juvenile Winter-Run Chinook Salmon index")
 
-ggsave(chinook_winterByLength_recYears_fig, 
-       file=file.path(fig_root_spring,"DJFMP_chinook_winterByLength_recyears_SP.png"), 
-       dpi=300, units="cm", width=9.3, height=6.8)
+chinook_winterByLength_recYears_fig
+
+getCaption(chinook_winterByLength_recYears_fig)
+getAlttext(chinook_winterByLength_recYears_fig)
+
+
+save(list=c("chinook_winterByLength_recYears_fig"), 
+		 file=file.path(fig_root_spring,"DJFMP_chinook_winterByLength_recyears_SP.RData"))
 

@@ -27,52 +27,40 @@ lfsIndexDf <- subset(lfsIndexDf, Year <= report_year)
 dsm_lt_avg <- mean(dsmIndexDf$Index, na.rm=TRUE)
 lfs_lt_avg <- mean(lfsIndexDf$Index, na.rm=TRUE)
 
-# ## All years:
-# dsm_allyears_fig <- ggplot(dsmIndexDf) + 
-  # geom_bar(aes(x=Year_f, y=Index), stat="identity") +
-  # theme_smr() + 
-  # theme(legend.position="none") + 
-  # scale_y_continuous("Index") + 
-  # std_x_axis_all_years(rpt_yr=report_year, "discrete") +
-  # lt_avg_line(lt_avg=dsm_lt_avg)
 
-# ggsave(dsm_allyears_fig, file=file.path(fig_root_spring,"20mm_DSM_allyears.png"), 
-       # dpi=300, units="cm", width=9.3, height=6.8)
-
-
-# lfs_allyears_fig <- ggplot(lfsIndexDf) +
-  # geom_bar(aes(x=Year_f, y=Index), stat="identity") + 
-  # theme_smr() + 
-  # theme(legend.position="none") + 
-  # scale_y_continuous(expression(paste("Index"))) + 
-  # std_x_axis_all_years(rpt_yr=report_year, "discrete") + 
-  # lt_avg_line(lt_avg=lfs_lt_avg)
-
-# ggsave(lfs_allyears_fig, file=file.path(fig_root_spring,"20mm_LFS_allyears.png"), 
-       # dpi=300, units="cm", width=9.3, height=6.8)
-	 
-			 
 ## Recent years:
-dsm_recyears_fig <- ggplot(dsmIndexDf, aes(x=Year, y=Index))+
+dsm_recyears_fig <- ggplot(dsmIndexDf, aes(x=Year, y=Index)) +
   geom_bar(stat="identity") +
-  smr_theme() + 
-  theme(legend.position="none") + 
+  smr_theme_update() + 
   scale_y_continuous("Index") + 
-  smr_x_axis(report_year, type = "recent", season = "spring")+
-  stat_lt_avg()
+  smr_x_axis(report_year, type = "recent", season = "spring") +
+	stat_missing(size=2.5) + 
+  stat_lt_avg() + 
+	smr_caption(stat_name="the Delta Smelt index", report_year=report_year) + 
+	smr_alttext(stat_name="post-larval Delta Smelt index")
 
-ggsave(dsm_recyears_fig, file=file.path(fig_root_spring,"20mm_DSM_recent.png"), 
-       dpi=300, units="cm", width=9.3, height=6.8)
+dsm_recyears_fig
+
+getCaption(dsm_recyears_fig)
+getAlttext(dsm_recyears_fig)
+
+save(dsm_recyears_fig, file=file.path(fig_root_spring,"20mm_DSM_recent.RData"))
 
 
-lfs_recyears_fig <- ggplot(lfsIndexDf, aes(x=Year, y=Index))+
+lfs_recyears_fig <- ggplot(lfsIndexDf, aes(x=Year, y=Index)) +
   geom_bar(stat="identity") +
-  smr_theme() + 
-  theme(legend.position="none") + 
+  smr_theme_update() + 
   scale_y_continuous("Index") + 
-  smr_x_axis(report_year, type = "recent", season = "spring")+
-  stat_lt_avg()
+  smr_x_axis(report_year, type = "recent", season = "spring") +
+	stat_missing(size=2.5) + 	
+  stat_lt_avg() + 
+	smr_caption(stat_name="the Longfin Smelt index", report_year=report_year) + 
+	smr_alttext(stat_name="Longfin Smelt index")
 
-ggsave(lfs_recyears_fig, file=file.path(fig_root_spring,"20mm_LFS_recent.png"), 
-       dpi=300, units="cm", width=9.3, height=6.8)
+lfs_recyears_fig
+
+getCaption(lfs_recyears_fig)
+getAlttext(lfs_recyears_fig)
+
+save(list=c("lfs_recyears_fig"), file=file.path(fig_root_spring,"20mm_LFS_recent.RData"))
 

@@ -80,18 +80,26 @@ seineIndexDf
 ##########################################################################
 ## Figures:
 
-sacpikeminnow_fig <- ggplot(seineIndexDf) + 
-  geom_bar(aes(x=Year, y=SacPikeminnowIndex), stat="identity") +
-  smr_theme() +
-  theme(legend.position="none") + 
-  scale_y_continuous("Sacramento Pikeminnow Index") + 
+sacpikeminnow_fig <- ggplot(seineIndexDf, aes(x=Year, y=SacPikeminnowIndex)) + 
+  geom_bar(stat="identity") +
+  smr_theme_update() + 
+  scale_y_continuous("Index") + 
   smr_x_axis(report_year, type = "all", season = "summer")+
-  annotate("text", x=1968, y=0.5, label="Data not\ncollected\nuntil 1976", 
-           hjust=0, size=2) + 
-  stat_lt_avg(aes(y = SacPikeminnowIndex))
+  annotate("text", x=1968, y=0.6, label="Sites variable in\nearlier years", 
+           hjust=0, size=2.7) + 
+  stat_lt_avg(aes(y = SacPikeminnowIndex)) + 
+	smr_caption(stat_name="the Pikeminnow index", report_year=report_year) + 
+	smr_alttext(stat_name="Pikeminnow index")
+
 sacpikeminnow_fig
 
-ggsave(sacpikeminnow_fig, 
-       file=file.path(fig_root_summer,"DJFMP_sacpikeminnow_summer.png"), 
-       dpi=300, units="cm", width=9.3, height=6.8)
+getCaption(sacpikeminnow_fig)
+getAlttext(sacpikeminnow_fig)
+
+
+## Save plot:
+DJFMP_sacpikeminnow_summer <- sacpikeminnow_fig
+
+save(list="DJFMP_sacpikeminnow_summer", 
+     file=file.path(fig_root_summer,"DJFMP_sacpikeminnow_summer.RData"))
 
