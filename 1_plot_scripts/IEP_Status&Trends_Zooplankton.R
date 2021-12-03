@@ -36,7 +36,7 @@ station<-read.csv(file.path(data_root,"zoop_stations.csv"))
 #carbon mass for individual zooplankton taxa (cladocerans, copepods)
 zmass<-read.csv(file.path(data_root,"zoop_individual_mass.csv")) 
 load(file.path(data_root, "Zoops.RData"))
-load(file.path(data_root, "mysidbiomass.RData"))
+#load(file.path(data_root, "mysidbiomass.RData"))
 
 
 #CB net: formatting data---------
@@ -165,13 +165,23 @@ zll<- group_by(zall2, year, survey, date, station, cat) %>%
 #mysids: formatting data---------
 
 #next format the bpue dataset
+#we just want total mysid BPUE
+MysidBPUEx = MysidBPUE %>%
+  group_by(SurveyCode, Year, Survey, SurveyRep, SampleDate, StationNZ, Time) %>%
+summarize(bpue = sum(`Acanthomysis aspera`, `Acanthomysis hwanhaiensis`, 
+                     `Alienacanthomysis macropsis`, `Deltamysis holmquistae`,
+                                         `Hyperacanthomysis longirostris`, `Neomysis kadiakensis`, 
+                                         `Neomysis mercedis`,  Unidentified)) %>%
+  rename(year = Year, survey = Survey, station = StationNZ, date = SampleDate) %>%
+  mutate(taxon = "mys")
+
 
 #create column with bpue in micrograms instead of milligrams because rest of zoop is in micrograms
-mysids$bpue<-mysids$bpue*1000
+MysidBPUEx$bpue<-MysidBPUEx$bpue*1000
 
 #combine all zoop data sets
 zll = mutate(zll, taxon = cat, cat = NULL)
-mza<-bind_rows(zll,mysids)
+mza<-bind_rows(zll, MysidBPUEx)
 
 #Stations: formatting data---------
 
@@ -214,7 +224,8 @@ mcpg = ungroup(mcpg) %>%
               yq2 = yq) %>%
   separate(yq2, c('qyear', 'quarter'), sep=" ") %>%
   mutate(quarter = factor(quarter, levels=c('Q1','Q2','Q3','Q4')),
-         qyear = as.integer(qyear))
+         qyear = as.integer(qyear)) %>%
+  filter(!is.na(region), !(year < 1975), !(year<1998 & region == "spl"))
 
 
 #generate means by region, year, quarter, and taxon
