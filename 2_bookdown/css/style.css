@@ -31,16 +31,6 @@ pre code {
 	display: flex;
 }
 
-.col-1-landing {
-	width: 80%;
-	display: flex;
-	align-items: center;	
-}
-
-.col-2-landing {
-	width: 20%;
-}
-
 .col-1-outflow {
 	width: 60%;
 	display: flex;
