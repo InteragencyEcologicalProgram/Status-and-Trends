@@ -307,16 +307,17 @@ zoops = function(reg, quart, data, reportyear, verbose=TRUE) {
   #and it will be the one with the legend on top
   if(reg == "spl") {
     bpl = bpl + 
-			annotate("text", x = 1966, y = 15, 
+			annotate("text", x = 1966, y = 20, 
 							 label = "Data were not \n collected until 1998", hjust="left", size=2.7)
 	
   } else if(quart == "Q1") {
     
-    #winter graphs also need annotatino for date of first clloection
-    bpl = bpl + 
+    #winter graphs also need annotation for date of first complete collection
+    bpl = bpl +
 			theme(legend.position = "none") +
-      annotate("text", x = 1966, y = 15, 
-               label = "Data were not \n collected until 1995", hjust = "left", size=2.7)
+      annotate("text", x = 1966, y = 20,
+               label = "Data were consistently \n collected starting in 1995",
+               hjust = "left", size=2.7)
 
   } else {
     bpl = bpl + 
@@ -355,8 +356,10 @@ zmeans = filter(zmeans, qyear <= report_year)
 
 #winter zoops plot
 zoops("spl", "Q1", zmeans, reportyear=report_year)
-zoops("ss", "Q1", zmeans, reportyear=report_year)
-zoops("dt", "Q1", zmeans, reportyear=report_year)
+# Suisun and Delta not consistently sampled until 1995 (per email with Rosie and previous
+# versions of this code):
+zoops("ss", "Q1", subset(zmeans, qyear >= 1995), reportyear=report_year)
+zoops("dt", "Q1", subset(zmeans, qyear >= 1995), reportyear=report_year)
 
 #spring zoops plot
 
@@ -383,9 +386,16 @@ for(Q in c("Q1","Q2","Q3","Q4")) {
 	zoopPlotList <- list()
 
 	for(R in c("dt","spl","ss")) {
-		tmp <- paste("zoop", R, sep="_")
-		zoopPlotList[[tmp]] <- zoops(reg=R, quart=Q, data=zmeans, 
-																 reportyear=report_year, verbose=FALSE)
+	  tmp <- paste("zoop", R, sep="_")
+	  use_data <- zmeans
+	  
+		if(Q == "Q1" && R %in% c("ss","dt")) {
+  		# Suisun and Delta not consistently sampled during winter until 1995 (per email 
+		  # with Rosie and previous versions of this code):
+  		use_data <- subset(zmeans, qyear >= 1995) 		
+		}
+	  zoopPlotList[[tmp]] <- zoops(reg=R, quart=Q, data=use_data, 
+	                               reportyear=report_year, verbose=FALSE)
 	}
 	
 	varName <- paste0("zooplankton_",season_names[Q])
