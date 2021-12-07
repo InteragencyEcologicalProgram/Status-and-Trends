@@ -20,6 +20,8 @@ Long-term ecological surveys have been a core function of the Interagency Ecolog
 
 This report was last updated in October 2021, with data through December 2020.
 
+## Water Year Summary
+
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
 knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
@@ -29,7 +31,9 @@ getPlotLarger(water_year)
 ```
 <center>`r getCaption(water_year)`</center>
 
-<h2>[Spring](Spring.html)</h2>
+## Table of Contents
+
+<h3>[Spring](Spring.html)</h3>
 
   * Delta Outflow
   * Secchi Depth
@@ -39,7 +43,7 @@ getPlotLarger(water_year)
   * Fish
   * Recent Trends
 
-<h2>[Summer](Summer.html)</h2>
+<h3>[Summer](Summer.html)</h3>
 
   * Delta Outflow
   * Secchi Depth
@@ -49,7 +53,7 @@ getPlotLarger(water_year)
   * Fish
   * Recent Trends
 
-<h2>[Fall](Fall.html)</h2>
+<h3>[Fall](Fall.html)</h3>
 
   * Delta Outflow
   * Secchi Depth
@@ -59,7 +63,7 @@ getPlotLarger(water_year)
   * Fish
   * Recent Trends
 
-<h2>[Winter](Winter.html)</h2>
+<h3>[Winter](Winter.html)</h3>
 
   * Delta Outflow
   * Secchi Depth
@@ -69,7 +73,7 @@ getPlotLarger(water_year)
   * Fish
   * Recent Trends
 
-<h2>[Metadata](metadata.html)</h2>
+<h3>[Metadata](metadata.html)</h3>
 
   * Report Information
   * Overview
