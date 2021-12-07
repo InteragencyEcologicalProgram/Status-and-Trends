@@ -9,15 +9,35 @@ github-repo: https://github.com/InteragencyEcologicalProgram/Status-and-Trends
 description: "This report shows trends in water quality, plankton, and fish across multiple IEP surveys."
 ---
 
+```{r echo = F}
+options(width = 120)
+load(file.path(fig_root_landing,"water_year.RData"))
+```
+
 # Overview {#index}
 
-Long-term ecological surveys have been a core function of the Interagency Ecological Program (IEP) since the program’s inception in the 1970s. The IEP Seasonal Monitoring Report presents the full time series for selected water quality, plankton, and fisheries surveys conducted by IEP in a single graphical report.  The report is generated on a quarterly basis, with different set of ecosystem variables and surveys highlighted in each season. The report is developed by IEP scientists (including leads for monitoring surveys and the IEP Lead Scientist) and is reviewed by the IEP Science Management Team and Coordinators before online publication. 
- 
-This report was last updated in October 2021, with data through December 2020.
+:::: {.row}
+::: {.col-1-landing}
+Long-term ecological surveys have been a core function of the Interagency Ecological Program (IEP) since the program’s inception in the 1970s. The IEP Seasonal Monitoring Report presents the full time series for selected water quality, plankton, and fisheries surveys conducted by IEP in a single graphical report.  The report is generated on a quarterly basis, with different set of ecosystem variables and surveys highlighted in each season. The report is developed by IEP scientists (including leads for monitoring surveys and the IEP Lead Scientist) and is reviewed by the IEP Science Management Team and Coordinators before online publication.
+:::
 
-```{r fig.height=8, echo=FALSE, fig.cap="IEP logo"}
+::: {.col-2-landing}
+```{r echo=FALSE, fig.cap="IEP logo"}
 knitr::include_graphics(file.path(fig_root_static,"IEP_logo_updated.png"))
 ```
+:::
+::::
+
+This report was last updated in October 2021, with data through December 2020.
+
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
+```
+
+```{r fig.cap=getAlttext(water_year), echo=FALSE}
+getPlotLarger(water_year)
+```
+<center>`r getCaption(water_year)`</center>
 
 <h2>[Spring](Spring.html)</h2>
 
