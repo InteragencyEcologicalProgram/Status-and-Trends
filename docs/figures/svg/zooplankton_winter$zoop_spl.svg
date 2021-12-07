@@ -36,8 +36,8 @@
 <polygon points='128.41,123.65 131.16,121.32 133.92,123.25 136.67,122.24 139.42,121.77 142.18,123.63 144.93,123.23 147.69,123.72 150.44,123.79 153.19,123.82 155.95,123.25 158.70,122.73 161.46,118.92 164.21,120.87 166.96,120.92 169.72,123.70 172.47,123.52 175.23,123.43 177.98,123.65 180.73,117.28 183.49,123.81 186.24,123.04 189.00,123.31 189.00,123.88 186.24,123.88 183.49,123.88 180.73,123.88 177.98,123.88 175.23,123.88 172.47,123.88 169.72,123.88 166.96,123.88 164.21,123.88 161.46,123.88 158.70,123.88 155.95,123.88 153.19,123.88 150.44,123.88 147.69,123.88 144.93,123.88 142.18,123.88 139.42,123.88 136.67,123.88 133.92,123.88 131.16,123.88 128.41,123.88 ' style='stroke-width: 0.00; stroke: none; fill: #095E49;' />
 <polyline points='128.41,123.65 131.16,121.32 133.92,123.25 136.67,122.24 139.42,121.77 142.18,123.63 144.93,123.23 147.69,123.72 150.44,123.79 153.19,123.82 155.95,123.25 158.70,122.73 161.46,118.92 164.21,120.87 166.96,120.92 169.72,123.70 172.47,123.52 175.23,123.43 177.98,123.65 180.73,117.28 183.49,123.81 186.24,123.04 189.00,123.31 ' style='stroke-width: 1.07; stroke: none;' />
 <line x1='32.84' y1='104.36' x2='196.43' y2='104.36' style='stroke-width: 1.92; stroke: #FF0000; stroke-dasharray: 10.24,10.24; stroke-linecap: butt;' />
-<text x='40.28' y='83.10' style='font-size: 7.68px; font-family: Arial;' textLength='49.92px' lengthAdjust='spacingAndGlyphs'>Data were not </text>
-<text x='40.28' y='94.16' style='font-size: 7.68px; font-family: Arial;' textLength='67.85px' lengthAdjust='spacingAndGlyphs'> collected until 1998</text>
+<text x='40.28' y='70.43' style='font-size: 7.68px; font-family: Arial;' textLength='49.92px' lengthAdjust='spacingAndGlyphs'>Data were not </text>
+<text x='40.28' y='81.49' style='font-size: 7.68px; font-family: Arial;' textLength='67.85px' lengthAdjust='spacingAndGlyphs'> collected until 1998</text>
 <rect x='32.84' y='2.99' width='163.59' height='126.65' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHwxOTguNDN8MC4wMHwxNTUuOTE=)'>
