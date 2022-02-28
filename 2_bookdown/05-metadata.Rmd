@@ -4,7 +4,7 @@
 ### Report Information
 
 * Version: 1.1
-* Last Updated: 2020-10-21
+* Last Updated: `r format(Sys.Date(), "%B %d, %Y")`
 
 Report developed by:
 
@@ -25,7 +25,7 @@ Long-term ecological surveys have been a core function of the Interagency Ecolog
 ## General Information
 
 ### Season Definitions
-This report covers a suite of key IEP data sets relevant each season.For data sets collected throughout the year, such as water temperature, we only used data from this three-month period to generate graphs. For data sets that are season-specific, we include the entire sampling period, even if it does not overlap exactly with our season definition (for example, the 20mm Survey index includes data from March-July, whereas the spring season is defined as March-May).
+This report covers a suite of key IEP data sets relevant each season. For data sets collected throughout the year, such as water temperature, we only used data from this three-month period to generate graphs. For data sets that are season-specific, we include the entire sampling period, even if it does not overlap exactly with our season definition (for example, the 20mm Survey index includes data from March-July, whereas the spring season is defined as March-May).
 
 * Spring = March to May
 * Summer = June to August, 
@@ -87,7 +87,7 @@ on code to generate these captions automatically.
   + Additional Information:[https://water.ca.gov/Programs/Environmental-Services/Water-Quality-Monitoring-And-Assessment](https://water.ca.gov/Programs/Environmental-Services/Water-Quality-Monitoring-And-Assessment)
   + Data is also publised on the [Environmental Data Iniative Website]( https://doi.org/10.6073/pasta/a215752cb9ac47f9ed9bb0fdb7fc7c19) 
 
-### Zooplankton: Biomass of Calanoids, Cyclopoids, Cladocerans, and Mysids(All Seasons)
+### Zooplankton: Biomass of Calanoids, Cyclopoids, Cladocerans, and Mysids (All Seasons)
 
   + Data Source: California Department of Fish and Wildlife, Zooplankton Study
   + Metric Used: Biomass of zooplankton (milligrams of carbon per cubic meter) based on monthly surveys. The Environmental Monitoring Program (EMP) Zooplankton Study (also known as the IEP Zooplankton Study) began in 1972 in order to assess trends in fish food resources ranging from San Pablo Bay to the east Delta, as well as to detect and assess the impacts of recently introduced zooplankton species on native species. The study is mandated by Water Right Decision 1641 for operation of the State Water Project and Central Valley Project. The EMP study is conducted by CDFW in collaboration with DWR, and the US Bureau of Reclamation (Reclamation) and currently samples 17 fixed stations and 2 floating entrapment zone stations (locations where the bottom salinity is 2 and 6 PPT). There are also 3 additional stations located in Carquinez Strait and San Pablo Bay, which are sampled during periods of high outflow and low salinity. Historically (prior to 1995) the survey sampled at a much larger number of stations.
@@ -192,7 +192,22 @@ on code to generate these captions automatically.
   + Data is also published on the [Environmental Data Initiative Website](https://doi.org/10.6073/pasta/aeea28f969ed79086b845e1f6ab89d18)
 
 
+### Juvenile Delta Smelt and Longfin Smelt: 20mm Survey (Spring Report)
++ Data Source: California Department of Fish and Wildlife
++ Metric Used: Annual Delta Smelt indices are the sum of four survey-specific indices, 
+each derived by calculating catch per unit effort (CPUE) per tow, calculating mean CPUE 
+by station, and taking the geometric mean across stations. The four surveys are comprised 
+of the two surveys directly before and the two surveys directly after Delta Smelt mean 
+fork length reaches 20 mm. This procedure is designed to be consistent with the [Delta 
+Smelt Index calculated by CDFW](https://wildlife.ca.gov/Conservation/Delta/20mm-Survey/Bibliography).
+Annual Longfin Smelt indices are calculated similarly except the first four surveys are 
+used consistently (i.e., the four chosen surveys are not conditional on Longfin Smelt 
+length).
++ Stations: 47 core stations (total number has varied between 41 and 55)
++ Additional Information: https://wildlife.ca.gov/Conservation/Delta/20mm-Survey
+  + Data is also published on the [Environmental Data Initiative Website](https://doi.org/10.6073/pasta/32de8b7ffbe674bc6e79dbcd29ac1cc2)
 
+	
 ### Sacramento Pikeminnow – Beach Seine Survey (Summer Report)
 
 + Data Source: US Fish and Wildlife Service, Lodi Field Office, Delta Juvenile Fish Monitoring Program 
