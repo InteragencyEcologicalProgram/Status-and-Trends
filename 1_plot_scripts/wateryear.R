@@ -1,16 +1,17 @@
 #file to produce a graph of water year type and Sacramento Valley index over time for cover of report
 
-library(waterYearType)
 library(tidyverse)
 library(smonitr)
 
 
-url <- "https://github.com/FlowWest/waterYearType/blob/master/data/water_year_indices.rda?raw=true"
-
-download.file(url, destfile= "./wtryrs.RData", mode = "wb")
-load("./wtryrs.RData")
+load(file.path(data_root,"wtryrs.RData"))
 
 indicies = filter(water_year_indices, location != "San Joaquin Valley")
+row_num_new <- nrow(indicies) + 1
+if(!(report_year %in% indicies$WY)) {
+  indicies[row_num_new, ] <- rep(NA, ncol(indicies))
+  indicies$WY[row_num_new] <- report_year
+}
 
 water_year = ggplot(indicies, aes(x=WY, y=Index)) +
   geom_bar(stat="identity", aes(fill=Yr_type)) + 
@@ -26,6 +27,7 @@ water_year = ggplot(indicies, aes(x=WY, y=Index)) +
   labs(fill="Year Type") + 
   #coord_cartesian(xlim = c(1975, 2020)) +
   stat_lt_avg() +
+  stat_missing(aes(x=WY, y=Index), size=2.5) + 
   smr_caption(stat_name="water year type", report_year=report_year)	+ 
   smr_alttext(stat_name="water year type")
 

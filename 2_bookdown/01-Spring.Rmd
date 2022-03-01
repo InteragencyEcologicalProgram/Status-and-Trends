@@ -62,9 +62,18 @@ knitr::include_graphics(file.path(fig_root_static,"secchidisc.png"))
 
 ### Average Secchi Depth by Region {.unlisted .unnumbered}
  
+:::: {.row}
+::: {.col-1of2}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
 knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
+:::
+::: {.col-1of2}
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
+```
+:::
+::::
 
 :::: {.row}
 ::: {.col-1of3}
@@ -153,9 +162,18 @@ knitr::include_graphics(file.path(fig_root_static,"thermometer.png"))
 
 ### Average Temperature by Region {.unlisted .unnumbered}
 
+:::: {.row}
+::: {.col-1of2}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
 knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
+:::
+::: {.col-1of2}
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
+```
+:::
+::::
 
 :::: {.row}
 ::: {.col-1of3}
@@ -243,9 +261,18 @@ knitr::include_graphics(file.path(fig_root_static,"phyto.png"))
 
 ### Average Chlorophyll by Region {.unlisted .unnumbered}
  
+:::: {.row}
+::: {.col-1of2}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
 knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
+:::
+::: {.col-1of2}
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
+```
+:::
+::::
 
 :::: {.row}
 ::: {.col-1of3}
@@ -340,9 +367,18 @@ knitr::include_graphics(file.path(fig_root_static,"mysid.jpg"))
 
 ### Average Zooplankton Biomass by Region {.unlisted .unnumbered}
 
+:::: {.row}
+::: {.col-1of2}
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
 knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
+:::
+::: {.col-1of2}
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
+```
+:::
+::::
 
 :::: {.row}
 ::: {.col-1of3}

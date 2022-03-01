@@ -6,11 +6,8 @@ library(lubridate)
 ##########################################################################
 ## Read in data:
 
-#thisDataRoot <- file.path(data_root,"DJFMP")
-
-#chippsData <- read.csv(file.path(thisDataRoot,"chippsData.csv"), stringsAsFactors=FALSE)
-
 load(file.path(data_root, "chippsData.RData"))
+
 ##########################################################################
 ## Chipps Trawl: Winterrun Chinook
 
@@ -19,7 +16,7 @@ any(is.na(unique(chippsData$Volume)))
 chippsData$Volume[is.na(chippsData$Volume)] <- mean(chippsData$Volume, na.rm=TRUE)
 
 ## Add fields:
-chippsData = mutate(chippsData, SampleDate = mdy(SampleDate),
+chippsData = mutate(chippsData, 
                     Month = month(SampleDate),
                     Year = year(SampleDate),
                     Year_f = as.factor(Year))
