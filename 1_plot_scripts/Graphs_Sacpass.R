@@ -2,8 +2,6 @@
 
 library(lubridate)
 
-#source(file.path(data_access_root,"data_access_sacpass.R"))
-
 load(file.path(data_root, "Grantab.RData"))
 
 #Spring run salmon

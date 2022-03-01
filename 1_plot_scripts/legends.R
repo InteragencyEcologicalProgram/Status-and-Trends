@@ -24,7 +24,7 @@ mpoint = ggplot() +
            size = 0.9, x = 1.5, xend = 2, y = 0, yend = 0)+
   annotate("point", shape = 24, size = 3, 
            fill = "tan2", color = "gray10", x = 1.05, y = 0)+
-  annotate("text", label = "No survey, no index, or data not available yet", 
+  annotate("text", label = "No survey, no index, or data pending", 
            x = 1.1, y = 0, hjust = 0)+
   theme(axis.text = element_blank(), axis.title = element_blank(), 
         panel.background = element_rect(fill = "white"), 

@@ -56,11 +56,20 @@ ezq<-ggplot(dmean, aes(x=qyear, y=out)) +geom_line()+
 
 #now a function to plot one season at a time
 flows = function(quart, data, reportyear, verbose=TRUE) {
-  dat = filter(data, quarter == quart) 
+  dat = filter(data, quarter == quart)
+  
+  # Want report year to be in dataset so we can show missing data symbol in the plot.
+  row_num_new <- nrow(dat) + 1
+  if(!(report_year %in% dat$qyear)) {
+    dat[row_num_new, ] <- rep(NA, ncol(dat))
+    dat$qyear[row_num_new] <- report_year
+  }
+    
   p = ggplot(dat, aes(x=qyear, y=out/1000)) +
     geom_line()+
     geom_point(colour="black") +
     stat_lt_avg(aes(y = out/1000))+
+    stat_missing(aes(x=qyear, y=out/1000), size=2.5) + 
   #  geom_hline(aes(yintercept = mean(out)/1000), size = 0.9, color = "red", linetype = "dashed")+
     smr_x_axis(report_year, type = "all", season = season_names[quart]) + 
     scale_y_continuous(limits = c(0, max(data$out/1000)), name =expression(paste("Delta Outflow (1,000 Ft "^"3","/s)"))) +

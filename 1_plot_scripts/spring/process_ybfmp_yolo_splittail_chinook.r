@@ -1,14 +1,5 @@
 library(lubridate)
 
-# load from RData file on sharepoint site
-#sharepoint_path = normalizePath(
-#  file.path(
-#    Sys.getenv("USERPROFILE"),
-#    "California Department of Water Resources/DWR - Seasonal monitoring report - Documents/Data"
-#  )
-#)
-#load(file.path(sharepoint_path, "ybfmp.RData"))
-
 load(file.path(data_root, "ybfmp.RData"))
 
 # format catch data
