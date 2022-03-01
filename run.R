@@ -11,7 +11,7 @@ library(svglite)
 
 # Define global variables -----------------------------------------------------------
 
-report_year <- 2020
+report_year <- 2021
 
 root <- getwd()
 data_access_root <- file.path(root,"0_data_access_scripts")

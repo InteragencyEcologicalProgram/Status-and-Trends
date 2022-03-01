@@ -23,7 +23,5 @@ EMP2 = select(EMP, Station, Date, Chla, WTSurface, Secchi, Microcystis) %>%
 
 
 #save the result
-write.csv(EMP2, file.path(data_root,"WQ_Discrete_1975-2019.csv"), row.names = F)
+write.csv(EMP2, file.path(data_root,"WQ_Discrete_1975-2020.csv"), row.names = F)
 
-
-            
