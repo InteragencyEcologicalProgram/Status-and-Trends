@@ -25,7 +25,7 @@ library(smonitr)
 
 #source(file.path(data_access_root,"WQ_data_download.R"))
 #or skip this if you've updated it recently and just do
-alldata = read.csv(file.path(data_root,"WQ_discrete_1975-2019.csv"), stringsAsFactors = F)
+alldata = read.csv(file.path(data_root,"WQ_Discrete_1975-2020.csv"), stringsAsFactors = F)
 alldata$Date = mdy(alldata$Date)
 
 #EMP WQ data (1975-2019)
@@ -59,8 +59,14 @@ tot$region<-factor(ifelse(tot$long < -122.216, "spl",
                     ifelse(tot$long > -122.216 & tot$long < -121.829, "ss",
                            ifelse(tot$long > -121.829, "dt",NA))) )
 
+# # For making sure there are missing data symbols when necessary:
+# tot$qyear_f <- factor(tot$qyear, levels=seq(from=min(tot$qyear), 
+#                                             to=max(tot$qyear, report_year),
+#                                             by=1))
+
 #generate means by region, year, quarter, and AnalyteName
-wqsum<-aggregate(Result~region+qyear+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
+wqsum<-aggregate(Result~region+qyear+quarter+AnalyteName,data=tot,FUN=mean,
+                 na.rm=T, drop=FALSE)
 wqsum$AnalyteName<-as.factor(wqsum$AnalyteName)
 str(wqsum)
 
@@ -119,11 +125,12 @@ wqsum$qyear<-as.integer(wqsum$qyear)
 #first a function
 WQplot = function(reg, quart, analyte, data, reportyear, verbose=TRUE) {
   #filter the dataset based on season, analyte, and region
-  dat = filter(data, quarter == quart, region ==reg, AnalyteName == analyte, qyear <= reportyear)
+  dat = filter(data, quarter == quart, region ==reg, AnalyteName == analyte, 
+               qyear <= reportyear)
   
   #set up limits for plot based on the max and min for all years and regions
   dat2 = filter(data, AnalyteName == analyte)
-  lims = c(min(dat2$Result), max(dat2$Result))
+  lims = c(min(dat2$Result, na.rm=TRUE), max(dat2$Result, na.rm=TRUE))
 
 	##regPretty <- sub("Delta","the Delta",region_names[reg])
 	regPretty <- region_names[reg]
@@ -140,9 +147,12 @@ WQplot = function(reg, quart, analyte, data, reportyear, verbose=TRUE) {
 	statNameAlttext <- sprintf(fmt=fmt_alttext, quartPretty, analytePretty, regPretty)
 
   #make the plot
+	
+	# Add a nudge to stat_missing so it doesn't disappear when the limits are set
   p_sec <- ggplot(dat, aes(x=qyear, y=Result)) + 
     geom_line(colour="black", size=0.9) + 
-		geom_point(colour="black", size=1.6) + 
+		geom_point(colour="black", size=1.6)  + 
+    stat_missing(size=2.5, nudge_y=lims[1]) + 
 		stat_lt_avg() + 
     # geom_hline(aes(yintercept=mean(Result)), size=0.9, color="red", linetype="dashed") +
     smr_theme_update() + 

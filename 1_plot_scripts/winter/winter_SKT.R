@@ -7,7 +7,6 @@ thisDataRoot <- file.path(data_root,"SKT")
 
 sktData <- read.csv(file.path(thisDataRoot,"sktData.csv"), stringsAsFactors=FALSE)
 
-
 ##########################################################################
 ## Spring Kodiak Trawl: Delta Smelt
 
@@ -48,6 +47,13 @@ catch_mat_sub <- catch_mat %>%
   filter(as.character(StationCode) %in% names(region_map_inverse) & 
 					SurveyNumber %in% 1:4) %>%
   mutate(Region=region_map_inverse[as.character(StationCode)])
+
+## Missing volume in 2021 at station 704. Do quick imputation:
+tmp_that_stn <- subset(catch_mat_sub, Year == 2021 & StationCode == 704)
+ind_missing_vol <- with(catch_mat_sub, which(Year == 2021 & StationCode == 704 & 
+                                               is.na(Volume_cubicm)))
+catch_mat_sub$Volume_cubicm[ind_missing_vol] <- mean(tmp_that_stn$Volume_cubicm, 
+                                                     na.rm=TRUE)
 
 ## Calculate the index:
 sktIndexDf <- catch_mat_sub %>%

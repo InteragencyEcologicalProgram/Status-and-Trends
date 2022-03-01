@@ -256,8 +256,10 @@ dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2016 & dsmIndexDf$Survey %in% 2:5] <- 
 dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2017 & dsmIndexDf$Survey %in% 3:6] <- TRUE
 dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2018 & dsmIndexDf$Survey %in% c(1,2,3,9)] <- TRUE
 dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2019 & dsmIndexDf$Survey %in% 3:6] <- TRUE
-## Arbitrary for 2020?:
+## Arbitrary for 2020? See below.
 dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2020 & dsmIndexDf$Survey %in% 3:6] <- TRUE
+## Arbitrary for 2021? See below.
+dsmIndexDf$UseforIndex[dsmIndexDf$Year == 2021 & dsmIndexDf$Survey %in% 3:6] <- TRUE
 
 dsmIndexDf <- dsmIndexDf %>%
 	dplyr::filter(UseforIndex) %>%
@@ -269,7 +271,11 @@ dsmIndexDf <- dsmIndexDf %>%
 	as.data.frame(.)
 
 dsmIndexDf$Index[dsmIndexDf$Year == 2018] <- NA
+## No index for 2020 due to limited sampling, per memo:
 dsmIndexDf$Index[dsmIndexDf$Year == 2020] <- NA
+## Zero index for 2021, per memo (no non-zero catch at index stations):
+dsmIndexDf$Index[dsmIndexDf$Year == 2021] <- 0
+
 dsmIndexDf
 
 
