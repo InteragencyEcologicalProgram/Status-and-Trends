@@ -1,5 +1,5 @@
 #Seasonal Monitoring Report
-#Summer 2019
+#Summer 2020
 
 #Purpose: Create plot of invasive aquatic vegetation coverage through time
 #Data represent North + Central Delta only
@@ -8,113 +8,105 @@
 #Data acquired from Shruti Khanna (CDFW)
 
 #Author: Nick Rasmussen 
-#Updated: October 2, 2020
+#Updated: March 3, 2022
 
 #required packages
+library(tidyverse) #suite of data science tools
 library(scales) #modifying y axis to include '%'
 
 #install and load most up to date version of 'smonitr' from GitHub
 #remotes::install_github("InteragencyEcologicalProgram/smonitr")
-#library(smonitr) #standardizes formatting of plots
+library(smonitr) #standardizes formatting of plots
 
 
 # 1. Import Data ----------------------------------------------------------
 
-
-# Dataset is on SharePoint site for the Seasonal Monitoring Report
-
-# Define path on SharePoint site for data
-sharepoint_path <- normalizePath(
-  file.path(
-    Sys.getenv("USERPROFILE"),
-    "California Department of Water Resources/IEP Synthesis Projects - Data"
-  )
-)  
-
 # Import vegetation data
-#veg<-read.csv(file = paste0(sharepoint_path, "/AquaticVegetation_North+CentralDelta.csv"))
-veg<-read.csv(file = paste0(data_root, "/AquaticVegetation_North+CentralDelta.csv"))
-
-#examine data frame
-str(veg) #looks fine
-
+veg<-read_csv(file = "data/AquaticVegCoverage_2004-2020_CSTARS_report.csv") %>% 
+  glimpse()
 
 #2. Data frame manipulations in preparation for plotting-------------------
 
-
-#create subset with percent coverage of waterways
-plist<-c("year","sav_perc","wp_perc",   "wh_perc",   "fav_perc" )
-perc<-veg[,plist]
-
-#convert data frame from wide to long
-percl<-gather(perc,type,perc,sav_perc:fav_perc,factor_key=T)
-
-#create subset that is just total SAV & FAV
-#excludes WH and WP data
-ppercl<-subset(percl,type=="sav_perc" | type=="fav_perc")
-
+veg_ft <- veg %>% 
+  #just keep the needed columns
+  select(year, sav_prop,wh_prop,wp_prop) %>% 
+  rename(sav = sav_prop) %>% 
+  #the original fav_tot_prop column includes pennywort
+  #lets make a new one that is just water hyacinth and water primrose
+  mutate(fav = wh_prop + wp_prop) %>% 
+  #drop unneeded columns
+  select(-c(wh_prop,wp_prop)) %>% 
+  #convert to long format
+  pivot_longer(cols = sav:fav, names_to = "type", values_to = "prop") %>% 
+  #convert proportions to percentages
+  mutate(perc = prop*100)
 
 #3. Set up options for plot------------------------------
 
 #calcuate mean for total veg % coverage (SAV + FAV) across all years
 #then plot this as a horizontal red dashed line
 
-#sum FAV and SAV within each year
-vtot<-setNames(aggregate(x=ppercl$perc,by=list(ppercl$year),FUN=sum), c("year","perc"))
-#str(vtot)
-
-#calculate mean
-mean(vtot$perc) #29.975
-
-#calculate percent change between long-term mean and most recent year
-(vtot$perc[length(vtot$perc)]-mean(vtot$perc))/mean(vtot$perc)*100 #8.757298
-#In 2019, the percentage of water area occupied by aquatic vegetation in the Delta was 9% higher than the long-term mean
-
-(abs(vtot$perc[length(vtot$perc)]-mean(vtot$perc)))/sd(vtot$perc) #0.2372518
-#2019 value is 0.24 SD from mean
-
-#stack bar colors
-repcols<-c("sav_perc" = "#556B2F",
-           "fav_perc" = "#88BA33")
+veg_sum <- veg_ft %>%
+  #sum FAV and SAV within each year
+  group_by(year) %>% 
+  summarize(tot_perc = sum(perc)) %>% 
+  #then calculate annual mean for total veg
+  mutate(tot_perc_mean = mean(tot_perc,na.rm=T)
+         ,tot_perc_diff = tot_perc - tot_perc_mean
+         )
+#mean is 22.14167%
+#In 2020, the percentage of water area occupied by aquatic vegetation in the Delta
+#was 7.3% higher than the long-term mean
 
 #reorder factor levels for vegetation type so FAV is on top
-ppercl$type = factor(ppercl$type, levels=c('fav_perc','sav_perc'))
+veg_ft$type = factor(veg_ft$type, levels=c('fav','sav'))
+
+#stack bar colors
+#repcols<-c("sav_prop" = "#556B2F",
+#           "fav_prop" = "#88BA33")
 
 
 #4. Create and export plot---------------------------------------------
 
+report_year <- 2021
+
 #stacked bar plot of percent coverage
-(veg_perc <- ggplot(data=ppercl,aes(x=year, y=perc, fill=type)) + 
+#veg_perc <- 
+ggplot(data=veg_ft,aes(x=year, y=perc, fill=type)) + 
 	#specifies the independent and dependent variables as well as groupings
-	geom_bar(position="stack", stat="identity", colour="grey25") + 
+	geom_bar(position="stack", stat="identity", colour="grey25")+  
 	#specifies that this is a stacked bar plot
-	smr_theme_update() + 
+	smr_theme()+
 	#implements standardized plot formatting
-	ylab("Water area occupied") + 
-	#y-axis label
-	scale_y_continuous(labels=function(x) paste0(x, "%")) + # use default expansion
-	# # # smr_y_axis(labels=function(x) paste0(x, "%")) + 
+	ylab("Water area occupied") + xlab("Year")+
+	#x- and y-axis labels
+	scale_y_continuous(labels=function(x) paste0(x, "%"))+  # use default expansion
+	# # # smr_y_axis(labels=function(x) paste0(x, "%")) 
 	#adds a percent sign after each y axis tick label number
-	scale_fill_manual(name= "", labels=c("Floating","Submerged"),
-										values=repcols, guide=guide_legend(keyheight=0.5)) + 
+	scale_fill_manual(name= NULL
+	                  ,labels=c("Floating","Submersed")
+	                  ,values=c("#88BA33","#556B2F")
+	                  ,guide=guide_legend(keyheight=0.5)
+	                  )  +
 	#customizes names in legend key, specifies the custom color palette, and sets height of elements in legend
-	stat_lt_avg(data=vtot, aes(y=perc), inherit.aes=FALSE) + 
-	#adds horizontal line to plot to indicate long term average for data
-	smr_x_axis(report_year, type="recent", season="annual") + 
+	stat_lt_avg(data=veg_sum, aes(y=tot_perc_mean), inherit.aes=FALSE)  +
+	#adds horizontal line to plot to indicate long term mean for data
+	smr_x_axis(report_year, type="recent", season="annual")  +
 	#implements standardized x-axis range of years
-	# # # stat_missing(size=2, nudge_y=max(vtot$perc)*0.02) + 
-	#adds symbols for missing data, customizes symbol size, and nudged the symbol a little above x-axis (2% of y-axis range)
+	# stat_missing(size=2, nudge_y=max(vtot$perc)*0.02) + 
+  #stat_missing(size=2, nudge_y=max(veg_ft$perc)*0.02) + 
+  #adds symbols for missing data, customizes symbol size, and nudged the symbol a little above x-axis (2% of y-axis range)
 	theme(#legend.key.size=unit(0.3,"cm"), 
 				#legend.spacing.x=unit(0.1, 'cm'),  
 				legend.box.spacing=unit(0, units="cm"), 
-				legend.margin=margin(t=0,r=0,b=2,l=0, unit="pt")) + 
+				legend.margin=margin(t=0,r=0,b=2,l=0, unit="pt"))+  
 	#reduces white space between legend and top of plot
-	smr_caption(data=vtot, aes(x=year, y=perc, fill=NULL), 
+	smr_caption(data=veg_ft, aes(x=year, y=perc, fill=NULL), 
 							stat_name="percentage of water area occupied by aquatic vegetation", 
-							report_year=report_year) + 
-	smr_alttext(data=vtot, aes(x=year, y=perc, fill=NULL), 
-							stat_name="percentage of water area occupied by aquatic vegetation")
-)
+							report_year=report_year)+  
+	#smr_alttext(data=veg_ft, aes(x=year, y=perc, fill=NULL), 
+	#						stat_name="percentage of water area occupied by aquatic vegetation")
+
 
 getCaption(veg_perc)
 getAlttext(veg_perc)
