@@ -39,11 +39,13 @@ veg_ft <- veg %>%
   #convert to long format
   pivot_longer(cols = sav:fav, names_to = "type", values_to = "prop") %>% 
   #convert proportions to percentages
-  mutate(perc = prop*100)
+  mutate(perc = prop*100) %>% 
+  #drop the proportion column
+  select(-prop)
 
 #3. Set up options for plot------------------------------
 
-#calcuate mean for total veg % coverage (SAV + FAV) across all years
+#calculate mean for total veg % coverage (SAV + FAV) across all years
 #then plot this as a horizontal red dashed line
 
 veg_sum <- veg_ft %>%
@@ -61,18 +63,13 @@ veg_sum <- veg_ft %>%
 #reorder factor levels for vegetation type so FAV is on top
 veg_ft$type = factor(veg_ft$type, levels=c('fav','sav'))
 
-#stack bar colors
-#repcols<-c("sav_prop" = "#556B2F",
-#           "fav_prop" = "#88BA33")
-
 
 #4. Create and export plot---------------------------------------------
 
 report_year <- 2021
 
 #stacked bar plot of percent coverage
-#veg_perc <- 
-ggplot(data=veg_ft,aes(x=year, y=perc, fill=type)) + 
+(veg_perc <- ggplot(data=veg_ft,aes(x=year, y=perc, fill=type)) + 
 	#specifies the independent and dependent variables as well as groupings
 	geom_bar(position="stack", stat="identity", colour="grey25")+  
 	#specifies that this is a stacked bar plot
@@ -81,7 +78,6 @@ ggplot(data=veg_ft,aes(x=year, y=perc, fill=type)) +
 	ylab("Water area occupied") + xlab("Year")+
 	#x- and y-axis labels
 	scale_y_continuous(labels=function(x) paste0(x, "%"))+  # use default expansion
-	# # # smr_y_axis(labels=function(x) paste0(x, "%")) 
 	#adds a percent sign after each y axis tick label number
 	scale_fill_manual(name= NULL
 	                  ,labels=c("Floating","Submersed")
@@ -93,20 +89,19 @@ ggplot(data=veg_ft,aes(x=year, y=perc, fill=type)) +
 	#adds horizontal line to plot to indicate long term mean for data
 	smr_x_axis(report_year, type="recent", season="annual")  +
 	#implements standardized x-axis range of years
-	# stat_missing(size=2, nudge_y=max(vtot$perc)*0.02) + 
   #stat_missing(size=2, nudge_y=max(veg_ft$perc)*0.02) + 
   #adds symbols for missing data, customizes symbol size, and nudged the symbol a little above x-axis (2% of y-axis range)
 	theme(#legend.key.size=unit(0.3,"cm"), 
 				#legend.spacing.x=unit(0.1, 'cm'),  
 				legend.box.spacing=unit(0, units="cm"), 
-				legend.margin=margin(t=0,r=0,b=2,l=0, unit="pt"))+  
+				legend.margin=margin(t=0,r=0,b=2,l=0, unit="pt"))  
 	#reduces white space between legend and top of plot
-	smr_caption(data=veg_ft, aes(x=year, y=perc, fill=NULL), 
-							stat_name="percentage of water area occupied by aquatic vegetation", 
-							report_year=report_year)+  
+	#smr_caption(data=veg_ft, aes(x=year, y=perc, fill=NULL), 
+	#						stat_name="percentage of water area occupied by aquatic vegetation", 
+	#						report_year=report_year)+  
 	#smr_alttext(data=veg_ft, aes(x=year, y=perc, fill=NULL), 
 	#						stat_name="percentage of water area occupied by aquatic vegetation")
-
+)
 
 getCaption(veg_perc)
 getAlttext(veg_perc)
