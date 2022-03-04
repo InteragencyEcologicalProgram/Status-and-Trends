@@ -23,5 +23,16 @@ mysids = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1
 Mysids = read_excel(mysids, guess_max = 10000, sheet = "Mysid CPUE Matrix 1972-2020")
 Mysids = rename(Mysids, Station = Mysids)
 
-save(zoopps, zoopscb, Mysids, file = file.path(data_root,"Zoops.RData"))
+#mysid BPUE
+MysidBPUE <- read_excel("data/1972-2020MysidBPUEMatrix.xlsx", 
+                                                     sheet = "Mysid_BPUE_matrix_1972-2020", 
+                                                     col_types = c("numeric", "numeric", "numeric", 
+                                                                   "numeric", "date", "text", "date", 
+                                                                   "numeric", "numeric", "numeric", 
+                                                                   "numeric", "numeric", "numeric", 
+                                                                   "numeric", "numeric", "numeric", 
+                                                                   "numeric", "numeric", "numeric", 
+                                                                   "numeric", "numeric", "numeric"))
+
+save(zoopps, zoopscb, Mysids, MysidBPUE, file = file.path(data_root,"Zoops.RData"))
 
