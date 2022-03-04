@@ -23,11 +23,13 @@ library(cowplot)
 library(lubridate)
 library(readxl)
 library(tidyverse)
+library(smonitr)
 
 #import datasets----------------
 #source("0_data_access_scripts/data_access_zoops.R")
 #source("1_plot_scripts/mysid biomass.R")
-
+source("1_plot_scripts/util.r")
+source("1_plot_scripts/legends.R")
 
 
 #details of sampling station locations
@@ -280,7 +282,11 @@ zoops = function(reg, quart, data, reportyear, verbose=TRUE) {
     scale_x_continuous("Year", limits=c(1966,report_year)) + 
 		
 		# Include for caption automation functions:
-		stat_missing(aes(x=qyear, y=bpue_mg), size=NA) + 
+		stat_missing(aes(x=qyear, y=bpue_mg), size=NA) +
+    
+    #################NOTE: I can't figure out how to put a missing value triangle for 2021 without
+    #having them show up for pre 1975 too, so i'm hard coding this in for now. Lara can probably do better.
+    annotate("point", x = 2021, y = 0, shape = 24, size = 4, fill = "tan2", color = "gray10")+
 		
     #add long-term average line:
     geom_hline(aes(yintercept=meanB), size=0.9, color="red", linetype="dashed") + 
