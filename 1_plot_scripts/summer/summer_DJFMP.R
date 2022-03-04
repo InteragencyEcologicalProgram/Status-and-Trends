@@ -2,11 +2,8 @@
 
 ##########################################################################
 ## Read in data:
+
 load("data/seineData.RData")
-
-#seineData <- read.csv(file.path(thisDataRoot,"seineData.csv"), stringsAsFactors=FALSE)
-#siteLatLong <- read.csv(file.path(thisDataRoot,"DJFMP_Site_Locations.csv"))
-
 
 ##########################################################################
 ## Beach Seine: Sacramento Pikeminnow
@@ -16,7 +13,6 @@ unique(seineData$Volume)
 seineData$Volume[is.na(seineData$Volume)] <- mean(seineData$Volume, na.rm=TRUE)
 
 ## Add fields:
-seineData$SampleDate = lubridate::mdy(seineData$SampleDate)
 seineData$Month <- lubridate::month(seineData$SampleDate)
 seineData$Year <- lubridate::year(seineData$SampleDate)
 seineData$Year_f <- as.factor(seineData$Year)
@@ -24,16 +20,16 @@ seineData$Year_f <- as.factor(seineData$Year)
 ## Add lat/long:
 seineData <- dplyr::left_join(
 	seineData, 
-	siteLatLong[ ,c("StationCode","Latitude_location","Longitude_location")],
+	siteLatLong[ ,c("StationCode","Latitude","Longitude")],
 	by="StationCode"
 )
 
 ## These region designations came from Nick's code:
 seineData$customRegion <- ""
-seineData$customRegion[seineData$Longitude_location < -122.216] <- "San Pablo Bay"
-seineData$customRegion[seineData$Longitude_location > -122.216 & 
-											 seineData$Longitude_location < -121.829] <- "Suisun"
-seineData$customRegion[seineData$Longitude_location > -121.829] <- "The Delta"
+seineData$customRegion[seineData$Longitude < -122.216] <- "San Pablo Bay"
+seineData$customRegion[seineData$Longitude > -122.216 & 
+											 seineData$Longitude < -121.829] <- "Suisun"
+seineData$customRegion[seineData$Longitude > -121.829] <- "The Delta"
 unique(seineData$customRegion)
 
 ## Create wide data frame:

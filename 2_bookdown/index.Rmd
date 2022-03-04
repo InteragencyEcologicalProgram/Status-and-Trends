@@ -9,17 +9,40 @@ github-repo: https://github.com/InteragencyEcologicalProgram/Status-and-Trends
 description: "This report shows trends in water quality, plankton, and fish across multiple IEP surveys."
 ---
 
-# Overview {#index}
-
-Long-term ecological surveys have been a core function of the Interagency Ecological Program (IEP) since the program’s inception in the 1970s. The IEP Seasonal Monitoring Report presents the full time series for selected water quality, plankton, and fisheries surveys conducted by IEP in a single graphical report.  The report is generated on a quarterly basis, with different set of ecosystem variables and surveys highlighted in each season. The report is developed by IEP scientists (including leads for monitoring surveys and the IEP Lead Scientist) and is reviewed by the IEP Science Management Team and Coordinators before online publication. 
- 
-This report was last updated in October 2021, with data through December 2020.
-
-```{r fig.height=8, echo=FALSE, fig.cap="IEP logo"}
-knitr::include_graphics(file.path(fig_root_static,"IEP_logo_updated.png"))
+```{r echo = F}
+options(width = 120)
+load(file.path(fig_root_landing,"water_year.RData"))
 ```
 
-<h2>[Spring](Spring.html)</h2>
+# Overview {#index}
+
+Long-term ecological surveys have been a core function of the Interagency Ecological Program (IEP) since the program’s inception in the 1970s. The IEP Seasonal Monitoring Report presents the full time series for selected water quality, plankton, and fisheries surveys conducted by IEP in a single graphical report.  The report is generated on a quarterly basis, with different set of ecosystem variables and surveys highlighted in each season. The report is developed by IEP scientists (including leads for monitoring surveys and the IEP Lead Scientist) and is reviewed by the IEP Science Management Team and Coordinators before online publication.
+
+This report was last updated in February 2022, with available data through `r report_year`.
+
+## Water Year Summary
+
+:::: {.row}
+::: {.col-1of2}
+```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
+```
+:::
+::: {.col-1of2}
+```{r echo=FALSE, fig.cap="missing data are represented by tan triangles"}
+knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
+```
+:::
+::::
+
+```{r fig.cap=getAlttext(water_year), echo=FALSE}
+getPlotLarger(water_year)
+```
+<center>`r getCaption(water_year)`</center>
+
+## Table of Contents
+
+<h3>[Spring](Spring.html)</h3>
 
   * Delta Outflow
   * Secchi Depth
@@ -29,7 +52,7 @@ knitr::include_graphics(file.path(fig_root_static,"IEP_logo_updated.png"))
   * Fish
   * Recent Trends
 
-<h2>[Summer](Summer.html)</h2>
+<h3>[Summer](Summer.html)</h3>
 
   * Delta Outflow
   * Secchi Depth
@@ -39,7 +62,7 @@ knitr::include_graphics(file.path(fig_root_static,"IEP_logo_updated.png"))
   * Fish
   * Recent Trends
 
-<h2>[Fall](Fall.html)</h2>
+<h3>[Fall](Fall.html)</h3>
 
   * Delta Outflow
   * Secchi Depth
@@ -49,7 +72,7 @@ knitr::include_graphics(file.path(fig_root_static,"IEP_logo_updated.png"))
   * Fish
   * Recent Trends
 
-<h2>[Winter](Winter.html)</h2>
+<h3>[Winter](Winter.html)</h3>
 
   * Delta Outflow
   * Secchi Depth
@@ -59,12 +82,16 @@ knitr::include_graphics(file.path(fig_root_static,"IEP_logo_updated.png"))
   * Fish
   * Recent Trends
 
-<h2>[Metadata](metadata.html)</h2>
+<h3>[Metadata](metadata.html)</h3>
 
   * Report Information
   * Overview
   * General Information
   * Data Sets
+
+```{r echo=FALSE, fig.cap="IEP logo"}
+knitr::include_graphics(file.path(fig_root_static,"IEP_logo_updated.png"))
+```
 
 ```{block, type='disclaimer'}
 Disclaimer: While substantial efforts are made to ensure the accuracy of these data, 

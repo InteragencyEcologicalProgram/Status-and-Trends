@@ -63,8 +63,13 @@ write.csv(Redlong, file.path(data_root,"redbluff_all.csv"), row.names = FALSE)
 
 #Try out Michael's spiffy new function
 
-Grandtab = get_grandtab_data(
-  season = c("Spring", "Fall"))
+# Potential issue with conditioning on season == "Winter" when season has length > 1.
+# Run seasons separately for now to be safe?
+# Also, potential parsing problems that may need investigating?
+##Grandtab = get_grandtab_data(season=c("Spring","Fall"))
+
+Grandtab = c(get_grandtab_data(season="Spring"),
+             get_grandtab_data(season="Fall"))
 
 Spring = Grandtab$Spring %>%
   rename(sprinrun = Annual)
