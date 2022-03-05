@@ -8,4 +8,4 @@ The [smonitr R package](https://github.com/InteragencyEcologicalProgram/smonitr)
 
 # Contributions
 
-Contributions to the project are welcomed. Please see the [ettiquette] guidelines(https://github.com/lmitchell4/Status-and-Trends/blob/master/Ettiquette.md).
+Contributions to the project are welcomed. Please see the [ettiquette guidelines](https://github.com/lmitchell4/Status-and-Trends/blob/master/Ettiquette.md).
