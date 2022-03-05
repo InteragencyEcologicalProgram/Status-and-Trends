@@ -10,6 +10,8 @@
 #Author: Nick Rasmussen 
 #Updated: March 3, 2022
 
+source("setup.R")
+
 #required packages
 library(tidyverse) #suite of data science tools
 library(scales) #modifying y axis to include '%'
