@@ -1,5 +1,7 @@
 #script to download fall-midwater-trawl data and get it ready to use.
 
+source("setup.R")
+
 library(readxl)
 library(tidyverse)
 library(smonitr)

@@ -1,5 +1,7 @@
 #plot spring-run adult salmon
 
+source("setup.R")
+
 library(lubridate)
 
 load(file.path(data_root, "Grantab.RData"))

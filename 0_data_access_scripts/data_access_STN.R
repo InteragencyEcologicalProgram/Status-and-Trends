@@ -1,5 +1,7 @@
 ## Data retrieval script for CDFW's STN Survey.
 
+source("setup.R")
+
 ##########################################################################
 
 thisDataRoot <- file.path(data_root,"STN")

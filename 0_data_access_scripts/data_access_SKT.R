@@ -1,5 +1,7 @@
 ## Data retrieval script for CDFW's SKT Survey.
 
+source("setup.R")
+
 library(dplyr)
 library(RODBC)
 library(DBI)
