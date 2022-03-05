@@ -1,3 +1,6 @@
+
+source("setup.R")
+
 library(lubridate)
 
 load(file.path(data_root, "ybfmp.RData"))

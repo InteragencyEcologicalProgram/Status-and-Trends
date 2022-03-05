@@ -2,6 +2,8 @@
 # Bay Study
 # Create plots for longfin smelt and sturgeon 
 
+source("setup.R")
+
 # Load packages
 library(readxl)
 library(lubridate)
