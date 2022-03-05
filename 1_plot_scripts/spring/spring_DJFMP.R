@@ -1,6 +1,8 @@
 ## Spring = March, April, May
 ## See a copy of the document "#22 Metadata (Updated May 30, 2019).doc" for reference.
 
+source("setup.R")
+
 ##########################################################################
 ## Read in data:
 

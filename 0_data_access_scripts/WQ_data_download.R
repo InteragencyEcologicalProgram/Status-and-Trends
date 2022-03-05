@@ -1,5 +1,7 @@
 #Download the WQ data and get it in the right format
 
+source("setup.R")
+
 library(readxl)
 library(curl)
 library(readr)
