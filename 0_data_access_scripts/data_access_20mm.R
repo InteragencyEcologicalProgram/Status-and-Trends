@@ -5,6 +5,8 @@
 ## Sep 2020: In August 2020 they changed the database schema a little, so updating 
 ## the query code (see 20mmNew_ReadMe_2020.pdf).
 
+source("setup.R")
+
 ###################################################################################################
 
 thisDataRoot <- file.path(data_root,"20mm")

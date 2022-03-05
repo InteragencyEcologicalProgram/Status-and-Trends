@@ -1,3 +1,6 @@
+
+source("setup.R")
+
 library(readxl)
 library(lubridate)
 

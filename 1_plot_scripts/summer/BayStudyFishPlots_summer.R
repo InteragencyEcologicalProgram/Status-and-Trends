@@ -2,6 +2,8 @@
 # Purpose: Create plots of Northern Anchovy CPUE from the Bay Study dataset
 # Author: Dave Bosworth
 
+source("setup.R")
+
 # Load packages
 library(readxl)
 library(lubridate)
