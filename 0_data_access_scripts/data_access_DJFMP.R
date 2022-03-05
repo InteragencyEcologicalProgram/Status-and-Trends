@@ -5,6 +5,8 @@
 ## The main files are probably too large to store on GitHub, so filter now and 
 ## save smaller csv files.
 
+source("setup.R")
+
 ##########################################################################
 
 

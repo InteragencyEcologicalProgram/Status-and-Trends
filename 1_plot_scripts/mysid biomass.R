@@ -1,5 +1,7 @@
 #Let's figure out how to go from lengths to biomass for mysids
 
+source("setup.R")
+
 library(tidyverse)
 library(lubridate)
 library(readxl)

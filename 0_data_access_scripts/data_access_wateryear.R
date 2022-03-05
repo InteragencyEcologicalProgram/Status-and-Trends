@@ -1,5 +1,7 @@
 #file to access water year type and Sacramento Valley index over time for cover of report
 
+source("setup.R")
+
 library(waterYearType)
 library(tidyverse)
 library(smonitr)

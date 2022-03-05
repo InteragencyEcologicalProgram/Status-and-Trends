@@ -1,5 +1,7 @@
 #file to produce a graph of water year type and Sacramento Valley index over time for cover of report
 
+source("setup.R")
+
 library(tidyverse)
 library(smonitr)
 

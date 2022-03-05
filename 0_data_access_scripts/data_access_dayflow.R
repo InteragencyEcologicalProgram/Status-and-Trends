@@ -1,5 +1,7 @@
 #get teh dayflow data
 
+source("setup.R")
+
 library(tidyverse)
 library(lubridate)
 library(smonitr)

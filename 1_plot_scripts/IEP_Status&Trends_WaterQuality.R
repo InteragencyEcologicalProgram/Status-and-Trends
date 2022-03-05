@@ -13,6 +13,8 @@
 #Delta: East of Collinsville 
 #keep floating stations (EZ stations) separate from fixed stations
 
+source("setup.R")
+
 #packages
 library(ggplot2)
 library(zoo)  # yearmon and yearqtr classes

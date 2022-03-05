@@ -1,3 +1,6 @@
+
+source("setup.R")
+
 library(glue)
 library(purrr)
 library(readr)

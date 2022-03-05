@@ -11,6 +11,8 @@
 #Rotifer pump: Cyclopoids (Oithona, Limnoithona)
 #Mysid net: all species
 
+source("setup.R")
+
 #packages
 
 #Install the package we wrote for this project (only needs to be done once)
@@ -28,7 +30,6 @@ library(smonitr)
 #import datasets----------------
 #source("0_data_access_scripts/data_access_zoops.R")
 #source("1_plot_scripts/mysid biomass.R")
-source("1_plot_scripts/util.r")
 source("1_plot_scripts/legends.R")
 
 
