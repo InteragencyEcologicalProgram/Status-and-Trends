@@ -9,6 +9,9 @@
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
+    .svglite text {
+      white-space: pre;
+    }
   ]]></style>
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
@@ -37,16 +40,16 @@
 <polyline points='126.81,111.21 129.51,122.74 132.21,120.27 134.92,123.20 137.62,123.74 140.33,123.42 143.03,123.48 145.73,123.72 148.44,120.79 151.14,123.81 153.85,122.03 156.55,123.19 159.25,120.64 161.96,119.01 164.66,119.42 167.37,123.57 170.07,123.52 172.77,123.34 175.48,123.75 178.18,107.94 180.89,123.66 183.59,122.82 186.29,123.60 ' style='stroke-width: 1.07; stroke: none;' />
 <polygon points='189.00,116.70 195.22,127.48 182.77,127.48 ' style='stroke-width: 0.71; stroke: #1A1A1A; fill: #EE9A49;' />
 <line x1='32.84' y1='92.90' x2='196.43' y2='92.90' style='stroke-width: 1.92; stroke: #FF0000; stroke-dasharray: 10.24,10.24; stroke-linecap: butt;' />
-<text x='40.28' y='70.43' style='font-size: 7.68px; font-family: Arial;' textLength='49.92px' lengthAdjust='spacingAndGlyphs'>Data were not </text>
-<text x='40.28' y='81.49' style='font-size: 7.68px; font-family: Arial;' textLength='67.85px' lengthAdjust='spacingAndGlyphs'> collected until 1998</text>
+<text x='40.28' y='70.43' style='font-size: 7.68px; font-family: "Arial";' textLength='49.92px' lengthAdjust='spacingAndGlyphs'>Data were not </text>
+<text x='40.28' y='81.49' style='font-size: 7.68px; font-family: "Arial";' textLength='67.85px' lengthAdjust='spacingAndGlyphs'> collected until 1998</text>
 <rect x='32.84' y='2.99' width='163.59' height='126.65' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHwxOTguNDN8MC4wMHwxNTUuOTE=)'>
-<text x='27.91' y='127.11' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='5.00px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='27.91' y='101.77' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='10.01px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='27.91' y='76.43' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='10.01px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='27.91' y='51.10' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='10.01px' lengthAdjust='spacingAndGlyphs'>30</text>
-<text x='27.91' y='25.76' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='10.01px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='27.91' y='127.11' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='5.00px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='27.91' y='101.77' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='10.01px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='27.91' y='76.43' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='10.01px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='27.91' y='51.10' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='10.01px' lengthAdjust='spacingAndGlyphs'>30</text>
+<text x='27.91' y='25.76' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='10.01px' lengthAdjust='spacingAndGlyphs'>40</text>
 <polyline points='30.11,123.88 32.84,123.88 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='30.11,98.55 32.84,98.55 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='30.11,73.21 32.84,73.21 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
@@ -55,13 +58,13 @@
 <polyline points='78.14,132.38 78.14,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='132.21,132.38 132.21,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='186.29,132.38 186.29,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
-<text x='78.14' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1980</text>
-<text x='132.21' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2000</text>
-<text x='186.29' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2020</text>
-<text x='114.64' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='20.22px' lengthAdjust='spacingAndGlyphs'>Year</text>
-<text transform='translate(10.96,109.67) rotate(-90)' style='font-size: 10.00px; font-family: Arial;' textLength='79.48px' lengthAdjust='spacingAndGlyphs'>Biomass (mg C/m</text>
-<text transform='translate(6.03,30.19) rotate(-90)' style='font-size: 7.00px; font-family: Arial;' textLength='3.90px' lengthAdjust='spacingAndGlyphs'>3</text>
-<text transform='translate(10.96,26.29) rotate(-90)' style='font-size: 10.00px; font-family: Arial;' textLength='3.33px' lengthAdjust='spacingAndGlyphs'>)</text>
+<text x='78.14' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1980</text>
+<text x='132.21' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2000</text>
+<text x='186.29' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2020</text>
+<text x='114.64' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='20.22px' lengthAdjust='spacingAndGlyphs'>Year</text>
+<text transform='translate(10.96,109.67) rotate(-90)' style='font-size: 10.00px; font-family: "Arial";' textLength='79.48px' lengthAdjust='spacingAndGlyphs'>Biomass (mg C/m</text>
+<text transform='translate(6.03,30.19) rotate(-90)' style='font-size: 7.00px; font-family: "Arial";' textLength='3.90px' lengthAdjust='spacingAndGlyphs'>3</text>
+<text transform='translate(10.96,26.29) rotate(-90)' style='font-size: 10.00px; font-family: "Arial";' textLength='3.33px' lengthAdjust='spacingAndGlyphs'>)</text>
 <rect x='48.56' y='10.65' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='49.27' y='11.36' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #664F2B;' />
 <rect x='113.88' y='10.65' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
@@ -70,9 +73,9 @@
 <rect x='49.27' y='27.68' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #748D83;' />
 <rect x='113.88' y='26.97' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='114.59' y='27.68' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #095E49;' />
-<text x='64.88' y='19.54' style='font-size: 9.00px; font-family: Arial;' textLength='40.02px' lengthAdjust='spacingAndGlyphs'>Calanoids</text>
-<text x='130.20' y='19.54' style='font-size: 9.00px; font-family: Arial;' textLength='50.52px' lengthAdjust='spacingAndGlyphs'>Cladocerans</text>
-<text x='64.88' y='35.86' style='font-size: 9.00px; font-family: Arial;' textLength='44.02px' lengthAdjust='spacingAndGlyphs'>Cyclopoids</text>
-<text x='130.20' y='35.86' style='font-size: 9.00px; font-family: Arial;' textLength='28.00px' lengthAdjust='spacingAndGlyphs'>Mysids</text>
+<text x='64.88' y='19.54' style='font-size: 9.00px; font-family: "Arial";' textLength='40.02px' lengthAdjust='spacingAndGlyphs'>Calanoids</text>
+<text x='130.20' y='19.54' style='font-size: 9.00px; font-family: "Arial";' textLength='50.52px' lengthAdjust='spacingAndGlyphs'>Cladocerans</text>
+<text x='64.88' y='35.86' style='font-size: 9.00px; font-family: "Arial";' textLength='44.02px' lengthAdjust='spacingAndGlyphs'>Cyclopoids</text>
+<text x='130.20' y='35.86' style='font-size: 9.00px; font-family: "Arial";' textLength='28.00px' lengthAdjust='spacingAndGlyphs'>Mysids</text>
 </g>
 </svg>
