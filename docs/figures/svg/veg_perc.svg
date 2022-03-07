@@ -9,6 +9,9 @@
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
+    .svglite text {
+      white-space: pre;
+    }
   ]]></style>
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
@@ -61,10 +64,10 @@
 <rect x='35.94' y='13.31' width='160.49' height='116.33' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHwxOTguNDN8MC4wMHwxNTUuOTE=)'>
-<text x='31.01' y='127.58' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='13.00px' lengthAdjust='spacingAndGlyphs'>0%</text>
-<text x='31.01' y='93.68' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='18.01px' lengthAdjust='spacingAndGlyphs'>10%</text>
-<text x='31.01' y='59.78' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='18.01px' lengthAdjust='spacingAndGlyphs'>20%</text>
-<text x='31.01' y='25.89' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='18.01px' lengthAdjust='spacingAndGlyphs'>30%</text>
+<text x='31.01' y='127.58' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='13.00px' lengthAdjust='spacingAndGlyphs'>0%</text>
+<text x='31.01' y='93.68' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='18.01px' lengthAdjust='spacingAndGlyphs'>10%</text>
+<text x='31.01' y='59.78' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='18.01px' lengthAdjust='spacingAndGlyphs'>20%</text>
+<text x='31.01' y='25.89' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='18.01px' lengthAdjust='spacingAndGlyphs'>30%</text>
 <polyline points='33.20,124.35 35.94,124.35 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='33.20,90.46 35.94,90.46 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='33.20,56.56 35.94,56.56 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
@@ -73,18 +76,18 @@
 <polyline points='95.92,132.38 95.92,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='136.45,132.38 136.45,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='185.08,132.38 185.08,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
-<text x='47.29' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2004</text>
-<text x='95.92' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
-<text x='136.45' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2015</text>
-<text x='185.08' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2021</text>
-<text x='116.19' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='20.22px' lengthAdjust='spacingAndGlyphs'>Year</text>
-<text transform='translate(8.16,71.48) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='91.96px' lengthAdjust='spacingAndGlyphs'>Water area occupied</text>
+<text x='47.29' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2004</text>
+<text x='95.92' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
+<text x='136.45' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2015</text>
+<text x='185.08' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2021</text>
+<text x='116.19' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='20.22px' lengthAdjust='spacingAndGlyphs'>Year</text>
+<text transform='translate(8.16,71.48) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='91.96px' lengthAdjust='spacingAndGlyphs'>Water area occupied</text>
 <rect x='49.68' y='2.99' width='133.02' height='10.32' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='54.66' y='2.99' width='17.28' height='8.33' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='55.37' y='3.70' width='15.86' height='6.91' style='stroke-width: 1.07; stroke: #404040; stroke-linecap: square; stroke-linejoin: miter; fill: #88BA33;' />
 <rect x='113.92' y='2.99' width='17.28' height='8.33' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='114.63' y='3.70' width='15.86' height='6.91' style='stroke-width: 1.07; stroke: #404040; stroke-linecap: square; stroke-linejoin: miter; fill: #556B2F;' />
-<text x='76.92' y='10.38' style='font-size: 9.00px; font-family: Arial;' textLength='32.02px' lengthAdjust='spacingAndGlyphs'>Floating</text>
-<text x='136.18' y='10.38' style='font-size: 9.00px; font-family: Arial;' textLength='46.52px' lengthAdjust='spacingAndGlyphs'>Submerged</text>
+<text x='76.92' y='10.38' style='font-size: 9.00px; font-family: "Arial";' textLength='32.02px' lengthAdjust='spacingAndGlyphs'>Floating</text>
+<text x='136.18' y='10.38' style='font-size: 9.00px; font-family: "Arial";' textLength='46.52px' lengthAdjust='spacingAndGlyphs'>Submerged</text>
 </g>
 </svg>

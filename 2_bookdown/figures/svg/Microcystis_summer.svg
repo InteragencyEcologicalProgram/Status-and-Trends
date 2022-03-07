@@ -9,6 +9,9 @@
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
+    .svglite text {
+      white-space: pre;
+    }
   ]]></style>
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
@@ -83,15 +86,15 @@
 <rect x='157.00' y='69.56' width='7.32' height='6.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
 <rect x='165.13' y='97.13' width='7.32' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
 <rect x='173.26' y='30.59' width='7.32' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
-<text x='46.83' y='109.77' style='font-size: 7.68px; font-family: Arial;' textLength='63.58px' lengthAdjust='spacingAndGlyphs'>Data not collected </text>
-<text x='46.83' y='120.84' style='font-size: 7.68px; font-family: Arial;' textLength='35.42px' lengthAdjust='spacingAndGlyphs'> until 2007</text>
+<text x='46.83' y='109.77' style='font-size: 7.68px; font-family: "Arial";' textLength='63.58px' lengthAdjust='spacingAndGlyphs'>Data not collected </text>
+<text x='46.83' y='120.84' style='font-size: 7.68px; font-family: "Arial";' textLength='35.42px' lengthAdjust='spacingAndGlyphs'> until 2007</text>
 <rect x='35.44' y='13.31' width='160.99' height='116.33' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHwxOTguNDN8MC4wMHwxNTUuOTE=)'>
-<text x='30.51' y='127.58' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='17.51px' lengthAdjust='spacingAndGlyphs'>0.00</text>
-<text x='30.51' y='98.09' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='17.51px' lengthAdjust='spacingAndGlyphs'>0.25</text>
-<text x='30.51' y='68.60' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='17.51px' lengthAdjust='spacingAndGlyphs'>0.50</text>
-<text x='30.51' y='39.11' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='17.51px' lengthAdjust='spacingAndGlyphs'>0.75</text>
+<text x='30.51' y='127.58' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.51px' lengthAdjust='spacingAndGlyphs'>0.00</text>
+<text x='30.51' y='98.09' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.51px' lengthAdjust='spacingAndGlyphs'>0.25</text>
+<text x='30.51' y='68.60' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.51px' lengthAdjust='spacingAndGlyphs'>0.50</text>
+<text x='30.51' y='39.11' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.51px' lengthAdjust='spacingAndGlyphs'>0.75</text>
 <polyline points='32.70,124.35 35.44,124.35 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='32.70,94.86 35.44,94.86 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='32.70,65.38 35.44,65.38 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
@@ -100,12 +103,12 @@
 <polyline points='95.61,132.38 95.61,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='136.27,132.38 136.27,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='185.05,132.38 185.05,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
-<text x='46.83' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2004</text>
-<text x='95.61' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
-<text x='136.27' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2015</text>
-<text x='185.05' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2021</text>
-<text x='115.94' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='90.85px' lengthAdjust='spacingAndGlyphs'>Year (June - August)</text>
-<text transform='translate(8.16,71.48) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='82.88px' lengthAdjust='spacingAndGlyphs'>Relative frequency</text>
+<text x='46.83' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2004</text>
+<text x='95.61' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
+<text x='136.27' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2015</text>
+<text x='185.05' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2021</text>
+<text x='115.94' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='90.85px' lengthAdjust='spacingAndGlyphs'>Year (June - August)</text>
+<text transform='translate(8.16,71.48) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='82.88px' lengthAdjust='spacingAndGlyphs'>Relative frequency</text>
 <rect x='37.81' y='2.99' width='156.26' height='10.32' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='35.66' y='2.99' width='8.50' height='8.33' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='36.37' y='3.70' width='7.09' height='6.91' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #2C7BB6;' />
@@ -115,9 +118,9 @@
 <rect x='113.23' y='3.70' width='7.09' height='6.91' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FDAE61;' />
 <rect x='145.21' y='2.99' width='8.50' height='8.33' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='145.92' y='3.70' width='7.09' height='6.91' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
-<text x='47.00' y='10.38' style='font-size: 9.00px; font-family: Arial;' textLength='16.51px' lengthAdjust='spacingAndGlyphs'>Low</text>
-<text x='77.69' y='10.38' style='font-size: 9.00px; font-family: Arial;' textLength='32.00px' lengthAdjust='spacingAndGlyphs'>Medium</text>
-<text x='123.86' y='10.38' style='font-size: 9.00px; font-family: Arial;' textLength='18.51px' lengthAdjust='spacingAndGlyphs'>High</text>
-<text x='156.55' y='10.38' style='font-size: 9.00px; font-family: Arial;' textLength='37.52px' lengthAdjust='spacingAndGlyphs'>Very high</text>
+<text x='47.00' y='10.38' style='font-size: 9.00px; font-family: "Arial";' textLength='16.51px' lengthAdjust='spacingAndGlyphs'>Low</text>
+<text x='77.69' y='10.38' style='font-size: 9.00px; font-family: "Arial";' textLength='32.00px' lengthAdjust='spacingAndGlyphs'>Medium</text>
+<text x='123.86' y='10.38' style='font-size: 9.00px; font-family: "Arial";' textLength='18.51px' lengthAdjust='spacingAndGlyphs'>High</text>
+<text x='156.55' y='10.38' style='font-size: 9.00px; font-family: "Arial";' textLength='37.52px' lengthAdjust='spacingAndGlyphs'>Very high</text>
 </g>
 </svg>

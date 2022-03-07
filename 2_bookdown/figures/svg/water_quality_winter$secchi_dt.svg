@@ -9,6 +9,9 @@
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
+    .svglite text {
+      white-space: pre;
+    }
   ]]></style>
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
@@ -79,10 +82,10 @@
 <rect x='32.95' y='2.99' width='163.49' height='126.65' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHwxOTguNDN8MC4wMHwxNTUuOTE=)'>
-<text x='28.01' y='111.58' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='10.01px' lengthAdjust='spacingAndGlyphs'>50</text>
-<text x='28.01' y='83.63' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='15.01px' lengthAdjust='spacingAndGlyphs'>100</text>
-<text x='28.01' y='55.68' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='15.01px' lengthAdjust='spacingAndGlyphs'>150</text>
-<text x='28.01' y='27.73' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='15.01px' lengthAdjust='spacingAndGlyphs'>200</text>
+<text x='28.01' y='111.58' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='10.01px' lengthAdjust='spacingAndGlyphs'>50</text>
+<text x='28.01' y='83.63' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='15.01px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text x='28.01' y='55.68' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='15.01px' lengthAdjust='spacingAndGlyphs'>150</text>
+<text x='28.01' y='27.73' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='15.01px' lengthAdjust='spacingAndGlyphs'>200</text>
 <polyline points='30.21,108.36 32.95,108.36 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='30.21,80.41 32.95,80.41 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='30.21,52.46 32.95,52.46 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
@@ -93,13 +96,13 @@
 <polyline points='131.94,132.38 131.94,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='158.48,132.38 158.48,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='187.67,132.38 187.67,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
-<text x='41.70' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1966</text>
-<text x='78.86' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1980</text>
-<text x='105.40' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1990</text>
-<text x='131.94' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2000</text>
-<text x='158.48' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
-<text x='187.67' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2021</text>
-<text x='114.69' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='124.75px' lengthAdjust='spacingAndGlyphs'>Year (December - February)</text>
-<text transform='translate(8.16,66.32) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='82.29px' lengthAdjust='spacingAndGlyphs'>Secchi Depth (cm)</text>
+<text x='41.70' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1966</text>
+<text x='78.86' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1980</text>
+<text x='105.40' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1990</text>
+<text x='131.94' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2000</text>
+<text x='158.48' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
+<text x='187.67' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2021</text>
+<text x='114.69' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='124.75px' lengthAdjust='spacingAndGlyphs'>Year (December - February)</text>
+<text transform='translate(8.16,66.32) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='82.29px' lengthAdjust='spacingAndGlyphs'>Secchi Depth (cm)</text>
 </g>
 </svg>

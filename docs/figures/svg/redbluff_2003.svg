@@ -9,6 +9,9 @@
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
+    .svglite text {
+      white-space: pre;
+    }
   ]]></style>
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
@@ -49,11 +52,11 @@
 <rect x='37.95' y='2.99' width='158.48' height='126.65' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHwxOTguNDN8MC4wMHwxNTUuOTE=)'>
-<text x='33.02' y='127.11' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='5.00px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='33.02' y='99.38' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1000</text>
-<text x='33.02' y='71.64' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2000</text>
-<text x='33.02' y='43.91' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>3000</text>
-<text x='33.02' y='16.18' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>4000</text>
+<text x='33.02' y='127.11' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='5.00px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='33.02' y='99.38' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1000</text>
+<text x='33.02' y='71.64' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2000</text>
+<text x='33.02' y='43.91' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>3000</text>
+<text x='33.02' y='16.18' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>4000</text>
 <polyline points='35.21,123.88 37.95,123.88 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='35.21,96.15 37.95,96.15 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='35.21,68.42 37.95,68.42 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
@@ -63,11 +66,11 @@
 <polyline points='97.18,132.38 97.18,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='137.20,132.38 137.20,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='185.23,132.38 185.23,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
-<text x='49.16' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2004</text>
-<text x='97.18' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
-<text x='137.20' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2015</text>
-<text x='185.23' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2021</text>
-<text x='117.19' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='124.75px' lengthAdjust='spacingAndGlyphs'>Year (December - February)</text>
-<text transform='translate(8.16,66.32) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='108.46px' lengthAdjust='spacingAndGlyphs'>Estimated daily passage</text>
+<text x='49.16' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2004</text>
+<text x='97.18' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
+<text x='137.20' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2015</text>
+<text x='185.23' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2021</text>
+<text x='117.19' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='124.75px' lengthAdjust='spacingAndGlyphs'>Year (December - February)</text>
+<text transform='translate(8.16,66.32) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='108.46px' lengthAdjust='spacingAndGlyphs'>Estimated daily passage</text>
 </g>
 </svg>

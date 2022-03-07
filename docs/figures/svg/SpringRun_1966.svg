@@ -9,6 +9,9 @@
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
+    .svglite text {
+      white-space: pre;
+    }
   ]]></style>
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
@@ -87,9 +90,9 @@
 <rect x='42.95' y='2.99' width='153.48' height='126.65' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHwxOTguNDN8MC4wMHwxNTUuOTE=)'>
-<text x='38.02' y='127.11' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='5.00px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='38.02' y='82.79' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='25.02px' lengthAdjust='spacingAndGlyphs'>10000</text>
-<text x='38.02' y='38.47' text-anchor='end' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='25.02px' lengthAdjust='spacingAndGlyphs'>20000</text>
+<text x='38.02' y='127.11' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='5.00px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='38.02' y='82.79' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='25.02px' lengthAdjust='spacingAndGlyphs'>10000</text>
+<text x='38.02' y='38.47' text-anchor='end' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='25.02px' lengthAdjust='spacingAndGlyphs'>20000</text>
 <polyline points='40.21,123.88 42.95,123.88 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='40.21,79.57 42.95,79.57 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='40.21,35.25 42.95,35.25 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
@@ -99,13 +102,13 @@
 <polyline points='135.89,132.38 135.89,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='160.80,132.38 160.80,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='188.21,132.38 188.21,129.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
-<text x='51.18' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1966</text>
-<text x='86.06' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1980</text>
-<text x='110.97' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1990</text>
-<text x='135.89' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2000</text>
-<text x='160.80' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
-<text x='188.21' y='141.02' text-anchor='middle' style='font-size: 9.00px; fill: #4D4D4D; font-family: Arial;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2021</text>
-<text x='119.69' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='85.26px' lengthAdjust='spacingAndGlyphs'>Year (March - May)</text>
-<text transform='translate(8.16,66.32) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: Arial;' textLength='110.12px' lengthAdjust='spacingAndGlyphs'>Adult Spring-Run returns</text>
+<text x='51.18' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1966</text>
+<text x='86.06' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1980</text>
+<text x='110.97' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1990</text>
+<text x='135.89' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2000</text>
+<text x='160.80' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
+<text x='188.21' y='141.02' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2021</text>
+<text x='119.69' y='152.81' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='85.26px' lengthAdjust='spacingAndGlyphs'>Year (March - May)</text>
+<text transform='translate(8.16,66.32) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='110.12px' lengthAdjust='spacingAndGlyphs'>Adult Spring-Run returns</text>
 </g>
 </svg>
