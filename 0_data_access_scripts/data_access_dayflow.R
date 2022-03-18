@@ -37,8 +37,14 @@ DF1997_2020 =  Dayflow$`Dayflow Results 1997 - 2020` %>%
   mutate( Date = as.Date(Date, format = "%m/%d/%Y")) %>%
   select(Date, OUT)
 
+
+DF2021 =  Dayflow$`Dayflow Results 2021` %>%
+  mutate( Date = as.Date(Date, format = "%m/%d/%Y")) %>%
+  select(Date, OUT)
+
+
 #now I can put them all together!
-DF = bind_rows(DF1929_1939, DF1940_1949, DF1950_1955, DF1956_1969, DF1970_1983, DF1984_1996, DF1997_2020)
+DF = bind_rows(DF1929_1939, DF1940_1949, DF1950_1955, DF1956_1969, DF1970_1983, DF1984_1996, DF1997_2020, DF2021)
 
 write.csv(DF, file.path(data_root,"dayflow_all.csv"), row.names = FALSE)
 
