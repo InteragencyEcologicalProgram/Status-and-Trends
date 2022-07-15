@@ -82,7 +82,7 @@ zoop<-subset(zoop_s,select=c("Year","Survey","SampleDate","Station","ACARTELA","
 zoopl<-pivot_longer(zoop, cols = (ACARTELA:OTHCLADO), names_to= "taxon", values_to = "cpue")
 
 #modify column headers
-names(zoopl)[1:4]<-c("year","survey","date","station")
+#names(zoopl)[1:4]<-c("year","survey","date","station")
 
 #format some columns
 zoopl$taxon<-factor(zoopl$taxon)

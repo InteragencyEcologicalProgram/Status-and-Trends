@@ -235,7 +235,7 @@ getPlot(water_quality_summer$temp_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Jeffries, et al. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. https://jeb.biologists.org/content/219/11/1705.short DOI: https://doi.org/10.1242/jeb.134528 
+For more information see: Bashevkin, S. M., B. Mahardja, and L. R. Brown. 2022. Warming in the upper San Francisco Estuary: Patterns of water temperature change from 5 decades of data. Limnology & Oceanography. doi:https://doi.org/10.1002/lno.12057
 ```
 
 ***
@@ -334,7 +334,7 @@ getPlot(water_quality_summer$chla_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20.  Available on request: iepnewsletter@water.ca.gov
+For more information see: Brown, T. 2021. [2019 Phytoplankton Annual Report](https://cadwr.app.box.com/s/08zksus58rekl4tfy12mpxqqpz5bvhp9). IEP Newsletter 40(2):47-52.
 ```
  
 ***
@@ -440,7 +440,7 @@ getPlot(zooplankton_summer$zoop_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. Available on request: iepnewsletter@water.ca.gov
+For more information see: Barros, A. 2021. [Zooplankton Trends in the upper SFE 1974-2018.](https://cadwr.app.box.com/s/3fo2sh8hnyx5rv6btmu2ydsqif12zp4l) IEP Newsletter 40(1):5-14. 
 ```
  
 ***
@@ -553,7 +553,9 @@ getPlot(DJFMP_sacpikeminnow_summer)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Study Fishes Status and Trends Report for the San Francisco Estuary, 2012–2016. IEP Newsletter 31(2):3-43. Available on request: iepnewsletter@water.ca.gov
+For more information see: Malinich, T. D., J. Burns, J. White, K. Hieb, R. McKenzie, S. B. Slater, and A. Chorazyczewski. 2021. 2020 [Status and Trends Report for Pelagic Fishes in the San Francisco Estuary](https://cadwr.app.box.com/file/926369689193?s=hca0a3lzvfdapvp1lpu00oluop6xogdc). IEP Newsletter 40(3):75-97.
+
+McKenzie, R. 2021. [2019–2020 Delta Juvenile Fish Monitoring Program - Nearshore Fishes Annual Report](https://cadwr.app.box.com/s/08zksus58rekl4tfy12mpxqqpz5bvhp9). IEP Newsletter 40(2):13-24. 
 
 ```
 
@@ -669,7 +671,7 @@ getPlot(veg_perc)
 ```{block, type='disclaimer'}
 For more information see: 
 
-Ta et al. 2017. Invasive aquatic vegetation management in the Sacramento–San Joaquin River Delta: status and recommendations. San Francisco Estuary and Watershed Science 15(4) https://escholarship.org/uc/item/828355w6 
+Rasmussen, N., J. L. Conrad, H. Green, S. Khanna, J. Caudill, P. Gilbert, P. Goertler, H. Wright, K. Hoffmann, S. Lesmeister, J. Jenkins, L. Takata, D. Boswort, T. Flynn, E. Hard, and T. Sommer. 2020. [2017-2018 Delta Smelt Resiliency Strategy Action for Enhanced Control of Aquatic Weeds and Understanding Effects of Herbicide Treatment on Habitat](https://cadwr.app.box.com/v/InteragencyEcologicalProgram/file/827424129137), Interagency Ecological Program, Sacramento, CA. 332 pg.  
 
-Lehman, P. W., T. Kurobe, S. Lesmeister, D. Baxa, A. Tung, and S. J. Teh. 2017. Impacts of the 2014 severe drought on the Microcystis bloom in San Francisco Estuary. Harmful Algae 63(Supplement C):94-108. https://www.sciencedirect.com/science/article/pii/S1568988316302177 
+Lehman, P. W., T. Kurobe, K. Huynh, S. Lesmeister, and S. J. Teh. 2021. Covariance of Phytoplankton, Bacteria, and Zooplankton Communities Within Microcystis Blooms in San Francisco Estuary. Frontiers in Microbiology 12(1184). doi: https://doi.org/10.3389/fmicb.2021.632264 
 ```
