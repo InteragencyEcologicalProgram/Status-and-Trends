@@ -44,6 +44,7 @@
 <rect x='157.00' y='104.37' width='7.32' height='19.98' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #2C7BB6;' />
 <rect x='165.13' y='106.21' width='7.32' height='18.15' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #2C7BB6;' />
 <rect x='173.26' y='88.06' width='7.32' height='36.29' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #2C7BB6;' />
+<rect x='181.39' y='88.06' width='7.32' height='36.29' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #2C7BB6;' />
 <rect x='67.56' y='18.60' width='7.32' height='12.20' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #ABD9E9;' />
 <rect x='75.69' y='87.57' width='7.32' height='15.22' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #ABD9E9;' />
 <rect x='83.82' y='45.72' width='7.32' height='39.32' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #ABD9E9;' />
@@ -58,6 +59,7 @@
 <rect x='157.00' y='87.61' width='7.32' height='16.76' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #ABD9E9;' />
 <rect x='165.13' y='97.13' width='7.32' height='9.07' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #ABD9E9;' />
 <rect x='173.26' y='33.62' width='7.32' height='54.44' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #ABD9E9;' />
+<rect x='181.39' y='54.79' width='7.32' height='33.27' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #ABD9E9;' />
 <rect x='67.56' y='18.60' width='7.32' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FDAE61;' />
 <rect x='75.69' y='78.69' width='7.32' height='8.88' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FDAE61;' />
 <rect x='83.82' y='45.72' width='7.32' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FDAE61;' />
@@ -72,6 +74,7 @@
 <rect x='157.00' y='76.01' width='7.32' height='11.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FDAE61;' />
 <rect x='165.13' y='97.13' width='7.32' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FDAE61;' />
 <rect x='173.26' y='30.59' width='7.32' height='3.02' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FDAE61;' />
+<rect x='181.39' y='45.72' width='7.32' height='9.07' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FDAE61;' />
 <rect x='67.56' y='18.60' width='7.32' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
 <rect x='75.69' y='74.89' width='7.32' height='3.81' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
 <rect x='83.82' y='45.72' width='7.32' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
@@ -86,6 +89,7 @@
 <rect x='157.00' y='69.56' width='7.32' height='6.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
 <rect x='165.13' y='97.13' width='7.32' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
 <rect x='173.26' y='30.59' width='7.32' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
+<rect x='181.39' y='45.72' width='7.32' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D7191C;' />
 <text x='46.83' y='109.77' style='font-size: 7.68px; font-family: "Arial";' textLength='63.58px' lengthAdjust='spacingAndGlyphs'>Data not collected </text>
 <text x='46.83' y='120.84' style='font-size: 7.68px; font-family: "Arial";' textLength='35.42px' lengthAdjust='spacingAndGlyphs'> until 2007</text>
 <rect x='35.44' y='13.31' width='160.99' height='116.33' style='stroke-width: 1.07; stroke: #333333;' />

@@ -8,7 +8,11 @@ library(smonitr)
 
 load(file.path(data_root,"wtryrs.RData"))
 
-indicies = filter(water_year_indices, location != "San Joaquin Valley")
+indicies = filter(water_year_indices, location != "San Joaquin Valley") %>%
+  filter(WY != 2021)
+in2021 = data.frame(WY = 2021, Index = 4.0, Yr_type = "Critical")
+indicies = bind_rows(indicies, in2021)
+
 row_num_new <- nrow(indicies) + 1
 if(!(report_year %in% indicies$WY)) {
   indicies[row_num_new, ] <- rep(NA, ncol(indicies))

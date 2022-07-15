@@ -27,12 +27,8 @@ library(smonitr)
 
 #source(file.path(data_access_root,"WQ_data_download.R"))
 #or skip this if you've updated it recently and just do
-alldata = read.csv(file.path(data_root,"WQ_Discrete_1975-2020.csv"), stringsAsFactors = F)
-alldata$Date = mdy(alldata$Date)
+alldata = read_csv(file.path(data_root,"WQ_Discrete_1975-2021.csv"))
 
-#EMP WQ data (1975-2019)
-#alldata<- WQ_all
-  str(alldata)
 
 #GPS coordinates of all sites
 siteloc<-read.csv(file.path(data_root,"wq_stations.csv")) 
