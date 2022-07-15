@@ -128,7 +128,7 @@ zoop2<-subset(zoop_s2,select=c("Year","Survey","SampleDate","Station","LIMNOSINE
 zoopl2<-gather(zoop2,taxon,cpue,LIMNOSINE:OITHSPP)
 
 #name columns
-names(zoopl2)[1:4]<-c("year","survey","date","station")
+#names(zoopl2)[1:4]<-c("year","survey","date","station")
 
 #add in individual biomass data
 zoopb2<-left_join(zoopl2,zmass,by="taxon",type="left")
@@ -159,7 +159,7 @@ zall2 = merge(zall, Zoopcats)
 
 
 #add together biomass for all species within each of the three taxonomic groups
-zll<- group_by(zall2, year, survey, date, station, cat) %>%
+zll<- group_by(zall2, Year, Survey, SampleDate, Station, cat) %>%
   summarize(cpue = sum(cpue, na.rm = T), bpue = sum(bpue, na.rm = T))
 
 
@@ -175,7 +175,7 @@ summarize(bpue = sum(`Acanthomysis aspera`, `Acanthomysis hwanhaiensis`,
                      `Alienacanthomysis macropsis`, `Deltamysis holmquistae`,
                                          `Hyperacanthomysis longirostris`, `Neomysis kadiakensis`, 
                                          `Neomysis mercedis`,  Unidentified)) %>%
-  rename(year = Year, survey = Survey, station = StationNZ, date = SampleDate) %>%
+  rename(Station = StationNZ) %>%
   mutate(taxon = "mys")
 
 
@@ -196,7 +196,8 @@ names(station)
 station$long_dec<-station$long_deg + station$long_min/60 + station$long_sec/3600
 
 #reduce to just needed columns
-stati<-subset(station,select=c("station","long_dec"))
+stati<-subset(station,select=c("station","long_dec")) %>%
+  rename(Station = station)
 str(stati)
 #sort by longitude
 stati<-stati[order(stati$long_dec),]
@@ -204,7 +205,7 @@ stati<-stati[order(stati$long_dec),]
 #merge with zooplankton cpue data
 mcpg<-left_join(mza, stati)
 
-unique(mcpg$station) #18 stations: 16 core stations + 2 san pablo stations
+unique(mcpg$Station) #18 stations: 16 core stations + 2 san pablo stations
 
 #add column for geographic region based on longitude
 mcpg$region<-ifelse(mcpg$long_dec > 122.216, "spl", 
@@ -214,6 +215,7 @@ mcpg$region<-ifelse(mcpg$long_dec > 122.216, "spl",
 #make region a factor
 mcpg$region<-factor(mcpg$region, levels=c('spl','ss','dt'))
 
+
 #add column for season
 #a bit tricky because winter is Dec. of one year and then Jan./Feb. of the following year
 #https://stackoverflow.com/questions/41234275/calculate-seasonal-mean-with-a-n-years-time-series-with-monthly-data?rq=1
@@ -221,14 +223,14 @@ mcpg$region<-factor(mcpg$region, levels=c('spl','ss','dt'))
 
 #combine month and year
 mcpg = ungroup(mcpg) %>%
-  mutate( month = month(date), 
-              ym =as.yearmon(paste(month, year), format =  "%m %Y"),
+  mutate( month = month(SampleDate), 
+              ym =as.yearmon(paste(month, Year), format =  "%m %Y"),
               yq =as.yearqtr(ym + 1/12, format = "%Y Q%q"),
               yq2 = yq) %>%
   separate(yq2, c('qyear', 'quarter'), sep=" ") %>%
   mutate(quarter = factor(quarter, levels=c('Q1','Q2','Q3','Q4')),
          qyear = as.integer(qyear)) %>%
-  filter(!is.na(region), !(year < 1975), !(year<1998 & region == "spl"))
+  filter(!is.na(region), !(Year < 1975), !(Year<1998 & region == "spl"))
 
 
 #generate means by region, year, quarter, and taxon
