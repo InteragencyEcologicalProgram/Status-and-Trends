@@ -236,7 +236,7 @@ getPlot(water_quality_spring$temp_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Bashevkin, S. M., B. Mahardja, and L. R. Brown. 2022. Warming in the upper San Francisco Estuary: Patterns of water temperature change from 5 decades of data. Limnology & Oceanography. doi:https://doi.org/10.1002/lno.12057
+For more information see: Bashevkin, S. M., B. Mahardja, and L. R. Brown. 2022. Warming in the upper San Francisco Estuary: Patterns of water temperature change from 5 decades of data. Limnology & Oceanography. doi: https://doi.org/10.1002/lno.12057 
 ```
 
 ***
@@ -450,9 +450,9 @@ For more information see: Barros, A. 2021. [Zooplankton Trends in the upper SFE 
 
 ### Background {.unlisted .unnumbered}
 
-* Splittail are a native minnow that spawn on floodplains, so they have high reproduction during high flow years when floodplains are inundated with water. Juvenile splittail are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2)'s rotory screw trap. 
+* Splittail are a native minnow that spawn on floodplains, so they have high reproduction during high flow years when floodplains are inundated with water. Juvenile splittail are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?scope=edi&identifier=233&revision=3)'s rotory screw trap. 
 * Adult Spring-Run Chinook Salmon return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
-* Juvenile Winter-Run Chinook salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
+* Juvenile Winter-Run Chinook salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 

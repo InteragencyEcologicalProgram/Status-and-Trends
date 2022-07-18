@@ -72,7 +72,6 @@ on code to generate these captions automatically.
     The Dayflow estimate of Delta outflow is referred to as the “net Delta outflow index” (NDOI) because it does not an account for tidal flows, the fortnight lunar fill-drain cycle of the estuary, or barometric pressure changes. It is a quantity that never actually occurs in real time. Rather, it is an estimate of the net difference between ebbing and flooding tidal flows at Chipps Island (~ + / - 150,000 cfs), aliased to a daily average. Depending on conditions, the actual net Delta outflow for a given day can be much higher or lower than the Dayflow estimate. Dayflow Net Delta Outflow vs Net Delta Outflow Index provides an example comparison of Dayflow output with measured daily average outflow.
   
   + Start Year: 1929
-  + Additional Information:[https://www.water.ca.gov/Programs/Environmental-Services/Compliance-Monitoring-And-Assessment/Dayflow-Data](https://www.water.ca.gov/Programs/Environmental-Services/Compliance-Monitoring-And-Assessment/Dayflow-Data)
   + Data may be accessed on the [CNRA Data Portal](https://data.cnra.ca.gov/dataset/dayflow)
 
 ### Water Quality: Secchi depth, Temperature, Chlorophyll-a (All Seasons)
@@ -84,8 +83,7 @@ on code to generate these captions automatically.
     * San Pablo: Stations = 1-3, years: 1975-2018
     * Suisun: Stations = 5-8, years: 1975-2017
     * Delta: Stations = 11-20, years: 1975-2017
-  + Additional Information:[https://water.ca.gov/Programs/Environmental-Services/Water-Quality-Monitoring-And-Assessment](https://water.ca.gov/Programs/Environmental-Services/Water-Quality-Monitoring-And-Assessment)
-  + Data is also publised on the [Environmental Data Iniative Website]( https://doi.org/10.6073/pasta/a215752cb9ac47f9ed9bb0fdb7fc7c19) 
+  + Data is published on the [Environmental Data Initiative Website]( https://doi.org/10.6073/pasta/770727729b6e16ef192e7cd7028f6f1c) 
 
 ### Zooplankton: Biomass of Calanoids, Cyclopoids, Cladocerans, and Mysids (All Seasons)
 
@@ -101,9 +99,9 @@ on code to generate these captions automatically.
     * Suisun: Stations = 6, start year: 1975
     * Delta: Stations = 8, start year: 1975
   + Additional Information:[https://www.wildlife.ca.gov/Conservation/Delta/Zooplankton-Study](https://www.wildlife.ca.gov/Conservation/Delta/Zooplankton-Study)
-  + Data is also published on the [Environmental Data Initiative Website](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.522.2)
+  + Data is also published on the [Environmental Data Initiative Website](https://doi.org/10.6073/pasta/51bfce9bc26011095d8b99b3a2aee1b8)
 
-### Juvenile Winter-run Run Chinook: Chipps Island Trawl (Winter and Spring Reports)
+### Juvenile Winter-run Chinook: Chipps Island Trawl (Winter and Spring Reports)
 
   + Data Source: US Fish and Wildlife Service, Lodi Field Office, Delta Juvenile Fish Monitoring Program 
   + Metric Used: Mean catch per unit effort estimates for Winter-run Chinook. The calculation method is similar to that used by DJFMP staff for reporting.
@@ -114,11 +112,11 @@ on code to generate these captions automatically.
 
   + Start year: 1995. Note: Although sampling at Chipps Island started in 1976, this year range was chosen for consistency with the range most recently reported on by DJFMP staff. 
   + Stations: 1
-  + Additional Information:[https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm)
-  + Data is also published on the [Environmental Data Initiative Website](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.244.4)
+  + Additional Information: https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish 
+  + Data is also published on the [Environmental Data Initiative Website](https://doi.org/10.6073/pasta/30a3232084be9c936c976fbb6b31c5a2 )
 
 
-### Adult Spring-run Run Chinook and Fall Run Chinook: GrandTab (Spring and Fall Reports)
+### Adult Spring-run Chinook and Fall-run Chinook: GrandTab (Spring and Fall Reports)
 
   + Data Source: CDFW’s Grand Tab database as queried from [SacPass](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html).
   + Metric Used: The CDFW Fisheries Branch Anadromous Resource Assessment Unit compiles annual population estimates of Chinook salmon, Oncorhynchus tshawytscha, in the Sacramento San Joaquin River system. The GrandTab report is a compilation of sources estimating the late-fall, winter, spring, and fall-run Chinook salmon total populations for streams surveyed. Estimates are based on counts of fish entering hatcheries and migrating past dams, carcass surveys, live fish counts, and ground and aerial redd counts. Estimates are provided by the California Department of Fish and Wildlife, the US Fish and Wildlife Service, the California Department of Water Resources, the East Bay Municipal Utilities District, the US Bureau of Reclamation, the Lower Yuba River Management Team, and the Fisheries Foundation of California.
@@ -133,7 +131,7 @@ on code to generate these captions automatically.
     The rotary screw trap is deployed at levee mile 14.5 near the base of the Yolo Bypass Toe Drain and is typically operated from January 1st through June. If the first flush of the system occurs earlier, the screw trap will be deployed in December to capture out-migrating fishes. Trap dimentions are: Length: 22.5 ft, Width: 12 ft, Weight: 1300 lbs, Cone: 8 ft diameter and 9 ft length with 2 ft on each end for shaft (total of 13 ft), Livebox: 4 ft by 5 ft with a 25 ft3 volume. During high flows and periods of high debris, the trap may be set intermittently through-out the day, or not set if the high flow becomes a safety concern. The trap is checked daily and upon checking or pulling the trap fish are then collected using dipnets and transferred to separate buckets. Each fish is identified, counted, and then fork length to the nearest millimeter is measured for up to 20-50 individuals of each species.
   + Start Year: 1998
   + Stations: 1
-  + Additional Information: [https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2)
+  + Additional Information: [https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.3](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.3)
 
 
 ### Delta Smelt, Striped Bass, Longfin Smelt, American Shad: Fall Midwater Trawl  (Fall Report)
@@ -145,8 +143,8 @@ on code to generate these captions automatically.
 
 + Start Year: 1967. Note: No sampling in 1974 or 1979. Also, the month range of this survey deviates from the standard September-November definition of fall in this report. It typically takes place September-December. In some years past, however, it started as early as July and/or ended as late as March.
 + Stations: 100 stations are used to calculate the index (out of 122 stations sampled)
-+ Additional Information: [https://wildlife.ca.gov/Conservation/Delta/Fall-Midwater-Trawl](https://wildlife.ca.gov/Conservation/Delta/Fall-Midwater-Trawl)
-+ Data is available on the [CDFW File Transfer Protocol Site](ftp://ftp.wildlife.ca.gov/TownetFallMidwaterTrawl/FMWT%20Data/)
++ Additional Information: https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Fall-Midwater-Trawl 
++ Data is available on the [CDFW File Library](https://filelib.wildlife.ca.gov/Public/TownetFallMidwaterTrawl/FMWT%20Data/)
 
 ### Adult White Sturgeon: Sturgeon Study (Fall Report)
 
@@ -180,7 +178,7 @@ on code to generate these captions automatically.
 + Start Year: 2003
 + Note: Data were truncated at 2003 to focus on the more recent trends. Data are also available for 1994-2000.
 + Stations: 4 screw traps across the river
-+ Additional Information: https://www.fws.gov/redbluff/rbdd_jsmp.html
++ Additional Information: https://fws.gov/project/red-bluff-diversion-dam-juvenile-fish-monitoring 
 
 ### Adult Delta Smelt: Spring Kodiak Trawl (Winter Report)
 + Data Source: California Department of Fish and Wildlife
@@ -214,8 +212,8 @@ length).
 + Metric Used: For a given year-month combination, Sacramento Pikeminnow catch per unit effort (CPUE) was calculated as the sum of Pikeminnow catch divided by the sum of volume sampled, over all stations sampled. The annual index was calculated as the mean of the monthly CPUE values from that year.
 + Start Year:  1976 
 + Stations: 75 stations; see program metadata for site sampling histories.
-+ Additional Information: https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm
-  + Data is also published on the [Environmental Data Initiative Website](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.244.4)
++ Additional Information: https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish
+  + Data is also published on the [Environmental Data Initiative Website](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.244.9)
 
 ### Delta Smelt: Summer Townet Survey (Summer Report)
 
@@ -235,7 +233,6 @@ length).
 + Metric Used: Microcystis bloom presence and intensity are measured on a qualitative scale with 5 categories: absent, low (widely scattered colonies), medium (adjacent colonies), high (contiguous colonies), and very high (concentration of contiguous colonies forming mats/scum). (see figure below). Observations were taken at all stations sampled monthly by EMP (see description of EMP sampling under Water Quality, above), and at all stations sampled twice per month by the Summer Townet Survey (see description of Summer Townet, above).
 + Start Year: 2007
 + Stations: 69
-+ Additional Information: https://wildlife.ca.gov/Conservation/Delta/Townet-Survey https://water.ca.gov/Programs/Environmental-Services/Water-Quality-Monitoring-And-Assessment
 
 
 ```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}

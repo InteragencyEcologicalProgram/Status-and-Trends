@@ -452,7 +452,7 @@ For more information see: Barros, A. 2021. [Zooplankton Trends in the upper SFE 
 
 * White sturgeon support a recreational fishery. Juvenile sturgeon are sampled by in the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study), which samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
 * Longfin Smelt are listed as Threatened under the California Endangered Species Act. Spawning adults are sampled in winter by the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study) midwater trawl. 
-* Juvenile Winter-Run Chinook Salmon are sampled by the [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers.
+* Juvenile Winter-Run Chinook Salmon are sampled by the USFWS’s [Chipps Island Trawl](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish), located at the confluence of the Sacramento and San Joaquin Rivers.
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 
@@ -471,7 +471,7 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3}
-<center> __[Juvenile Sturgeon](http://calfish.ucdavis.edu/species/?uid=182&amp;ds=698)__ </center>
+<center> __[Juvenile White Sturgeon](http://calfish.ucdavis.edu/species/?uid=182&amp;ds=698)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
@@ -554,7 +554,7 @@ getPlot(DJFMP_chinook_winterByLength$Chipps_all_years)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Study Fishes Status and Trends Report for the San Francisco Estuary, 2012–2016. IEP Newsletter 31(2):3-43. Available on request: iepnewsletter@water.ca.gov
+For more information see: Patton, O., Larwood, V., Young, M., & Feyrer, F. (2020). . 2020. Estuarine Habitat Use by White Sturgeon (Acipenser transmontanus). San Francisco Estuary and Watershed Science 18(4). doi: http://dx.doi.org/10.15447/sfews.2020v18iss4art4 
 ```
 
 ***
