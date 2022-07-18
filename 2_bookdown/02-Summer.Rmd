@@ -235,7 +235,7 @@ getPlot(water_quality_summer$temp_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Bashevkin, S. M., B. Mahardja, and L. R. Brown. 2022. Warming in the upper San Francisco Estuary: Patterns of water temperature change from 5 decades of data. Limnology & Oceanography. doi:https://doi.org/10.1002/lno.12057
+For more information see: Bashevkin, S. M., B. Mahardja, and L. R. Brown. 2022. Warming in the upper San Francisco Estuary: Patterns of water temperature change from 5 decades of data. Limnology & Oceanography. doi: https://doi.org/10.1002/lno.12057
 ```
 
 ***
@@ -451,7 +451,7 @@ For more information see: Barros, A. 2021. [Zooplankton Trends in the upper SFE 
 
 * Delta Smelt, listed as threatened by the Endangered Species Act, have been tracked by [CDFW’s Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey) since 1959 in Suisun Bay, San Pablo Bay, and the Delta. 
 * Northern Anchovy are an important forage fish in the brackish-saline regions of the estuary. They are sampled best by [CDFW’s San Francisco Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study).
-* Sacramento Pikeminnow is a native cyprinid that is one of the few piscivorous native fish in the Delta. They are sampled by [USFWS's DJFMP](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm) beach seine surveys throughout the estuary.
+* Sacramento Pikeminnow is a native cyprinid that is one of the few piscivorous native fish in the Delta. They are sampled by [USFWS's DJFMP](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish) beach seine surveys throughout the estuary.
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 
@@ -476,13 +476,13 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center> __Northern Anchovy__ </center>
+<center> __[Northern Anchovy](https://www.montereybayaquarium.org/animals/animals-a-to-z/northern-anchovy)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center> __Sacramento Pikeminnow__ </center>
+<center> __[Sacramento Pikeminnow](https://calfish.ucdavis.edu/species/?uid=82&ds=241)__ </center>
 :::
 ::::
 
