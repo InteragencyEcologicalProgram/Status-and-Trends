@@ -22,14 +22,16 @@ source("setup.R")
 library(colorspace) #color palette
 library(zoo) ## yearmon and yearqtr classes
 library(cowplot)
+
 library(lubridate)
+
 library(readxl)
 library(tidyverse)
 library(smonitr)
 
 #import datasets----------------
 #source("0_data_access_scripts/data_access_zoops.R")
-#source("1_plot_scripts/mysid biomass.R")
+
 source("1_plot_scripts/legends.R")
 
 
@@ -169,18 +171,13 @@ zll<- group_by(zall2, Year, Survey, SampleDate, Station, cat) %>%
 
 #next format the bpue dataset
 #we just want total mysid BPUE
-MysidBPUEx = MysidBPUE %>%
-  group_by(SurveyCode, Year, Survey, SurveyRep, SampleDate, StationNZ, Time) %>%
-summarize(bpue = sum(`Acanthomysis aspera`, `Acanthomysis hwanhaiensis`, 
-                     `Alienacanthomysis macropsis`, `Deltamysis holmquistae`,
-                                         `Hyperacanthomysis longirostris`, `Neomysis kadiakensis`, 
-                                         `Neomysis mercedis`,  Unidentified)) %>%
-  rename(Station = StationNZ) %>%
+MysidBPUEx = Mysidsbc %>%
+  filter(Taxname %in%c("Neomysis mercedis", "Hyperacanthomysis longirostris")) %>%
+  mutate(Year = year(SampleDate)) %>%
+  group_by(Year, SampleDate, Station) %>%
+summarize(bpue = sum(BPUE, na.rm = T)) %>%
   mutate(taxon = "mys")
 
-
-#create column with bpue in micrograms instead of milligrams because rest of zoop is in micrograms
-MysidBPUEx$bpue<-MysidBPUEx$bpue*1000
 
 #combine all zoop data sets
 zll = mutate(zll, taxon = cat, cat = NULL)
@@ -266,7 +263,7 @@ bpl<-ggplot(zmeans, aes(x = qyear, y = bpue, fill = taxon)) +
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
                       ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))#+
 #    scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), limits=c(0,max(zmeans$bpue))))
-#NOTE: mysids overwhelm everything else because they are so much larger
+
 
 bpl
 
@@ -289,7 +286,7 @@ zoops = function(reg, quart, data, reportyear, verbose=TRUE) {
     
     #################NOTE: I can't figure out how to put a missing value triangle for 2021 without
     #having them show up for pre 1975 too, so i'm hard coding this in for now. Lara can probably do better.
-    annotate("point", x = 2021, y = 0, shape = 24, size = 4, fill = "tan2", color = "gray10")+
+    #annotate("point", x = 2021, y = 0, shape = 24, size = 4, fill = "tan2", color = "gray10")+
 		
     #add long-term average line:
     geom_hline(aes(yintercept=meanB), size=0.9, color="red", linetype="dashed") + 

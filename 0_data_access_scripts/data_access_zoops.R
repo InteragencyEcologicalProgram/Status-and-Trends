@@ -40,28 +40,17 @@ conversions = read_excel("data/ZoopSynth_biomass_CEBupdated.xlsx", sheet = "Macr
 #conversions = filter(conversions, Preservative != "Ethanol")  
 
 #assume dry weight is 10% wet weight
+#assume carbon weight is 0.4 times dry weight
+#then covert to micro-grams to match the mesozoo[s]
 Mysidsbc = left_join(Mysidsb, conversions) %>%
-  mutate(BPUE = (a*Size^b)*AdjustedFreq, weightper = a*Size^b) %>%
-  #filter(Preservative != "Ethanol") %>%
-  mutate(BPUEdry = case_when(Weight_type == "Wet" ~ BPUE* .1,
+  mutate(BPUE = (a2*(Size^b))*AdjustedFreq, weightper = a2*(Size^b)) %>%
+  filter(Preservative == "Formalin", Weight_type == "Dry") %>%
+  mutate(BPUEdryC = case_when(Weight_type == "Wet" ~ BPUE* .1*.4,
+                              Weight_type == "Dry"~ BPUE*.4,
          TRUE ~ BPUE),
-         Weightperdry = case_when(Weight_type == "Wet" ~ weightper*.1,
-                                  TRUE ~ weightper))
-
-test = select(Mysidsbc, Size, weightper, Weight_type, Weightperdry, Taxname, Preservative) %>%
-filter(!is.na(weightper)) %>%
-  distinct() 
-#I"m all kinds of confused 
+         bpue = BPUEdryC/1000)
 
 
-ggplot(test, aes(x = log(Size), y = log(Weightperdry), color = Preservative, linetype = Weight_type)) + geom_point()  + geom_line() +
-  facet_wrap(~Taxname)
-
-save(zoopps, zoopscb, Mysids, MysidBPUE, file = file.path(data_root,"Zoops.RData"))
-
-test2 = filter(Mysidsbc, is.na(weightper))
 
 
-test = select(Mysidsbc, Size, weightper, Weightperdry, Taxname) %>%
-  filter(!is.na(weightper)) %>%
-  distinct() 
+save(zoopps, zoopscb, Mysidsbc, file = file.path(data_root,"Zoops.RData"))

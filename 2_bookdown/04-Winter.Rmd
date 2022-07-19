@@ -50,7 +50,7 @@ getPlot(outflow_winter)
 ::: {.col-1-background}
 * Organisms in this ecosystem are adapted to high turbidity conditions, and reductions in turbidity can have many negative ecological effects.
 * Higher values for Secchi depth indicate lower turbidity.
-* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) by dropping a black-and-white disk in the water until it disappears.
+* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP) by dropping a black-and-white disk in the water until it disappears.
 :::
 
 ::: {.col-2-background}
@@ -147,7 +147,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::: {.row}
 ::: {.col-1-background}
-* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
+* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP). 
 * Productivity, fish growth, and reproduction is highest in certain temperature ranges.
 * Increasing winter temperatures may lower Delta Smelt reproduction and allow invasive aquatic plants to survive the winter.
 * Winter temperatures are lower closer to the ocean and slightly higher in the Delta.
@@ -248,7 +248,7 @@ For more information see:  Bashevkin, S. M., B. Mahardja, and L. R. Brown. 2022.
 :::: {.row}
 ::: {.col-1-background}
 * Chlorophyll is an indicator of phytoplankton production, which is low during the winter.
-* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
+* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP).
 * The invasion of the clam *Potamocorbula amurensis* caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
 :::
 
@@ -346,7 +346,7 @@ For more information see: Brown, T. 2021. [2019 Phytoplankton Annual Report](htt
 
 :::: {.row}
 ::: {.col-1-background}
-* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling during the winter did not begin until 1995. 
+* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP) but sampling during the winter did not begin until 1995. 
 * Zooplankton are an important food source for pelagic fish. 
 * Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
 * Biomass in winter tends to be the lowest of the year. 
@@ -450,8 +450,8 @@ For more information see: Barros, A. 2021. [Zooplankton Trends in the upper SFE 
 
 ### Background {.unlisted .unnumbered}
 
-* White sturgeon support a recreational fishery. Juvenile sturgeon are sampled by in the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study), which samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
-* Longfin Smelt are listed as Threatened under the California Endangered Species Act. Spawning adults are sampled in winter by the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study) midwater trawl. 
+* White sturgeon support a recreational fishery. Juvenile sturgeon are sampled by in the [CDFW Bay Study](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/San-Francisco-Bay-Study), which samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
+* Longfin Smelt are listed as Threatened under the California Endangered Species Act. Spawning adults are sampled in winter by the [CDFW Bay Study](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/San-Francisco-Bay-Study) midwater trawl. 
 * Juvenile Winter-Run Chinook Salmon are sampled by the USFWS’s [Chipps Island Trawl](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish), located at the confluence of the Sacramento and San Joaquin Rivers.
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
@@ -563,8 +563,8 @@ For more information see: Patton, O., Larwood, V., Young, M., & Feyrer, F. (2020
 
 ### Background {.unlisted .unnumbered}
 
-* Delta Smelt and Longfin Smelt have been in decline since the early 2000s. The [CDFW Spring Kodiak Trawl](https://www.wildlife.ca.gov/Conservation/Delta/Spring-Kodiak-Trawl) was designed to sample spawning Delta Smelt, and samples in San Pablo, Suisun, and the Delta.
-* Longfin Smelt frequently spawn further downstream than Delta Smelt, so are better sampled by the [CDFW Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study). The Bay Study samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
+* Delta Smelt and Longfin Smelt have been in decline since the early 2000s. The [CDFW Spring Kodiak Trawl](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Spring-Kodiak) was designed to sample spawning Delta Smelt, and samples in San Pablo, Suisun, and the Delta.
+* Longfin Smelt frequently spawn further downstream than Delta Smelt, so are better sampled by the [CDFW Bay Study](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/San-Francisco-Bay-Study). The Bay Study samples throughout the San Francisco Bay, Suisun Bay, and the Delta.
 * Juvenile Chinook pass Red Bluff Diversion Dam on the upper Sacramento as they migrate from spawning grounds to the ocean.
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
