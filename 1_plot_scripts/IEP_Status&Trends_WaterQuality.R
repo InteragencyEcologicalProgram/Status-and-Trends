@@ -167,7 +167,19 @@ WQplot = function(reg, quart, analyte, data, reportyear, verbose=TRUE) {
   return(p_sec)
 }
 
-WQplot("dt","Q1", "chla", wqsum, report_year) 
+WQplot("dt","Q1", "chla", wqsum, report_year)
+
+WQplot("dt","Q1", "temp", wqsum, report_year)+
+  geom_smooth(method = "lm")
+
+WQplot("dt","Q2", "temp", wqsum, report_year)+
+  geom_smooth(method = "lm")
+
+WQplot("dt","Q3", "temp", wqsum, report_year)+
+  geom_smooth(method = "lm")
+
+WQplot("dt","Q4", "temp", wqsum, report_year)+
+  geom_smooth(method = "lm")
 
 # #function to plot all graphs for a particular season and analyte seperately
 # plotall = function(quart, analyte, data, report_year) {
