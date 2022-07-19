@@ -3,7 +3,7 @@
 
 ### Report Information
 
-* Version: 1.1
+* Version: 1.2
 * Last Updated: `r format(Sys.Date(), "%B %d, %Y")`
 
 Report developed by:
@@ -84,6 +84,7 @@ on code to generate these captions automatically.
     * Suisun: Stations = 5-8, years: 1975-2017
     * Delta: Stations = 11-20, years: 1975-2017
   + Data is published on the [Environmental Data Initiative Website]( https://doi.org/10.6073/pasta/770727729b6e16ef192e7cd7028f6f1c) 
+  + Additional Information: https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP
 
 ### Zooplankton: Biomass of Calanoids, Cyclopoids, Cladocerans, and Mysids (All Seasons)
 
@@ -91,14 +92,14 @@ on code to generate these captions automatically.
   + Metric Used: Biomass of zooplankton (milligrams of carbon per cubic meter) based on monthly surveys. The Environmental Monitoring Program (EMP) Zooplankton Study (also known as the IEP Zooplankton Study) began in 1972 in order to assess trends in fish food resources ranging from San Pablo Bay to the east Delta, as well as to detect and assess the impacts of recently introduced zooplankton species on native species. The study is mandated by Water Right Decision 1641 for operation of the State Water Project and Central Valley Project. The EMP study is conducted by CDFW in collaboration with DWR, and the US Bureau of Reclamation (Reclamation) and currently samples 17 fixed stations and 2 floating entrapment zone stations (locations where the bottom salinity is 2 and 6 PPT). There are also 3 additional stations located in Carquinez Strait and San Pablo Bay, which are sampled during periods of high outflow and low salinity. Historically (prior to 1995) the survey sampled at a much larger number of stations.
 
     Zooplankton for EMP are sampled in 3 different size ranges: microzooplankton, including most cyclopoid copepods, are sampled using a pump, mesozooplankton, including most cladocera and calanoid copepdos, are sampled using a modified Clarke-Bumpus net, and macrozooplankton, including mysids are sampled using a mysid net. All EMP zooplankton are collected monthly at fixed stations year-round in open channels at high slack tide and preserved in 10% formalin dyed with rose bengal. Macrozooplankton and Mesozooplankton are collected using 10-minute oblique tows with a 124 cm long net with 505 µm mesh, and a 73 cm long net with 160 µm mesh, respectively. Both nets have a General Oceanics mechanical flowmeter attached to meaure volume sampled. Prior to 1974, macrozooplankton were sampled with a 930 µm mesh net. Microzooplankton are collected with a Teel marine pump while the intake hose is raised through the water column and pumped into a net with 43 µm mesh. Pump samples collected approximately 1.5 - 1.9 L from 1972 – 2007, and 75 L from 2008-present, measured by a digital flowmeter connected to the hose.
-      Organisms in these samples are identified and counted by taxonomists at the CDFW laboratory. Mysids are also measured to the nearest millimeter. Biomass of cyclopoid copepods, calanoid copepods, and cladocera is calculated by multiplying catch-per-unit-effort by average biomass for each taxa. Biomass of mysids is calculated using length-weight regressions.
+      Organisms in these samples are identified and counted by taxonomists at the CDFW laboratory. Mysids are also measured to the nearest millimeter. Biomass of cyclopoid copepods, calanoid copepods, and cladocera is calculated by multiplying catch-per-unit-effort by average biomass for each taxa. Biomass of mysids is calculated using length-weight regressions and estimating carbon content to be 40% of dry weight.
 
 + Start Year: 1975. Note: Winter sampling did not begin until 1995.
   + Stations by Region
     * San Pablo: Stations = 2, start year: 1998. Note: One station sampled consistently since 1998 and the other one since 2003.
     * Suisun: Stations = 6, start year: 1975
     * Delta: Stations = 8, start year: 1975
-  + Additional Information:[https://www.wildlife.ca.gov/Conservation/Delta/Zooplankton-Study](https://www.wildlife.ca.gov/Conservation/Delta/Zooplankton-Study)
+  + Additional Information:[Zooplankton Study](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP)
   + Data is also published on the [Environmental Data Initiative Website](https://doi.org/10.6073/pasta/51bfce9bc26011095d8b99b3a2aee1b8)
 
 ### Juvenile Winter-run Chinook: Chipps Island Trawl (Winter and Spring Reports)
@@ -131,7 +132,8 @@ on code to generate these captions automatically.
     The rotary screw trap is deployed at levee mile 14.5 near the base of the Yolo Bypass Toe Drain and is typically operated from January 1st through June. If the first flush of the system occurs earlier, the screw trap will be deployed in December to capture out-migrating fishes. Trap dimentions are: Length: 22.5 ft, Width: 12 ft, Weight: 1300 lbs, Cone: 8 ft diameter and 9 ft length with 2 ft on each end for shaft (total of 13 ft), Livebox: 4 ft by 5 ft with a 25 ft3 volume. During high flows and periods of high debris, the trap may be set intermittently through-out the day, or not set if the high flow becomes a safety concern. The trap is checked daily and upon checking or pulling the trap fish are then collected using dipnets and transferred to separate buckets. Each fish is identified, counted, and then fork length to the nearest millimeter is measured for up to 20-50 individuals of each species.
   + Start Year: 1998
   + Stations: 1
-  + Additional Information: [https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.3](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.3)
+  + Additional Information: [Yolo Bypass Fish Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Yolo-Bypass)
+  + Data is published on [EDI](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.3)
 
 
 ### Delta Smelt, Striped Bass, Longfin Smelt, American Shad: Fall Midwater Trawl  (Fall Report)
@@ -143,7 +145,7 @@ on code to generate these captions automatically.
 
 + Start Year: 1967. Note: No sampling in 1974 or 1979. Also, the month range of this survey deviates from the standard September-November definition of fall in this report. It typically takes place September-December. In some years past, however, it started as early as July and/or ended as late as March.
 + Stations: 100 stations are used to calculate the index (out of 122 stations sampled)
-+ Additional Information: https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Fall-Midwater-Trawl 
++ Additional Information: [FMWT](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Fall-Midwater-Trawl)
 + Data is available on the [CDFW File Library](https://filelib.wildlife.ca.gov/Public/TownetFallMidwaterTrawl/FMWT%20Data/)
 
 ### Adult White Sturgeon: Sturgeon Study (Fall Report)
@@ -151,7 +153,7 @@ on code to generate these captions automatically.
 + Data Source: California Department of Fish and Wildlife, Sturgeon Study  
 + Metric Used: Catch per unit effort based on standardized trammel net surveys
 + Start Year: 1967. Note: Survey conducted intermittently 1967-2004 and annually since 2005. Fall season for this study is August-October.
-+ Additional Information: https://www.wildlife.ca.gov/Conservation/Delta/Sturgeon-Study
++ Additional Information: [Sturgeon Study](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Sturgeon)
 
 
 ### Juvenile White Sturgeon: San Francisco Bay Study (Winter Report)
@@ -161,7 +163,8 @@ on code to generate these captions automatically.
 + Data source: Fish CPUE and Index calc_July2019.accdb (standalone database, copy received from Bay Study personnel)
 + Start Year: 1980. Note: Annual survey conducted monthly in the bays, estuary, & delta. Deploys otter & mid-water trawls. Sturgeon YCI calculated using otter trawl only (Fish 2010).
 + Stations: 52
-+ Additional Information: https://www.wildlife.ca.gov/Conservation/Delta/Bay-Study
++ Additional Information: [Bay Study](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/San-Francisco-Bay-Study)
++ Data is available on teh [CDFW File Library](https://filelib.wildlife.ca.gov/Public/BayStudy/)
 
 ### Adult Longfin Smelt and Northern Anchovy: San Francisco Bay Study (Winter and Summer Reports)
 
@@ -169,7 +172,8 @@ on code to generate these captions automatically.
 + Metric Used: Average catch per unit effort (CPUE) for adult (Age 1+) Longfin Smelt is derived from Bay  Study’s Midwater trawl, which samples pelagic fishes and retrieved obliquely such that all depths are sampled equally.
 + Start Year: 1980
 + Stations: 52
-+ Additional Information: https://www.wildlife.ca.gov/Conservation/Delta/Bay-Study
++ Additional Information: [Bay Study](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/San-Francisco-Bay-Study)
++ Data is available on teh [CDFW File Library](https://filelib.wildlife.ca.gov/Public/BayStudy/)
 
 ### Winter Run Chinook: Red Bluff Diversion Dam (Winter Report)
 
@@ -178,14 +182,14 @@ on code to generate these captions automatically.
 + Start Year: 2003
 + Note: Data were truncated at 2003 to focus on the more recent trends. Data are also available for 1994-2000.
 + Stations: 4 screw traps across the river
-+ Additional Information: https://fws.gov/project/red-bluff-diversion-dam-juvenile-fish-monitoring 
++ Additional Information: [Red Bluff Fish Monitoring](https://fws.gov/project/red-bluff-diversion-dam-juvenile-fish-monitoring) 
 
 ### Adult Delta Smelt: Spring Kodiak Trawl (Winter Report)
 + Data Source: California Department of Fish and Wildlife
 + Metric Used: Annual abundance indices are the sum of the four (January-April) monthly indices, which are  calculated by averaging catch per tow for index stations in each regional area, multiplying these means by their respective weighting factors (i.e., a scalar based on water volume) for each area and summing these products for the three areas.
 + Start Year: 2002
 + Stations: 39
-+ Additional Information: https://www.wildlife.ca.gov/Conservation/Delta/Spring-Kodiak-Trawl
++ Additional Information: [Spring Kodiak Trawl](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Spring-Kodiak)
   + Data is also published on the [Environmental Data Initiative Website](https://doi.org/10.6073/pasta/aeea28f969ed79086b845e1f6ab89d18)
 
 
@@ -202,7 +206,7 @@ used consistently (i.e., the four chosen surveys are not conditional on Longfin 
 length).
 + Start Year: 1995
 + Stations: 47 core stations (total number has varied between 41 and 55)
-+ Additional Information: https://wildlife.ca.gov/Conservation/Delta/20mm-Survey
++ Additional Information: [20mm Survey](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/20-mm)
   + Data is also published on the [Environmental Data Initiative Website](https://doi.org/10.6073/pasta/32de8b7ffbe674bc6e79dbcd29ac1cc2)
 
 	
@@ -212,7 +216,7 @@ length).
 + Metric Used: For a given year-month combination, Sacramento Pikeminnow catch per unit effort (CPUE) was calculated as the sum of Pikeminnow catch divided by the sum of volume sampled, over all stations sampled. The annual index was calculated as the mean of the monthly CPUE values from that year.
 + Start Year:  1976 
 + Stations: 75 stations; see program metadata for site sampling histories.
-+ Additional Information: https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish
++ Additional Information: [DJFMP](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish)
   + Data is also published on the [Environmental Data Initiative Website](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.244.9)
 
 ### Delta Smelt: Summer Townet Survey (Summer Report)
@@ -225,7 +229,8 @@ length).
 + Start Year: 1959
 + Note: The Summer Townet Survey was initiated in 1959, but no index was calculated 1966-1968.
 + Stations: 31
-+ Additional Information: https://wildlife.ca.gov/Conservation/Delta/Townet-Survey
++ Additional Information: [Summer Townet Survey](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Summer-Townet)
++ Data are available on [CDFW's File Library](https://filelib.wildlife.ca.gov/Public/TownetFallMidwaterTrawl/)
 
 ### Microcystis (Summer Report)
 

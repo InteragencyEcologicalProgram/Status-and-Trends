@@ -46,7 +46,7 @@ getPlot(outflow_fall)
 ::: {.col-1-background}
 * Organisms in this ecosystem are adapted to high turbidity conditions, and reductions in turbidity can have many negative ecological effects.
 * Higher values for Secchi depth indicate lower turbidity.
-* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) by dropping a black-and-white disk in the water until it disappears.
+* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP) by dropping a black-and-white disk in the water until it disappears.
 :::
 
 ::: {.col-2-background}
@@ -143,7 +143,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::: {.row}
 ::: {.col-1-background}
-* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
+* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP). 
 * Fish growth and reproduction is highest in certain temperature ranges.
 * Increasing fall temperatures may lower Delta Smelt reproduction.
 * Fall temperatures are lower closer to the ocean and slightly higher in the Delta.
@@ -244,7 +244,7 @@ For more information see: Bashevkin, S. M., B. Mahardja, and L. R. Brown. 2022. 
 :::: {.row}
 ::: {.col-1-background}
 * Chlorophyll is an indicator of phytoplankton production, which is low during the fall.
-* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
+* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP).
 * The invasion of the clam *Potamocorbula amurensis* caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
 :::
 
@@ -342,7 +342,7 @@ For more information see: Brown, T. 2021. [2019 Phytoplankton Annual Report](htt
 
 :::: {.row}
 ::: {.col-1-background}
-* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling in San Pablo Bay did not begin until 1998. 
+* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP) but sampling in San Pablo Bay did not begin until 1998. 
 * Zooplankton are an important food source for pelagic fish. 
 * Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
 * Biomass in fall tends to be higher than winter, but lower than summer. 
@@ -446,7 +446,7 @@ For more information see: Barros, A. 2021. [Zooplankton Trends in the upper SFE 
 
 ### Background {.unlisted .unnumbered}
 
-* The Fall Midwater Trawl (FMWT) Survey began in 1967 and surveys the pelagic, or open water, fish community.  Indices for many pelagic fishes are at record lows, including Delta and Longfin Smelt, which are  protected by California and/or federal Endangered Species Acts.
+* The [Fall Midwater Trawl](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Fall-Midwater-Trawl) (FMWT) Survey began in 1967 and surveys the pelagic, or open water, fish community.  Indices for many pelagic fishes are at record lows, including Delta and Longfin Smelt, which are  protected by California and/or federal Endangered Species Acts.
 * White Sturgeon is a species of concern and a popular target of recreational fishing. Catch per unit
 effort is based on trammel net surveys.
 * Fall-Run Chinook Salmon, an important species for both the commercial and recreational fishery, is  also a species of concern. Population dynamics are driven by hatchery production and a suite of  environmental variables. Totals counts of both in-river and hatchery returns are shown here.
@@ -648,7 +648,7 @@ For more information see: Malinich, T. D., J. Burns, J. White, K. Hieb, R. McKen
 ### Background {.unlisted .unnumbered}
 
 * Many pelagic fishes declined sharply around 2001 in what is known as the Pelagic Organism  Decline. Some species have continued to decline over the last 15 years.
-* The [Fall Midwater Trawl Survey](https://wildlife.ca.gov/Conservation/Delta/Fall-Midwater-Trawl) was designed to sample age-0 striped bass, but has provided data on many additional species, including Delta Smelt and Longfin Smelt.
+* The [Fall Midwater Trawl Survey](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Fall-Midwater-Trawl) was designed to sample age-0 striped bass, but has provided data on many additional species, including Delta Smelt and Longfin Smelt.
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 
