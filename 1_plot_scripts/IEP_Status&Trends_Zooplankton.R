@@ -133,7 +133,7 @@ zoopl2<-gather(zoop2,taxon,cpue,LIMNOSINE:OITHSPP)
 #names(zoopl2)[1:4]<-c("year","survey","date","station")
 
 #add in individual biomass data
-zoopb2<-left_join(zoopl2,zmass,by="taxon",type="left")
+zoopb2<-left_join(zoopl2,zmass,by="taxon")
 
 #calculate biomass by sample-taxon combo
 zoopb2$bpue<-zoopb2$cpue*zoopb2$mass_indiv_ug

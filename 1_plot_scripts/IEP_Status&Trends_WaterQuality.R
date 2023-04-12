@@ -27,7 +27,7 @@ library(smonitr)
 
 #source(file.path(data_access_root,"WQ_data_download.R"))
 #or skip this if you've updated it recently and just do
-alldata = read_csv(file.path(data_root,"WQ_Discrete_1975-2021.csv"))
+alldata = read_csv(file.path(data_root,"WQ_Discrete_1975-2022.csv"))
 
 
 #GPS coordinates of all sites
@@ -237,3 +237,15 @@ for(Q in c("Q1","Q2","Q3","Q4")) {
 	print(sprintf("Saving plots in a list called %s in the file %s", varName, fileName))
 }
 
+
+# plot for something else
+chl = filter(wqsum, AnalyteName == "chla") %>%
+  mutate(Qyear = qyear + (as.numeric(quarter)-1)/4,
+         region = factor(region, levels = c("spl", "ss", "dt"), labels = c("San Pablo", "Suisun", "Delta")),
+         quarter = factor(quarter, levels = c("Q1", "Q2", "Q3", "Q4"), labels = c("Winter", "Spring", "Summer", "Fall")))
+ggplot( chl, aes(x = Qyear, y = Result))+
+  geom_line() + geom_point(aes(color = quarter)) +
+  facet_wrap(~region, nrow =3)+
+  theme_bw()+
+  ylab("Chlorophyll ug/L")+
+  xlab("Year")

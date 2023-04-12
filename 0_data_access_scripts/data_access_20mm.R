@@ -48,11 +48,11 @@ tables
 # fishCodeTable <- DBI::dbReadTable(con, "FishCodes")
 # stationTable <- DBI::dbReadTable(con, "Station")
 
-## Index stations based on CDFW memos:
+## Index stations based on CDFW memos, adding the new stations from teh north delta for 2022
 index_stations <- data.frame("Station"=c(
   346,345,344,343,342,340,323,405,418,411,602,501,504,519,606,609,610,508,513,520,
   801,804,703,704,706,705,707,809,812,815,901,902,906,919,910,912,914,915,918,711,
-  716)
+  716, 718, 719, 720, 723, 724, 726)
 )
 
 
@@ -283,54 +283,60 @@ dsmIndexDf
 
 ##########################################################################
 ## Longfin Smelt
+# 
+# qry_AvgLSLength <- DBI::dbGetQuery(con, "
+# SELECT Year([SampleDate]) AS [Year], Survey.Survey, FishSample.FishCode,
+# Avg(FishLength.Length) AS AvgOfLength
+# FROM (((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
+# Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN ((FishSample
+# INNER JOIN FishLength ON FishSample.FishSampleID=FishLength.FishSampleID)) 
+# ON Gear.GearID=FishSample.GearID
+# WHERE (((FishLength.Length)<60))
+# GROUP BY Year([SampleDate]), Survey.Survey, FishSample.FishCode
+# HAVING (((FishSample.FishCode)=2))
+# ORDER BY Year([SampleDate]) DESC , Survey.Survey;
+# ")
+# 
+# 
+# qry_MaxofTow <- DBI::dbGetQuery(con, "
+# SELECT Year([SampleDate]) AS [Year], Survey.Survey, Survey.SampleDate, Station.Station,
+# Count(Tow.TowNum) AS CountOfTowNum
+# FROM Survey INNER JOIN (Tow INNER JOIN Station ON Tow.StationID=Station.StationID) ON
+# Survey.SurveyID=Station.SurveyID
+# GROUP BY Year([SampleDate]), Survey.Survey, Survey.SampleDate, Station.Station;
+# ")
+# 
+# 
+# qry_TLT_LS_CPUE_01 <- DBI::dbGetQuery(con, "
+# SELECT Survey.SampleDate, Survey.Survey, Station.Station, Tow.TowNum, Gear.GearCode,
+# Gear.MeterSerial, Gear.MeterCheck AS D, 1.51*0.02687*[D] AS Vt
+# FROM ((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
+# Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID
+# WHERE (((Gear.GearCode)=2))
+# ORDER BY Survey.SampleDate, Survey.Survey, Station.Station, Tow.TowNum;
+# ")
+# 
+# 
+# qry_TLT_LS_CPUE_02 <- DBI::dbGetQuery(con, "
+# SELECT Survey.SampleDate, Station.Station, Tow.TowNum, Count(FishLength.Length) AS CountOfLength,
+# FishCodes.[Common Name], FishSample.Catch, FishSample.FishCode
+# FROM (((((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
+# Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN 
+# FishSample ON Gear.GearID=FishSample.GearID) INNER JOIN FishCodes ON
+# FishSample.FishCode=FishCodes.[Fish Code]) INNER JOIN FishLength ON
+# FishSample.FishSampleID=FishLength.FishSampleID
+# WHERE (((FishLength.Length)<60))
+# GROUP BY Survey.SampleDate, Station.Station, Tow.TowNum, FishCodes.[Common Name],
+# FishSample.Catch, FishSample.FishCode
+# HAVING (((FishSample.FishCode)=2));
+# ")
 
-qry_AvgLSLength <- DBI::dbGetQuery(con, "
-SELECT Year([SampleDate]) AS [Year], Survey.Survey, FishSample.FishCode,
-Avg(FishLength.Length) AS AvgOfLength
-FROM (((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
-Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN ((FishSample
-INNER JOIN FishLength ON FishSample.FishSampleID=FishLength.FishSampleID)) 
-ON Gear.GearID=FishSample.GearID
-WHERE (((FishLength.Length)<60))
-GROUP BY Year([SampleDate]), Survey.Survey, FishSample.FishCode
-HAVING (((FishSample.FishCode)=2))
-ORDER BY Year([SampleDate]) DESC , Survey.Survey;
-")
-
-
-qry_MaxofTow <- DBI::dbGetQuery(con, "
-SELECT Year([SampleDate]) AS [Year], Survey.Survey, Survey.SampleDate, Station.Station,
-Count(Tow.TowNum) AS CountOfTowNum
-FROM Survey INNER JOIN (Tow INNER JOIN Station ON Tow.StationID=Station.StationID) ON
-Survey.SurveyID=Station.SurveyID
-GROUP BY Year([SampleDate]), Survey.Survey, Survey.SampleDate, Station.Station;
-")
-
-
-qry_TLT_LS_CPUE_01 <- DBI::dbGetQuery(con, "
-SELECT Survey.SampleDate, Survey.Survey, Station.Station, Tow.TowNum, Gear.GearCode,
-Gear.MeterSerial, Gear.MeterCheck AS D, 1.51*0.02687*[D] AS Vt
-FROM ((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
-Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID
-WHERE (((Gear.GearCode)=2))
-ORDER BY Survey.SampleDate, Survey.Survey, Station.Station, Tow.TowNum;
-")
-
-
-qry_TLT_LS_CPUE_02 <- DBI::dbGetQuery(con, "
-SELECT Survey.SampleDate, Station.Station, Tow.TowNum, Count(FishLength.Length) AS CountOfLength,
-FishCodes.[Common Name], FishSample.Catch, FishSample.FishCode
-FROM (((((Survey INNER JOIN Station ON Survey.SurveyID=Station.SurveyID) INNER JOIN Tow ON
-Station.StationID=Tow.StationID) INNER JOIN Gear ON Tow.TowID=Gear.TowID) INNER JOIN 
-FishSample ON Gear.GearID=FishSample.GearID) INNER JOIN FishCodes ON
-FishSample.FishCode=FishCodes.[Fish Code]) INNER JOIN FishLength ON
-FishSample.FishSampleID=FishLength.FishSampleID
-WHERE (((FishLength.Length)<60))
-GROUP BY Survey.SampleDate, Station.Station, Tow.TowNum, FishCodes.[Common Name],
-FishSample.Catch, FishSample.FishCode
-HAVING (((FishSample.FishCode)=2));
-")
-
+#I cant't get the access connection to work, so I exported the tables from Access
+qry_AvgLSLength = read_csv("data/20mm/AvgLongfinLength.txt")
+qry_MaxofTow = read_csv("data/20mm/maxoftow.txt") %>%
+  mutate(SampleDate = lubridate::mdy_hms(SampleDate))
+qry_TLT_LS_CPUE_01 = read_csv("data/20mm/LSCPUE1.txt")
+qry_TLT_LS_CPUE_02 = read_csv("data/20mm/LSCPUE2.txt")
 
 qry_TLT_LS_CPUE_03 <- dplyr::left_join(qry_TLT_LS_CPUE_01, qry_TLT_LS_CPUE_02,
 																			 by=c("SampleDate","Station","TowNum"))
@@ -345,6 +351,7 @@ qry_TLT_LS_CPUE_03$Species[is.na(qry_TLT_LS_CPUE_03$Species)] <- "No LS Catch"
 qry_TLT_LS_CPUE_03$LS_Catch <- qry_TLT_LS_CPUE_03$CountOfLength
 qry_TLT_LS_CPUE_03$LS_Catch[is.na(qry_TLT_LS_CPUE_03$LS_Catch)] <- 0
 
+qry_TLT_LS_CPUE_03$SampleDate <- lubridate::mdy_hms(qry_TLT_LS_CPUE_03$SampleDate)
 qry_TLT_LS_CPUE_03$Year <- lubridate::year(qry_TLT_LS_CPUE_03$SampleDate)
 
 
