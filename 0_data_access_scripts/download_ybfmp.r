@@ -9,7 +9,7 @@ library(stringr)
 
 # Download the YBFMP Files
 ybfmp = get_edi_data(233, c("Integrated Water Quality and Fish Catch",
-  "Fish Taxonomy", "Sampling Effort", 
+  "Fish Taxonomy", "Sampling Effort","Historical Monthly Trap Effort",  
   "Stations"), guess_max = 100000)
 
 # Path to sharepoint site
