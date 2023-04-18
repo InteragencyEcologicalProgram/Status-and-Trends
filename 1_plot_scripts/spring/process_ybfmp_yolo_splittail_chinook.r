@@ -14,23 +14,45 @@ catch = ybfmp[["Integrated Water Quality and Fish Catch"]] %>%
   )
 
 # format effort data
-effort = ybfmp[["Sampling Effort"]] 
+effort = ybfmp[["Historical Monthly Trap Effort"]] %>%
+  mutate(Month = as.numeric(factor(Month, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
+                        labels = c(1:12)))) %>%
+  filter(Month %in% c(3,4,5), MethodCode == "RSTR") %>%
+  group_by(Year) %>%
+  summarize(Time = sum(OperationTimeHRS))
 
-# compute catch per effort - total over season
+#old effort is in a different spot....
+
+cpueold = catch %>%
+  filter(
+    MethodCode == "RSTR", 
+    IEPFishCode %in% c("SPLITT", "CHISAL"),
+    Month %in% c(3, 4, 5), Year < 2010,
+  ) %>%
+  group_by(StationCode, MethodCode, IEPFishCode, Year) %>%
+  summarize(
+    Catch = sum(Count, na.rm =T) ) %>%
+  left_join(effort) %>%
+  ungroup() %>%
+  mutate( CPUE = Catch / Time)
+
+
+# now the newer data
 cpue = catch %>%
   filter(
     MethodCode == "RSTR", 
     IEPFishCode %in% c("SPLITT", "CHISAL"),
-	Month %in% c(3, 4, 5)
+	Month %in% c(3, 4, 5), Year >=2010,
   ) %>%
   group_by(StationCode, MethodCode, IEPFishCode, Year) %>%
   summarize(
-    Catch = sum(Count), 
-    Time = as.numeric(sum(TrapHours))
+    Catch = sum(Count, na.rm =T), 
+    Time = as.numeric(sum(TrapHours, na.rm =T))
   ) %>%
   ungroup() %>%
-  mutate(CPUE = Catch / Time)
+  mutate( CPUE = Catch / Time)
 
+cpue = bind_rows(cpueold, cpue)
 
 
 # full plots
@@ -48,6 +70,7 @@ yolo_splittail_all = cpue %>%
 	smr_alttext(stat_name="average Sacramento Splittail catch per unit effort")		
       ##labels = scales::label_number(scale = 1000))
   }
+
 
 yolo_chinook_all = cpue %>%
   filter(IEPFishCode == "CHISAL") %>%
