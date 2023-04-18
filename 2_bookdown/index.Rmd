@@ -18,7 +18,7 @@ load(file.path(fig_root_landing,"water_year.RData"))
 
 Long-term ecological surveys have been a core function of the Interagency Ecological Program (IEP) since the program’s inception in the 1970s. The IEP Seasonal Monitoring Report presents the full time series for selected water quality, plankton, and fisheries surveys conducted by IEP in a single graphical report.  The report is generated on a quarterly basis, with different set of ecosystem variables and surveys highlighted in each season. The report is developed by IEP scientists (including leads for monitoring surveys and the IEP Lead Scientist) and is reviewed by the IEP Science Management Team and Coordinators before online publication.
 
-This report was last updated in July 2022, with available data through `r report_year`.
+This report was last updated in April 2023, with available data through `r report_year`.
 
 ## Water Year Summary
 
