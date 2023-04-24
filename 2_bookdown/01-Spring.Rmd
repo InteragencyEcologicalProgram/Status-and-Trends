@@ -50,7 +50,7 @@ getPlot(outflow_spring)
 ::: {.col-1-background}
 * Organisms in this ecosystem are adapted to high turbidity conditions, and reductions in turbidity can have many negative ecological effects.
 * Higher values for Secchi depth indicate lower turbidity.
-* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) by dropping a black-and-white disk in the water until it disappears.
+* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP) by dropping a black-and-white disk in the water until it disappears.
 :::
 
 ::: {.col-2-background}
@@ -147,7 +147,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::: {.row}
 ::: {.col-1-background}
-* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
+* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP). 
 * Fish growth and reproduction is highest in certain temperature ranges.
 * Increasing Spring temperatures may lower Delta Smelt reproduction.
 * Temperatures tend to be similar between regions in the spring.
@@ -236,7 +236,7 @@ getPlot(water_quality_spring$temp_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Jeffries, et al. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. https://jeb.biologists.org/content/219/11/1705.short DOI: https://doi.org/10.1242/jeb.134528 
+For more information see: Bashevkin, S. M., B. Mahardja, and L. R. Brown. 2022. Warming in the upper San Francisco Estuary: Patterns of water temperature change from 5 decades of data. Limnology & Oceanography. doi: https://doi.org/10.1002/lno.12057 
 ```
 
 ***
@@ -248,7 +248,7 @@ For more information see: Jeffries, et al. 2016. Effects of high temperatures on
 :::: {.row}
 ::: {.col-1-background}
 * Chlorophyll is an indicator of phytoplankton production, which is low during the Spring.
-* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
+* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP).
 * The invasion of the clam *Potamocorbula amurensis* caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
 :::
 
@@ -335,7 +335,7 @@ getPlot(water_quality_spring$chla_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20. 
+For more information see: Brown, T. 2021. [2019 Phytoplankton Annual Report](https://cadwr.app.box.com/s/08zksus58rekl4tfy12mpxqqpz5bvhp9). IEP Newsletter 40(2):47-52.
 ```
  
 ***
@@ -346,7 +346,7 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 :::: {.row}
 ::: {.col-1-background}
-* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297), but sampling in San Pablo Bay did not begin until 1998. 
+* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP), but sampling in San Pablo Bay did not begin until 1998. 
 * Zooplankton are an important food source for pelagic fish. 
 * Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
 * Biomass in Spring tends to be higher than Winter, but lower than Summer. 
@@ -441,7 +441,7 @@ getPlot(zooplankton_spring$zoop_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Newsletter 32(1):21-32. Available on request: iepnewsletter@water.ca.gov
+For more information see: Barros, A. 2021. [Zooplankton Trends in the upper SFE 1974-2018.](https://cadwr.app.box.com/s/3fo2sh8hnyx5rv6btmu2ydsqif12zp4l) IEP Newsletter 40(1):5-14. 
 ```
 
 ***
@@ -450,9 +450,9 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2017. IEP Ne
 
 ### Background {.unlisted .unnumbered}
 
-* Splittail are a native minnow that spawn on floodplains, so they have high reproduction during high flow years when floodplains are inundated with water. Juvenile splittail are sampled by DWR’s [Yolo Bypass Monitoring Program](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.233.2)'s rotory screw trap. 
+* Splittail are a native minnow that spawn on floodplains, so they have high reproduction during high flow years when floodplains are inundated with water. Juvenile splittail are sampled by DWR’s [Yolo Bypass Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Yolo-Bypass)'s rotory screw trap. 
 * Adult Spring-Run Chinook Salmon return from the ocean during the spring. Populations are calculated by CDFW's [Fisheries Branch ](http://www.cbr.washington.edu/sacramento/data/query_adult_grandtab.html) based on redd counts, carcass surveys, fish entering hatcheries, and live fish counts. 
-* Juvenile Winter-Run Chinook salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
+* Juvenile Winter-Run Chinook salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 
@@ -554,7 +554,7 @@ getPlot(chinook_winterByLength_allYears_fig)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Kwan, N., Stuart, C., Shakya, A., Jenkins, J., and Schreier, B. 2019. 2016-2017 Yolo Bypass Fisheries Monitoring Status and Trends Report. Interagency Ecological Program Newsletter, 36(1): 27–35. Available on request: iepnewsletter@water.ca.gov
+For more information see: Kwan, N., H. Hudson, A. Casby, and B. Schreier. 2021. [2018-2019 Yolo Bypass Fisheries Monitoring Status and Trends Report](https://cadwr.app.box.com/s/08zksus58rekl4tfy12mpxqqpz5bvhp9). IEP Newsletter 40(2):35-45. 
 ```
 
 ***
@@ -563,9 +563,9 @@ For more information see: Kwan, N., Stuart, C., Shakya, A., Jenkins, J., and Sch
 
 ### Background {.unlisted .unnumbered}
 
-* Delta Smelt and Longfin Smelt have been in decline since the early 2000s. The [CDFW 20mm Survey](https://wildlife.ca.gov/Conservation/Delta/20mm-Survey) was designed to sample post-larval and juvenile Delta Smelt, and samples in San Pablo, Suisun, and the Delta. 
+* Delta Smelt and Longfin Smelt have been in decline since the early 2000s. The [CDFW 20mm Survey](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/20-mm) was designed to sample post-larval and juvenile Delta Smelt, and samples in San Pablo, Suisun, and the Delta. 
 * Longfin Smelt frequently spawn further downstream than Delta Smelt, so the 20 mm Survey does not cover their entire range, but still provides an indication of population-level trends.
-* Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm), located at the confluence of the Sacramento and San Joaquin Rivers. 
+* Juvenile Winter-Run Chinook Salmon out-migrate to the ocean in spring, and are sampled by the USFWS’s [Chipps Island Trawl](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish), located at the confluence of the Sacramento and San Joaquin Rivers. 
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 

@@ -6,6 +6,8 @@
 #Created by Nick Rasmussen
 #last updated: 11/3/2020 by Rosemary Hartman
 
+source("setup.R")
+
 #packages
 library(ggplot2) #plots
 library(zoo)  # yearmon and yearqtr classes

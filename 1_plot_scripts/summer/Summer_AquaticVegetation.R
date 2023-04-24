@@ -8,7 +8,9 @@
 #Data acquired from Shruti Khanna (CDFW)
 
 #Author: Nick Rasmussen 
-#Updated: March 3, 2022
+#Updated: April 18, 2023
+
+source("setup.R")
 
 #required packages
 library(tidyverse) #suite of data science tools
@@ -22,7 +24,7 @@ library(smonitr) #standardizes formatting of plots
 # 1. Import Data ----------------------------------------------------------
 
 # Import vegetation data
-veg<-read_csv(file = "data/AquaticVegCoverage_2004-2020_CSTARS_report.csv") %>% 
+veg<-read_csv(file = "data/AquaticVegCoverage_CSTARS_report.csv") %>% 
   glimpse()
 
 #2. Data frame manipulations in preparation for plotting-------------------
@@ -66,21 +68,19 @@ veg_ft$type = factor(veg_ft$type, levels=c('fav','sav'))
 
 #4. Create and export plot---------------------------------------------
 
-report_year <- 2021
-
 #stacked bar plot of percent coverage
 (veg_perc <- ggplot(data=veg_ft,aes(x=year, y=perc, fill=type)) + 
 	#specifies the independent and dependent variables as well as groupings
 	geom_bar(position="stack", stat="identity", colour="grey25")+  
 	#specifies that this is a stacked bar plot
-	smr_theme()+
+	smr_theme_update()+
 	#implements standardized plot formatting
 	ylab("Water area occupied") + xlab("Year")+
 	#x- and y-axis labels
 	scale_y_continuous(labels=function(x) paste0(x, "%"))+  # use default expansion
 	#adds a percent sign after each y axis tick label number
 	scale_fill_manual(name= NULL
-	                  ,labels=c("Floating","Submersed")
+	                  ,labels=c("Floating","Submerged")
 	                  ,values=c("#88BA33","#556B2F")
 	                  ,guide=guide_legend(keyheight=0.5)
 	                  )  +
@@ -89,18 +89,19 @@ report_year <- 2021
 	#adds horizontal line to plot to indicate long term mean for data
 	smr_x_axis(report_year, type="recent", season="annual")  +
 	#implements standardized x-axis range of years
+  stat_missing(size=2.5) + 
   #stat_missing(size=2, nudge_y=max(veg_ft$perc)*0.02) + 
   #adds symbols for missing data, customizes symbol size, and nudged the symbol a little above x-axis (2% of y-axis range)
 	theme(#legend.key.size=unit(0.3,"cm"), 
 				#legend.spacing.x=unit(0.1, 'cm'),  
 				legend.box.spacing=unit(0, units="cm"), 
-				legend.margin=margin(t=0,r=0,b=2,l=0, unit="pt"))  
+				legend.margin=margin(t=0,r=0,b=2,l=0, unit="pt")) + 
 	#reduces white space between legend and top of plot
-	#smr_caption(data=veg_ft, aes(x=year, y=perc, fill=NULL), 
-	#						stat_name="percentage of water area occupied by aquatic vegetation", 
-	#						report_year=report_year)+  
-	#smr_alttext(data=veg_ft, aes(x=year, y=perc, fill=NULL), 
-	#						stat_name="percentage of water area occupied by aquatic vegetation")
+	smr_caption(data=veg_sum, aes(x=year, y=tot_perc), inherit.aes=FALSE, 
+							stat_name="percentage of water area occupied by aquatic vegetation", 
+							report_year=report_year)+  
+	smr_alttext(data=veg_sum, aes(x=year, y=tot_perc), inherit.aes=FALSE, 
+							stat_name="percentage of water area occupied by aquatic vegetation")
 )
 
 getCaption(veg_perc)

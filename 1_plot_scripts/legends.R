@@ -1,5 +1,7 @@
 #TESTING my mean line legend
 
+source("setup.R")
+
 library(ggplot2)
 
 mline = ggplot() + 

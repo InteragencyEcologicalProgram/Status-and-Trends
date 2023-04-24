@@ -6,6 +6,8 @@
 #First I"ll look at redbluff
 #unfortunately, I need to dowload it one year at a time.
 
+source("setup.R")
+
 library(tidyverse)
 library(lubridate)
 library(smonitr)

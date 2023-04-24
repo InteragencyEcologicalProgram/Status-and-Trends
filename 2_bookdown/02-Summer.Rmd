@@ -49,7 +49,7 @@ getPlot(outflow_summer)
 ::: {.col-1-background}
 * Organisms in this ecosystem are adapted to high turbidity conditions, and reductions in turbidity can have many negative ecological effects.
 * Higher values for Secchi depth indicate lower turbidity.
-* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) by dropping a black-and-white disk in the water until it disappears.
+* Secchi depth is measured monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP) by dropping a black-and-white disk in the water until it disappears.
 :::
 
 ::: {.col-2-background}
@@ -146,7 +146,7 @@ For more information see: Schoellhamer, D. H. 2011. Sudden clearing of estuarine
 
 :::: {.row}
 ::: {.col-1-background}
-* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297). 
+* Water temperature is monitored monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP). 
 * High temperature can increase productivity and may trigger harmful algal blooms.
 * Increasing Summer temperatures may limit juvenile smelt survival.
 * Summer temperatures are lower closer to the ocean and slightly higher in the Delta.
@@ -235,7 +235,7 @@ getPlot(water_quality_summer$temp_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Jeffries, et al. 2016. Effects of high temperatures on threatened estuarine fishes during periods of extreme drought. The Journal of Experimental Biology 219(11):1705-1716. https://jeb.biologists.org/content/219/11/1705.short DOI: https://doi.org/10.1242/jeb.134528 
+For more information see: Bashevkin, S. M., B. Mahardja, and L. R. Brown. 2022. Warming in the upper San Francisco Estuary: Patterns of water temperature change from 5 decades of data. Limnology & Oceanography. doi: https://doi.org/10.1002/lno.12057
 ```
 
 ***
@@ -247,7 +247,7 @@ For more information see: Jeffries, et al. 2016. Effects of high temperatures on
 :::: {.row}
 ::: {.col-1-background}
 * Chlorophyll is an indicator of phytoplankton production, which is low during the summer.
-* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297).
+* Phytoplankton are the base of the pelagic food web. It is sampled monthly by DWR’s [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP).
 * The invasion of the clam *Potamocorbula amurensis* caused a decline in phytoplankton and zooplankton after 1986 – especially in Suisun Bay.
 :::
 
@@ -334,7 +334,7 @@ getPlot(water_quality_summer$chla_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chlorophyll-a and Pheophytin-a Status and Trends 2017. IEP Newsletter 32(1):14-20.  Available on request: iepnewsletter@water.ca.gov
+For more information see: Brown, T. 2021. [2019 Phytoplankton Annual Report](https://cadwr.app.box.com/s/08zksus58rekl4tfy12mpxqqpz5bvhp9). IEP Newsletter 40(2):47-52.
 ```
  
 ***
@@ -345,7 +345,7 @@ For more information see: Cahoon, T. and T. Brown. 2018. Phytoplankton, Chloroph
 
 :::: {.row}
 ::: {.col-1-background}
-* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) but sampling in San Pablo Bay did not begin until 1998. 
+* Zooplankton is sampled monthly by the CDFW/DWR [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP) but sampling in San Pablo Bay did not begin until 1998. 
 * Zooplankton are an important food source for pelagic fish. 
 * Calanoid copepods and mysids are particularly good fish food. Cyclopoid copepods are not as good for fish food.
 * Biomass in summer tends to be the highest of the year, particularly for the calanoid copepod *Pseudodiaptomous forbesi*. 
@@ -440,7 +440,7 @@ getPlot(zooplankton_summer$zoop_dt)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Newsletter 32(1):21-32. Available on request: iepnewsletter@water.ca.gov
+For more information see: Barros, A. 2021. [Zooplankton Trends in the upper SFE 1974-2018.](https://cadwr.app.box.com/s/3fo2sh8hnyx5rv6btmu2ydsqif12zp4l) IEP Newsletter 40(1):5-14. 
 ```
  
 ***
@@ -449,9 +449,9 @@ For more information see: Hennessy, A. 2018. Zooplankton Monitoring 2018. IEP Ne
 
 ### Background {.unlisted .unnumbered}
 
-* Delta Smelt, listed as threatened by the Endangered Species Act, have been tracked by [CDFW’s Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey) since 1959 in Suisun Bay, San Pablo Bay, and the Delta. 
-* Northern Anchovy are an important forage fish in the brackish-saline regions of the estuary. They are sampled best by [CDFW’s San Francisco Bay Study](https://wildlife.ca.gov/Conservation/Delta/Bay-Study).
-* Sacramento Pikeminnow is a native cyprinid that is one of the few piscivorous native fish in the Delta. They are sampled by [USFWS's DJFMP](https://www.fws.gov/lodi/juvenile_fish_monitoring_program/jfmp_index.htm) beach seine surveys throughout the estuary.
+* Delta Smelt, listed as threatened by the Endangered Species Act, have been tracked by [CDFW’s Townet Survey](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Summer-Townet) since 1959 in Suisun Bay, San Pablo Bay, and the Delta. 
+* Northern Anchovy are an important forage fish in the brackish-saline regions of the estuary. They are sampled best by [CDFW’s San Francisco Bay Study](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/San-Francisco-Bay-Study).
+* Sacramento Pikeminnow is a native cyprinid that is one of the few piscivorous native fish in the Delta. They are sampled by [USFWS's DJFMP](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Delta-Juvenile-Fish) beach seine surveys throughout the estuary.
 
 ### Average Fish Catch Trends by Species {.unlisted .unnumbered}
 
@@ -476,13 +476,13 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center> __Northern Anchovy__ </center>
+<center> __[Northern Anchovy](https://www.montereybayaquarium.org/animals/animals-a-to-z/northern-anchovy)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center> __Sacramento Pikeminnow__ </center>
+<center> __[Sacramento Pikeminnow](https://calfish.ucdavis.edu/species/?uid=82&ds=241)__ </center>
 :::
 ::::
 
@@ -553,7 +553,9 @@ getPlot(DJFMP_sacpikeminnow_summer)
 ::::
 
 ```{block, type='disclaimer'}
-For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Study Fishes Status and Trends Report for the San Francisco Estuary, 2012–2016. IEP Newsletter 31(2):3-43. Available on request: iepnewsletter@water.ca.gov
+For more information see: Malinich, T. D., J. Burns, J. White, K. Hieb, R. McKenzie, S. B. Slater, and A. Chorazyczewski. 2021. 2020 [Status and Trends Report for Pelagic Fishes in the San Francisco Estuary](https://cadwr.app.box.com/file/926369689193?s=hca0a3lzvfdapvp1lpu00oluop6xogdc). IEP Newsletter 40(3):75-97.
+
+McKenzie, R. 2021. [2019–2020 Delta Juvenile Fish Monitoring Program - Nearshore Fishes Annual Report](https://cadwr.app.box.com/s/08zksus58rekl4tfy12mpxqqpz5bvhp9). IEP Newsletter 40(2):13-24. 
 
 ```
 
@@ -563,8 +565,8 @@ For more information see: Hieb, K., J. Bautista, and J. Giannetta. 2018. Bay Stu
 
 ### Background {.unlisted .unnumbered}
 
-* Delta Smelt have been in severe decline over the past two decades, with a [Summer Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey)  index of zero in 2015, 2016, 2018, and 2019.
-* *Microcystis* is a toxic cyanobacteria first found in the Delta in 1998. *Microcystis* presence has been documented by the [Environmental Monitoring Program](https://emp.baydeltalive.com/wiki/12297) and the  [CDFW Summer Townet Survey](https://wildlife.ca.gov/Conservation/Delta/Townet-Survey) during their water quality sampling.
+* Delta Smelt have been in severe decline over the past two decades, with a [Summer Townet Survey](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Summer-Townet)  index of zero in 2015, 2016, 2018, and 2019.
+* *Microcystis* is a toxic cyanobacteria first found in the Delta in 1998. *Microcystis* presence has been documented by the [Environmental Monitoring Program](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/EMP) and the  [CDFW Summer Townet Survey](https://iep.ca.gov/Science-Synthesis-Service/Monitoring-Programs/Summer-Townet) during their water quality sampling.
 * Aquatic vegetation in the Delta has increased significantly in recent years. This vegetation is composed mostly of non-native invasive plant species and is categorized as either floating or submerged types. Coverage is estimated by [UC-Davis](http://cstars.metro.ucdavis.edu/) using remote sensing of the North and Central Delta.
 
 ### Average Trends by Parameter {.unlisted .unnumbered}
@@ -590,13 +592,13 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center> __Microcystis__ </center>
+<center> __[Microcystis](http://oceandatacenter.ucsc.edu/PhytoGallery/Freshwater/Microcystis.html)__ </center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center> __Invasive Aquatic Vegetation__ </center>
+<center> __[Invasive Aquatic Vegetation](https://dbw.parks.ca.gov/?page_id=28994)__ </center>
 :::
 ::::
 
@@ -610,15 +612,15 @@ knitr::include_graphics(file.path(fig_root_static,"delta_smelt.png"))
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-```{r fig.cap= "picture of a beaker with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
-knitr::include_graphics(file.path(fig_root_static,"microcystis.bmp"))
+```{r fig.cap= "water with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
+knitr::include_graphics(file.path(fig_root_static,"microcystis.jpg"))
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-```{r fig.cap= "picture of a beaker with flakes of microcystis floating in it", fig.align='center', echo=FALSE}
+```{r fig.cap= "stem of the plant egeria densa", fig.align='center', echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"egeria.jpeg"))
 ```
 :::
@@ -669,7 +671,9 @@ getPlot(veg_perc)
 ```{block, type='disclaimer'}
 For more information see: 
 
-Ta et al. 2017. Invasive aquatic vegetation management in the Sacramento–San Joaquin River Delta: status and recommendations. San Francisco Estuary and Watershed Science 15(4) https://escholarship.org/uc/item/828355w6 
+Rasmussen, N., J. L. Conrad, H. Green, S. Khanna, J. Caudill, P. Gilbert, P. Goertler, H. Wright, K. Hoffmann, S. Lesmeister, J. Jenkins, L. Takata, D. Boswort, T. Flynn, E. Hard, and T. Sommer. 2020. [2017-2018 Delta Smelt Resiliency Strategy Action for Enhanced Control of Aquatic Weeds and Understanding Effects of Herbicide Treatment on Habitat](https://cadwr.app.box.com/v/InteragencyEcologicalProgram/file/827424129137), Interagency Ecological Program, Sacramento, CA. 332 pg.  
 
-Lehman, P. W., T. Kurobe, S. Lesmeister, D. Baxa, A. Tung, and S. J. Teh. 2017. Impacts of the 2014 severe drought on the Microcystis bloom in San Francisco Estuary. Harmful Algae 63(Supplement C):94-108. https://www.sciencedirect.com/science/article/pii/S1568988316302177 
+Lehman, P. W., T. Kurobe, K. Huynh, S. Lesmeister, and S. J. Teh. 2021. Covariance of Phytoplankton, Bacteria, and Zooplankton Communities Within Microcystis Blooms in San Francisco Estuary. Frontiers in Microbiology 12(1184). doi: https://doi.org/10.3389/fmicb.2021.632264 
+
+[California Harmful Algal Blooms Portal](https://mywaterquality.ca.gov/habs/)
 ```

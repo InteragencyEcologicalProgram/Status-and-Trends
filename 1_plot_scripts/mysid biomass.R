@@ -1,10 +1,12 @@
 #Let's figure out how to go from lengths to biomass for mysids
 
+source("setup.R")
+
 library(tidyverse)
 library(lubridate)
 library(readxl)
 
-#Mysid biomass is calculated using lengths, which isn't available lonline
+#Mysid biomass is calculated using lengths, 
 mysids = read_xlsx("data/mysid_amphipod_lengths2019.xlsx")
 
 conversion = read.csv("data/Mysid_bimass_conversions.csv")

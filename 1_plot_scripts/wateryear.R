@@ -1,12 +1,17 @@
 #file to produce a graph of water year type and Sacramento Valley index over time for cover of report
 
+source("setup.R")
+
 library(tidyverse)
 library(smonitr)
 
 
 load(file.path(data_root,"wtryrs.RData"))
 
-indicies = filter(water_year_indices, location != "San Joaquin Valley")
+indicies = filter(water_year_indices, location != "San Joaquin Valley") 
+in2022 = data.frame(WY = 2022, Index = 4.5, Yr_type = "Critical")
+indicies = bind_rows(indicies, in2022)
+
 row_num_new <- nrow(indicies) + 1
 if(!(report_year %in% indicies$WY)) {
   indicies[row_num_new, ] <- rep(NA, ncol(indicies))
