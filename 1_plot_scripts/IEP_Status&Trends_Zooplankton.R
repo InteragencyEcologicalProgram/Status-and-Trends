@@ -175,12 +175,13 @@ MysidBPUEx = Mysidsbc %>%
   filter(Taxname %in%c("Neomysis mercedis", "Hyperacanthomysis longirostris")) %>%
   mutate(Year = year(SampleDate)) %>%
   group_by(Year, SampleDate, Station) %>%
-summarize(bpue = sum(BPUE, na.rm = T)) %>%
+summarize(bpue = sum(bpue, na.rm = T)) %>%
   mutate(taxon = "mys")
 
 
 #combine all zoop data sets
 zll = mutate(zll, taxon = cat, cat = NULL)
+
 mza<-bind_rows(zll, MysidBPUEx)
 
 #Stations: formatting data---------
