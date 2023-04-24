@@ -8,7 +8,7 @@
 #Data acquired from Shruti Khanna (CDFW)
 
 #Author: Nick Rasmussen 
-#Updated: March 3, 2022
+#Updated: April 18, 2023
 
 source("setup.R")
 
@@ -24,7 +24,7 @@ library(smonitr) #standardizes formatting of plots
 # 1. Import Data ----------------------------------------------------------
 
 # Import vegetation data
-veg<-read_csv(file = "data/AquaticVegCoverage_2004-2020_CSTARS_report.csv") %>% 
+veg<-read_csv(file = "data/AquaticVegCoverage_CSTARS_report.csv") %>% 
   glimpse()
 
 #2. Data frame manipulations in preparation for plotting-------------------
