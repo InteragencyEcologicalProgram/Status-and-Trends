@@ -7,6 +7,8 @@
 #Created by Nick Rasmussen
 #udated by Rosemary Hartman 2/18/2020
 
+source("setup.R")
+
 #packages
 library(ggplot2) 
 library(cowplot) #plot_grid()

@@ -1,9 +1,12 @@
+
+source("setup.R")
+
 library(lubridate)
 
 load(file.path(data_root, "ybfmp.RData"))
 
 # format catch data
-catch = ybfmp[["YBFMP_Fish_Catch_and_Water_Quality.csv"]] %>%
+catch = ybfmp[["Integrated Water Quality and Fish Catch"]] %>%
   mutate(
     SampleDate = mdy(SampleDate),
     Month = as.integer(month(SampleDate)),
@@ -11,33 +14,50 @@ catch = ybfmp[["YBFMP_Fish_Catch_and_Water_Quality.csv"]] %>%
   )
 
 # format effort data
-effort = ybfmp[["YBFMP_Trap_Effort.csv"]] %>%
-  mutate(
-    Year = as.integer(Year),
-    Month = as.integer(factor(Month, month.abb))
-  )
+effort = ybfmp[["Historical Monthly Trap Effort"]] %>%
+  mutate(Month = as.numeric(factor(Month, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
+                        labels = c(1:12)))) %>%
+  filter(Month %in% c(3,4,5), MethodCode == "RSTR") %>%
+  group_by(Year) %>%
+  summarize(Time = sum(OperationTimeHRS))
 
-# compute catch per effort - total over season
+#old effort is in a different spot....
+
+cpueold = catch %>%
+  filter(
+    MethodCode == "RSTR", 
+    IEPFishCode %in% c("SPLITT", "CHISAL"),
+    Month %in% c(3, 4, 5), Year < 2010,
+  ) %>%
+  group_by(StationCode, MethodCode, IEPFishCode, Year) %>%
+  summarize(
+    Catch = sum(Count, na.rm =T) ) %>%
+  left_join(effort) %>%
+  ungroup() %>%
+  mutate( CPUE = Catch / Time)
+
+
+# now the newer data
 cpue = catch %>%
   filter(
     MethodCode == "RSTR", 
-    CommonName %in% c("Splittail", "Chinook Salmon"),
-	Month %in% c(3L, 4L, 5L)
+    IEPFishCode %in% c("SPLITT", "CHISAL"),
+	Month %in% c(3, 4, 5), Year >=2010,
   ) %>%
-  left_join(effort, by = c("Year", "Month", "MethodCode")) %>%
-  group_by(StationCode, MethodCode, CommonName, Year) %>%
+  group_by(StationCode, MethodCode, IEPFishCode, Year) %>%
   summarize(
-    Catch = sum(Count), 
-    Time = as.numeric(sum(OperationTimeHRS))
+    Catch = sum(Count, na.rm =T), 
+    Time = as.numeric(sum(TrapHours, na.rm =T))
   ) %>%
   ungroup() %>%
-  mutate(CPUE = Catch / Time)
+  mutate( CPUE = Catch / Time)
 
+cpue = bind_rows(cpueold, cpue)
 
 
 # full plots
 yolo_splittail_all = cpue %>%
-  filter(CommonName == "Splittail") %>% 
+  filter(IEPFishCode== "SPLITT") %>% 
   dplyr::mutate(CPUE_1000 = CPUE*1000) %>% {
     ggplot(., aes(x = Year, y = CPUE_1000)) +
     smr_theme_update() + 
@@ -51,8 +71,9 @@ yolo_splittail_all = cpue %>%
       ##labels = scales::label_number(scale = 1000))
   }
 
+
 yolo_chinook_all = cpue %>%
-  filter(CommonName == "Chinook Salmon") %>%
+  filter(IEPFishCode == "CHISAL") %>%
 	mutate(CPUE_1000 = CPUE*1000) %>% {
     ggplot(., aes(x = Year, y = CPUE_1000)) +
       smr_theme_update() +
@@ -67,7 +88,7 @@ yolo_chinook_all = cpue %>%
 
 # recent plots
 yolo_splittail_recent = cpue %>%
-  filter(CommonName == "Splittail") %>% 
+  filter(IEPFishCode== "SPLITT") %>% 
 	mutate(CPUE_1000 = CPUE*1000) %>% {
     ggplot(., aes(x = Year, y = CPUE_1000)) +
       smr_theme_update() +
@@ -80,7 +101,7 @@ yolo_splittail_recent = cpue %>%
   }
 
 yolo_chinook_recent = cpue %>%
-  filter(CommonName == "Chinook Salmon") %>% 
+  filter(IEPFishCode== "CHISAL") %>% 
 	mutate(CPUE_1000 = CPUE*1000) %>% {
     ggplot(., aes(x = Year, y = CPUE_1000)) +
     smr_theme_update() +
@@ -97,6 +118,7 @@ yolo_chinook_recent = cpue %>%
 
 yolo_splittail_all
 getCaption(yolo_splittail_all)
+
 getAlttext(yolo_splittail_all)
 
 save(list=c("yolo_splittail_all"), 

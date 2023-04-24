@@ -1,3 +1,6 @@
+
+source("setup.R")
+
 library(readxl)
 library(lubridate)
 
@@ -6,7 +9,7 @@ Stations<-read_csv(file.path(data_root,"Master station key.csv"), col_types = "c
 
 Micro_season <- "Summer"
 
-EMP<-read_csv(file.path(data_root,"WQ_Discrete_1975-2019.csv"))%>%
+EMP<-read_csv(file.path(data_root,"WQ_Discrete_1975-2022.csv"))%>%
   select(Date, Station, Result, Parameter=AnalyteName)%>%
   filter(Parameter=="Microcystis" & !is.na(Result))%>%
   select(-Parameter)%>%
@@ -79,7 +82,7 @@ Microcystis_summer <- ggplot(data=Micro, aes(x=Year, y=Frequency, fill=Severity)
   annotate("text", x=2004, y=0.1, label="Data not collected \n until 2007", 
 					 hjust=0, size=2.7) + 
 	smr_caption_manual(caption=paste("There were fewer observations of very high", 
-																	 "<em>Microsystsis</em> than in previous years.")) + 
+																	 "<em>Microcystis</em> than in previous years.")) + 
 	smr_alttext_manual(alttext=paste0("Graph of microcystis abundance from ",
 																	 min(Micro$Year)," to ",max(Micro$Year),"."))
 

@@ -7,6 +7,8 @@
 # Bay Study website: https://wildlife.ca.gov/Conservation/Delta/Bay-Study
 # Bay Study FTP site: https://filelib.wildlife.ca.gov/Public/BayStudy/
 
+source("setup.R")
+
 # Load readxl package
 library(readxl)
 

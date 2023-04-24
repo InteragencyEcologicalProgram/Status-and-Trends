@@ -11,6 +11,8 @@
 #Rotifer pump: Cyclopoids (Oithona, Limnoithona)
 #Mysid net: all species
 
+source("setup.R")
+
 #packages
 
 #Install the package we wrote for this project (only needs to be done once)
@@ -20,15 +22,16 @@
 library(colorspace) #color palette
 library(zoo) ## yearmon and yearqtr classes
 library(cowplot)
+
 library(lubridate)
+
 library(readxl)
 library(tidyverse)
 library(smonitr)
 
 #import datasets----------------
 #source("0_data_access_scripts/data_access_zoops.R")
-#source("1_plot_scripts/mysid biomass.R")
-source("1_plot_scripts/util.r")
+
 source("1_plot_scripts/legends.R")
 
 
@@ -81,7 +84,7 @@ zoop<-subset(zoop_s,select=c("Year","Survey","SampleDate","Station","ACARTELA","
 zoopl<-pivot_longer(zoop, cols = (ACARTELA:OTHCLADO), names_to= "taxon", values_to = "cpue")
 
 #modify column headers
-names(zoopl)[1:4]<-c("year","survey","date","station")
+#names(zoopl)[1:4]<-c("year","survey","date","station")
 
 #format some columns
 zoopl$taxon<-factor(zoopl$taxon)
@@ -127,10 +130,10 @@ zoop2<-subset(zoop_s2,select=c("Year","Survey","SampleDate","Station","LIMNOSINE
 zoopl2<-gather(zoop2,taxon,cpue,LIMNOSINE:OITHSPP)
 
 #name columns
-names(zoopl2)[1:4]<-c("year","survey","date","station")
+#names(zoopl2)[1:4]<-c("year","survey","date","station")
 
 #add in individual biomass data
-zoopb2<-left_join(zoopl2,zmass,by="taxon",type="left")
+zoopb2<-left_join(zoopl2,zmass,by="taxon")
 
 #calculate biomass by sample-taxon combo
 zoopb2$bpue<-zoopb2$cpue*zoopb2$mass_indiv_ug
@@ -158,7 +161,7 @@ zall2 = merge(zall, Zoopcats)
 
 
 #add together biomass for all species within each of the three taxonomic groups
-zll<- group_by(zall2, year, survey, date, station, cat) %>%
+zll<- group_by(zall2, Year, Survey, SampleDate, Station, cat) %>%
   summarize(cpue = sum(cpue, na.rm = T), bpue = sum(bpue, na.rm = T))
 
 
@@ -168,18 +171,13 @@ zll<- group_by(zall2, year, survey, date, station, cat) %>%
 
 #next format the bpue dataset
 #we just want total mysid BPUE
-MysidBPUEx = MysidBPUE %>%
-  group_by(SurveyCode, Year, Survey, SurveyRep, SampleDate, StationNZ, Time) %>%
-summarize(bpue = sum(`Acanthomysis aspera`, `Acanthomysis hwanhaiensis`, 
-                     `Alienacanthomysis macropsis`, `Deltamysis holmquistae`,
-                                         `Hyperacanthomysis longirostris`, `Neomysis kadiakensis`, 
-                                         `Neomysis mercedis`,  Unidentified)) %>%
-  rename(year = Year, survey = Survey, station = StationNZ, date = SampleDate) %>%
+MysidBPUEx = Mysidsbc %>%
+  filter(Taxname %in%c("Neomysis mercedis", "Hyperacanthomysis longirostris")) %>%
+  mutate(Year = year(SampleDate)) %>%
+  group_by(Year, SampleDate, Station) %>%
+summarize(bpue = sum(BPUE, na.rm = T)) %>%
   mutate(taxon = "mys")
 
-
-#create column with bpue in micrograms instead of milligrams because rest of zoop is in micrograms
-MysidBPUEx$bpue<-MysidBPUEx$bpue*1000
 
 #combine all zoop data sets
 zll = mutate(zll, taxon = cat, cat = NULL)
@@ -195,7 +193,8 @@ names(station)
 station$long_dec<-station$long_deg + station$long_min/60 + station$long_sec/3600
 
 #reduce to just needed columns
-stati<-subset(station,select=c("station","long_dec"))
+stati<-subset(station,select=c("station","long_dec")) %>%
+  rename(Station = station)
 str(stati)
 #sort by longitude
 stati<-stati[order(stati$long_dec),]
@@ -203,7 +202,7 @@ stati<-stati[order(stati$long_dec),]
 #merge with zooplankton cpue data
 mcpg<-left_join(mza, stati)
 
-unique(mcpg$station) #18 stations: 16 core stations + 2 san pablo stations
+unique(mcpg$Station) #18 stations: 16 core stations + 2 san pablo stations
 
 #add column for geographic region based on longitude
 mcpg$region<-ifelse(mcpg$long_dec > 122.216, "spl", 
@@ -213,6 +212,7 @@ mcpg$region<-ifelse(mcpg$long_dec > 122.216, "spl",
 #make region a factor
 mcpg$region<-factor(mcpg$region, levels=c('spl','ss','dt'))
 
+
 #add column for season
 #a bit tricky because winter is Dec. of one year and then Jan./Feb. of the following year
 #https://stackoverflow.com/questions/41234275/calculate-seasonal-mean-with-a-n-years-time-series-with-monthly-data?rq=1
@@ -220,14 +220,14 @@ mcpg$region<-factor(mcpg$region, levels=c('spl','ss','dt'))
 
 #combine month and year
 mcpg = ungroup(mcpg) %>%
-  mutate( month = month(date), 
-              ym =as.yearmon(paste(month, year), format =  "%m %Y"),
+  mutate( month = month(SampleDate), 
+              ym =as.yearmon(paste(month, Year), format =  "%m %Y"),
               yq =as.yearqtr(ym + 1/12, format = "%Y Q%q"),
               yq2 = yq) %>%
   separate(yq2, c('qyear', 'quarter'), sep=" ") %>%
   mutate(quarter = factor(quarter, levels=c('Q1','Q2','Q3','Q4')),
          qyear = as.integer(qyear)) %>%
-  filter(!is.na(region), !(year < 1975), !(year<1998 & region == "spl"))
+  filter(!is.na(region), !(Year < 1975), !(Year<1998 & region == "spl"))
 
 
 #generate means by region, year, quarter, and taxon
@@ -263,7 +263,7 @@ bpl<-ggplot(zmeans, aes(x = qyear, y = bpue, fill = taxon)) +
     scale_fill_manual(name = "Taxon",labels=c("Calanoids","Cladocerans","Cyclopoids","Mysids")
                       ,values=diverge_hcl(4,h=c(55,160),c=30,l=c(35,75),power=0.7))#+
 #    scale_y_continuous(expression(paste("Zooplankton Biomass (",mu,"g C/m"^" 3", ")")), limits=c(0,max(zmeans$bpue))))
-#NOTE: mysids overwhelm everything else because they are so much larger
+
 
 bpl
 
@@ -286,7 +286,7 @@ zoops = function(reg, quart, data, reportyear, verbose=TRUE) {
     
     #################NOTE: I can't figure out how to put a missing value triangle for 2021 without
     #having them show up for pre 1975 too, so i'm hard coding this in for now. Lara can probably do better.
-    annotate("point", x = 2021, y = 0, shape = 24, size = 4, fill = "tan2", color = "gray10")+
+    #annotate("point", x = 2021, y = 0, shape = 24, size = 4, fill = "tan2", color = "gray10")+
 		
     #add long-term average line:
     geom_hline(aes(yintercept=meanB), size=0.9, color="red", linetype="dashed") + 

@@ -1,5 +1,7 @@
 #Download the WQ data and get it in the right format
 
+source("setup.R")
+
 library(readxl)
 library(curl)
 library(readr)
@@ -8,9 +10,9 @@ library(lubridate)
 
 #all of EMP's data is now on EDI
 
-EMP = get_edi_data(458, "SACSJ_delta_water_quality_1975_2020.csv", guess_max = 1000000) 
+EMP = get_edi_data(458, "EMP_DWQ_1975_2022", guess_max = 1000000) 
 
-EMP = EMP$SACSJ_delta_water_quality_1975_2020.csv
+EMP = EMP$EMP_DWQ_1975_2022
  
 
 #Switch the field data from wide to long.
@@ -23,5 +25,5 @@ EMP2 = select(EMP, Station, Date, Chla, WTSurface, Secchi, Microcystis) %>%
 
 
 #save the result
-write.csv(EMP2, file.path(data_root,"WQ_Discrete_1975-2020.csv"), row.names = F)
+write.csv(EMP2, file.path(data_root,"WQ_Discrete_1975-2022.csv"), row.names = F)
 

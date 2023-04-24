@@ -5,18 +5,20 @@
 ## The main files are probably too large to store on GitHub, so filter now and 
 ## save smaller csv files.
 
+source("setup.R")
+
 ##########################################################################
 
 
 DJFMP = get_edi_data(244, c("1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv", 
-                            "2002-2021_DJFMP_trawl_fish_and_water_quality_data.csv",
-                            "1976-2021_DJFMP_beach_seine_fish_and_water_quality_data.csv",
+                            "2002-2022_DJFMP_trawl_fish_and_water_quality_data.csv",
+                            "1976-2022_DJFMP_beach_seine_fish_and_water_quality_data.csv",
                             "DJFMP_Fish_Taxonomy.csv",
                             "DJFMP_Site_Locations.csv"), guess_max = 1000000  )
 
 trawlDfRaw_1<- DJFMP[["1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv"]]
-trawlDfRaw_2<- DJFMP[["2002-2021_DJFMP_trawl_fish_and_water_quality_data.csv"]]
-seineDfRaw <- DJFMP[["1976-2021_DJFMP_beach_seine_fish_and_water_quality_data.csv"]]
+trawlDfRaw_2<- DJFMP[["2002-2022_DJFMP_trawl_fish_and_water_quality_data.csv"]]
+seineDfRaw <- DJFMP[["1976-2022_DJFMP_beach_seine_fish_and_water_quality_data.csv"]]
 taxonomyFile <- DJFMP[["DJFMP_Fish_Taxonomy.csv"]]
 siteLatLong <- DJFMP[["DJFMP_Site_Locations.csv"]]
 
@@ -75,10 +77,10 @@ save(chippsData, file = file.path(data_root,"chippsData.RData"))
 
 ##########################################################################
 ## Remove large files:
-
-#unlink(trawlFile1)
-#unlink(trawlFile2)
-#unlink(seineFile)
-#unlink(taxonomyFile)
+# 
+# unlink(trawlFile1)
+# unlink(trawlFile2)
+# unlink(seineFile)
+# unlink(taxonomyFile)
 # unlink(siteFile)
 

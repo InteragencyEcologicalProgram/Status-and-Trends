@@ -1,3 +1,6 @@
+
+source("setup.R")
+
 library(glue)
 library(purrr)
 library(readr)
@@ -5,9 +8,9 @@ library(stringr)
 
 
 # Download the YBFMP Files
-ybfmp = get_edi_data(233, c("YBFMP_Fish_Catch_and_Water_Quality.csv",
-  "YBFMP_Fish_Taxonomy.csv", "YBFMP_Trap_Effort.csv",
-  "YBFMP_Site_locations_latitude_and_longitude.csv"), guess_max = 100000)
+ybfmp = get_edi_data(233, c("Integrated Water Quality and Fish Catch",
+  "Fish Taxonomy", "Sampling Effort","Historical Monthly Trap Effort",  
+  "Stations"), guess_max = 100000)
 
 # Path to sharepoint site
 #sharepoint_path = normalizePath(
