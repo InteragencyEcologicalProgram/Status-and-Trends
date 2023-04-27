@@ -1,5 +1,5 @@
 #Seasonal Monitoring Report
-#Summer 2020
+#Summer 2022
 
 #Purpose: Create plot of invasive aquatic vegetation coverage through time
 #Data represent North + Central Delta only
@@ -8,7 +8,7 @@
 #Data acquired from Shruti Khanna (CDFW)
 
 #Author: Nick Rasmussen 
-#Updated: April 18, 2023
+#Updated: April 27, 2023
 
 source("setup.R")
 
@@ -24,26 +24,22 @@ library(smonitr) #standardizes formatting of plots
 # 1. Import Data ----------------------------------------------------------
 
 # Import vegetation data
-veg<-read_csv(file = "data/AquaticVegCoverage_CSTARS_report.csv") %>% 
+veg<-read_csv(file = "data/AquaticVegCoverage_CSTARS_2022.csv") %>% 
   glimpse()
 
 #2. Data frame manipulations in preparation for plotting-------------------
+#FAV includes water hyacinth and water primrose as well as pennywort and spongeplant
+#percent cover is determined by dividing by mean total water area of the common area of delta
 
 veg_ft <- veg %>% 
   #just keep the needed columns
-  select(year, sav_prop,wh_prop,wp_prop) %>% 
-  rename(sav = sav_prop) %>% 
-  #the original fav_tot_prop column includes pennywort
-  #lets make a new one that is just water hyacinth and water primrose
-  mutate(fav = wh_prop + wp_prop) %>% 
-  #drop unneeded columns
-  select(-c(wh_prop,wp_prop)) %>% 
+  select(year, perc_sav,perc_flt) %>% 
+  rename(sav = perc_sav
+         ,fav = perc_flt) %>% 
   #convert to long format
-  pivot_longer(cols = sav:fav, names_to = "type", values_to = "prop") %>% 
-  #convert proportions to percentages
-  mutate(perc = prop*100) %>% 
-  #drop the proportion column
-  select(-prop)
+  pivot_longer(cols = sav:fav, names_to = "type", values_to = "perc") %>% 
+  glimpse()
+  
 
 #3. Set up options for plot------------------------------
 
@@ -58,9 +54,9 @@ veg_sum <- veg_ft %>%
   mutate(tot_perc_mean = mean(tot_perc,na.rm=T)
          ,tot_perc_diff = tot_perc - tot_perc_mean
          )
-#mean is 22.14167%
-#In 2020, the percentage of water area occupied by aquatic vegetation in the Delta
-#was 7.3% higher than the long-term mean
+#mean is 21.69357%
+#In 2022, the percentage of water area occupied by aquatic vegetation in the Delta
+#was 1.4% higher than the long-term mean
 
 #reorder factor levels for vegetation type so FAV is on top
 veg_ft$type = factor(veg_ft$type, levels=c('fav','sav'))
