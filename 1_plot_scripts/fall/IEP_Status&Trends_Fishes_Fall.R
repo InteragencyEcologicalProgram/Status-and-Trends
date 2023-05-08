@@ -30,9 +30,14 @@ fmwt = pivot_longer(fmwt, cols = `Threadfin Shad`:`Striped Bass Age0`,
 fmwt = filter(fmwt, !is.na(Index)) 
 
 #CA Fish & Wildlife: Sturgeon Trammel Net Surveys
-wst<-read.csv(file.path(data_root,"wst.csv"))
+wst<-read.csv(file.path(data_root,"Trammel_Net_CPUE_05052023.csv"))
 str(wst)
-wst = mutate(wst, fyear = as.factor(Year))
+wst = mutate(wst, fyear = as.factor(RelYear), Month = month(RelDate)) %>%
+  filter(Month %in% c(9,10,11))
+wstsum = group_by(wst, RelYear, fyear, Month, RelDate) %>%
+  summarize(CPUE = mean(daily_cpue_white)) %>%
+  group_by(RelYear, fyear) %>%
+  summarize(CPUE = mean(CPUE, na.rm =T))
 
 ### Plot Fall Midwater Trawl species -----------------------------------
 
@@ -187,7 +192,7 @@ getAlttext(american_shad_recent)
 
 # White Sturgeon, all years
 # unlike FMWT, these data actually start 1968 instead of 1966
-white_sturgeon_all_years <- ggplot(wst, aes(x=Year, y=AvgCPUE)) +
+white_sturgeon_all_years <- ggplot(wstsum, aes(x=RelYear, y=CPUE)) +
   geom_bar(stat="identity") +
   smr_theme_update() + 
   scale_y_continuous("White Sturgeon CPUE") +
@@ -205,7 +210,7 @@ getAlttext(white_sturgeon_all_years)
 
 
 # White Sturgeon, recent years
-white_sturgeon_recent <- ggplot(wst, aes(x=Year, y=AvgCPUE)) +
+white_sturgeon_recent <- ggplot(wstsum, aes(x=RelYear, y=CPUE)) +
   geom_bar(stat="identity") +
   smr_theme_update() + 
   scale_y_continuous("White Sturgeon CPUE") +
