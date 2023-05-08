@@ -14,8 +14,8 @@ library(lubridate)
 # Longfin smelt
 load("data/BayStudyFish.RData")
 
-# White sturgeon - Jason's calculated YCI dataset
-whistu.orig <- read_csv(file.path(data_root,"yci_bs.csv"))
+# White sturgeon - Dyllan's calculated YCI dataset
+whistu.orig <- read_csv(file.path(data_root,"1980_2021_BS_WST_YCI.csv"))
 
 
 # 2. Clean Data and Calculate CPUE ----------------------------------------
@@ -48,7 +48,7 @@ whistu.orig <- read_csv(file.path(data_root,"yci_bs.csv"))
 # White sturgeon
   # Clean and modify data and average YCI for each year
   whistu.clean <- whistu.orig %>% 
-    filter(Year != 2018) %>% 
+    mutate(WYCI = as.numeric(year_class_index)) %>%
     select(Year, WYCI) %>% 
     rename(
       Year.Index = Year,
@@ -79,6 +79,7 @@ whistuText <- tibble(
   yValue = 200,
   label = "Data not\ncollected\nuntil 1980"
 )
+
 
 
 # 4. Create Plots ---------------------------------------------------------  
