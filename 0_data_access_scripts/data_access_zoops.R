@@ -48,7 +48,8 @@ Mysidsbc = left_join(Mysidsb, conversions) %>%
   mutate(BPUEdryC = case_when(Weight_type == "Wet" ~ BPUE* .1*.4,
                               Weight_type == "Dry"~ BPUE*.4,
          TRUE ~ BPUE),
-         bpue = BPUEdryC)
+         #multiply by 1000 to convert 
+         bpue = BPUEdryC*1000)
 
 
 
