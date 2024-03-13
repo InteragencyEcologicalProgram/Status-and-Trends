@@ -124,3 +124,30 @@ save(list="veg_perc", file=file.path(fig_root_summer,"veg_perc.RData"))
   # )
 # #standard plot height is 6.8 cm; Sam is using 7.5 cm in her plots I think to accommodate the legend
 
+ggplot(data=filter(veg_ft, type == "sav"), aes(x=year, y=perc)) + 
+  #specifies the independent and dependent variables as well as groupings
+  geom_bar(position="stack", stat="identity", colour="grey25", fill = "chartreuse3")+  
+  #specifies that this is a stacked bar plot
+  smr_theme_update()+
+  #implements standardized plot formatting
+  ylab("Percent water area occupied \nby submerged vegetation") + xlab("Year")+
+  coord_cartesian(xlim = c(2004, 2022))+
+  #x- and y-axis labels
+  scale_y_continuous(labels=function(x) paste0(x, "%"))+  # use default expansion
+  #adds a percent sign after each y axis tick label number
+  #implements standardized x-axis range of years
+  stat_missing(size=2.5) + 
+  #stat_missing(size=2, nudge_y=max(veg_ft$perc)*0.02) + 
+  #adds symbols for missing data, customizes symbol size, and nudged the symbol a little above x-axis (2% of y-axis range)
+  theme(#legend.key.size=unit(0.3,"cm"), 
+    #legend.spacing.x=unit(0.1, 'cm'),  
+    legend.box.spacing=unit(0, units="cm"), 
+    legend.margin=margin(t=0,r=0,b=2,l=0, unit="pt")) + 
+  #reduces white space between legend and top of plot
+  smr_caption(data=veg_sum, aes(x=year, y=tot_perc), inherit.aes=FALSE, 
+              stat_name="percentage of water area occupied by aquatic vegetation", 
+              report_year=report_year)+  
+  smr_alttext(data=veg_sum, aes(x=year, y=tot_perc), inherit.aes=FALSE, 
+              stat_name="percentage of water area occupied by aquatic vegetation")
+
+ggsave("vegpercents_600x600.png", width =6, height =6, dpi = 100)

@@ -31,12 +31,14 @@ water_year = ggplot(indicies, aes(x=WY, y=Index)) +
   xlab("Water Year") +
   labs(fill="Year Type") + 
   #coord_cartesian(xlim = c(1975, 2020)) +
-  stat_lt_avg() +
+  #stat_lt_avg() +
   stat_missing(aes(x=WY, y=Index), size=2.5) + 
   smr_caption(stat_name="water year type", report_year=report_year)	+ 
   smr_alttext(stat_name="water year type")
 
 water_year
+ggsave("WType.tiff", device = "tiff", width =7, height =5)
+
 
 getCaption(water_year)
 getAlttext(water_year)
