@@ -43,14 +43,20 @@ conversions = filter(conversions, Preservative == "Formalin") %>%
 #assume dry weight is 10% wet weight
 #assume carbon weight is 0.4 times dry weight
 #then covert to micro-grams to match the mesozoo[s]
+#AND DIVIDE BY VOLUME
+volumes = select(Mysids, SampleDate, Station, Year, Volume)
+
 Mysidsbc = left_join(Mysidsb, conversions) %>%
-  mutate(BPUE = (a2*(Size^b))*AdjustedFreq, weightper = a2*(Size^b)) %>%
+  left_join(volumes) %>%
+  mutate(BPUE = (a2*(Size^b))*AdjustedFreq/Volume, weightper = a2*(Size^b)) %>%
   #filter(Preservative == "Formalin", Weight_type == "Dry") %>%
   mutate(BPUEdryC = case_when(Weight_type == "Wet" ~ BPUE* .1*.4,
                               Weight_type == "Dry"~ BPUE*.4,
          TRUE ~ BPUE),
          #multiply by 1000 to convert 
-         bpue = BPUEdryC)
+         bpue = BPUEdryC*1000)
+
+
 
 
 #i don't know what is going wrong,
@@ -64,6 +70,6 @@ testb = filter(Mysidsbc, year(SampleDate) == 2010, Taxname == "Hyperacanthomysis
   summarize(BPUEtot = sum(bpue), BPUEdryC = sum(BPUEdryC), BPUEx = sum(BPUE))
 
 testc = left_join(testa, testb) %>%
-  mutate(bpue2 = Hyperacanthomysis.longirostris*.4*.1*1000)
+  mutate(bpue2 = Hyperacanthomysis.longirostris*1000)
 
 save(zoopps, zoopscb, Mysidsbc, file = file.path(data_root,"Zoops.RData"))
