@@ -37,21 +37,33 @@ Mysidsb = rename(Mysidsb, Station = StationNZ) %>%
 conversions = read_excel("data/ZoopSynth_biomass_CEBupdated.xlsx", sheet = "Macro-zooplankton")
 #mysid BPUE
                                                           
-#conversions = filter(conversions, Preservative != "Ethanol")  
+conversions = filter(conversions, Preservative == "Formalin") %>%
+  filter(!(Taxname == "Hyperacanthomysis longirostris" & Weight_type == "Wet"))
 
 #assume dry weight is 10% wet weight
 #assume carbon weight is 0.4 times dry weight
 #then covert to micro-grams to match the mesozoo[s]
 Mysidsbc = left_join(Mysidsb, conversions) %>%
   mutate(BPUE = (a2*(Size^b))*AdjustedFreq, weightper = a2*(Size^b)) %>%
-  filter(Preservative == "Formalin", Weight_type == "Dry") %>%
+  #filter(Preservative == "Formalin", Weight_type == "Dry") %>%
   mutate(BPUEdryC = case_when(Weight_type == "Wet" ~ BPUE* .1*.4,
                               Weight_type == "Dry"~ BPUE*.4,
          TRUE ~ BPUE),
          #multiply by 1000 to convert 
-         bpue = BPUEdryC*1000)
+         bpue = BPUEdryC)
 
 
+#i don't know what is going wrong,
 
+testa=  filter(mmass, Year == 2010) %>%
+  select(Station, Year, Survey, Date, Hyperacanthomysis.longirostris) %>%
+  mutate(SampleDate = mdy(Date))
+
+testb = filter(Mysidsbc, year(SampleDate) == 2010, Taxname == "Hyperacanthomysis longirostris") %>%
+  group_by(SampleDate, Station) %>%
+  summarize(BPUEtot = sum(bpue), BPUEdryC = sum(BPUEdryC), BPUEx = sum(BPUE))
+
+testc = left_join(testa, testb) %>%
+  mutate(bpue2 = Hyperacanthomysis.longirostris*.4*.1*1000)
 
 save(zoopps, zoopscb, Mysidsbc, file = file.path(data_root,"Zoops.RData"))
