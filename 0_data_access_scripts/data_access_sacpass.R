@@ -14,7 +14,7 @@ library(smonitr)
 
 
 
-urls =  "http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2020&biweekly=other&wtemp=default"
+urls =  "http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2023&biweekly=other&wtemp=default"
 
 #notes:
 #For passage estimates values: “—“ (two dashes) indicates that no sampling occurred, 
@@ -70,23 +70,35 @@ write.csv(Redlong, file.path(data_root,"redbluff_all.csv"), row.names = FALSE)
 # Also, potential parsing problems that may need investigating?
 ##Grandtab = get_grandtab_data(season=c("Spring","Fall"))
 
-Grandtab = c(get_grandtab_data(season="Spring"),
-             get_grandtab_data(season="Fall"))
+spring = read_csv("http://www.cbr.washington.edu/sacramento/data/php/rpt/grandtab_graph.php?outputFormat=csv&species=Chinook%3ASpring&type=In-River&locType=location&location=Sacramento+and+San+Joaquin+River+Systems%3AAll%3AAll")
 
-Spring = Grandtab$Spring %>%
-  rename(sprinrun = Annual)
-Fall = Grandtab$Fall %>%
-  rename(fallrun = Annual)
-#well, that was spiffy and easy
+fall = read_csv("http://www.cbr.washington.edu/sacramento/data/php/rpt/grandtab_graph.php?outputFormat=csv&species=Chinook%3AFall&type=In-River&locType=location&location=Sacramento+and+San+Joaquin+River+Systems%3AAll%3AAll")
 
-Winter = get_grandtab_data(season = "Winter")
-Winter = Winter[[1]]
+winter =  read_csv("http://www.cbr.washington.edu/sacramento/data/php/rpt/grandtab_graph.php?outputFormat=csv&species=Chinook%3AWinter&type=All&locType=location&location=Sacramento+and+San+Joaquin+River+Systems%3AAll%3AAll")
+
+
+Spring = spring %>%
+  mutate(Year = as.numeric(str_sub(`End Year of Monitoring Period`, 1,4))) %>%
+  filter(!is.na(Year)) %>%
+  rename(Spring = `Population Estimate`) %>%
+  select(Spring, Year)
+
+Fall = fall%>%
+  mutate(Year = as.numeric(str_sub(`End Year of Monitoring Period`, 1,4))) %>%
+  filter(!is.na(Year)) %>%
+  rename(Fall = `Population Estimate`) %>%
+  select(Fall, Year)
+
+Winter = winter%>%
+  mutate(Year = as.numeric(str_sub(`End Year of Monitoring Period`, 1,4))) %>%
+  filter(!is.na(Year)) %>%
+  rename(Winter = `Population Estimate`) %>%
+  select(Winter, Year)
 
 AllAdults = left_join(Fall, Winter) %>%
   left_join(Spring)
 
-Latefall = get_grandtab_data(season = "Late-Fall")
-Latefall = Latefall[[1]]
+
 
 #CSV of all the adult escapement
 write.csv(AllAdults, file.path(data_root,"Grandtab_adultsalmon.csv"), row.names = F)

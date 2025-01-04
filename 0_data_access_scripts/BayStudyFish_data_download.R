@@ -14,7 +14,7 @@ library(readxl)
 
 # This is the URL for the zip file to download
 # **** The end date in the zip file name will probably change in the future ****
-baystudy_url <- "https://filelib.wildlife.ca.gov/Public/BayStudy/CatchMatrices/Bay Study Fish Matrices 1980-2020.zip"
+baystudy_url <- "https://filelib.wildlife.ca.gov/Public/BayStudy/CatchMatrices/BayStudy_Fish_Matrices_1980-2023.zip"
 
 # Create some tempfiles to temporarily hold data
 temp1 <- tempfile()
@@ -28,8 +28,8 @@ unzip(zipfile = temp1, exdir = temp2)
 
 # These are the two xlsx files to be extracted from the zip file
 # **** The end dates in both file names will probably change in the future ****
-mwt_file <- "BayStudy_MWT_1980-2020_Fish Matrix.xlsx"
-ot_file <- "BayStudy_OT_1980-2020_FishMatrix.xlsx"
+mwt_file <- "BayStudy_MWT_1980-2023_FishMatrix_Sept2024.xlsx"
+ot_file <- "BayStudy_OT_1980-2023_FishMatrix_Sept2024.xlsx"
 
 # Extract fish matrix data from temp2 file
 # **** I assume that the sheet names won't change in the future ****

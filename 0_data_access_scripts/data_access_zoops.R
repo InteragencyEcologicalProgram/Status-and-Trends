@@ -6,25 +6,27 @@ library(readxl)
 library(tidyverse)
 library(smonitr)
 
-zoops = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2021CBMatrix.xlsx")
-zoopscb = read_excel(zoops, guess_max = 10000, sheet = "CB CPUE Matrix 1972-2021")
+zoops = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2023_CBMatrix_Public.xlsx")
+zoopscb = read_excel(zoops, guess_max = 10000, sheet = "1972-2023_CB_Matrix")
 #data is stored on the CDFW FTP site
 
 zoopscb = rename(zoopscb, Station = StationNZ)
 
 #pump data
-zoopps = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2021PumpMatrix.xlsx")
-zoopsp = read_excel(zoopps, guess_max = 10000, sheet = "Pump CPUE Matrix 1972-2021")
+zoopps = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2023_PumpMatrix_Public.xlsx")
+zoopsp = read_excel(zoopps, guess_max = 10000, sheet = "1980-2023_Pump_CPUE_Matrix")
 zoopps = rename(zoopsp, Station = StationNZ)
 
 save(zoopps, zoopscb, file = file.path(data_root,"Zoops.RData"))
 
 
 #Mysid data
-mysids = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2021MacroMatrix.xlsx")
-Mysids = read_excel(mysids, guess_max = 10000, sheet = "Macro CPUE Matrix 1972-2021")
+mysids = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2023_MysidMatrix_Public.xlsx")
+Mysids = read_excel(mysids, guess_max = 10000, sheet = "1972-2023_Mysid_Matrix")
 Mysids = rename(Mysids, Station = StationNZ)
 
+
+#they didn't publish the length data. This is annoying
 Mysidsb = read_excel(mysids, guess_max = 10000, sheet = "Macro lengths 1972-2021")
 Mysidsb = rename(Mysidsb, Station = StationNZ) %>%
   mutate(Taxname = case_when(SpeciesName %in% c("Gammarus daiberi", "Unidentified Gammarus", "Crangonyx sp", "Grandidierella japonica", "Amithoe sp", "Hyalella sp")~ "Gammarus",
@@ -56,10 +58,6 @@ Mysidsbc = left_join(Mysidsb, conversions) %>%
          #multiply by 1000 to convert 
          bpue = BPUEdryC*1000)
 
-
-
-
-#i don't know what is going wrong,
 
 testa=  filter(mmass, Year == 2010) %>%
   select(Station, Year, Survey, Date, Hyperacanthomysis.longirostris) %>%

@@ -7,10 +7,11 @@ source("setup.R")
 
 thisDataRoot <- file.path(data_root,"20mm")
 
-dsmIndexDf <- read.csv(file.path(thisDataRoot,"20mm_DSM_index.csv"),
-                       stringsAsFactors=FALSE)
-lfsIndexDf <- read.csv(file.path(thisDataRoot,"20mm_LFS_index.csv"), 
-                       stringsAsFactors=FALSE)
+#dsmIndexDf <- read.csv(file.path(thisDataRoot,"20mm_DSM_index.csv"),
+#                       stringsAsFactors=FALSE)
+load("data/20mm.RData")
+dsmIndexDf = DSIndex20
+lfsIndexDf = LSIndex20
 
 ##########################################################################
 ## 20mm Survey: Delta Smelt and Longfin Smelt

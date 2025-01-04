@@ -19,8 +19,9 @@ chippsData$Volume[is.na(chippsData$Volume)] <- mean(chippsData$Volume, na.rm=TRU
 
 ## Add fields:
 chippsData = mutate(chippsData, 
-                    Month = month(SampleDate),
-                    Year = year(SampleDate),
+                    Date = mdy(SampleDate),
+                    Month = month(Date),
+                    Year = year(Date),
                     Year_f = as.factor(Year))
 ## Create wide data frame:
 chippsData$CommonName <- sub("Chinook salmon","Chinook salmon_",chippsData$CommonName)
@@ -43,7 +44,7 @@ chippsWide_spring <- subset(chippsWide, 1995 <= Year & Year <= report_year &
 chippsIndexDf <- chippsWide_spring %>%
   dplyr::group_by(Year_f, Year, Month) %>%
   dplyr::summarize(
-    chinook_winterByLength_CPUE_YM=sum(Chinook_salmon_Winter/Volume),
+    chinook_winterByLength_CPUE_YM=sum(Chinook_SalmonWinter/Volume),
     .groups="keep"
   ) %>% 
   dplyr::ungroup() %>%
