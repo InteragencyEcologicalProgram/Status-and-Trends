@@ -15,9 +15,11 @@ unique(seineData$Volume)
 seineData$Volume[is.na(seineData$Volume)] <- mean(seineData$Volume, na.rm=TRUE)
 
 ## Add fields:
+
 seineData$Date = mdy(seineData$SampleDate)
 seineData$Month <- lubridate::month(seineData$Date)
 seineData$Year <- lubridate::year(seineData$Date)
+
 seineData$Year_f <- as.factor(seineData$Year)
 
 ## Add lat/long:
@@ -36,6 +38,7 @@ seineData$customRegion[seineData$Longitude > -121.829] <- "The Delta"
 unique(seineData$customRegion)
 
 ## Create wide data frame:
+<<<<<<< HEAD
 seineData$CommonName <- sub("Chinook Salmon","Chinook Salmon_",seineData$CommonName)
 seineData$RaceByLength[is.na(seineData$RaceByLength)] <- ""
 seineData$CommonName_RaceByLength <- with(seineData, paste0(CommonName, RaceByLength))
@@ -46,6 +49,16 @@ seineWide = pivot_wider(seineData, id_cols =c("Year","Month","Location","RegionC
                                                 "Volume"), names_from =  CommonName_RaceByLength, values_from = Catch,
                         values_fill = 0)
 
+=======
+seineData$CommonName <- sub("Chinook salmon","Chinook salmon_",seineData$CommonName)
+seineData$RaceByLength[is.na(seineData$RaceByLength)] <- ""
+seineData$CommonName_RaceByLength <- with(seineData, paste0(CommonName, RaceByLength))
+keep_fields_seine <- c("Year","Month","Location","RegionCode","StationCode","SampleDate",
+											 "SampleTime","MethodCode","GearConditionCode","TowNumber",
+											 "Volume","CommonName_RaceByLength","Catch")
+seineWide <- tidyr::spread(seineData[ ,keep_fields_seine], CommonName_RaceByLength, 
+													 Catch, fill=0)
+>>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5
 seineWide$"No catch" <- NULL
 names(seineWide) <- sub(" ", "_", names(seineWide))
 
@@ -64,7 +77,11 @@ seineWide_summer <- subset(seineWide_summer, RegionCode != 1)
 seineIndexDf <- seineWide_summer %>%
 	dplyr::group_by(Year, Month) %>%
 	dplyr::summarize(
+<<<<<<< HEAD
 		SacPikeminnow_CPUE_YM=sum(Sacramento_Pikeminnow/Volume),
+=======
+		SacPikeminnow_CPUE_YM=sum(Sacramento_pikeminnow/Volume),
+>>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5
 		.groups="keep"
 	) %>% 
 	dplyr::ungroup() %>%

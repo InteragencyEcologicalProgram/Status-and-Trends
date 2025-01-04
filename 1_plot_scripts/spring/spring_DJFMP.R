@@ -15,7 +15,7 @@ load(file.path(data_root,"chippsData.RData"))
 any(is.na(unique(chippsData$Volume)))
 chippsData$Volume[is.na(chippsData$Volume)] <- mean(chippsData$Volume, na.rm=TRUE)
 
-#fix the time that there is a mistake in volume
+
 chippsData$Volume[chippsData$Volume <5] <- mean(chippsData$Volume, na.rm=TRUE)
 
 
@@ -46,7 +46,9 @@ chippsWide_spring <- subset(chippsWide, 1995 <= Year & Year <= report_year &
 chippsIndexDf <- chippsWide_spring %>%
 	dplyr::group_by(Year_f, Year, Month) %>%
 	dplyr::summarize(
+
 		chinook_winterByLength_CPUE_YM=sum(Chinook_SalmonWinter/Volume),
+
 		.groups="keep"
 	) %>% 
 	dplyr::ungroup() %>%
@@ -104,8 +106,6 @@ chinook_winterByLength_recYears_fig <- ggplot(chippsIndexDf,
 							report_year=report_year) + 
 	smr_alttext(stat_name="juvenile Winter-Run Chinook Salmon index")
 
-#wow, is 2023 correct?
-ggplot(chippsWide_spring, aes(x = Year_f, y = Chinook_SalmonWinter))+geom_col( stat = "sum")
 
 chinook_winterByLength_recYears_fig
 

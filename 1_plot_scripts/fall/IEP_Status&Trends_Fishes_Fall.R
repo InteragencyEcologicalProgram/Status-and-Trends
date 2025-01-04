@@ -5,7 +5,7 @@
 #also white sturgeon, fall run chinook salmon
 
 #Created by Nick Rasmussen
-#udated by Rosemary Hartman 12/30/2024
+
 
 source("setup.R")
 

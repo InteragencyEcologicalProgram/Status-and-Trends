@@ -10,4 +10,3 @@ render_book(input="index.Rmd", output_dir=file.path(root,"docs"))
 #render_book(input="index.Rmd", output_format="all", output_dir=file.path(root,"report"))
 setwd(root)
 
-test

@@ -1,10 +1,13 @@
 #IEP Status and Trends Report
 #Fall and winter Season
+
 #Data up to and including 2023
+
 #Water quality: temperature, nutrients, fluorescence
 
 #Created by Nick Rasmussen
 #edited by Rosemary Hartman
+
 #last updated: 11/3/2024
 
 #geographic regions 
@@ -27,7 +30,9 @@ library(smonitr)
 
 #source(file.path(data_access_root,"WQ_data_download.R"))
 #or skip this if you've updated it recently and just do
+
 alldata = read_csv(file.path(data_root,"WQ_Discrete_1975-2023.csv"))
+
 
 
 #GPS coordinates of all sites

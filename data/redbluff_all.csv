@@ -5532,6 +5532,7 @@
 2022-12-29,"Winter.Chinook.Passage.Estimate",5079
 2022-12-30,"Winter.Chinook.Passage.Estimate",283
 2022-12-31,"Winter.Chinook.Passage.Estimate",2802
+<<<<<<< HEAD
 2023-01-02,"Winter.Chinook.Passage.Estimate",937
 2023-01-03,"Winter.Chinook.Passage.Estimate",815
 2023-01-04,"Winter.Chinook.Passage.Estimate",643
@@ -6159,6 +6160,8 @@
 2024-12-23,"Winter.Chinook.Passage.Estimate",0
 2024-12-24,"Winter.Chinook.Passage.Estimate",0
 2024-12-27,"Winter.Chinook.Passage.Estimate",0
+=======
+>>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5
 2004-06-28,"Spring.Chinook.Passage.Estimate",0
 2004-06-29,"Spring.Chinook.Passage.Estimate",0
 2004-06-30,"Spring.Chinook.Passage.Estimate",0
@@ -11692,6 +11695,7 @@
 2022-12-29,"Spring.Chinook.Passage.Estimate",1300
 2022-12-30,"Spring.Chinook.Passage.Estimate",784
 2022-12-31,"Spring.Chinook.Passage.Estimate",1688
+<<<<<<< HEAD
 2023-01-02,"Spring.Chinook.Passage.Estimate",752
 2023-01-03,"Spring.Chinook.Passage.Estimate",117
 2023-01-04,"Spring.Chinook.Passage.Estimate",537
@@ -12319,6 +12323,8 @@
 2024-12-23,"Spring.Chinook.Passage.Estimate",0
 2024-12-24,"Spring.Chinook.Passage.Estimate",0
 2024-12-27,"Spring.Chinook.Passage.Estimate",278
+=======
+>>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5
 2004-06-28,"Fall.Chinook.Passage.Estimate",10719
 2004-06-29,"Fall.Chinook.Passage.Estimate",8597
 2004-06-30,"Fall.Chinook.Passage.Estimate",9169
@@ -17852,6 +17858,7 @@
 2022-12-29,"Fall.Chinook.Passage.Estimate",382108
 2022-12-30,"Fall.Chinook.Passage.Estimate",19194
 2022-12-31,"Fall.Chinook.Passage.Estimate",36276
+<<<<<<< HEAD
 2023-01-02,"Fall.Chinook.Passage.Estimate",26533
 2023-01-03,"Fall.Chinook.Passage.Estimate",11047
 2023-01-04,"Fall.Chinook.Passage.Estimate",4767
@@ -18479,6 +18486,8 @@
 2024-12-23,"Fall.Chinook.Passage.Estimate",2905
 2024-12-24,"Fall.Chinook.Passage.Estimate",576
 2024-12-27,"Fall.Chinook.Passage.Estimate",8776
+=======
+>>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5
 2004-06-28,"Late.Fall.Chinook.Passage.Estimate",241
 2004-06-29,"Late.Fall.Chinook.Passage.Estimate",126
 2004-06-30,"Late.Fall.Chinook.Passage.Estimate",243
@@ -24012,6 +24021,7 @@
 2022-12-29,"Late.Fall.Chinook.Passage.Estimate",0
 2022-12-30,"Late.Fall.Chinook.Passage.Estimate",308
 2022-12-31,"Late.Fall.Chinook.Passage.Estimate",518
+<<<<<<< HEAD
 2023-01-02,"Late.Fall.Chinook.Passage.Estimate",0
 2023-01-03,"Late.Fall.Chinook.Passage.Estimate",137
 2023-01-04,"Late.Fall.Chinook.Passage.Estimate",255
@@ -24639,3 +24649,5 @@
 2024-12-23,"Late.Fall.Chinook.Passage.Estimate",0
 2024-12-24,"Late.Fall.Chinook.Passage.Estimate",0
 2024-12-27,"Late.Fall.Chinook.Passage.Estimate",0
+=======
+>>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5

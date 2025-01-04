@@ -8,25 +8,30 @@ library(smonitr)
 
 zoops = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2023_CBMatrix_Public.xlsx")
 zoopscb = read_excel(zoops, guess_max = 10000, sheet = "1972-2023_CB_Matrix")
+
 #data is stored on the CDFW FTP site
 
 zoopscb = rename(zoopscb, Station = StationNZ)
 
 #pump data
+
 zoopps = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2023_PumpMatrix_Public.xlsx")
 zoopsp = read_excel(zoopps, guess_max = 10000, sheet = "1980-2023_Pump_CPUE_Matrix")
+
 zoopps = rename(zoopsp, Station = StationNZ)
 
 save(zoopps, zoopscb, file = file.path(data_root,"Zoops.RData"))
 
 
 #Mysid data
+
 mysids = download_file("https://filelib.wildlife.ca.gov/Public/IEP_Zooplankton/1972-2023_MysidMatrix_Public.xlsx")
 Mysids = read_excel(mysids, guess_max = 10000, sheet = "1972-2023_Mysid_Matrix")
 Mysids = rename(Mysids, Station = StationNZ)
 
 
 #they didn't publish the length data. This is annoying
+
 Mysidsb = read_excel(mysids, guess_max = 10000, sheet = "Macro lengths 1972-2021")
 Mysidsb = rename(Mysidsb, Station = StationNZ) %>%
   mutate(Taxname = case_when(SpeciesName %in% c("Gammarus daiberi", "Unidentified Gammarus", "Crangonyx sp", "Grandidierella japonica", "Amithoe sp", "Hyalella sp")~ "Gammarus",
@@ -57,6 +62,7 @@ Mysidsbc = left_join(Mysidsb, conversions) %>%
          TRUE ~ BPUE),
          #multiply by 1000 to convert 
          bpue = BPUEdryC*1000)
+
 
 
 testa=  filter(mmass, Year == 2010) %>%

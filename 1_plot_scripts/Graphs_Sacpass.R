@@ -9,6 +9,7 @@ load(file.path(data_root, "Grantab.RData"))
 #Spring run salmon
 
 SpringRun_1966 <- ggplot(Spring, aes(x=Year, y=Spring))+
+
     geom_bar(stat="identity") +
     smr_theme_update() +
     theme(legend.position="none") + 
@@ -16,6 +17,7 @@ SpringRun_1966 <- ggplot(Spring, aes(x=Year, y=Spring))+
     smr_x_axis(report_year, type = "all", season = "spring") +
 		stat_missing(aes(x=Year, y=Spring), size=2.5) + 
 		stat_lt_avg(aes(y = Spring)) + 
+
 		smr_caption(stat_name="adult Spring-Run Chinook Salmon return", 
 		            report_year=report_year) + 
 		smr_alttext(stat_name="adult Spring-Run Chinook Salmon returns")
@@ -30,6 +32,7 @@ save(list="SpringRun_1966", file=file.path(fig_root_spring,"SpringRun_1966.RData
 
 #Fall run salmon
 FallRun_1966 <- ggplot(Fall, aes(x=Year, y=Fall))+
+
   geom_bar(stat="identity") +
   smr_theme_update() +
   theme(legend.position="none") + 
@@ -37,6 +40,7 @@ FallRun_1966 <- ggplot(Fall, aes(x=Year, y=Fall))+
   smr_x_axis(report_year, type = "all", season = "fall") +
 	stat_missing(aes(x=Year, y=Fall), size=2.5) + 
   stat_lt_avg(aes(y = Fall)) + 
+
 	smr_caption(stat_name="adult Fall-Run Chinook Salmon return", report_year=report_year) + 
 	smr_alttext(stat_name="adult Fall-Run Chinook Salmon returns")
 

@@ -14,7 +14,11 @@ library(smonitr)
 
 
 
+<<<<<<< HEAD
 urls =  "http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2023&biweekly=other&wtemp=default"
+=======
+urls =  "http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2020&biweekly=other&wtemp=default"
+>>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5
 
 #notes:
 #For passage estimates values: “—“ (two dashes) indicates that no sampling occurred, 
@@ -70,6 +74,7 @@ write.csv(Redlong, file.path(data_root,"redbluff_all.csv"), row.names = FALSE)
 # Also, potential parsing problems that may need investigating?
 ##Grandtab = get_grandtab_data(season=c("Spring","Fall"))
 
+
 spring = read_csv("http://www.cbr.washington.edu/sacramento/data/php/rpt/grandtab_graph.php?outputFormat=csv&species=Chinook%3ASpring&type=In-River&locType=location&location=Sacramento+and+San+Joaquin+River+Systems%3AAll%3AAll")
 
 fall = read_csv("http://www.cbr.washington.edu/sacramento/data/php/rpt/grandtab_graph.php?outputFormat=csv&species=Chinook%3AFall&type=In-River&locType=location&location=Sacramento+and+San+Joaquin+River+Systems%3AAll%3AAll")
@@ -94,6 +99,7 @@ Winter = winter%>%
   filter(!is.na(Year)) %>%
   rename(Winter = `Population Estimate`) %>%
   select(Winter, Year)
+
 
 AllAdults = left_join(Fall, Winter) %>%
   left_join(Spring)
