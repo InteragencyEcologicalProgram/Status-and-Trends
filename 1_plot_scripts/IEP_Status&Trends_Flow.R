@@ -1,10 +1,10 @@
 #IEP Status and Trends Report
 #all seasons
-#Data up to and including 2018
+#Data up to and including 2023
 #Net Delta Outflow
 
 #Created by Nick Rasmussen
-#last updated: 11/3/2020 by Rosemary Hartman
+#last updated: 1/3/2025 by Rosemary Hartman
 
 source("setup.R")
 

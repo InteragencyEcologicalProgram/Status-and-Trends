@@ -14,11 +14,7 @@ library(smonitr)
 
 
 
-<<<<<<< HEAD
 urls =  "http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2023&biweekly=other&wtemp=default"
-=======
-urls =  "http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=2020&biweekly=other&wtemp=default"
->>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5
 
 #notes:
 #For passage estimates values: “—“ (two dashes) indicates that no sampling occurred, 
