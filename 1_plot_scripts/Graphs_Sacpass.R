@@ -58,7 +58,8 @@ save(list="FallRun_1966", file=file.path(fig_root_fall,"FallRun_1966.RData"))
 redbluff = Redlong
 
 #calculate the average
-MeanPass = group_by(redbluff, lubridate::year(Date), runname) %>% summarize(meandaily = mean(Dailypassage, na.rm = T))
+MeanPass = group_by(redbluff, lubridate::year(Date), runname) %>% 
+  summarize(meandaily = mean(Dailypassage, na.rm = T))
 
 #average passage just for winter
 redbluff$Month = lubridate::month(redbluff$Date)
@@ -83,9 +84,9 @@ redbluff_2003 = Red + geom_bar(stat = "identity") +
   smr_theme_update()+
 	stat_missing(aes(x=Year2, y=meandaily), size=2.5) + 
   stat_lt_avg(aes(y = meandaily)) + 
-	smr_caption(stat_name="the adult Fall-Run Chinook population estimate", 
+	smr_caption(stat_name="Juvenile Winter-run Chinook Salmon Passage Estimate", 
 							report_year=report_year) + 
-	smr_alttext(stat_name="adult Fall-Run Chinook population estimates")
+	smr_alttext(stat_name="Juvenile Winter-run Chinook Salmon Passage Estimate")
 
 redbluff_2003
 
