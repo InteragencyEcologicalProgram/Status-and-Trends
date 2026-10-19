@@ -1,7 +1,7 @@
 
 ```{r echo = F}
 options(width = 120)
-load(file.path(fig_root_summer,"outflow_summer.RData"))
+load(file.path(fig_root,"flowplots.RData"))
 load(file.path(fig_root_summer,"water_quality_summer.RData"))
 load(file.path(fig_root_summer,"zooplankton_summer.RData"))
 load(file.path(fig_root_summer,"STN_delta_smelt.RData"))
@@ -94,43 +94,43 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_summer$secchi_spl), echo=FALSE, fig.width=10}
-getPlot(water_quality_summer$secchi_spl)
+```{r fig.cap=getAlttext(water_quality_summer$`Secchi Depth_spl`), echo=FALSE, fig.width=10}
+getPlot(water_quality_summer$`Secchi Depth_spl`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_summer$secchi_ss), echo=FALSE}
-getPlot(water_quality_summer$secchi_ss)
+```{r fig.cap=getAlttext(water_quality_summer$`Secchi Depth_ss`), echo=FALSE}
+getPlot(water_quality_summer$`Secchi Depth_ss`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_summer$secchi_dt), echo=FALSE}
-getPlot(water_quality_summer$secchi_dt)
+```{r fig.cap=getAlttext(water_quality_summer$`Secchi Depth_dt`), echo=FALSE}
+getPlot(water_quality_summer$`Secchi Depth_dt`)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_summer$secchi_spl)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_summer$secchi_ss)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_summer$secchi_dt)`</center>
+
 :::
 ::::
 
@@ -194,43 +194,43 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_summer$temp_spl), echo=FALSE}
-getPlot(water_quality_summer$temp_spl)
+```{r fig.cap=getAlttext(water_quality_summer$`Water Temperature_spl`), echo=FALSE}
+getPlot(water_quality_summer$`Water Temperature_spl`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_summer$temp_ss), echo=FALSE}
-getPlot(water_quality_summer$temp_ss)
+```{r fig.cap=getAlttext(water_quality_summer$`Water Temperature_ss`), echo=FALSE}
+getPlot(water_quality_summer$`Water Temperature_ss`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_summer$temp_dt), echo=FALSE}
-getPlot(water_quality_summer$temp_dt)
+```{r fig.cap=getAlttext(water_quality_summer$`Water Temperature_dt`), echo=FALSE}
+getPlot(water_quality_summer$`Water Temperature_dt`)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_summer$temp_spl)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_summer$temp_ss)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_summer$temp_dt)`</center>
+
 :::
 ::::
 
@@ -293,43 +293,43 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_summer$chla_spl), echo=FALSE}
-getPlot(water_quality_summer$chla_spl)
+```{r fig.cap=getAlttext(water_quality_summer$`Chlorophyll a_spl`), echo=FALSE}
+getPlot(water_quality_summer$`Chlorophyll a_spl`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_summer$chla_ss), echo=FALSE}
-getPlot(water_quality_summer$chla_ss)
+```{r fig.cap=getAlttext(water_quality_summer$`Chlorophyll a_ss`), echo=FALSE}
+getPlot(water_quality_summer$`Chlorophyll a_ss`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_summer$chla_dt), echo=FALSE}
-getPlot(water_quality_summer$chla_dt)
+```{r fig.cap=getAlttext(water_quality_summer$`Chlorophyll a_dt`), echo=FALSE}
+getPlot(water_quality_summer$`Chlorophyll a_dt`)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_summer$chla_spl)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_summer$chla_ss)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_summer$chla_dt)`</center>
+
 :::
 ::::
 

@@ -1,7 +1,7 @@
 
 ```{r echo = F}
 options(width = 120)
-load(file.path(fig_root_fall,"outflow_fall.RData"))
+load(file.path(fig_root,"flowplots.RData"))
 load(file.path(fig_root_fall,"water_quality_fall.RData"))
 load(file.path(fig_root_fall,"zooplankton_fall.RData"))
 load(file.path(fig_root_fall,"fish_fall.RData"))
@@ -91,43 +91,43 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_fall$secchi_spl), echo=FALSE}
-getPlot(water_quality_fall$secchi_spl)
+```{r fig.cap=getAlttext(water_quality_fall$`Secchi Depth_spl`), echo=FALSE}
+getPlot(water_quality_fall$`Secchi Depth_spl`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_fall$secchi_ss), echo=FALSE}
-getPlot(water_quality_fall$secchi_ss)
+```{r fig.cap=getAlttext(water_quality_fall$`Secchi Depth_ss`), echo=FALSE}
+getPlot(water_quality_fall$`Secchi Depth_ss`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_fall$secchi_dt), echo=FALSE}
-getPlot(water_quality_fall$secchi_dt)
+```{r fig.cap=getAlttext(water_quality_fall$`Secchi Depth_dt`), echo=FALSE}
+getPlot(water_quality_fall$`Secchi Depth_dt`)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_fall$secchi_spl)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_fall$secchi_ss)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_fall$secchi_dt)`</center>
+
 :::
 ::::
 
@@ -191,43 +191,43 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_fall$temp_spl), echo=FALSE}
-getPlot(water_quality_fall$temp_spl)
+```{r fig.cap=getAlttext(water_quality_fall$`Water Temperature_spl`), echo=FALSE}
+getPlot(water_quality_fall$`Water Temperature_spl`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_fall$temp_ss), echo=FALSE}
-getPlot(water_quality_fall$temp_ss)
+```{r fig.cap=getAlttext(water_quality_fall$`Water Temperature_ss`), echo=FALSE}
+getPlot(water_quality_fall$`Water Temperature_ss`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_fall$temp_dt), echo=FALSE}
-getPlot(water_quality_fall$temp_dt)
+```{r fig.cap=getAlttext(water_quality_fall$`Water Temperature_dt`), echo=FALSE}
+getPlot(water_quality_fall$`Water Temperature_dt`)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_fall$temp_spl)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_fall$temp_ss)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_fall$temp_dt)`</center>
+
 :::
 ::::
 
@@ -290,43 +290,43 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_fall$chla_spl), echo=FALSE}
-getPlot(water_quality_fall$chla_spl)
+```{r fig.cap=getAlttext(water_quality_fall$`Chlorophyll a_spl`), echo=FALSE}
+getPlot(water_quality_fall$`Chlorophyll a_spl`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_fall$chla_ss), echo=FALSE}
-getPlot(water_quality_fall$chla_ss)
+```{r fig.cap=getAlttext(water_quality_fall$`Chlorophyll a_ss`), echo=FALSE}
+getPlot(water_quality_fall$`Chlorophyll a_ss`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_fall$chla_dt), echo=FALSE}
-getPlot(water_quality_fall$chla_dt)
+```{r fig.cap=getAlttext(water_quality_fall$`Chlorophyll a_dt`), echo=FALSE}
+getPlot(water_quality_fall$`Chlorophyll a_dt`)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_fall$chla_spl)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_fall$chla_ss)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_fall$chla_dt)`</center>
+
 :::
 ::::
 
@@ -420,19 +420,19 @@ getPlot(zooplankton_fall$zoop_dt)
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(zooplankton_fall$zoop_spl)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(zooplankton_fall$zoop_ss)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(zooplankton_fall$zoop_dt)`</center>
+
 :::
 ::::
 

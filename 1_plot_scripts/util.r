@@ -178,10 +178,11 @@ getPlot <- function(p) {
 	
 	file_name <- paste0(deparse(substitute(p)), ".svg")
 	suppressWarnings(
-		ggsave(p, file=file.path(fig_root_svg,file_name), dpi=200, units="cm", width=7, height=5.5)
+		ggsave(p, file=file.path(fig_root_svg,file_name), dpi=200, device = "svg", units="cm", width=7, height=5.5)
 	)
 	knitr::include_graphics(file.path(fig_root_svg,file_name))
 }
+
 
 getPlotLarge <- function(p) {
 	## Used globally: fig_root_svg

@@ -9,8 +9,10 @@ library(smonitr)
 load(file.path(data_root,"wtryrs.RData"))
 
 indicies = filter(water_year_indices, location != "San Joaquin Valley") 
-in2022 = data.frame(WY = c(2022, 2023, 2024), Index = c(4.5,9.33, 8.44), Yr_type = c("Critical", "Wet", "Above Normal"))
+in2022 = data.frame(WY = c(2022, 2023, 2024, 2025, 2026), Index = c(4.5,9.33, 8.44, 8.98, 7.81), 
+                    Yr_type = c("Critical", "Wet", "Above Normal", "Above Normal", "Above Normal"))
 indicies = bind_rows(indicies, in2022)
+
 
 
 row_num_new <- nrow(indicies) + 1
@@ -32,7 +34,7 @@ water_year = ggplot(indicies, aes(x=WY, y=Index)) +
   xlab("Water Year") +
   labs(fill="Year Type") + 
   #coord_cartesian(xlim = c(1975, 2020)) +
-  #stat_lt_avg() +
+  geom_hline(yintercept = mean(indicies$Index), linetype =2, color = "red") +
   stat_missing(aes(x=WY, y=Index), size=2.5) + 
   smr_caption(stat_name="water year type", report_year=report_year)	+ 
   smr_alttext(stat_name="water year type")
@@ -45,7 +47,9 @@ getCaption(water_year)
 getAlttext(water_year)
 
 ## Save figure:
-save(list="water_year", 
+save(water_year, 
      file=file.path(fig_root_landing,"water_year.RData"))
+ggsave(file.path(fig_root_svg,"water_year.svg"), device = "svg", width =7, height =5)
+
 
 

@@ -1,6 +1,7 @@
 
 # Load libraries --------------------------------------------------------------------
-
+#https://github.com/InteragencyEcologicalProgram/smonitr
+#remotes::install_github("InteragencyEcologicalProgram/smonitr")
 library(smonitr)
 library(tidyverse)
 library(bookdown)
@@ -12,7 +13,7 @@ library(svglite)
 # Define global variables -----------------------------------------------------------
 
 
-report_year <- 2024
+report_year <- 2025
 
 root <- getwd()
 data_access_root <- file.path(root,"0_data_access_scripts")

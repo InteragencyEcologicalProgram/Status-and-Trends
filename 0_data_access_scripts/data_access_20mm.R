@@ -1,5 +1,4 @@
 ## Data retrieval script for CDFW's 20mm Survey.
-<<<<<<< HEAD
 ## EDI publication now has length data!
 
 # Surveys 1 though 9 are considered for the purpose of index calculation. The index is calculated using the data
@@ -18,16 +17,8 @@
 
 source("setup.R")
 library(readxl)
-=======
-## Database is too large to store on GitHub, so query now and save smaller csv files.
-## As of 7/15/2020 data are now posted as csv files on EDI, but there is no length data
-## so still using ftp site for now.
-## Sep 2020: In August 2020 they changed the database schema a little, so updating 
-## the query code (see 20mmNew_ReadMe_2020.pdf).
 
 source("setup.R")
-
->>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5
 ###################################################################################################
 
 thisDataRoot <- file.path(data_root,"20mm")
@@ -36,9 +27,9 @@ thisDataRoot <- file.path(data_root,"20mm")
 
 #Joined long formatted data frame of the base tables. This table is produced from the LTMRdata package
 
-twentymil = read_csv("https://portal.edirepository.org/nis/dataviewer?packageid=edi.535.5&entityid=1e744fd85f10c4164d748831bc0454dd")
+#twentymil = read_csv("https://portal.edirepository.org/nis/dataviewer?packageid=edi.535.5&entityid=1e744fd85f10c4164d748831bc0454dd")
 
-
+twentymil = read_csv("bigdata/TMM.csv")
 
 ## Index stations based on CDFW memos, adding the new stations from teh north delta for 2022
 index_stations <- data.frame("Station"=c(
@@ -55,7 +46,7 @@ twentyzeros = twentymil %>%
   filter(Station %in% index_stations$Station,
          Length <60 |is.na(Length)) %>%
   group_by(Year, Date, Station, TowNum, Tow_volume, Survey, Taxa) %>%
-  summarize(Count = sum(Count)) %>%
+  summarize(Count = sum(Count, na.rm =T)) %>%
   pivot_wider(id_cols = c(Year, Date, Station, TowNum, Tow_volume, Survey),
               names_from = Taxa, values_from = Count, values_fill = 0) %>%
   pivot_longer(cols = c(`NA`:last_col()), names_to = "Taxa", values_to = "Count")
@@ -102,7 +93,7 @@ DSIndex20 = group_by(DSCPUEmean, Year) %>%
   summarize(Index = sum(GeoMean))
 
 #Ugh, I give up, i'll just copy them from the memo
-
+#https://apps.wildlife.ca.gov/BD20mm/Main/Indices
 DSIndex20 = read_csv("data/20mm/20mm_DSM_index.csv")
 
 

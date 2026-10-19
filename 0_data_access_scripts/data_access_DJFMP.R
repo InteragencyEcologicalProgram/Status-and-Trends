@@ -8,23 +8,16 @@
 source("setup.R")
 
 ##########################################################################
+#new edi login issues are too much work, i just downloaded it. 
 
+trawlDfRaw_1<- read_csv("bigdata/1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv", guess_max = 100000)
 
-DJFMP = get_edi_data(244, c("1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv", 
+trawlDfRaw_2<- read_csv("bigdata/2002-2026_DJFMP_trawl_fish_and_water_quality_data.csv", guess_max = 100000)
 
-                            "2002-2024_DJFMP_trawl_fish_and_water_quality_data.csv",
-                            "1976-2024_DJFMP_beach_seine_fish_and_water_quality_data.csv",
-]
-                            "DJFMP_Fish_Taxonomy.csv",
-                            "DJFMP_Site_Locations.csv"), guess_max = 1000000  )
+seineDfRaw <- read_csv("bigdata/1976-2026_DJFMP_beach_seine_fish_and_water_quality_data.csv", guess_max = 100000)
 
-trawlDfRaw_1<- DJFMP[["1976-2001_DJFMP_trawl_fish_and_water_quality_data.csv"]]
-
-trawlDfRaw_2<- DJFMP[["2002-2024_DJFMP_trawl_fish_and_water_quality_data.csv"]]
-seineDfRaw <- DJFMP[["1976-2024_DJFMP_beach_seine_fish_and_water_quality_data.csv"]]
-
-taxonomyFile <- DJFMP[["DJFMP_Fish_Taxonomy.csv"]]
-siteLatLong <- DJFMP[["DJFMP_Site_Locations.csv"]]
+taxonomyFile <- read_csv("bigdata/DJFMP_Fish_Taxonomy.csv")
+siteLatLong <-read_csv("bigdata/DJFMP_Site_Locations.csv")
 
 
 ##########################################################################

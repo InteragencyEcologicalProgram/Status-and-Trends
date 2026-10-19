@@ -31,7 +31,7 @@ library(smonitr)
 #source(file.path(data_access_root,"WQ_data_download.R"))
 #or skip this if you've updated it recently and just do
 
-alldata = read_csv(file.path(data_root,"WQ_Discrete_1975-2023.csv"))
+alldata = read_csv(file.path(data_root,"DWQ_DWR_EDI_2025.csv"))
 
 
 
@@ -48,7 +48,7 @@ tot<-salldat[!is.na(salldat$lat),]
 
 #create a month, year, and season column
 #the "+ 1/12" makes sure that December ends up as the first month of Q1 instead of Jan
-tot<- mutate(tot, month = month(tot$Date), year = year(tot$Date),
+tot<- mutate(tot, month = month(Date), year = year(Date),
              ym = as.yearmon(paste(month, year), "%m %Y"),
              yq = as.yearqtr(ym + 1/12), yq2 = yq) %>% 
   separate(yq2, c('qyear', 'quarter'), sep=" ")
@@ -68,16 +68,23 @@ tot$region<-factor(ifelse(tot$long < -122.216, "spl",
 #                                             by=1))
 
 #generate means by region, year, quarter, and AnalyteName
-wqsum<-aggregate(Result~region+qyear+quarter+AnalyteName,data=tot,FUN=mean,
-                 na.rm=T, drop=FALSE)
-wqsum$AnalyteName<-as.factor(wqsum$AnalyteName)
-str(wqsum)
+wqsum<- tot %>%
+  mutate(Result = as.numeric(Result_Value)) %>%
+  group_by(Analyte, region,qyear, quarter) %>%
+  summarize(Result = mean(Result, na.rm =T)) %>%
+  filter(Analyte %in% c("Chlorophyll a", "Secchi Depth", "Water Temperature")) %>%
+  mutate(AnalyteName = as.factor(Analyte)) 
+
+test = filter(wqsum, is.na(Result))
 
 
 #generate means by region, quarter, and AnalyteName
-wqsum2<-aggregate(Result~region+quarter+AnalyteName,data=tot,FUN=mean,na.rm=T)
-wqsum2$AnalyteName<-as.factor(wqsum2$AnalyteName)
-str(wqsum2)
+wqsum2<-tot %>%
+  mutate(Result = as.numeric(Result_Value)) %>%
+  group_by(Analyte, region, quarter) %>%
+  summarize(Result = mean(Result, na.rm =T))%>%
+  filter(Analyte %in% c("Chlorophyll a", "Secchi Depth", "Water Temperature")) %>%
+  mutate(AnalyteName = as.factor(Analyte))
 
 
 #create custom plot formatting function
@@ -85,9 +92,9 @@ str(wqsum2)
 #set up facet labels
 season_names<-c('Q1'="winter",'Q2'="spring",'Q3'="summer",'Q4'="fall")
 region_names<-c('dt'="Delta",'ss'="Suisun",'spl'="San Pablo")
-AnalyteName_labs = c( "chla" = "Chlorophyll-a (ug/L)",
-                   "temp" = "Temperature (C)",
-                   "secchi" = "Secchi Depth (cm)")
+AnalyteName_labs = c( "Chlorophyll a" = "Chlorophyll-a (ug/L)",
+                   "Water Temperature" = "Temperature (C)",
+                   "Secchi Depth" = "Secchi Depth (cm)")
 
 #set order of seasons and regions for plotting
 wqsum$quarter = factor(wqsum$quarter, levels=c('Q1','Q2','Q3','Q4'))
@@ -157,7 +164,7 @@ WQplot = function(reg, quart, analyte, data, reportyear, verbose=TRUE) {
 		geom_point(colour="black", size=1.6)  + 
     stat_missing(size=2.5, nudge_y=lims[1]) + 
 		stat_lt_avg() + 
-    # geom_hline(aes(yintercept=mean(Result)), size=0.9, color="red", linetype="dashed") +
+    geom_hline(aes(yintercept=mean(Result)), size=0.9, color="red", linetype="dashed") +
     smr_theme_update() + 
     smr_x_axis(reportyear, type="all", season=season_names[quart]) + 
     scale_y_continuous(AnalyteName_labs[analyte], limits=lims) + 
@@ -172,18 +179,20 @@ WQplot = function(reg, quart, analyte, data, reportyear, verbose=TRUE) {
   return(p_sec)
 }
 
-WQplot("dt","Q1", "chla", wqsum, report_year)
+foo = filter(wqsum, region == "dt", AnalyteName == "Water Temperature")
 
-WQplot("dt","Q1", "temp", wqsum, report_year)+
+WQplot("dt","Q1", "Chlorophyll a", wqsum, report_year)
+
+WQplot("dt","Q1", "Water Temperature", wqsum, report_year)+
   geom_smooth(method = "lm")
 
-WQplot("dt","Q2", "temp", wqsum, report_year)+
+WQplot("dt","Q2", "Water Temperature", wqsum, report_year)+
   geom_smooth(method = "lm")
 
-WQplot("dt","Q3", "temp", wqsum, report_year)+
+WQplot("dt","Q3", "Water Temperature", wqsum, report_year)+
   geom_smooth(method = "lm")
 
-WQplot("dt","Q4", "temp", wqsum, report_year)+
+WQplot("dt","Q4", "Water Temperature", wqsum, report_year)+
   geom_smooth(method = "lm")
 
 # #function to plot all graphs for a particular season and analyte seperately
@@ -226,7 +235,7 @@ WQplot("dt","Q4", "temp", wqsum, report_year)+
 for(Q in c("Q1","Q2","Q3","Q4")) {
 	wqPlotList <- list()
 
-	for(A in c("temp","secchi","chla")) {
+	for(A in c("Water Temperature","Secchi Depth","Chlorophyll a")) {
 		for(R in c("dt","spl","ss")) {
 			tmp <- paste(A, R, sep="_")
 			wqPlotList[[tmp]] <- WQplot(reg=R, quart=Q, analyte=A, data=wqsum, 
@@ -244,13 +253,23 @@ for(Q in c("Q1","Q2","Q3","Q4")) {
 
 
 # plot for something else
-chl = filter(wqsum, AnalyteName == "chla") %>%
+chl = filter(wqsum, AnalyteName == "Chlorophyll a") %>%
   mutate(Qyear = qyear + (as.numeric(quarter)-1)/4,
          region = factor(region, levels = c("spl", "ss", "dt"), labels = c("San Pablo", "Suisun", "Delta")),
          quarter = factor(quarter, levels = c("Q1", "Q2", "Q3", "Q4"), labels = c("Winter", "Spring", "Summer", "Fall")))
 ggplot( chl, aes(x = Qyear, y = Result))+
   geom_line() + geom_point(aes(color = quarter)) +
+  scale_color_manual(values = c("blue", "green3", "yellow2", "orangered"))+
   facet_wrap(~region, nrow =3)+
   theme_bw()+
   ylab("Chlorophyll ug/L")+
   xlab("Year")
+
+ggplot( chl, aes(x = Qyear, y = Result))+
+  geom_line() + geom_point(aes(color = quarter)) +
+  scale_color_manual(values = c("blue", "green3", "yellow2", "orangered"))+
+  facet_grid(quarter~region)+
+  theme_bw()+
+  ylab("Chlorophyll ug/L")+
+  xlab("Year")
+

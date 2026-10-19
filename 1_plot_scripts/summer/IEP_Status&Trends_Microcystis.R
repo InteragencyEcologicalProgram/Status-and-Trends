@@ -9,23 +9,24 @@ Stations<-read_csv(file.path(data_root,"Master station key.csv"), col_types = "c
 
 Micro_season <- "Summer"
 
-
-EMP<-read_csv(file.path(data_root,"WQ_Discrete_1975-2023.csv"))%>%
-
-  select(Date, Station, Result, Parameter=AnalyteName)%>%
-  filter(Parameter=="Microcystis" & !is.na(Result))%>%
+EMPm = read_csv("data/DWQ_DWR_EDI_2025.csv") %>%
+  
+  select(Date, Station, Result_Value, Parameter=Analyte)%>%
+  filter(Parameter=="MVI" & !is.na(Result_Value))%>%
   select(-Parameter)%>%
-  rename(Microcystis=Result)%>%
-  mutate(Source="EMP",
-         Date=as.POSIXct(Date, format = "%m/%d/%Y"))
+  rename(Microcystis=Result_Value)%>%
+  mutate(Source="EMP")
 
-TNS <-read_excel(file.path(data_root,"STN Sample.xlsx"), guess_max=10000)%>%
+#https://portal.edirepository.org/nis/mapbrowse?packageid=edi.1413.2
+#summer townet
+TNS <-read_csv("bigdata/SummerTownetCatchPerTow1959-2024.csv", guess_max=10000)%>%
   select(Date=SampleDate, Station=StationCode, Microcystis)%>%
-  mutate(Source="TNS")%>%
-  filter(!is.na(Microcystis))
+  mutate(Source="TNS", Date = mdy(Date), Station = as.character(Station))%>%
+  filter(!is.na(Microcystis))  %>%
+  mutate(Microcystis = as.character(Microcystis))
 
 
-Micro<-bind_rows(EMP, TNS)%>%
+Micro<-bind_rows(EMPm, TNS)%>%
   mutate(Month=month(Date),
          Year=year(Date))%>%
   left_join(Stations, by=c("Source", "Station"))%>%
@@ -94,6 +95,6 @@ getCaption(Microcystis_summer)
 getAlttext(Microcystis_summer)
 
 
-save(list="Microcystis_summer", 
+save(Microcystis_summer, 
 		 file=file.path(fig_root_summer,"Microcystis_summer.RData"))
 

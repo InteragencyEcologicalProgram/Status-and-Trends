@@ -55,35 +55,32 @@ save(list="FallRun_1966", file=file.path(fig_root_fall,"FallRun_1966.RData"))
 #Red Bluff
 
 #redbluff = read.csv(file.path(data_root,"redbluff_all.csv"))
-redbluff = Redlong
-
-#calculate the average
-MeanPass = group_by(redbluff, lubridate::year(Date), runname) %>% 
-  summarize(meandaily = mean(Dailypassage, na.rm = T))
-
-#average passage just for winter
-redbluff$Month = lubridate::month(redbluff$Date)
-RedWinter = filter(redbluff, Month == 12 | Month == 1 | Month == 2)
-
-#lump december with jan and feb
-RedWinter$Year2 = lubridate::year(RedWinter$Date)
-RedWinter$Year2[which(RedWinter$Month== 1 | RedWinter$Month == 2)] = lubridate::year(RedWinter$Date[which(RedWinter$Month== 1 | RedWinter$Month == 2)])-1
-
-#calculate mean passage
-meanwinter = group_by(RedWinter, Year2, runname) %>% summarize(meandaily = mean(Dailypassage, na.rm = T))
+redbluff = redlong
+# 
+# #average passage just for winter
+# redbluff$Month = lubridate::month(redbluff$Date)
+# RedWinter = filter(redbluff, Month == 12 | Month == 1 | Month == 2)
+# 
+# #lump december with jan and feb
+# RedWinter$Year2 = lubridate::year(RedWinter$Date)
+# RedWinter$Year2[which(RedWinter$Month== 1 | RedWinter$Month == 2)] = lubridate::year(RedWinter$Date[which(RedWinter$Month== 1 | RedWinter$Month == 2)])-1
+# 
+# #calculate mean passage
+# meanwinter = group_by(RedWinter, Year2, runname) %>% summarize(meandaily = mean(Dailypassage, na.rm = T))
 
 
 #We just wanted winter run for the winter report
-Red = ggplot(filter(meanwinter, runname == "Winter.Chinook.Passage.Estimate"), 
-							aes(x = Year2, y = meandaily))
+Red = ggplot(filter(redbluff, RunType == "Winter"), 
+							aes(x = BroodYear, y = Passage))
 
 redbluff_2003 = Red + geom_bar(stat = "identity") + 
  #smr_y_axis(name = "Estimated daily passage") + 
- ylab("Estimated daily passage") + 
- smr_x_axis(report_year, type = "recent", season = "winter")+
+ ylab("Estimated total passage") + 
+ xlab("Brood Year")+
+  xlim(2003, 2025)+
   smr_theme_update()+
-	stat_missing(aes(x=Year2, y=meandaily), size=2.5) + 
-  stat_lt_avg(aes(y = meandaily)) + 
+	stat_missing(aes(x=BroodYear, y=Passage), size=2.5) + 
+  stat_lt_avg(aes(y = Passage)) + 
 	smr_caption(stat_name="Juvenile Winter-run Chinook Salmon Passage Estimate", 
 							report_year=report_year) + 
 	smr_alttext(stat_name="Juvenile Winter-run Chinook Salmon Passage Estimate")
@@ -93,5 +90,5 @@ redbluff_2003
 getCaption(redbluff_2003)
 getAlttext(redbluff_2003)
 
-save(list="redbluff_2003", file=file.path(fig_root_winter,"redbluff_2003.RData"))
+save(redbluff_2003, file=file.path(fig_root_winter,"redbluff_2003.RData"))
 

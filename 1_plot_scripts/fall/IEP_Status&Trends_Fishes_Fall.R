@@ -241,5 +241,8 @@ fish_fall[["american_shad_recent"]] <- american_shad_recent
 fish_fall[["white_sturgeon_all_years"]] <- white_sturgeon_all_years
 fish_fall[["white_sturgeon_recent"]] <- white_sturgeon_recent
 
-save(list="fish_fall", file=file.path(fig_root_fall,"fish_fall.RData"))
+save(delta_smelt_all_years,longfin_smelt_all_years, striped_bass0_recent, american_shad_recent,
+     striped_bass0_all_years, american_shad_all_years, delta_smelt_recent,  longfin_smelt_recent,
+     white_sturgeon_all_years, white_sturgeon_recent,
+     file=file.path(fig_root_fall,"fish_fall.RData"))
 

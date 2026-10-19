@@ -89,7 +89,7 @@ getCaption(chinook_winterByLength_allYears_fig)
 getAlttext(chinook_winterByLength_allYears_fig)
 
 
-save(list=c("chinook_winterByLength_allYears_fig"), 
+save(chinook_winterByLength_allYears_fig, 
 		 file=file.path(fig_root_spring,"DJFMP_chinook_winterByLength_allyears_SP.RData"))
 
 
@@ -113,6 +113,6 @@ getCaption(chinook_winterByLength_recYears_fig)
 getAlttext(chinook_winterByLength_recYears_fig)
 
 
-save(list=c("chinook_winterByLength_recYears_fig"), 
+save(chinook_winterByLength_recYears_fig, 
 		 file=file.path(fig_root_spring,"DJFMP_chinook_winterByLength_recyears_SP.RData"))
 

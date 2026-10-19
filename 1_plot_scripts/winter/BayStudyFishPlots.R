@@ -211,7 +211,7 @@ fish.plots.print <- fish.plots %>%
 BayStudy_fish_winter <- fish.plots.print$Plots
 names(BayStudy_fish_winter) <- fish.plots.print$FileName
 
-save(list="BayStudy_fish_winter", 
+save(BayStudy_fish_winter, 
 		 file=file.path(fig_root_winter,"BayStudy_fish_winter.RData"))
 
 

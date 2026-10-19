@@ -6,15 +6,14 @@ library(lubridate)
 load(file.path(data_root, "ybfmp.RData"))
 
 # format catch data
-catch = ybfmp[["Integrated Water Quality and Fish Catch"]] %>%
+catch = ybfmpcatch %>%
   mutate(
-    SampleDate = mdy(SampleDate),
     Month = as.integer(month(SampleDate)),
     Year = as.integer(year(SampleDate))
   )
 
 # format effort data
-effort = ybfmp[["Historical Monthly Trap Effort"]] %>%
+effort = ybfmpeffort_hist %>%
   mutate(Month = as.numeric(factor(Month, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
                         labels = c(1:12)))) %>%
   filter(Month %in% c(3,4,5), MethodCode == "RSTR") %>%
@@ -123,6 +122,7 @@ getAlttext(yolo_splittail_all)
 
 save(list=c("yolo_splittail_all"), 
 		 file=file.path(fig_root_spring,"yolo_splittail.RData"))
+
 
 
 

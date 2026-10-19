@@ -20,7 +20,7 @@ chippsData$Volume[is.na(chippsData$Volume)] <- mean(chippsData$Volume, na.rm=TRU
 ## Add fields:
 chippsData = mutate(chippsData, 
 
-                    Date = mdy(SampleDate),
+                    Date = SampleDate,
                     Month = month(Date),
                     Year = year(Date),
 
@@ -110,6 +110,6 @@ DJFMP_chinook_winterByLength <- list()
 DJFMP_chinook_winterByLength[["Chipps_all_years_WN"]] <- Chipps_all_years_WN
 DJFMP_chinook_winterByLength[["Chipps_all_recent_WN"]] <- Chipps_all_recent_WN
 
-save(list="DJFMP_chinook_winterByLength", 
+save(DJFMP_chinook_winterByLength, 
 		 file=file.path(fig_root_winter,"DJFMP_chinook_winterByLength.RData"))
 

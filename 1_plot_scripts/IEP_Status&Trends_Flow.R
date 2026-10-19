@@ -87,19 +87,23 @@ flows = function(quart, data, reportyear, verbose=TRUE) {
   p
 }
 
-flows(quart="Q1", data=dmean, reportyear=report_year)
-flows(quart="Q3", data=dmean, reportyear=report_year)
+outflow_winter = flows(quart="Q1", data=dmean, reportyear=report_year)
+outflow_spring = flows(quart="Q2", data=dmean, reportyear=report_year)
+outflow_summer = flows(quart="Q3", data=dmean, reportyear=report_year)
+outflow_fall = flows(quart="Q4", data=dmean, reportyear=report_year)
+
+save(outflow_winter, outflow_summer, outflow_fall, outflow_spring, 
+     file = file.path(fig_root, "flowplots.RData"))
 
 
 ## Save all seasons:
 for(Q in c("Q1","Q2","Q3","Q4")) {
 	flowPlot <- flows(quart=Q, data=dmean, reportyear=report_year, verbose=FALSE)
-	
+
 	varName <- paste0("outflow_",season_names[Q])
 	fileName <- file.path(fig_root, season_names[Q], paste0(varName,".RData"))
 
-	assign(x=varName, value=flowPlot)
-	save(list=varName, file=fileName)
+	save(flowPlot, file=fileName)
 	print(sprintf("Saving plots in a list called %s in the file %s", varName, fileName))
 	cat("\n")
 }

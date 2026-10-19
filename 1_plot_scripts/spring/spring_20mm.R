@@ -66,5 +66,5 @@ lfs_recyears_fig
 getCaption(lfs_recyears_fig)
 getAlttext(lfs_recyears_fig)
 
-save(list=c("lfs_recyears_fig"), file=file.path(fig_root_spring,"20mm_LFS_recent.RData"))
+save(lfs_recyears_fig, file=file.path(fig_root_spring,"20mm_LFS_recent.RData"))
 

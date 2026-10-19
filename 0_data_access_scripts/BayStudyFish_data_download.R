@@ -15,7 +15,7 @@ library(readxl)
 # This is the URL for the zip file to download
 # **** The end date in the zip file name will probably change in the future ****
 
-baystudy_url <- "https://filelib.wildlife.ca.gov/Public/BayStudy/CatchMatrices/BayStudy_Fish_Matrices_1980-2023.zip"
+baystudy_url <- "https://filelib.wildlife.ca.gov/Public/BayStudy/CatchMatrices/Bay%20Study%20Fish%20Matrices%201980-2025.zip"
 
 # Create some tempfiles to temporarily hold data
 temp1 <- tempfile()
@@ -29,8 +29,8 @@ unzip(zipfile = temp1, exdir = temp2)
 
 # These are the two xlsx files to be extracted from the zip file
 # **** The end dates in both file names will probably change in the future ****
-mwt_file <- "BayStudy_MWT_1980-2023_FishMatrix_Sept2024.xlsx"
-ot_file <- "BayStudy_OT_1980-2023_FishMatrix_Sept2024.xlsx"
+mwt_file <- "BayStudy_MWT_1980-2025_FishMatrix.xlsx"
+ot_file <- "BayStudy_OT_1980-2025_FishMatrix.xlsx"
 
 # Extract fish matrix data from temp2 file
 # **** I assume that the sheet names won't change in the future ****
@@ -38,7 +38,8 @@ ot_file <- "BayStudy_OT_1980-2023_FishMatrix_Sept2024.xlsx"
   midwater_trawl_data <- read_excel(file.path(temp2, mwt_file), sheet = "MWT_Catch_Matrix")
 
   # Otter trawl
-  otter_trawl_data <- read_excel(file.path(temp2, ot_file), sheet = "OT_Catch_Matrix")
+  excel_sheets(file.path(temp2, ot_file))
+  otter_trawl_data <- read_excel(file.path(temp2, ot_file), sheet = "1980-2025")
   
 # Remove temp files
 unlink(c(temp1, temp2))

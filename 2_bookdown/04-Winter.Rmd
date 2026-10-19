@@ -1,7 +1,7 @@
 
 ```{r echo = F}
 options(width = 120)
-load(file.path(fig_root_winter,"outflow_winter.RData"))
+load(file.path(fig_root,"flowplots.RData"))
 load(file.path(fig_root_winter,"water_quality_winter.RData"))
 load(file.path(fig_root_winter,"zooplankton_winter.RData"))
 load(file.path(fig_root_winter,"BayStudy_fish_winter.RData"))
@@ -29,11 +29,11 @@ surveys for December through February of 1966 to `r report_year`. The winter of
 :::
 
 ::: {.col-2-outflow}
-```{r echo=FALSE, fig.cap="mean is represented by a dotted red line"}
+```{r echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"mline.svg"))
 ```
 :::{.expand}
-```{r fig.cap=getAlttext(outflow_winter), echo=FALSE}
+```{r echo=FALSE}
 getPlot(outflow_winter)
 ```
 :::
@@ -54,7 +54,7 @@ getPlot(outflow_winter)
 :::
 
 ::: {.col-2-background}
-```{r fig.height=10, fig.align="center", fig.cap="image of a secchi disk", echo=FALSE}
+```{r fig.height=10, fig.align="center", echo=FALSE}
 knitr::include_graphics(file.path(fig_root_static,"secchidisc.png"))
 ```
 :::
@@ -95,43 +95,43 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_winter$secchi_spl), echo=FALSE}
-getPlot(water_quality_winter$secchi_spl)
+```{r fig.cap=getAlttext(water_quality_winter$`Secchi Depth_spl`), echo=FALSE}
+getPlot(water_quality_winter$`Secchi Depth_spl`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_winter$secchi_ss), echo=FALSE}
-getPlot(water_quality_winter$secchi_ss)
+```{r fig.cap=getAlttext(water_quality_winter$`Secchi Depth_ss`), echo=FALSE}
+getPlot(water_quality_winter$`Secchi Depth_ss`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_winter$secchi_dt), echo=FALSE}
-getPlot(water_quality_winter$secchi_dt)
+```{r fig.cap=getAlttext(water_quality_winter$`Secchi Depth_dt`), echo=FALSE}
+getPlot(water_quality_winter$`Secchi Depth_dt`)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_winter$secchi_spl)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_winter$secchi_ss)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_winter$secchi_dt)`</center>
+
 :::
 ::::
 
@@ -195,43 +195,43 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_winter$temp_spl), echo=FALSE}
-getPlot(water_quality_winter$temp_spl)
+```{r fig.cap=getAlttext(water_quality_winter$`Water Temperature_spl`), echo=FALSE}
+getPlot(water_quality_winter$`Water Temperature_spl`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_winter$temp_ss), echo=FALSE}
-getPlot(water_quality_winter$temp_ss)
+```{r fig.cap=getAlttext(water_quality_winter$`Water Temperature_ss`), echo=FALSE}
+getPlot(water_quality_winter$`Water Temperature_ss`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_winter$temp_dt), echo=FALSE}
-getPlot(water_quality_winter$temp_dt)
+```{r fig.cap=getAlttext(water_quality_winter$`Water Temperature_dt`), echo=FALSE}
+getPlot(water_quality_winter$`Water Temperature_dt`)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_winter$temp_spl)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_winter$temp_ss)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_winter$temp_dt)`</center>
+
 :::
 ::::
 
@@ -294,43 +294,43 @@ knitr::include_graphics(file.path(fig_root_static,"mpoint.svg"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_winter$chla_spl), echo=FALSE}
-getPlot(water_quality_winter$chla_spl)
+```{r fig.cap=getAlttext(water_quality_winter$`Chlorophyll a_spl`), echo=FALSE}
+getPlot(water_quality_winter$`Chlorophyll a_spl`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_winter$chla_ss), echo=FALSE}
-getPlot(water_quality_winter$chla_ss)
+```{r fig.cap=getAlttext(water_quality_winter$`Chlorophyll a_ss`), echo=FALSE}
+getPlot(water_quality_winter$`Chlorophyll a_ss`)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(water_quality_winter$chla_dt), echo=FALSE}
-getPlot(water_quality_winter$chla_dt)
+```{r fig.cap=getAlttext(water_quality_winter$`Chlorophyll a_dt`), echo=FALSE}
+getPlot(water_quality_winter$`Chlorophyll a_dt`)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_winter$chla_spl)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_winter$chla_ss)`</center>
+
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(water_quality_winter$chla_dt)`</center>
+
 :::
 ::::
 

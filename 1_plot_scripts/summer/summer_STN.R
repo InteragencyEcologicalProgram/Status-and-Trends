@@ -15,17 +15,17 @@ stnDSMIndex <- read.csv(file.path(thisDataRoot,"STN_DSM_indices.csv"),
 ## Summer Townet Survey: Delta Smelt
 
 ## Add fields:
-stnDSMIndex$Year_f = as.factor(stnDSMIndex$Year)
+stnDSMIndex$Year_f = as.factor(stnDSMIndex$YEAR)
 
 ## Truncate the data according to the specified report year:
-stnDSMIndex <- subset(stnDSMIndex, !is.na(Index))
-stnDSMIndex <- subset(stnDSMIndex, Year <= report_year)
+stnDSMIndex <- subset(stnDSMIndex, !is.na(INDEX))
+stnDSMIndex <- subset(stnDSMIndex, YEAR <= report_year)
 
 ##########################################################################
 ## Figures:
 
 ## All years:
-stn_dsm_all_years <- ggplot(stnDSMIndex, aes(x=Year, y=Index)) + 
+stn_dsm_all_years <- ggplot(stnDSMIndex, aes(x=YEAR, y=INDEX)) + 
   geom_bar(stat="identity") + 
   smr_theme_update() + 
   scale_y_continuous(expression(paste("Index"))) + 
@@ -42,7 +42,7 @@ getAlttext(stn_dsm_all_years)
 
 
 ## Recent years:
-stn_dsm_recent_years <- ggplot(stnDSMIndex, aes(x=Year, y=Index))+
+stn_dsm_recent_years <- ggplot(stnDSMIndex, aes(x=YEAR, y=INDEX))+
   geom_bar(stat="identity") +
 	smr_theme_update() +
   scale_y_continuous(expression(paste("Index"))) + 
@@ -63,5 +63,5 @@ STN_delta_smelt <- list()
 STN_delta_smelt[["all_years"]] <- stn_dsm_all_years
 STN_delta_smelt[["recent_years"]] <- stn_dsm_recent_years
 
-save(list="STN_delta_smelt", file=file.path(fig_root_summer,"STN_delta_smelt.RData"))
+save(stn_dsm_all_years,stn_dsm_recent_years, file=file.path(fig_root_summer,"STN_delta_smelt.RData"))
 

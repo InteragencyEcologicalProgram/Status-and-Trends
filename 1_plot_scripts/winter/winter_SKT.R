@@ -101,6 +101,6 @@ getCaption(SKT_delta_smelt_recent)
 getAlttext(SKT_delta_smelt_recent)
 
 
-save(list="SKT_delta_smelt_recent", 
+save(SKT_delta_smelt_recent, 
 		 file=file.path(fig_root_winter,"SKT_delta_smelt_recent.RData"))
 

@@ -42,7 +42,8 @@ station<-read.csv(file.path(data_root,"zoop_stations.csv"))
 zmass<-read.csv(file.path(data_root,"zoop_individual_mass.csv")) 
 load(file.path(data_root, "Zoops.RData"))
 #load(file.path(data_root, "mysidbiomass.RData"))
-
+zoopscb = zoopscb  %>%
+  rename(Station = StationNZ)
 
 #CB net: formatting data---------
 #reduce count and biomass data to just needed elements and then use to calculate biomass
@@ -54,7 +55,8 @@ load(file.path(data_root, "Zoops.RData"))
 #exclude 1972-1973 because only subset of core stations were sampled during those years
 #exclude survey replicate 2 for the months that have those; vast majority of monthly surveys are just one replicate
 #exclude the winter months (1,2,12) initially because they have a shorter time series than the other months
-zoop_sub<-subset(zoopscb, Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & 
+zoop_sub<- zoopscb%>%
+  filter(Station!="NZEZ2" & Station!="NZEZ6" & Core!=0 & 
                    Year>1973 & SurveyRep!=2 & Survey>2 & Survey<12)
 
 #create separate subset of the two san pablo stations to include in graphs (no core stations in SP)
@@ -384,6 +386,7 @@ zoops("dt", "Q3", zmeans, reportyear=report_year)
 #fall zoopsplot
 zoops("spl", "Q4", zmeans, reportyear=report_year)
 zoops("ss", "Q4", zmeans, reportyear=report_year)
+
 zoops("dt", "Q4", zmeans, reportyear=report_year)
 
 

@@ -93,7 +93,7 @@ getAlttext(northern_anchovy_all_years)
 
 
 ## Save figure:
-save(list="northern_anchovy_all_years", 
+save(northern_anchovy_all_years, 
 		 file=file.path(fig_root_summer,"northern_anchovy_all_years.RData"))
 
 

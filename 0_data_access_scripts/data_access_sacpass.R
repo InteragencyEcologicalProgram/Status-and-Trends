@@ -26,11 +26,10 @@ urls =  "http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.ph
 rb = function(reportyear) {
   years = 2004:reportyear
   urls = map(years, function(x){
-    paste("http://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?outputFormat=csv&year=",x, 
-          "&biweekly=other&wtemp=default", sep = "") })
+    paste("https://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_daily.php?sc=1&outputFormat=csv&esttype=weekly&year=",x,
+          "&span=no&startdate=1%2F1&enddate=12%2F31", sep = "") })
   redbluff = read.csv(urls[[1]],  stringsAsFactors =F)
   redbluff = redbluff[1:(which(redbluff$Project == "Notes:")-1),]
-  
   for (i in 2:length(years)) {
       rb2 = read.csv(urls[[i]],  stringsAsFactors =F)
     rb2 = rb2[1:(which(rb2$Project == "Notes:")-1),]
@@ -39,24 +38,23 @@ rb = function(reportyear) {
   return(redbluff)
 }
 
-redbluff = rb(report_year)
+redbluff = rb(2025)
 
 redbluff$Date = as.Date(redbluff$Date, format = "%Y-%m-%d")
 
-#subset days sampling occured
-Redbluff2 = redbluff[which(redbluff$Winter.Chinook.BY != "--"), ]
+redlong = redbluff %>%
+  select(Project, Date, DataType, Winter.Chinook.BroodYear, Winter.Chinook.PassageEstimate, Spring.Chinook.BroodYear,
+         Spring.Chinook.PassageEstimate, Fall.Chinook.BroodYear, Fall.Chinook.PassageEstimate,
+         Late.Fall.Chinook.BroodYear, Late.Fall.Chinook.PassageEstimate) %>%
+  pivot_longer(cols = c(Winter.Chinook.BroodYear:last_col()),names_sep = ".Chinook.", names_to = c("RunType", "Broodyear"),
+               values_to =  "Value") %>%
+  pivot_wider(names_from = Broodyear, values_from = Value) %>%
+  group_by(BroodYear, RunType) %>%
+  summarize(Passage = sum(PassageEstimate, na.rm =T))
 
-#Drop the columns we’re not interested in
-Redbluff3 = Redbluff2[,c(2,5,8,11, 14)]
-
-#make it long instead of wide
-Redlong = gather(Redbluff3, key = "runname", value = "Dailypassage", -Date) 
-
-#passage estimates as a numeric
-Redlong$Dailypassage = as.numeric(Redlong$Dailypassage)
 
 #write the result
-write.csv(Redlong, file.path(data_root,"redbluff_all.csv"), row.names = FALSE)
+write.csv(redlong , file.path(data_root,"redbluff_all.csv"), row.names = FALSE)
 
 
 ############################################################################################################
@@ -106,4 +104,4 @@ AllAdults = left_join(Fall, Winter) %>%
 write.csv(AllAdults, file.path(data_root,"Grandtab_adultsalmon.csv"), row.names = F)
 
 #save all these as a RData file
-save(Spring, Winter, Fall, Redlong, file = file.path(data_root, "Grantab.RData"))
+save(Spring, Winter, Fall, redlong , file = file.path(data_root, "Grantab.RData"))

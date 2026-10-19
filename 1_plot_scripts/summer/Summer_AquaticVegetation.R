@@ -104,7 +104,7 @@ getCaption(veg_perc)
 getAlttext(veg_perc)
 
 
-save(list="veg_perc", file=file.path(fig_root_summer,"veg_perc.RData"))
+save(veg_perc, file=file.path(fig_root_summer,"veg_perc.RData"))
 
 
 #print plot

@@ -16,16 +16,20 @@ seineData$Volume[is.na(seineData$Volume)] <- mean(seineData$Volume, na.rm=TRUE)
 
 ## Add fields:
 
-seineData$Date = mdy(seineData$SampleDate)
+seineData$Date = seineData$SampleDate
 seineData$Month <- lubridate::month(seineData$Date)
 seineData$Year <- lubridate::year(seineData$Date)
 
 seineData$Year_f <- as.factor(seineData$Year)
 
+sites = select(siteLatLong, StationCode, Latitude, Longitude) %>%
+  group_by(StationCode) %>%
+  summarise(Latitude = mean(Latitude), Longitude = mean(Longitude))
+
 ## Add lat/long:
 seineData <- dplyr::left_join(
 	seineData, 
-	siteLatLong[ ,c("StationCode","Latitude","Longitude")],
+	sites,
 	by="StationCode"
 )
 
@@ -38,7 +42,6 @@ seineData$customRegion[seineData$Longitude > -121.829] <- "The Delta"
 unique(seineData$customRegion)
 
 ## Create wide data frame:
-<<<<<<< HEAD
 seineData$CommonName <- sub("Chinook Salmon","Chinook Salmon_",seineData$CommonName)
 seineData$RaceByLength[is.na(seineData$RaceByLength)] <- ""
 seineData$CommonName_RaceByLength <- with(seineData, paste0(CommonName, RaceByLength))
@@ -47,24 +50,13 @@ seineData$CommonName_RaceByLength <- with(seineData, paste0(CommonName, RaceByLe
 seineWide = pivot_wider(seineData, id_cols =c("Year","Month","Location","RegionCode","StationCode","SampleDate",
                                                 "SampleTime","MethodCode","GearConditionCode",
                                                 "Volume"), names_from =  CommonName_RaceByLength, values_from = Catch,
-                        values_fill = 0)
+                        values_fill = 0, values_fn = sum)
 
-=======
-seineData$CommonName <- sub("Chinook salmon","Chinook salmon_",seineData$CommonName)
-seineData$RaceByLength[is.na(seineData$RaceByLength)] <- ""
-seineData$CommonName_RaceByLength <- with(seineData, paste0(CommonName, RaceByLength))
-keep_fields_seine <- c("Year","Month","Location","RegionCode","StationCode","SampleDate",
-											 "SampleTime","MethodCode","GearConditionCode","TowNumber",
-											 "Volume","CommonName_RaceByLength","Catch")
-seineWide <- tidyr::spread(seineData[ ,keep_fields_seine], CommonName_RaceByLength, 
-													 Catch, fill=0)
->>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5
+
 seineWide$"No catch" <- NULL
 names(seineWide) <- sub(" ", "_", names(seineWide))
 
 head(seineWide)
-lapply(split(seineWide$StationCode, seineWide$Year), unique)
-
 
 ## Truncate the data according to the specified report year.
 ## Maybe keep 1995+ as a lazy way of dealing with sampling site inconsistencies.
@@ -77,11 +69,7 @@ seineWide_summer <- subset(seineWide_summer, RegionCode != 1)
 seineIndexDf <- seineWide_summer %>%
 	dplyr::group_by(Year, Month) %>%
 	dplyr::summarize(
-<<<<<<< HEAD
 		SacPikeminnow_CPUE_YM=sum(Sacramento_Pikeminnow/Volume),
-=======
-		SacPikeminnow_CPUE_YM=sum(Sacramento_pikeminnow/Volume),
->>>>>>> 1ccffa55bc6a0112602dc6e4c979ac4e4e32fef5
 		.groups="keep"
 	) %>% 
 	dplyr::ungroup() %>%
@@ -118,6 +106,6 @@ getAlttext(sacpikeminnow_fig)
 ## Save plot:
 DJFMP_sacpikeminnow_summer <- sacpikeminnow_fig
 
-save(list="DJFMP_sacpikeminnow_summer", 
+save(DJFMP_sacpikeminnow_summer, 
      file=file.path(fig_root_summer,"DJFMP_sacpikeminnow_summer.RData"))
 
