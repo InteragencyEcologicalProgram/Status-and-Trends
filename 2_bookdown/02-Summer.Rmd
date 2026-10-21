@@ -512,8 +512,8 @@ knitr::include_graphics(file.path(fig_root_static,"sacramento_pikeminnow.png"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(STN_delta_smelt$all_years), echo=FALSE}
-getPlot(STN_delta_smelt$all_years)
+```{r fig.cap=getAlttext(stn_dsm_all_years), echo=FALSE}
+getPlot(stn_dsm_all_years)
 ```
 :::
 ::: {.column40}
@@ -536,7 +536,7 @@ getPlot(DJFMP_sacpikeminnow_summer)
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(STN_delta_smelt$all_years)`</center>
+<center>`r getCaption(stn_dsm_all_years)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
@@ -628,8 +628,8 @@ knitr::include_graphics(file.path(fig_root_static,"egeria.jpeg"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(STN_delta_smelt$recent_years), echo=FALSE}
-getPlot(STN_delta_smelt$recent_years)
+```{r fig.cap=getAlttext(stn_dsm_recent_years), echo=FALSE}
+getPlot(stn_dsm_recent_years)
 ```
 :::
 ::: {.column40}
@@ -652,7 +652,7 @@ getPlot(veg_perc)
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(STN_delta_smelt$recent_years)`</center>
+<center>`r getCaption(stn_dsm_recent_years)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->

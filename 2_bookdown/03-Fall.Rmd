@@ -510,43 +510,43 @@ knitr::include_graphics(file.path(fig_root_static,"striped_bass_young_adult.png"
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(fish_fall$delta_smelt_all_years), echo=FALSE}
-getPlot(fish_fall$delta_smelt_all_years)
+```{r fig.cap=getAlttext(delta_smelt_all_years), echo=FALSE}
+getPlot(delta_smelt_all_years)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(fish_fall$longfin_smelt_all_years), echo=FALSE}
-getPlot(fish_fall$longfin_smelt_all_years)
+```{r fig.cap=getAlttext(longfin_smelt_all_years), echo=FALSE}
+getPlot(longfin_smelt_all_years)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(fish_fall$striped_bass0_all_years), echo=FALSE}
-getPlot(fish_fall$striped_bass0_all_years)
+```{r fig.cap=getAlttext(striped_bass0_all_years), echo=FALSE}
+getPlot(striped_bass0_all_years)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(fish_fall$delta_smelt_all_years)`</center>
+<center>`r getCaption(delta_smelt_all_years)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(fish_fall$longfin_smelt_all_years)`</center>
+<center>`r getCaption(longfin_smelt_all_years)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(fish_fall$striped_bass0_all_years)`</center>
+<center>`r getCaption(striped_bass0_all_years)`</center>
 :::
 ::::
 
@@ -597,16 +597,16 @@ knitr::include_graphics(file.path(fig_root_static,"chinook_salmon.png"))
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(fish_fall$american_shad_all_years), echo=FALSE}
-getPlot(fish_fall$american_shad_all_years)
+```{r fig.cap=getAlttext(american_shad_all_years), echo=FALSE}
+getPlot(american_shad_all_years)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(fish_fall$white_sturgeon_all_years), echo=FALSE}
-getPlot(fish_fall$white_sturgeon_all_years)
+```{r fig.cap=getAlttext(white_sturgeon_all_years), echo=FALSE}
+getPlot(white_sturgeon_all_years)
 ```
 :::
 ::: {.column40}
@@ -621,13 +621,13 @@ getPlot(FallRun_1966)
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(fish_fall$american_shad_all_years)`</center>
+<center>`r getCaption(american_shad_all_years)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(fish_fall$white_sturgeon_all_years)`</center>
+<center>`r getCaption(white_sturgeon_all_years)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
@@ -709,43 +709,43 @@ knitr::include_graphics(file.path(fig_root_static,"striped_bass_young_adult.png"
 
 :::: {.row}
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(fish_fall$delta_smelt_recent), echo=FALSE}
-getPlot(fish_fall$delta_smelt_recent)
+```{r fig.cap=getAlttext(delta_smelt_recent), echo=FALSE}
+getPlot(delta_smelt_recent)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(fish_fall$longfin_smelt_recent), echo=FALSE}
-getPlot(fish_fall$longfin_smelt_recent)
+```{r fig.cap=getAlttext(longfin_smelt_recent), echo=FALSE}
+getPlot(longfin_smelt_recent)
 ```
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3 .expand}
-```{r fig.cap=getAlttext(fish_fall$striped_bass0_recent), echo=FALSE}
-getPlot(fish_fall$striped_bass0_recent)
+```{r fig.cap=getAlttext(striped_bass0_recent), echo=FALSE}
+getPlot(striped_bass0_recent)
 ```
 :::
 ::::
 
 :::: {.row}
 ::: {.col-1of3}
-<center>`r getCaption(fish_fall$delta_smelt_recent)`</center>
+<center>`r getCaption(delta_smelt_recent)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(fish_fall$longfin_smelt_recent)`</center>
+<center>`r getCaption(longfin_smelt_recent)`</center>
 :::
 ::: {.column40}
 \ <!-- an empty Div (with a white space), serving as a column separator -->
 :::
 ::: {.col-1of3}
-<center>`r getCaption(fish_fall$striped_bass0_recent)`</center>
+<center>`r getCaption(striped_bass0_recent)`</center>
 :::
 ::::
 

@@ -9,8 +9,8 @@ library(smonitr)
 load(file.path(data_root,"wtryrs.RData"))
 
 indicies = filter(water_year_indices, location != "San Joaquin Valley") 
-in2022 = data.frame(WY = c(2022, 2023, 2024, 2025, 2026), Index = c(4.5,9.33, 8.44, 8.98, 7.81), 
-                    Yr_type = c("Critical", "Wet", "Above Normal", "Above Normal", "Above Normal"))
+in2022 = data.frame(WY = c( 2024, 2025, 2026), Index = c(8.44, 8.98, 7.81), 
+                    Yr_type = c( "Above Normal", "Above Normal", "Above Normal"))
 indicies = bind_rows(indicies, in2022)
 
 
